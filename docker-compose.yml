@@ -1,0 +1,64 @@
+services:
+  web:
+    build:
+      context: .
+      target: dev
+    environment:
+      DATABASE_URL: postgres://hypha:hypha@db/hypha # pragma: allowlist secret
+      DJANGO_SETTINGS_MODULE: hypha.settings.dev
+      PGHOST: db
+      PGUSER: hypha
+      REDIS_URL: redis://redis
+      SECRET_KEY: local_dev_secret_key # pragma: allowlist secret
+      PYTHONDONTWRITEBYTECODE: 1
+      PYTHONUNBUFFERED: 1
+      PROJECTS_ENABLED: 1
+      ORG_SHORT_NAME: "WT.SH"
+    env_file:
+      - path: .env
+        required: false
+    ports:
+      - 3000:3000 # Webpack dev server
+      - 8000:9001 # Django development server
+      - 8001:8001 # mkdocs server
+    volumes:
+      # Mount the repo at /app/
+      - ./:/app/
+      # Mount a volume at /app/node_modules to prevent Docker trying to sync the
+      # contents between the container and the host. This means that the
+      # node_modules directory can appear to have different contents depending
+      # on whether you are looking at it from the host or the container, so make
+      # sure you consistently run Node.js commands from inside the container or
+      # the host, but not both.
+      - node_modules:/app/node_modules
+    init: true
+    depends_on:
+      - db
+      - redis
+
+  db:
+    image: postgres:16
+    expose:
+      - 5432
+    environment:
+      # Location of DB data folder
+      PGDATA: /var/lib/postgresql/data/pgdata
+      # Defaults for createdb/dropdb/pg_restore etc.
+      PGDATABASE: hypha
+      PGUSER: hypha
+      # Values for initdb
+      POSTGRES_HOST_AUTH_METHOD: trust
+      POSTGRES_USER: hypha
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    attach: false
+
+  redis:
+    image: redis:7.2
+    expose:
+      - 6379
+    attach: false
+
+volumes:
+  node_modules:
+  pgdata:
