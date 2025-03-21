@@ -1,0 +1,37 @@
+---
+- name: Create deploy user {{ hypha_deploy_user }}
+  ansible.builtin.user:
+    name: "{{ hypha_deploy_user }}"
+    create_home: yes
+    generate_ssh_key: yes
+    ssh_key_type: ed25519
+  register: deploy_user
+
+- name: Copy deploy script
+  ansible.builtin.template:
+    src: deploy.sh.jinja2
+    dest: "{{ hypha_root_dir }}/deploy.sh"
+    mode: "0700"
+  register: deploy_script
+
+- name: Allow {{ hypha_deploy_user }} to sudo deploy script
+  community.general.sudoers:
+    name: allow-{{ deploy_user.name }}
+    state: present
+    user: "{{ deploy_user.name }}"
+    commands:
+      - "{{ deploy_script.dest }}"
+
+- ansible.builtin.set_fact:
+    deploy_key_options:
+      - command="sudo {{ deploy_script.dest }}"
+      - no-port-forwarding
+      - no-x11-forwarding
+      - no-agent-forwarding
+
+- name: Create ~/.authorized_key file for user {{ deploy_user.name }}
+  ansible.posix.authorized_key:
+    user: "{{ deploy_user.name }}"
+    state: present
+    key: "{{ deploy_user.ssh_public_key }}"
+    key_options: "{{ deploy_key_options | join(',') }}"

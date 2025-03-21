@@ -1,0 +1,29 @@
+---
+# The domain/port under which the application is eventually served
+hypha_external_domain: hypha.test
+hypha_external_port: 80
+
+# A prefix used for naming containers, services, ...
+app_name: wtsh
+
+# Name used for
+hypha_project_name: "{{ app_name }}-hypha"
+
+# The directory on the server holding configuration, volumes, ...
+hypha_root_dir: /srv/{{ hypha_project_name }}
+
+# The port under which the hypha application is running (host)
+hypha_host_port: 9001
+
+# The name of the docker network shared by the web and db containers
+hypha_docker_network: "{{ hypha_project_name }}"
+
+# The docker image/tag used to deploy hypha
+hypha_docker_image: ghcr.io/torchbox/wtsh-hypha
+hypha_docker_tag: "wtsh-main"
+
+# The postgres version used
+hypha_postgres_version: 16
+
+# The name of the system user that can deploy the site (used in github action)
+hypha_deploy_user: deploy

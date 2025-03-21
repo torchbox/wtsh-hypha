@@ -1,0 +1,35 @@
+#!/bin/bash
+set -euo pipefail
+
+CONTAINER_WEB={{hypha_project_name}}-web
+SERVICE_WEB={{hypha_project_name}}-web
+IMAGE={{hypha_docker_image}}
+
+
+managepy() {
+    echo "$1:"
+    docker exec "$CONTAINER_WEB" python -m django "$@"
+}
+
+
+echo "Pulling image $IMAGE..."
+docker image pull "$IMAGE"
+echo "Done."
+
+systemctl daemon-reload
+
+echo "Restarting service $SERVICE_WEB..."
+systemctl restart $SERVICE_WEB
+echo "Service restarted. Sleeping for a bit..."
+sleep 5
+echo "Done."
+
+
+echo "Running post-deploy commands:"
+managepy createcachetable
+managepy migrate --noinput
+managepy clear_cache --cache=default
+managepy sync_roles
+
+
+echo "All done."

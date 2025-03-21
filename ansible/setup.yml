@@ -1,0 +1,9 @@
+- name: Common configuration for all servers
+  hosts: all
+  become: true
+  remote_user: root
+  roles:
+    - system
+    - docker
+    - nginx
+    - hypha

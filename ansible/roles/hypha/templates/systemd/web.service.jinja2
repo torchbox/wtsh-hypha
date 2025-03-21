@@ -1,0 +1,25 @@
+[Unit]
+Description=Hypha web docker container ({{ app_name }})
+After=docker.service
+Wants=network-online.target docker.socket
+Requires=docker.socket
+
+[Service]
+Restart=on-failure
+ExecStart=/usr/bin/docker run \
+    --name {{ hypha_project_name }}-web \
+    --pull never \
+    --rm \
+    --env PYTHONDONTWRITEBYTECODE=1 \
+    --env PYTHONUNBUFFERED=1 \
+    --network {{ hypha_docker_network }} \
+    --publish 127.0.0.1:{{ hypha_host_port }}:9001 \
+    --volume {{ hypha_root_dir }}/media:/app/media \
+    --mount type=bind,src={{ hypha_root_dir }}/hypha.env,dst=/app/.env,ro \
+    {{ hypha_docker_image }}{% if hypha_docker_tag %}:{{ hypha_docker_tag }}{% endif +%}
+ExecStop=/usr/bin/docker container stop \
+    --timeout 10 \
+    {{ hypha_project_name }}-web
+
+[Install]
+WantedBy=multi-user.target

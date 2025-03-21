@@ -1,0 +1,24 @@
+[Unit]
+Description=Hypha db docker container ({{ app_name }})
+After=docker.service
+Wants=network-online.target docker.socket
+Requires=docker.socket
+
+[Service]
+Restart=on-failure
+ExecStart=/usr/bin/docker run \
+    --name {{ hypha_project_name }}-db \
+    --pull missing \
+    --rm \
+    --env PGDATA=/var/lib/postgresql/data/pgdata \
+    --env POSTGRES_USER=hypha \
+    --env POSTGRES_HOST_AUTH_METHOD=trust \
+    --volume {{ hypha_root_dir }}/data:/var/lib/postgresql/data \
+    --network {{ hypha_docker_network }} \
+    postgres:{{ hypha_postgres_version }}
+ExecStop=/usr/bin/docker container stop \
+    --timeout 10 \
+    {{ hypha_project_name }}-db
+
+[Install]
+WantedBy=multi-user.target

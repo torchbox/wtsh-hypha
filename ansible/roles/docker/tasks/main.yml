@@ -1,0 +1,40 @@
+# adapted from https://docs.docker.com/engine/install/debian/#install-using-the-repository
+- name: Install docker dependencies
+  ansible.builtin.apt:
+    state: present
+    name:
+      - gnupg-agent
+
+- name: Add Docker GPG apt Key
+  ansible.builtin.apt_key:
+    url: https://download.docker.com/linux/debian/gpg
+    state: present
+
+- name: Add repository into sources list
+  ansible.builtin.apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/debian bookworm stable
+    state: present
+    filename: docker
+
+- name: Install docker
+  ansible.builtin.apt:
+    state: present
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-buildx-plugin
+      - docker-compose-plugin
+    update_cache: true
+
+- name: Install Docker module for Python
+  ansible.builtin.pip:
+    name:
+      - docker
+    break_system_packages: true
+
+- name: Start docker service
+  ansible.builtin.service:
+    name: docker
+    state: started
+    enabled: yes
