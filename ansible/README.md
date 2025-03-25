@@ -19,6 +19,27 @@ The code is organised by roles, with the main playbook (`setup.yml`) depending o
 * `hypha` configures a systemd service that runs our `torchbox/wtsh-hypha` image (and a postgres 16 image for its database)
 
 
+## Deployment
+
+The `setup.yml` playbook should install everything that's needed to run the site, but it won't actually deploy anything. Instead, it creates a `deploy.sh` script (located at `/srv/wtsh-hypha/deploy.sh` by default) and a system user (`deploy` by default).
+
+### The deploy script
+
+The script will do the following operations:
+
+1) Pull a fresh image
+2) Restart the web docker container
+3) Run post-deploy commands (like `migrate`, `sync_roles`, ...)
+
+### The deploy user
+
+The `deploy` user is given permission to `sudo` run the deploy script (that's basically the only thing it can do).
+
+A new SSH key pair is also generated for the `deploy` user the first time the playbook is run. You probably want to copy the private key into the corresponding GitHub's environment secret (`SSH_DEPLOY_KEY`).
+
+When the `deploy` user logs in with the SSH key, its `authorized_keys` configuration makes it so that it will automatically run the deploy script, then exit. This way, all that's needed to do in CI is to ssh to the server and the deployment will be triggered.
+
+
 ## Creating a VM for local testing with Vagrant
 
 If you have `vagrant` installed (and probably `virtualbox` too), then you should be able to create a VM with:

@@ -26,4 +26,4 @@ hypha_docker_tag: "wtsh-main"
 hypha_postgres_version: 16
 
 # The name of the system user that can deploy the site (used in github action)
-hypha_deploy_user: deploy
+hypha_deploy_user: deploy-{{ app_name }}

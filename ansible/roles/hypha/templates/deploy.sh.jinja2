@@ -3,7 +3,8 @@ set -euo pipefail
 
 CONTAINER_WEB={{hypha_project_name}}-web
 SERVICE_WEB={{hypha_project_name}}-web
-IMAGE={{hypha_docker_image}}
+IMAGE={{hypha_docker_image}}{% if hypha_docker_tag %}:{{ hypha_docker_tag }}{% endif +%}
+
 
 
 managepy() {
