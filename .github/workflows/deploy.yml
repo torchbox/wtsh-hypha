@@ -11,7 +11,6 @@ on:
       SERVER_IP:
         required: true
         description: The IP address or domain of the server (can include port)
-        type: string
       SERVER_SIGNATURE:
         required: true
         description: The signature of the server (use ssh-keyscan to generate it)
