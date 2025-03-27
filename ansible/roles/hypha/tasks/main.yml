@@ -1,0 +1,58 @@
+- name: Created media directory
+  ansible.builtin.file:
+    path: "{{ hypha_root_dir }}/media"
+    state: directory
+    mode: "0777"  # TODO: restrict permissions
+
+- name: Created postgres data directory
+  ansible.builtin.file:
+    path: "{{ hypha_root_dir }}/data"
+    state: directory
+
+- name: Create docker network {{ hypha_docker_network }}
+  community.docker.docker_network:
+    name: "{{ hypha_docker_network }}"
+
+- name: Install nginx site {{ hypha_project_name }}
+  ansible.builtin.template:
+    src: nginx/web.jinja2
+    dest: /etc/nginx/sites-available/{{ hypha_project_name }}
+  notify: Restart nginx
+
+- name: Enable nginx site {{ hypha_project_name }}
+  file:
+    src: /etc/nginx/sites-available/{{ hypha_project_name }}
+    dest: /etc/nginx/sites-enabled/{{ hypha_project_name }}
+    state: link
+  notify: Restart nginx
+
+- name: Create systemd unit file {{ hypha_project_name }}-{{ item }}
+  ansible.builtin.template:
+    src: systemd/{{ item }}.service.jinja2
+    dest: /etc/systemd/system/{{ hypha_project_name }}-{{ item }}.service
+    owner: root
+    group: root
+  loop:
+    - web
+    - db
+
+- name: Enable systemd service {{ hypha_project_name }}-{{ item }}
+  ansible.builtin.systemd:
+    name: "{{ hypha_project_name }}-{{ item }}"
+    enabled: true
+  loop:
+    - web
+    - db
+
+- name: Start service {{ hypha_project_name }}-db
+  ansible.builtin.systemd:
+    name: "{{ hypha_project_name }}-db"
+    state: started
+
+- name: Make sure .env file exists
+  ansible.builtin.template:
+    src: hypha.env.jinja2
+    dest: "{{ hypha_root_dir }}/hypha.env"
+    force: false
+
+- ansible.builtin.include_tasks: deploy_user.yml

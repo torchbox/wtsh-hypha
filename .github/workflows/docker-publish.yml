@@ -1,9 +1,9 @@
 # Adapted from https://docs.github.com/en/actions/use-cases-and-examples/publishing-packages/publishing-docker-images#publishing-images-to-github-packages
-name: Create and publish a Docker image
+name: Create, Publish, and Deploy a Docker image
 
 on:
   push:
-    branches: ['wtsh-main']
+    branches: ['wtsh-main', 'wtsh-staging']
 
 env:
   REGISTRY: ghcr.io
@@ -37,7 +37,9 @@ jobs:
         uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-          flavor: latest=true
+          tags: |
+            # set latest tag for default branch
+            type=raw,value=latest,enable={{is_default_branch}}
 
       - name: Build and push Docker image
         id: push
@@ -55,3 +57,20 @@ jobs:
           subject-name: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME}}
           subject-digest: ${{ steps.push.outputs.digest }}
           push-to-registry: true
+
+  deploy-prod:
+    # Disabled for now
+    if: false && github.ref_name == 'wtsh-main'
+    needs: [build-and-push-image]
+    uses: ./.github/workflows/deploy.yml
+    with:
+        environment: prod
+    secrets: inherit
+
+  deploy-staging:
+    if: github.ref_name == 'wtsh-staging'
+    needs: [build-and-push-image]
+    uses: ./.github/workflows/deploy.yml
+    with:
+        environment: staging
+    secrets: inherit

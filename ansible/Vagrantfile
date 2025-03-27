@@ -1,0 +1,17 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Based on `vagrant init debian/bookworm64`
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "debian/bookworm64"
+
+  # Port 22 (ssh) is automatically forwarded to 2222
+  config.vm.network "forwarded_port", guest: 80, host: 8080
+
+  # The default RAM of 1Gb is a bit too low (migrations won't run)
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = "3072"  # 3Gb
+  end
+
+end
