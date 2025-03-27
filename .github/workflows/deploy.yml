@@ -35,4 +35,4 @@ jobs:
             mkdir -p -m 700 ~/.ssh
             echo "${{ secrets.SERVER_SIGNATURE }}" >> ~/.ssh/known_hosts
             chmod 644 ~/.ssh/known_hosts
-            ssh -t deploy@${{ secrets.SERVER_IP }}
+            ssh -t {{ secrets.SSH_DEPLOY_USER }}@${{ secrets.SERVER_IP }}
