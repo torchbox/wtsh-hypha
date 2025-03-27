@@ -15,15 +15,12 @@ on:
       SERVER_SIGNATURE:
         required: true
         description: The signature of the server (use ssh-keyscan to generate it)
-        type: string
       SSH_DEPLOY_USER:
         required: true
         description: The user used for deploying (probably `deploy`)
-        type: string
       SSH_DEPLOY_KEY:
         required: true
         description: The private ssh key used to connect to the server
-        type: string
 
 jobs:
   deploy:
