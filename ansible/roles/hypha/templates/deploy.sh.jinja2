@@ -16,7 +16,7 @@ managepy() {
 
 echolog() {
     # Add a timestamp prefix then echo to STDOUT and LOGFILE
-    echo "$@" | ts '[%Y-%m-%d %H:%M:%S]' | tee "$LOGFILE"
+    echo "$@" | ts '[%Y-%m-%d %H:%M:%S]' | tee -a "$LOGFILE"
 }
 
 
