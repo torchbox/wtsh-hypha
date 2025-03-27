@@ -4,6 +4,7 @@ set -euo pipefail
 CONTAINER_WEB={{hypha_project_name}}-web
 SERVICE_WEB={{hypha_project_name}}-web
 IMAGE={{hypha_docker_image}}{% if hypha_docker_tag %}:{{ hypha_docker_tag }}{% endif +%}
+LOGFILE="{{ hypha_root_dir }}/deploy_$(date --iso).log"
 
 
 
@@ -13,24 +14,30 @@ managepy() {
 }
 
 
-echo "Pulling image $IMAGE..."
+echolog() {
+    # Add a timestamp prefix then echo to STDOUT and LOGFILE
+    echo "$@" | ts '[%Y-%m-%d %H:%M:%S]' | tee "$LOGFILE"
+}
+
+
+echolog "Pulling image $IMAGE..."
 docker image pull "$IMAGE"
-echo "Done."
+echolog "Done."
 
 systemctl daemon-reload
 
-echo "Restarting service $SERVICE_WEB..."
+echolog "Restarting service $SERVICE_WEB..."
 systemctl restart $SERVICE_WEB
-echo "Service restarted. Sleeping for a bit..."
+echolog "Service restarted. Sleeping for a bit..."
 sleep 5
-echo "Done."
+echolog "Done."
 
 
-echo "Running post-deploy commands:"
+echolog "Running post-deploy commands:"
 managepy createcachetable
 managepy migrate --noinput
 managepy clear_cache --cache=default
 managepy sync_roles
 
 
-echo "All done."
+echolog "All done."
