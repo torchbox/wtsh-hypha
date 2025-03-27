@@ -33,6 +33,6 @@ jobs:
             eval $(ssh-agent -s)
             echo "${{ secrets.SSH_DEPLOY_KEY }}" | tr -d '\r' | ssh-add -
             mkdir -p -m 700 ~/.ssh
-            echo "${{ secrets.SERVER_SIGNATURE }} >> ~/.ssh/known_hosts
+            echo "${{ secrets.SERVER_SIGNATURE }}" >> ~/.ssh/known_hosts
             chmod 644 ~/.ssh/known_hosts
             ssh -t deploy@${{ secrets.SERVER_IP }}
