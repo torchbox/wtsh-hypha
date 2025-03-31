@@ -55,4 +55,10 @@
     dest: "{{ hypha_root_dir }}/hypha.env"
     force: false
 
+- name: Make sure local_settings.py exists
+  ansible.builtin.template:
+    src: local_settings.py.jinja2
+    dest: "{{ hypha_root_dir }}/local_settings.py"
+    force: false
+
 - ansible.builtin.include_tasks: deploy_user.yml
