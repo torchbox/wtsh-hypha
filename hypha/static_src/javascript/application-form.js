@@ -51,7 +51,9 @@
 
   // Block multiple form submits.
   form.addEventListener("submit", function () {
-    button.setAttribute("disabled", "disabled");
+    window.setTimeOut(function () {
+      button.setAttribute("disabled", "disabled");
+    });
   });
 
   const unlockApplicationForm = function () {
