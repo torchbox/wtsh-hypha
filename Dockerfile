@@ -46,7 +46,8 @@ RUN --mount=type=cache,target=/var/lib/apt/lists,sharing=locked \
         build-essential \
         curl \
         libpq-dev \
-        git
+        git \
+        gettext
     apt-get --quiet --yes autoremove
 EOF
 
@@ -156,12 +157,11 @@ ENV \
 
 # Copy in built static files and the application code. Run collectstatic so
 # whitenoise can serve static files for us.
-COPY . .
-ARG UID
-ARG GID
+COPY --chown=$UID:$GID . .
 COPY --chown=$UID:$GID --from=frontend-build --link /build/hypha/static_compiled ./hypha/static_compiled
 RUN <<EOF
     python -m django collectstatic --noinput --clear
+    python -m django compilemessages --ignore .venv
 EOF
 
 # Run Gunicorn using the config in gunicorn.conf.py (the default location for
