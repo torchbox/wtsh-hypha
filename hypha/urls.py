@@ -110,7 +110,7 @@ urlpatterns += [
 # Load urls from any djp plugins.
 urlpatterns += djp.urlpatterns()
 
-if settings.DEBUG:
+if settings.DEBUG and settings.DEBUGTOOLBAR:
     import debug_toolbar
 
     urlpatterns = [

@@ -1,7 +1,7 @@
 from .base import *  # noqa
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = DEBUGTOOLBAR = True
 
 # Automatic reload for development (only when DEBUG is true).
 RELOAD = True
