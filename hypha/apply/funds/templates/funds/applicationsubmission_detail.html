@@ -57,7 +57,7 @@
                 <div class="wrapper--sidebar--inner">
                     <h4>{% trans "Congratulations!" %}</h4>
                     <h5>{% blocktrans with stage=object.previous.stage %}Your {{ stage }} application has been accepted.{% endblocktrans %}</h5>
-                    <a class="button button--primary" href="{% url 'funds:submissions:edit' object.id %}">{% blocktrans with stage=object.stage %}Start your {{ stage }} application.{% endblocktrans %}</a>
+                    <a class="button button--primary" href="{% url 'funds:submissions:edit' object.id %}">{% trans "Start" context "start application" %}</a>
                 </div>
             {% else %}
                 <article class="wrapper--sidebar--inner">

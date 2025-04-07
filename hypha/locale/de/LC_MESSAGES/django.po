@@ -6,11 +6,12 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-31 12:16+0200\n"
+"POT-Creation-Date: 2025-04-07 13:19+0000\n"
 "PO-Revision-Date: 2025-04-07 13:15+0200\n"
 "Language: de\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: xls2po 3.3\n"
 
 #: hypha/apply/activity/adapters/activity_feed.py:28
@@ -306,8 +307,8 @@ msgstr "Ihr {org_long_name}-Projekt: {source.title}"
 #: hypha/apply/activity/adapters/slack.py:31
 #, python-brace-format
 msgid ""
-"A new submission has been submitted for {source.page.title}: <{link}|"
-"{source.title_text_display}> by {user}"
+"A new submission has been submitted for {source.page.title}: <{link}|{source."
+"title_text_display}> by {user}"
 msgstr ""
 "Eine neue Einreichung wurde für {source.page.title} eingereicht: <{link}|"
 "{source.title_text_display}> von {user}"
@@ -357,8 +358,8 @@ msgid ""
 "A proposal has been submitted for review: <{link}|{source.title_text_display}"
 ">"
 msgstr ""
-"Ein Vorschlag wurde zur Bewertung eingereicht: <{link}|"
-"{source.title_text_display}>"
+"Ein Vorschlag wurde zur Bewertung eingereicht: <{link}|{source."
+"title_text_display}>"
 
 #: hypha/apply/activity/adapters/slack.py:61
 #, python-brace-format
@@ -376,16 +377,16 @@ msgid ""
 "Outcome: {review.outcome},  Score: {review.get_score_display}"
 msgstr ""
 "{user} hat eine Bewertung für <{link}|{source.title_text_display}> "
-"eingereicht. Ergebnis: {review.outcome}, Punktzahl: "
-"{review.get_score_display}"
+"eingereicht. Ergebnis: {review.outcome}, Punktzahl: {review."
+"get_score_display}"
 
 #: hypha/apply/activity/adapters/slack.py:68
 #, python-brace-format
 msgid ""
 "{user} has opened the sealed submission: <{link}|{source.title_text_display}>"
 msgstr ""
-"{user} hat die gesperrte Einreichung geöffnet: <{link}|"
-"{source.title_text_display}>"
+"{user} hat die gesperrte Einreichung geöffnet: <{link}|{source."
+"title_text_display}>"
 
 #: hypha/apply/activity/adapters/slack.py:71
 #, python-brace-format
@@ -404,11 +405,11 @@ msgstr "{user} hat {source.title_text_display} gelöscht"
 #: hypha/apply/activity/adapters/slack.py:76
 #, python-brace-format
 msgid ""
-"{user} has deleted {review.author} review for <{link}|"
-"{source.title_text_display}>"
+"{user} has deleted {review.author} review for <{link}|{source."
+"title_text_display}>"
 msgstr ""
-"{user} hat die Bewertung von {review.author} für <{link}|"
-"{source.title_text_display}> gelöscht"
+"{user} hat die Bewertung von {review.author} für <{link}|{source."
+"title_text_display}> gelöscht"
 
 #: hypha/apply/activity/adapters/slack.py:79
 #, python-brace-format
@@ -416,8 +417,8 @@ msgid ""
 "{user} has deleted {review_opinion.author} review opinion for <{link}|"
 "{source.title_text_display}>"
 msgstr ""
-"{user} hat die Bewertung von {review_opinion.author} für <{link}|"
-"{source.title_text_display}> gelöscht"
+"{user} hat die Bewertung von {review_opinion.author} für <{link}|{source."
+"title_text_display}> gelöscht"
 
 #: hypha/apply/activity/adapters/slack.py:82
 #, python-brace-format
@@ -445,11 +446,11 @@ msgstr ""
 #: hypha/apply/activity/adapters/slack.py:91
 #, python-brace-format
 msgid ""
-"{user} has edited {review.author} review for <{link}|"
-"{source.title_text_display}>"
+"{user} has edited {review.author} review for <{link}|{source."
+"title_text_display}>"
 msgstr ""
-"{user} hat die Bewertung von {review.author} für <{link}|"
-"{source.title_text_display}> bearbeitet"
+"{user} hat die Bewertung von {review.author} für <{link}|{source."
+"title_text_display}> bearbeitet"
 
 #: hypha/apply/activity/adapters/slack.py:94
 #, python-brace-format
@@ -480,8 +481,8 @@ msgstr "{user} hat einen Vertrag für <{link}|{source.title}> hochgeladen"
 #: hypha/apply/activity/adapters/slack.py:106
 #, python-brace-format
 msgid ""
-"{user} has submitted the contracting document for project <{link}|"
-"{source.title}>"
+"{user} has submitted the contracting document for project <{link}|{source."
+"title}>"
 msgstr ""
 "{user} hat das Vertragsdokument für das Projekt <{link}|{source.title}> "
 "eingereicht"
@@ -499,11 +500,11 @@ msgstr "{user} hat eine Rechnung für <{link}|{source.title}> erstellt"
 #: hypha/apply/activity/adapters/slack.py:115
 #, python-brace-format
 msgid ""
-"{user} has changed the status of <{link_related}|invoice> on <{link}|"
-"{source.title}> to {invoice.status_display}"
+"{user} has changed the status of <{link_related}|invoice> on <{link}|{source."
+"title}> to {invoice.status_display}"
 msgstr ""
-"{user} hat den Status von <{link_related}|Rechnung> auf <{link}|"
-"{source.title}> zu {invoice.status_display} geändert"
+"{user} hat den Status von <{link_related}|Rechnung> auf <{link}|{source."
+"title}> zu {invoice.status_display} geändert"
 
 #: hypha/apply/activity/adapters/slack.py:118
 #, python-brace-format
@@ -1812,16 +1813,10 @@ msgid "by"
 msgstr "durch"
 
 #: hypha/apply/dashboard/templates/dashboard/community_dashboard.html:66
-#: hypha/apply/dashboard/templates/dashboard/partials/applicant_submissions.html:25
-#: hypha/apply/dashboard/templates/dashboard/partner_dashboard.html:44
-#: hypha/apply/dashboard/templates/dashboard/reviewer_dashboard.html:66
 msgid "Start your"
 msgstr "Beginnen Sie Ihr"
 
 #: hypha/apply/dashboard/templates/dashboard/community_dashboard.html:66
-#: hypha/apply/dashboard/templates/dashboard/partials/applicant_submissions.html:25
-#: hypha/apply/dashboard/templates/dashboard/partner_dashboard.html:44
-#: hypha/apply/dashboard/templates/dashboard/reviewer_dashboard.html:66
 msgid "application"
 msgstr "Anwendung"
 
@@ -1959,6 +1954,14 @@ msgstr "Entworfen am"
 #: hypha/apply/dashboard/templates/dashboard/partials/applicant_submissions.html:18
 msgid "Submitted on "
 msgstr "Eingereicht am"
+
+#: hypha/apply/dashboard/templates/dashboard/partials/applicant_submissions.html:25
+#: hypha/apply/dashboard/templates/dashboard/partner_dashboard.html:44
+#: hypha/apply/dashboard/templates/dashboard/reviewer_dashboard.html:66
+#: hypha/apply/funds/templates/funds/applicationsubmission_detail.html:60
+msgctxt "start application"
+msgid "Start"
+msgstr "Starten"
 
 #: hypha/apply/dashboard/templates/dashboard/partials/applicant_submissions.html:36
 #: hypha/apply/funds/templates/funds/applicationsubmission_confirm_delete.html:42
@@ -3019,11 +3022,6 @@ msgstr "Herzlichen Glückwunsch!"
 msgid "Your %(stage)s application has been accepted."
 msgstr "Ihre %(stage)s-Bewerbung wurde angenommen."
 
-#: hypha/apply/funds/templates/funds/applicationsubmission_detail.html:60
-#, python-format
-msgid "Start your %(stage)s application."
-msgstr "Starten Sie Ihre %(stage)s Einreichung."
-
 #: hypha/apply/funds/templates/funds/applicationsubmission_detail.html:67
 msgid "This application has been archived. This is visible to the roles "
 msgstr ""
@@ -3660,7 +3658,7 @@ msgstr "Akzeptiert"
 
 #: hypha/apply/funds/templates/funds/submissions_result.html:33
 #: hypha/apply/funds/templates/submissions/all.html:7
-#: hypha/core/navigation.py:38
+#: hypha/core/navigation.py:38 hypha/core/navigation.py:114
 msgid "Submissions"
 msgstr "Einreichungen"
 
@@ -5472,8 +5470,8 @@ msgstr "Optional"
 #: hypha/apply/projects/templates/application_projects/modals/send_for_approval.html:38
 msgid "No reviewer roles configured. Please add roles in "
 msgstr ""
-"Keine Reviewer-Rollen konfiguriert. Bitte fügen Sie Rollen in <a href=\"{url}"
-"\">Admin</a> hinzu"
+"Keine Reviewer-Rollen konfiguriert. Bitte fügen Sie Rollen in <a "
+"href=\"{url}\">Admin</a> hinzu"
 
 #: hypha/apply/projects/templates/application_projects/modals/send_for_approval.html:39
 msgid "project settings"
@@ -5702,7 +5700,7 @@ msgstr "genehmigt"
 
 #: hypha/apply/projects/templates/application_projects/project_list.html:6
 #: hypha/apply/projects/views/project_partials.py:110
-#: hypha/core/navigation.py:77
+#: hypha/core/navigation.py:77 hypha/core/navigation.py:111
 msgid "Projects"
 msgstr "Projekte"
 
@@ -6396,8 +6394,8 @@ msgstr ""
 #, python-brace-format
 msgid ""
 "Determination draft for submission [<span class=\"truncate inline-block max-"
-"w-32 align-bottom \">{related.submission.title}</span>]({link} "
-"\"{related.submission.title}\") is waiting to be submitted"
+"w-32 align-bottom \">{related.submission.title}</span>]({link} \"{related."
+"submission.title}\") is waiting to be submitted"
 msgstr ""
 "Entwurf der Entscheidung zur Einreichung [<span class=\"truncate inline-"
 "block max-w-32 align-bottom \">{related.submission.title}</span>]({link} "
@@ -6407,8 +6405,8 @@ msgstr ""
 #, python-brace-format
 msgid ""
 "Review draft for submission [<span class=\"truncate inline-block max-w-32 "
-"align-bottom \">{related.submission.title}</span>]({link} "
-"\"{related.submission.title}\") is waiting to be submitted"
+"align-bottom \">{related.submission.title}</span>]({link} \"{related."
+"submission.title}\") is waiting to be submitted"
 msgstr ""
 "Überprüfen Sie den Entwurf für die Einreichung [<span class=\"truncate "
 "inline-block max-w-32 align-bottom \">{related.submission.title}</span>]"

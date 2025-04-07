@@ -41,7 +41,7 @@
                     {% if request.user|has_edit_perm:submission %}
                         <a class="button button--primary" href="{% url 'funds:submissions:edit' submission.id %}">
                             {% if submission.status == 'draft_proposal' %}
-                                {% trans "Start your" %} {{ submission.stage }} {% trans "application" %}
+                                {% trans "Start" context "start application" %}
                             {% else %}
                                 {% trans "Edit" %}
                             {% endif %}
