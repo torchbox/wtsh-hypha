@@ -768,7 +768,7 @@ msgstr "Sende Ergebnis der Chargenzuordnung"
 
 #: hypha/apply/activity/options.py:21
 msgid "invited to proposal"
-msgstr "zur Konzepteinreichung eingeladen"
+msgstr "zur Konzept­einreichung eingeladen"
 
 #: hypha/apply/activity/options.py:22
 msgid "updated reviewers"
@@ -4267,7 +4267,7 @@ msgstr "Mehr Informationen angefordert"
 #: hypha/apply/funds/workflows/constants.py:77
 #: hypha/apply/funds/workflows/definitions/double_stage.py:165
 msgid "Invited for Proposal"
-msgstr "Zur Konzepteinreichung eingeladen"
+msgstr "Zur Konzept­einreichung eingeladen"
 
 #: hypha/apply/funds/workflows/constants.py:81
 #: hypha/apply/funds/workflows/definitions/double_stage.py:258
@@ -4324,7 +4324,7 @@ msgstr "Bereit für vorläufige Entscheidung"
 #: hypha/apply/funds/workflows/definitions/double_stage.py:108
 #: hypha/apply/funds/workflows/definitions/double_stage.py:119
 msgid "Invite to Proposal"
-msgstr "Einladung zur Konzepteinreichung"
+msgstr "Einladung zur Konzept­einreichung"
 
 #: hypha/apply/funds/workflows/definitions/double_stage.py:38
 #: hypha/apply/funds/workflows/definitions/double_stage.py:58
