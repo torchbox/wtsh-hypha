@@ -1,13 +1,17 @@
-# This file was generated from de.xlsx
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-31 12:16+0200\n"
-"PO-Revision-Date: 2025-04-03 15:32+0200\n"
+"PO-Revision-Date: 2025-04-07 13:15+0200\n"
 "Language: de\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: xls2po 3.3\n"
+"X-Generator: xls2po 3.3\n"
 
 #: hypha/apply/activity/adapters/activity_feed.py:28
 #, python-brace-format
@@ -1722,7 +1726,7 @@ msgstr "Bewerben Sie sich jetzt für unsere offenen Runden"
 #: hypha/apply/users/templates/users/account.html:24
 #: hypha/home/templates/home/includes/fund-list-item.html:31
 msgid "Apply"
-msgstr "Anwenden"
+msgstr "Jetzt bewerben"
 
 #: hypha/apply/dashboard/templates/dashboard/applicant_dashboard.html:34
 msgid "My submissions"
@@ -2262,7 +2266,7 @@ msgstr "Einreichungen anzeigen"
 #: hypha/apply/determinations/templates/determinations/base_determination_form.html:17
 #: hypha/apply/review/templates/review/review_form.html:24
 msgid "Hide application"
-msgstr "Anwendung ausblenden"
+msgstr "Einreichung ausblenden"
 
 #: hypha/apply/determinations/templates/determinations/base_determination_form.html:57
 #: hypha/apply/funds/templates/funds/application_base.html:75
@@ -2999,7 +3003,7 @@ msgstr "Anwendung"
 #: hypha/apply/funds/templates/funds/comments.html:28
 #: hypha/apply/projects/templates/application_projects/project_detail.html:29
 msgid "Conversations"
-msgstr "Gespräche"
+msgstr "Diskussion"
 
 #: hypha/apply/funds/templates/funds/applicationsubmission_detail.html:46
 #: hypha/apply/funds/templates/funds/comments.html:45
@@ -3048,7 +3052,7 @@ msgstr "Einreichung löschen"
 
 #: hypha/apply/funds/templates/funds/applicationsubmission_detail.html:165
 msgid "Related submissions"
-msgstr "Verwandte Einreichungen"
+msgstr "Zugehörige Informationen"
 
 #: hypha/apply/funds/templates/funds/applicationsubmission_detail.html:168
 #: hypha/apply/funds/templates/funds/applicationsubmission_detail.html:172
@@ -3091,7 +3095,7 @@ msgstr "List of Submissions summary"
 #: hypha/apply/projects/templates/application_projects/project_approval_detail.html:96
 #: hypha/apply/projects/templates/application_projects/project_sow_detail.html:40
 msgid "Actions to take"
-msgstr "Maßnahmen zur Ergreifung"
+msgstr "Nächste Aktion"
 
 #: hypha/apply/funds/templates/funds/includes/admin_primary_actions.html:15
 #: hypha/apply/funds/templates/funds/includes/modal_unarchive_submission_confirm.html:12
@@ -3299,7 +3303,7 @@ msgstr "Runden"
 
 #: hypha/apply/funds/templates/funds/includes/screening_status_block.html:5
 msgid "Screening decision"
-msgstr "Überprüfungsentscheidung"
+msgstr "Entscheidung im Screening"
 
 #: hypha/apply/funds/templates/funds/includes/submission-list-row.html:17
 #: hypha/apply/funds/templates/funds/includes/submission-table-row.html:18
@@ -4214,7 +4218,7 @@ msgstr "Entwurf gespeichert"
 #: hypha/apply/funds/views/submission_edit.py:402
 #: hypha/apply/funds/workflows/definitions/double_stage.py:133
 msgid "Progress"
-msgstr "Fortschritt"
+msgstr "Weiter"
 
 #: hypha/apply/funds/views/submission_edit.py:568
 msgid "Submission Lead updated."
@@ -4274,7 +4278,7 @@ msgstr "Zur Konzept­einreichung eingeladen"
 #: hypha/apply/funds/workflows/definitions/single_stage_community.py:142
 #: hypha/apply/funds/workflows/definitions/single_stage_external.py:115
 msgid "External Review"
-msgstr "Externe Bewertung"
+msgstr "Formelle Prüfung"
 
 #: hypha/apply/funds/workflows/constants.py:85
 #: hypha/apply/funds/workflows/definitions/single_stage.py:127
@@ -4309,7 +4313,7 @@ msgstr "Mehr Informationen anfordern"
 #: hypha/apply/funds/workflows/definitions/single_stage_external.py:35
 #: hypha/apply/funds/workflows/definitions/single_stage_same.py:35
 msgid "Open Review"
-msgstr "Offene Bewertung"
+msgstr "Review eröffnen"
 
 #: hypha/apply/funds/workflows/definitions/double_stage.py:36
 #: hypha/apply/funds/workflows/definitions/double_stage.py:60
@@ -4368,7 +4372,7 @@ msgstr "Benötigt Überprüfung"
 
 #: hypha/apply/funds/workflows/definitions/double_stage.py:41
 msgid "Concept Note Received"
-msgstr "Notiz zur Projekskizze erhalten"
+msgstr "Projekskizze erhalten"
 
 #: hypha/apply/funds/workflows/definitions/double_stage.py:62
 #: hypha/apply/funds/workflows/definitions/double_stage.py:110
