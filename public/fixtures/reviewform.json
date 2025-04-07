@@ -1,0 +1,26 @@
+[
+{
+  "model": "review.reviewform",
+  "pk": 7,
+  "fields": {
+    "form_fields": "[{\"id\": \"f434bb48-74d5-48da-af1b-c0522ff1e3b7\", \"type\": \"recommendation\", \"value\": {\"info\": null, \"help_text\": \"\", \"field_label\": \"Soll das Projekt eine Finanzierungszusage erhalten?\"}}, {\"id\": \"9d383a38-ace9-4fc3-a02f-f00f5138bee2\", \"type\": \"rich_text\", \"value\": {\"required\": true, \"help_text\": \"\", \"word_limit\": 1000, \"field_label\": \"Weitere Hinweise zur Begr\\u00fcndung gegen\\u00fcber dem Projekt\", \"default_value\": \"\"}}, {\"id\": \"d868a96b-a2c9-4d89-8a75-ac14cc35754e\", \"type\": \"comments\", \"value\": {\"info\": null, \"help_text\": \"\", \"field_label\": \"Weitere Hinweise zur Bearbeitung durch den DigitalHub.SH\"}}, {\"id\": \"81ad3fcf-8469-4ba9-ae09-516de6acc897\", \"type\": \"visibility\", \"value\": {\"info\": null, \"help_text\": \"<p data-block-key=\\\"adg81\\\">Muss nicht ge\\u00e4ndert werden (Als Pflichtfeld korrekt belegt)</p>\", \"field_label\": \"Sichtbarkeit der Bewertung\"}}]",
+    "name": "C4C - 2025 - External Review Form"
+  }
+},
+{
+  "model": "review.reviewform",
+  "pk": 8,
+  "fields": {
+    "form_fields": "[{\"id\": \"bdad3b8f-be82-4bf3-bc13-bc0e1e8a90ce\", \"type\": \"score\", \"value\": {\"required\": true, \"help_text\": \"<p data-block-key=\\\"9lqj4\\\">Wird aus der Antwort ersichtlich, welche konkrete Herausforderung oder Einschr\\u00e4nkungen bei der Institution durch das Projekt verbessert werden sollen.</p>\", \"field_label\": \"Beschreibung der Problemstellung\"}}, {\"id\": \"301811a9-8ba5-4a7e-b953-94ed184fb2df\", \"type\": \"score\", \"value\": {\"required\": true, \"help_text\": \"<p data-block-key=\\\"kz4gf\\\">Wird aus den Antworten zur L\\u00f6sung und den Kernfunktionen ersichtlich, welche Ziele mit der Idee erreicht werden sollen und halten Sie die L\\u00f6sung f\\u00fcr geeignet, das beschriebene Problem zu beheben?</p>\", \"field_label\": \"Beschreibung des L\\u00f6sungsansatzes\"}}, {\"id\": \"4ae64698-083f-4292-b3e7-1f8c14b8ed49\", \"type\": \"score\", \"value\": {\"required\": false, \"help_text\": \"<p data-block-key=\\\"7jz6w\\\">Wird aus der Beschreibung klar, dass eine gute Marktsichtung durchgef\\u00fchrt wurde und in welcher Form sich die vorgeschlagene L\\u00f6sung gegen\\u00fcber bestehenden L\\u00f6sungen eine Innovation darstellt?</p>\", \"field_label\": \"Beschreibung des Innovationsgrades\"}}, {\"id\": \"4a84e390-7df5-47bc-b3d3-c4ce00316ae6\", \"type\": \"score\", \"value\": {\"required\": true, \"help_text\": \"<p data-block-key=\\\"kz4gf\\\">Wird aus der Antwort ersichtlich, dass die L\\u00f6sung ein Potenzial \\u00fcber den Einzelfall hinaus f\\u00fcr weitere Institutionen bietet?</p>\", \"field_label\": \"Beschreibung der Skalierbarkeit und Nachnutzbarkeit\"}}, {\"id\": \"8db281d2-9ead-4ed2-9ec9-e48a7705f5f3\", \"type\": \"comments\", \"value\": {\"info\": null, \"help_text\": \"<p data-block-key=\\\"g7xir\\\">M\\u00f6chtest du zu dem Projekt noch weitere Hinweise geben?</p>\", \"field_label\": \"Allgemeine Kommentare\"}}, {\"id\": \"64d5691a-3b34-4fdc-b1e8-bdc41461aafd\", \"type\": \"recommendation\", \"value\": {\"info\": null, \"help_text\": \"<p data-block-key=\\\"hoqhc\\\">Wird das Projekt in G\\u00e4nze als unterst\\u00fctzenswert eingesch\\u00e4tzt?</p>\", \"field_label\": \"Grunds\\u00e4tzliche Empfehlung\"}}, {\"id\": \"dcfbb622-924c-4aa7-82ac-c798b64e1409\", \"type\": \"visibility\", \"value\": {\"info\": null, \"help_text\": \"<p data-block-key=\\\"6xv23\\\">Muss nicht ge\\u00e4ndert werden (Als Pflichtfeld korrekt belegt)</p>\", \"field_label\": \"Sichtbarkeit der Bewertung\"}}]",
+    "name": "C4C - 2025 - 1. Review Form"
+  }
+},
+{
+  "model": "review.reviewform",
+  "pk": 10,
+  "fields": {
+    "form_fields": "[{\"id\": \"0f635dc7-c743-4529-b321-16394a1eebdb\", \"type\": \"recommendation\", \"value\": {\"info\": null, \"help_text\": \"\", \"field_label\": \"Recommendation\"}}, {\"id\": \"d6714523-266d-49ee-a00f-fb94967fe5fa\", \"type\": \"comments\", \"value\": {\"info\": null, \"help_text\": \"\", \"field_label\": \"Comments\"}}, {\"id\": \"c537bb13-fcb3-4f38-ad90-8d9ac06ead44\", \"type\": \"visibility\", \"value\": {\"info\": null, \"help_text\": \"<p data-block-key=\\\"e0986\\\">Muss nicht ge\\u00e4ndert werden (Als Pflichtfeld korrekt belegt)</p>\", \"field_label\": \"Sichtbarkeit der Bewertung\"}}]",
+    "name": "C4C - 2025 - 2. Review Form"
+  }
+}
+]

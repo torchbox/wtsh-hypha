@@ -1,0 +1,18 @@
+[
+{
+  "model": "determinations.determinationform",
+  "pk": 1,
+  "fields": {
+    "form_fields": "[{\"id\": \"8b779145-043c-4c30-8ce1-dbf91829531c\", \"type\": \"determination\", \"value\": {\"info\": null, \"help_text\": \"<p data-block-key=\\\"ubn5j\\\"><i>[Customisable in admin]</i></p>\", \"field_label\": \"Determination\"}}, {\"id\": \"bf792d43-40d0-492a-8403-9d76ed43832f\", \"type\": \"message\", \"value\": {\"info\": null, \"help_text\": \"<p data-block-key=\\\"mjwsa\\\"><i>[Customisable in admin]</i></p>\", \"field_label\": \"Message\"}}, {\"id\": \"717ca5f2-7deb-4ac8-9d13-4e6dfb3449a1\", \"type\": \"send_notice\", \"value\": {\"info\": null, \"help_text\": \"<p data-block-key=\\\"rjmze\\\"><i>[Customisable in admin]</i></p>\", \"field_label\": \"Send notice?\", \"default_value\": true}}]",
+    "name": "C4C - 2025 - 1. Determination Form"
+  }
+},
+{
+  "model": "determinations.determinationform",
+  "pk": 6,
+  "fields": {
+    "form_fields": "[{\"id\": \"8b779145-043c-4c30-8ce1-dbf91829531c\", \"type\": \"determination\", \"value\": {\"info\": null, \"help_text\": \"<p data-block-key=\\\"ubn5j\\\"><i>[Customisable in admin]</i></p>\", \"field_label\": \"Determination\"}}, {\"id\": \"bf792d43-40d0-492a-8403-9d76ed43832f\", \"type\": \"message\", \"value\": {\"info\": null, \"help_text\": \"<p data-block-key=\\\"mjwsa\\\"><i>[Customisable in admin]</i></p>\", \"field_label\": \"Message\"}}, {\"id\": \"717ca5f2-7deb-4ac8-9d13-4e6dfb3449a1\", \"type\": \"send_notice\", \"value\": {\"info\": null, \"help_text\": \"<p data-block-key=\\\"rjmze\\\"><i>[Customisable in admin]</i></p>\", \"field_label\": \"Send notice?\", \"default_value\": true}}]",
+    "name": "C4C - 2025 - 2. Determination Form"
+  }
+}
+]
