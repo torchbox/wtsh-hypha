@@ -14,6 +14,7 @@ def my_active_submissions(user):
         ApplicationSubmission.objects.filter(
             user=user,
         )
+        .include_archive()
         .annotate(
             is_active=Case(When(status__in=active_statuses, then=True), default=False)
         )

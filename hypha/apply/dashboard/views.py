@@ -463,7 +463,7 @@ class ApplicantDashboardView(TemplateView):
         context = super().get_context_data(**kwargs)
         context["my_submissions_exists"] = ApplicationSubmission.objects.filter(
             user=self.request.user
-        ).exists()
+        ).include_archive().exists()
 
         # Number of items to show in skeleton in each section of lazy loading
         context["per_section_items"] = range(3)
