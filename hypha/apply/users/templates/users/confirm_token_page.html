@@ -1,0 +1,15 @@
+{% extends 'base-apply.html' %}
+
+{% block content %}
+<form class="mt-8 form flex flex-col items-center" action="{{ request.path }}" method="post">
+  <div class="form__group">
+    {% for k, v in request.GET.items %}
+    <input type="hidden" name="{{ k }}" value="{{v}}">
+    {% endfor %}
+    {% csrf_token %}
+    <button class="button button--primary text-xl" type="submit">
+      {{ submit_text|default:"Confirm" }}
+    </button>
+  </div>
+</form>
+{% endblock %}

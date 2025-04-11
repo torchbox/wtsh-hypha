@@ -7697,6 +7697,10 @@ msgstr "Achtung! Ein Versuch, Ihre E-Mail-Adresse zu aktualisieren."
 msgid "Your email has been successfully updated to {email}!"
 msgstr "Ihre E-Mail-Adresse wurde erfolgreich zu {email} aktualisiert!"
 
+#: hypha/apply/users/views.py:321
+msgid "Confirm activation"
+msgstr "Jetzt aktivieren"
+
 #: hypha/apply/users/views.py:354
 msgid "Your password was successfully updated!"
 msgstr "Ihr Passwort wurde erfolgreich aktualisiert!"
@@ -7704,6 +7708,14 @@ msgstr "Ihr Passwort wurde erfolgreich aktualisiert!"
 #: hypha/apply/users/views.py:359
 msgid "Please correct the errors below."
 msgstr "Bitte korrigieren Sie die folgenden Fehler."
+
+#: hypha/apply/users/views.py:653
+msgid "Confirm login"
+msgstr "Jetzt einloggen"
+
+#: hypha/apply/users/views.py:699
+msgid "Confirm signup"
+msgstr "Jetzt anmelden"
 
 #: hypha/apply/users/views.py:799
 msgid "✓ Check your email for password set link."

@@ -298,10 +298,29 @@ class EmailChangeConfirmationView(TemplateView):
             return None
 
 
-class ActivationView(TemplateView):
-    redirect_field_name = "next"
+class CheckTokenOnPostMixin:
+    # This mixin is a workaround for a bug where bots (antispam, email clients, chat apps, ...)
+    # will preview a one-time signup/login link before a user can click on it
+    # thereby making the single-use token invalid and preventing the user
+    # from loggin in or signing up.
+    # The views using this mixin have been modified to do their logic in POST
+    # instead of GET, and to show a "confirm" button on GET instead.
+    token_submit_text = _("Confirm")
 
-    def get(self, request, *args, **kwargs):
+    def get_template_names(self):
+        if isinstance(self, TwoFactorLoginView) and self.storage.current_step != "auth":
+            return super().get_template_names()
+        return ["users/confirm_token_page.html"]
+
+    def get_context_data(self, **kwargs):
+        return super().get_context_data(submit_text=self.token_submit_text, **kwargs)
+
+
+class ActivationView(CheckTokenOnPostMixin, TemplateView):
+    redirect_field_name = "next"
+    token_submit_text = _("Confirm activation")
+
+    def post(self, request, *args, **kwargs):
         user = self.get_user(kwargs.get("uidb64"))
 
         if self.valid(user, kwargs.get("token")):
@@ -622,7 +641,7 @@ class PasswordLessLoginSignupView(FormView):
             return self.render_to_response(self.get_context_data(form=form))
 
 
-class PasswordlessLoginView(LoginView):
+class PasswordlessLoginView(CheckTokenOnPostMixin, LoginView):
     """This view is used to capture the passwordless login token and log the user in.
 
     If the token is valid, the user is logged in and redirected to the dashboard.
@@ -631,8 +650,11 @@ class PasswordlessLoginView(LoginView):
     This view inherits from LoginView to reuse the 2FA views, if a mfa device is added
     to the user.
     """
+    token_submit_text = _("Confirm login")
 
-    def get(self, request, uidb64, token, *args, **kwargs):
+    def post(self, request, uidb64, token, *args, **kwargs):
+        if self.storage.current_step != "auth":
+            return super().post(request, uidb64, token, *args, **kwargs)
         try:
             user = User.objects.get(pk=force_str(urlsafe_base64_decode(uidb64)))
         except (TypeError, ValueError, OverflowError, User.DoesNotExist):
@@ -642,7 +664,7 @@ class PasswordlessLoginView(LoginView):
             user.backend = settings.CUSTOM_AUTH_BACKEND
 
             # Check for "?remember-me" query param, set the session age to long if exists
-            if "remember-me" in request.GET:
+            if "remember-me" in request.POST:
                 self.request.session.set_expiry(settings.SESSION_COOKIE_AGE_LONG)
 
             if default_device(user):
@@ -667,16 +689,18 @@ class PasswordlessLoginView(LoginView):
         return token_generator.check_token(user, token)
 
 
-class PasswordlessSignupView(TemplateView):
+
+class PasswordlessSignupView(CheckTokenOnPostMixin, TemplateView):
     """This view is used to capture the passwordless login token and log the user in.
 
     If the token is valid, the user is logged in and redirected to the dashboard.
     If the token is invalid, the user is shown invalid token page.
     """
+    token_submit_text = _("Confirm signup")
 
     redirect_field_name = "next"
 
-    def get(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
         pending_signup = self.get_pending_signup(kwargs.get("uidb64"))
         token = kwargs.get("token")
         token_generator = PasswordlessSignupTokenGenerator()
@@ -688,7 +712,7 @@ class PasswordlessSignupView(TemplateView):
             pending_signup.delete()
 
             # Check for "?remember-me" query param, set the session age to long if exists
-            if "remember-me" in request.GET:
+            if "remember-me" in request.POST:
                 self.request.session.set_expiry(settings.SESSION_COOKIE_AGE_LONG)
 
             user.backend = settings.CUSTOM_AUTH_BACKEND
