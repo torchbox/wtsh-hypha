@@ -1,7 +1,9 @@
-> [!IMPORTANT]
-> Dies ist keine Eigenentwicklung, sondern ein Fork von [Hypha](https://docs.hypha.app/) in dem Anpassungen für unseren Call for Concepts vorgenommen wurden. Fragen zum Code bitte [direkt an Hypha](https://github.com/HyphaApp/hypha).
->
-> This is not a custom development, but a fork of [Hypha](https://docs.hypha.app/) with adjustments made for our Call for Concepts. For questions regarding the code, please contact [Hypha directly](https://github.com/HyphaApp/hypha).
+# Dies ist keine Eigenentwicklung, sondern ein Fork von [Hypha](https://docs.hypha.app/) in dem Anpassungen für unseren Call for Concepts vorgenommen wurden. Fragen zum Code bitte [direkt an Hypha](https://github.com/HyphaApp/hypha).
+
+# This is not a custom development, but a fork of [Hypha](https://docs.hypha.app/) with adjustments made for our Call for Concepts. For questions regarding the code, please contact [Hypha directly](https://github.com/HyphaApp/hypha).
+
+---
+
 
 <p align="center">
   <a href="https://www.hypha.app/">
