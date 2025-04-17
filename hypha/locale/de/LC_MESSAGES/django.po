@@ -1524,7 +1524,7 @@ msgstr "Sie können den Bericht hier überprüfen"
 msgid ""
 "We appreciate your %(title)s application submission to the %(ORG_LONG_NAME)s."
 msgstr ""
-"Vielen Dank für Ihre Einreichung  %(title)s beim %(ORG_LONG_NAME)s."
+"Vielen Dank für Ihre Einreichung %(title)s beim %(ORG_LONG_NAME)s."
 
 #: hypha/apply/activity/templates/messages/email/submission_confirmation.html:8
 msgid ""
