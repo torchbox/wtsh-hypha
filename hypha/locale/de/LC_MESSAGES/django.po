@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-07 13:19+0000\n"
-"PO-Revision-Date: 2025-04-07 13:15+0200\n"
+"POT-Creation-Date: 2025-04-30 11:46+0200\n"
+"PO-Revision-Date: 2025-04-30 12:12+0200\n"
 "Language: de\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -307,8 +307,8 @@ msgstr "Ihr {org_long_name}-Projekt: {source.title}"
 #: hypha/apply/activity/adapters/slack.py:31
 #, python-brace-format
 msgid ""
-"A new submission has been submitted for {source.page.title}: <{link}|{source."
-"title_text_display}> by {user}"
+"A new submission has been submitted for {source.page.title}: <{link}|"
+"{source.title_text_display}> by {user}"
 msgstr ""
 "Eine neue Einreichung wurde für {source.page.title} eingereicht: <{link}|"
 "{source.title_text_display}> von {user}"
@@ -358,8 +358,8 @@ msgid ""
 "A proposal has been submitted for review: <{link}|{source.title_text_display}"
 ">"
 msgstr ""
-"Ein Vorschlag wurde zur Bewertung eingereicht: <{link}|{source."
-"title_text_display}>"
+"Ein Vorschlag wurde zur Bewertung eingereicht: <{link}|"
+"{source.title_text_display}>"
 
 #: hypha/apply/activity/adapters/slack.py:61
 #, python-brace-format
@@ -377,16 +377,16 @@ msgid ""
 "Outcome: {review.outcome},  Score: {review.get_score_display}"
 msgstr ""
 "{user} hat eine Bewertung für <{link}|{source.title_text_display}> "
-"eingereicht. Ergebnis: {review.outcome}, Punktzahl: {review."
-"get_score_display}"
+"eingereicht. Ergebnis: {review.outcome}, Punktzahl: "
+"{review.get_score_display}"
 
 #: hypha/apply/activity/adapters/slack.py:68
 #, python-brace-format
 msgid ""
 "{user} has opened the sealed submission: <{link}|{source.title_text_display}>"
 msgstr ""
-"{user} hat die gesperrte Einreichung geöffnet: <{link}|{source."
-"title_text_display}>"
+"{user} hat die gesperrte Einreichung geöffnet: <{link}|"
+"{source.title_text_display}>"
 
 #: hypha/apply/activity/adapters/slack.py:71
 #, python-brace-format
@@ -405,11 +405,11 @@ msgstr "{user} hat {source.title_text_display} gelöscht"
 #: hypha/apply/activity/adapters/slack.py:76
 #, python-brace-format
 msgid ""
-"{user} has deleted {review.author} review for <{link}|{source."
-"title_text_display}>"
+"{user} has deleted {review.author} review for <{link}|"
+"{source.title_text_display}>"
 msgstr ""
-"{user} hat die Bewertung von {review.author} für <{link}|{source."
-"title_text_display}> gelöscht"
+"{user} hat die Bewertung von {review.author} für <{link}|"
+"{source.title_text_display}> gelöscht"
 
 #: hypha/apply/activity/adapters/slack.py:79
 #, python-brace-format
@@ -417,8 +417,8 @@ msgid ""
 "{user} has deleted {review_opinion.author} review opinion for <{link}|"
 "{source.title_text_display}>"
 msgstr ""
-"{user} hat die Bewertung von {review_opinion.author} für <{link}|{source."
-"title_text_display}> gelöscht"
+"{user} hat die Bewertung von {review_opinion.author} für <{link}|"
+"{source.title_text_display}> gelöscht"
 
 #: hypha/apply/activity/adapters/slack.py:82
 #, python-brace-format
@@ -446,11 +446,11 @@ msgstr ""
 #: hypha/apply/activity/adapters/slack.py:91
 #, python-brace-format
 msgid ""
-"{user} has edited {review.author} review for <{link}|{source."
-"title_text_display}>"
+"{user} has edited {review.author} review for <{link}|"
+"{source.title_text_display}>"
 msgstr ""
-"{user} hat die Bewertung von {review.author} für <{link}|{source."
-"title_text_display}> bearbeitet"
+"{user} hat die Bewertung von {review.author} für <{link}|"
+"{source.title_text_display}> bearbeitet"
 
 #: hypha/apply/activity/adapters/slack.py:94
 #, python-brace-format
@@ -481,8 +481,8 @@ msgstr "{user} hat einen Vertrag für <{link}|{source.title}> hochgeladen"
 #: hypha/apply/activity/adapters/slack.py:106
 #, python-brace-format
 msgid ""
-"{user} has submitted the contracting document for project <{link}|{source."
-"title}>"
+"{user} has submitted the contracting document for project <{link}|"
+"{source.title}>"
 msgstr ""
 "{user} hat das Vertragsdokument für das Projekt <{link}|{source.title}> "
 "eingereicht"
@@ -500,11 +500,11 @@ msgstr "{user} hat eine Rechnung für <{link}|{source.title}> erstellt"
 #: hypha/apply/activity/adapters/slack.py:115
 #, python-brace-format
 msgid ""
-"{user} has changed the status of <{link_related}|invoice> on <{link}|{source."
-"title}> to {invoice.status_display}"
+"{user} has changed the status of <{link_related}|invoice> on <{link}|"
+"{source.title}> to {invoice.status_display}"
 msgstr ""
-"{user} hat den Status von <{link_related}|Rechnung> auf <{link}|{source."
-"title}> zu {invoice.status_display} geändert"
+"{user} hat den Status von <{link_related}|Rechnung> auf <{link}|"
+"{source.title}> zu {invoice.status_display} geändert"
 
 #: hypha/apply/activity/adapters/slack.py:118
 #, python-brace-format
@@ -621,7 +621,7 @@ msgstr ""
 #: hypha/apply/activity/adapters/utils.py:42
 #, python-brace-format
 msgid " as {role}"
-msgstr "als {role}"
+msgstr " als {role}"
 
 #: hypha/apply/activity/filters.py:13
 #: hypha/apply/funds/templates/submissions/all.html:617
@@ -665,7 +665,7 @@ msgstr "Zusammenfassung aller Aktivitäten"
 
 #: hypha/apply/activity/management/commands/send_staff_email_digest.py:162
 msgid "Activities Summary - "
-msgstr "Aktivitätenzusammenfassung -"
+msgstr "Aktivitätenzusammenfassung - "
 
 #: hypha/apply/activity/models.py:25 hypha/apply/todo/options.py:59
 msgid "Comment"
@@ -1050,7 +1050,7 @@ msgstr "aktualisiert"
 
 #: hypha/apply/activity/templates/activity/ui/activity-comment-item.html:100
 msgid "View "
-msgstr "Anzeigen"
+msgstr "Anzeigen "
 
 #: hypha/apply/activity/templates/activity/ui/edit_comment_form.html:25
 #: hypha/apply/determinations/templates/determinations/base_determination_form.html:59
@@ -1109,6 +1109,53 @@ msgstr "Senden"
 #: hypha/templates/includes/dialog_form_base.html:39
 msgid "Cancel"
 msgstr "Abbrechen"
+
+#: hypha/apply/activity/templates/messages/email/activity_summary.md:4
+msgid "Activities Summary"
+msgstr "Aktivitätenzusammenfassung"
+
+#: hypha/apply/activity/templates/messages/email/activity_summary.md:7
+#, python-format
+msgid ""
+"\n"
+"There is %(total_count_apnumber)s new activity:\n"
+msgid_plural ""
+"\n"
+"There are %(total_count_apnumber)s new activities:\n"
+msgstr[0] ""
+"\n"
+"Es gibt %(total_count_apnumber)s Treffer\n"
+msgstr[1] ""
+"\n"
+"Es gibt %(total_count_apnumber)s Treffer\n"
+
+#: hypha/apply/activity/templates/messages/email/activity_summary.md:13
+#: hypha/apply/funds/templates/funds/submissions_result.html:33
+#: hypha/apply/funds/templates/submissions/all.html:7
+#: hypha/core/navigation.py:38 hypha/core/navigation.py:114
+msgid "Submissions"
+msgstr "Einreichungen"
+
+#: hypha/apply/activity/templates/messages/email/activity_summary.md:17
+#: hypha/apply/funds/tables.py:92
+msgid "Comments"
+msgstr "Kommentare"
+
+#: hypha/apply/activity/templates/messages/email/activity_summary.md:21
+#: hypha/apply/funds/templates/funds/reviewer_leaderboard.html:5
+#: hypha/apply/funds/templates/funds/reviewer_leaderboard_detail.html:5
+#: hypha/apply/funds/templates/funds/submissions_result.html:51
+#: hypha/apply/projects/templates/application_projects/paf_export.html:31
+#: hypha/apply/projects/templates/application_projects/project_approval_detail.html:56
+#: hypha/apply/review/templates/review/review_list.html:4
+#: hypha/apply/review/templates/review/review_list.html:10
+#: hypha/core/navigation.py:59
+msgid "Reviews"
+msgstr "Bewertungen"
+
+#: hypha/apply/activity/templates/messages/email/activity_summary.md:25
+msgid "Other activities"
+msgstr ""
 
 #: hypha/apply/activity/templates/messages/email/applicant_base.html:4
 #: hypha/apply/activity/templates/messages/email/contract_uploaded.html:7
@@ -1202,14 +1249,16 @@ msgstr "Link"
 #: hypha/apply/activity/templates/messages/email/ready_for_contracting.html:13
 #: hypha/apply/activity/templates/messages/email/sent_to_compliance.html:12
 #: hypha/apply/activity/templates/messages/email/submit_contract_documents.html:14
-#, fuzzy, python-format
+#, python-format
 msgid "Please contact %(lead)s - %(email)s if you have any questions."
-msgstr "Bitte kontaktieren Sie %(lead)s - %(email), wenn Sie Fragen haben."
+msgstr "Bitte kontaktieren Sie %(lead)s - %(email)s, wenn Sie Fragen haben."
 
 #: hypha/apply/activity/templates/messages/email/base.html:2
 #: hypha/apply/users/templates/users/activation/email.txt:2
 #: hypha/apply/users/templates/users/email_change/confirm_email.txt:2
 #: hypha/apply/users/templates/users/email_change/update_info_email.html:2
+#: hypha/apply/users/templates/users/emails/confirm_access.md:2
+#: hypha/apply/users/templates/users/emails/passwordless_login_email.md:2
 #: hypha/apply/users/templates/users/emails/set_password.txt:2
 #: hypha/apply/users/templates/users/password_reset/email.txt:2
 #, python-format
@@ -1275,11 +1324,11 @@ msgstr ""
 
 #: hypha/apply/activity/templates/messages/email/determination.html:5
 msgid "Your application has been reviewed and the outcome is"
-msgstr "Ihre Bewerbung wurde überprüft und das Ergebnis ist"
+msgstr "Ihr Konzept wurde überprüft und das Ergebnis ist"
 
 #: hypha/apply/activity/templates/messages/email/determination.html:9
 msgid "Read the full determination here"
-msgstr "Lesen Sie die vollständige Entscheidung hier"
+msgstr "Weitere Informationen finden Sie hier"
 
 #: hypha/apply/activity/templates/messages/email/invited_to_proposal.html:5
 #, python-format
@@ -1289,11 +1338,9 @@ msgid ""
 "with more details about your project. You will receive a second email "
 "linking to a determination message with detailed feedback."
 msgstr ""
-"Wir haben Ihre Konzeptionsnotiz überprüft und denken, dass sie für eine "
-"%(ORG_SHORT_NAME)s-Finanzierung geeignet sein könnte. Wir möchten Sie "
-"einladen, ein Konzept mit weiteren Details zu Ihrem Projekt einzureichen. "
-"Sie erhalten eine zweite E-Mail mit einem Link zu einer "
-"Entscheidungsnachricht mit detailliertem Feedback."
+"Wir haben Ihre Projektskizze überprüft und denken, dass sie für eine "
+"Finanzierung geeignet sein könnte. Wir möchten Sie einladen, ein Konzept mit "
+"weiteren Details zu Ihrem Projekt einzureichen."
 
 #: hypha/apply/activity/templates/messages/email/invited_to_proposal.html:7
 #, python-format
@@ -1341,13 +1388,13 @@ msgstr "Projekt"
 
 #: hypha/apply/activity/templates/messages/email/invoice_status_updated.html:7
 #: hypha/apply/activity/templates/messages/email/invoice_updated.html:7
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "An %(ORG_SHORT_NAME)s staff member has updated your invoice for %(title)s "
 "for period %(date_from)s to %(date_to)s."
 msgstr ""
-"Ein Teammitglied von %(ORG_SHORT_NAME)s hat Ihre Rechnung für %(title) für "
-"den Zeitraum %(date_from)s bis %(date_to) aktualisiert."
+"Ein Teammitglied von %(ORG_SHORT_NAME)s hat Ihre Rechnung für %(title)s für "
+"den Zeitraum %(date_from)s bis %(date_to)s aktualisiert."
 
 #: hypha/apply/activity/templates/messages/email/invoice_status_updated.html:9
 #: hypha/apply/activity/templates/messages/email/invoice_updated.html:8
@@ -1483,7 +1530,7 @@ msgstr "Weitere Informationen finden Sie auf der Projektseite:"
 #: hypha/apply/activity/templates/messages/email/report_skipped.html:6
 #, python-format
 msgid "An %(ORG_SHORT_NAME)s staff member has marked a report as "
-msgstr "Ein Teammitglied von %(ORG_SHORT_NAME)s hat einen Bericht als"
+msgstr "Ein Teammitglied von %(ORG_SHORT_NAME)s hat einen Bericht als "
 
 #: hypha/apply/activity/templates/messages/email/report_skipped.html:6
 msgid "no longer required"
@@ -1496,7 +1543,7 @@ msgstr "erforderlich"
 #: hypha/apply/activity/templates/messages/email/report_skipped.html:6
 #, python-format
 msgid " for %(title)s for period %(start_date)s to %(end_date)s."
-msgstr "für %(title)s für den Zeitraum vom %(start_date)s bis %(end_date)s."
+msgstr " für %(title)s für den Zeitraum vom %(start_date)s bis %(end_date)s."
 
 #: hypha/apply/activity/templates/messages/email/report_skipped.html:9
 msgid ""
@@ -1507,13 +1554,13 @@ msgstr ""
 "Sie den Bericht jetzt vervollständigen."
 
 #: hypha/apply/activity/templates/messages/email/report_submitted.html:6
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "An %(ORG_SHORT_NAME)s staff member has submitted a report for %(title)s for "
 "period %(start_date)s to %(end_date)s."
 msgstr ""
-"Ein Teammitglied von %(ORG_SHORT_NAME)s hat einen Bericht für %(title) für "
-"den Zeitraum %(start_date)s bis %(end_date) eingereicht."
+"Ein Teammitglied von %(ORG_SHORT_NAME)s hat einen Bericht für %(title)s für "
+"den Zeitraum %(start_date)s bis %(end_date)s eingereicht."
 
 #: hypha/apply/activity/templates/messages/email/report_submitted.html:8
 msgid "You can review the report here"
@@ -1523,8 +1570,7 @@ msgstr "Sie können den Bericht hier überprüfen"
 #, python-format
 msgid ""
 "We appreciate your %(title)s application submission to the %(ORG_LONG_NAME)s."
-msgstr ""
-"Vielen Dank für Ihre Einreichung %(title)s beim %(ORG_LONG_NAME)s."
+msgstr "Vielen Dank für Ihre Einreichung %(title)s beim %(ORG_LONG_NAME)s."
 
 #: hypha/apply/activity/templates/messages/email/submission_confirmation.html:8
 msgid ""
@@ -1742,7 +1788,7 @@ msgstr "Meine aktiven Rechnungen"
 
 #: hypha/apply/dashboard/templates/dashboard/applicant_dashboard.html:76
 msgid "Date added: "
-msgstr "Datum hinzugefügt:"
+msgstr "Datum hinzugefügt: "
 
 #: hypha/apply/dashboard/templates/dashboard/applicant_dashboard.html:93
 msgid "No active invoices"
@@ -1880,11 +1926,11 @@ msgstr "Keine aktiven Rechnungen"
 
 #: hypha/apply/dashboard/templates/dashboard/finance_dashboard.html:76
 msgid "No Invoices for Approval "
-msgstr "Keine Rechnungen zur Prüfung"
+msgstr "Keine Rechnungen zur Prüfung "
 
 #: hypha/apply/dashboard/templates/dashboard/finance_dashboard.html:87
 msgid "No Invoices for Conversion "
-msgstr "Keine Rechnungen für die Umrechnung"
+msgstr "Keine Rechnungen für die Umrechnung "
 
 #: hypha/apply/dashboard/templates/dashboard/includes/my-tasks.html:5
 msgid "My tasks"
@@ -1915,7 +1961,7 @@ msgstr "Kein Projekt wartet auf einen Vertrag"
 
 #: hypha/apply/dashboard/templates/dashboard/includes/projects_in_contracting.html:43
 msgid "No project is waiting for contract approval "
-msgstr "Es wartet kein Projekt auf Vertragsfreigabe"
+msgstr "Es wartet kein Projekt auf Vertragsfreigabe "
 
 #: hypha/apply/dashboard/templates/dashboard/includes/submissions-waiting-for-review.html:5
 #: hypha/apply/dashboard/templates/dashboard/staff_dashboard.html:29
@@ -1940,7 +1986,7 @@ msgstr "Finde neue Anträge zur Bewertung"
 
 #: hypha/apply/dashboard/templates/dashboard/partials/applicant_projects.html:8
 msgid "Project start date: "
-msgstr "Projektstartdatum:"
+msgstr "Projektstartdatum: "
 
 #: hypha/apply/dashboard/templates/dashboard/partials/applicant_projects.html:14
 msgid "No active projects"
@@ -1948,11 +1994,11 @@ msgstr "Keine aktiven Projekte"
 
 #: hypha/apply/dashboard/templates/dashboard/partials/applicant_submissions.html:16
 msgid "Drafted on "
-msgstr "Entworfen am"
+msgstr "Entworfen am "
 
 #: hypha/apply/dashboard/templates/dashboard/partials/applicant_submissions.html:18
 msgid "Submitted on "
-msgstr "Eingereicht am"
+msgstr "Eingereicht am "
 
 #: hypha/apply/dashboard/templates/dashboard/partials/applicant_submissions.html:25
 #: hypha/apply/dashboard/templates/dashboard/partner_dashboard.html:44
@@ -2044,7 +2090,7 @@ msgstr "Absatz"
 #: hypha/apply/determinations/forms.py:109
 #: hypha/apply/determinations/views.py:91
 msgid "-- No determination selected -- "
-msgstr "-- Kein Entscheidung ausgewählt --"
+msgstr "-- Kein Entscheidung ausgewählt -- "
 
 #: hypha/apply/determinations/forms.py:178
 #: hypha/apply/determinations/forms.py:256
@@ -2141,7 +2187,7 @@ msgstr "Begründung und Angemessenheitsfragen und -kommentare"
 #: hypha/apply/determinations/forms.py:376
 #: hypha/apply/determinations/views.py:377
 msgid "-- No proposal form selected -- "
-msgstr "-- Kein Vorschlagsformular ausgewählt --"
+msgstr "-- Kein Vorschlagsformular ausgewählt -- "
 
 #: hypha/apply/determinations/forms.py:379
 #: hypha/apply/determinations/views.py:380
@@ -2370,7 +2416,7 @@ msgstr "Falsch konfigurierte Anfrage, bitte versuchen Sie es erneut."
 #: hypha/apply/determinations/views.py:205
 #, python-brace-format
 msgid "Successfully determined as {outcome}: "
-msgstr "Erfolgreich als {outcome} ermittelt:"
+msgstr "Erfolgreich als {outcome} ermittelt: "
 
 #: hypha/apply/determinations/views.py:226
 #, python-brace-format
@@ -2556,7 +2602,7 @@ msgstr ""
 
 #: hypha/apply/funds/forms.py:313
 msgid "---"
-msgstr ""
+msgstr "---"
 
 #: hypha/apply/funds/forms.py:317
 #, python-brace-format
@@ -2781,7 +2827,7 @@ msgstr "{number} Einreichungen gelöscht."
 #: hypha/apply/funds/services.py:106
 #, python-brace-format
 msgid "Lead set to {lead} on "
-msgstr "Lead festgelegt auf {lead} am"
+msgstr "Lead festgelegt auf {lead} am "
 
 #: hypha/apply/funds/services.py:156
 #, python-brace-format
@@ -2810,10 +2856,6 @@ msgstr "Status"
 #: hypha/apply/funds/tables.py:90
 msgid "Type"
 msgstr "Typ"
-
-#: hypha/apply/funds/tables.py:92
-msgid "Comments"
-msgstr "Kommentare"
 
 #: hypha/apply/funds/tables.py:94
 #: hypha/apply/funds/templates/funds/tables/table.html:22
@@ -3024,7 +3066,7 @@ msgstr "Ihre %(stage)s-Bewerbung wurde angenommen."
 #: hypha/apply/funds/templates/funds/applicationsubmission_detail.html:67
 msgid "This application has been archived. This is visible to the roles "
 msgstr ""
-"Diese Einreichung wurde archiviert. Dies ist für die Rollen {role} sichtbar"
+"Diese Einreichung wurde archiviert. Dies ist für die Rollen {role} sichtbar "
 
 #: hypha/apply/funds/templates/funds/applicationsubmission_detail.html:74
 msgid "This application is sealed."
@@ -3032,11 +3074,11 @@ msgstr "Diese Einreichung ist gesperrt."
 
 #: hypha/apply/funds/templates/funds/applicationsubmission_detail.html:81
 msgid "Drafted "
-msgstr "Entworfen"
+msgstr "Entworfen "
 
 #: hypha/apply/funds/templates/funds/applicationsubmission_detail.html:83
 msgid "Submitted "
-msgstr "Eingereicht"
+msgstr "Eingereicht "
 
 #: hypha/apply/funds/templates/funds/applicationsubmission_detail.html:91
 #: hypha/apply/funds/templates/submissions/all.html:370
@@ -3201,9 +3243,9 @@ msgid ""
 "                    "
 msgstr ""
 "\n"
-"Sind Sie sicher, dass Sie diese Einreichung entsperren "
-"möchten?                         Diese Einreichung wird in der Hauptliste "
-"der Einreichungen sichtbar sein und kann bearbeitet werden."
+"Sind Sie sicher, dass Sie diese Einreichung entsperren möchten? Diese "
+"Einreichung wird in der Hauptliste der Einreichungen sichtbar sein und kann "
+"bearbeitet werden."
 
 #: hypha/apply/funds/templates/funds/includes/modal_unarchive_submission_confirm.html:29
 msgid "Unarchive"
@@ -3227,7 +3269,8 @@ msgstr "Bisher keine Erinnerungen."
 msgid ""
 " This application is translated from %(from_lang_name)s to %(to_lang_name)s. "
 msgstr ""
-"Diese Einreichung ist von %(from_lang_name)s nach %(to_lang_name)s übersetzt."
+" Diese Einreichung ist von %(from_lang_name)s nach %(to_lang_name)s "
+"übersetzt."
 
 #: hypha/apply/funds/templates/funds/includes/rendered_answers.html:10
 msgid "See original"
@@ -3452,19 +3495,9 @@ msgstr ">Sind Sie sicher, dass Sie \"%(object)s\" löschen möchten?"
 #: hypha/apply/users/templates/two_factor/admin/disable.html:22
 #: hypha/apply/users/templates/two_factor/profile/disable.html:36
 #: hypha/apply/users/templates/users/partials/confirmation_code_sent.html:43
+#: hypha/apply/users/views.py:308
 msgid "Confirm"
 msgstr "Bestätigen"
-
-#: hypha/apply/funds/templates/funds/reviewer_leaderboard.html:5
-#: hypha/apply/funds/templates/funds/reviewer_leaderboard_detail.html:5
-#: hypha/apply/funds/templates/funds/submissions_result.html:51
-#: hypha/apply/projects/templates/application_projects/paf_export.html:31
-#: hypha/apply/projects/templates/application_projects/project_approval_detail.html:56
-#: hypha/apply/review/templates/review/review_list.html:4
-#: hypha/apply/review/templates/review/review_list.html:10
-#: hypha/core/navigation.py:59
-msgid "Reviews"
-msgstr "Bewertungen"
 
 #: hypha/apply/funds/templates/funds/reviewer_leaderboard.html:10
 msgid "Reviewer leaderboard"
@@ -3654,12 +3687,6 @@ msgstr "Akzeptierte Beträge"
 #: hypha/apply/funds/workflows/definitions/single_stage_same.py:123
 msgid "Accepted"
 msgstr "Akzeptiert"
-
-#: hypha/apply/funds/templates/funds/submissions_result.html:33
-#: hypha/apply/funds/templates/submissions/all.html:7
-#: hypha/core/navigation.py:38 hypha/core/navigation.py:114
-msgid "Submissions"
-msgstr "Einreichungen"
 
 #: hypha/apply/funds/templates/funds/submissions_result.html:35
 msgid "Applied submissions"
@@ -4027,7 +4054,7 @@ msgstr "Hinzufügen"
 
 #: hypha/apply/funds/templates/submissions/partials/meta-terms-card.html:45
 msgid "--"
-msgstr ""
+msgstr "--"
 
 #: hypha/apply/funds/templates/submissions/submenu/bulk-update-lead.html:10
 #, python-format
@@ -4058,7 +4085,7 @@ msgstr "Keine Kategorien gefunden."
 
 #: hypha/apply/funds/templates/submissions/submenu/category.html:45
 msgid "No categories found. Sorry about that."
-msgstr "Leider keine Kategorien gefunden. "
+msgstr "Leider keine Kategorien gefunden."
 
 #: hypha/apply/funds/templates/submissions/submenu/change-status.html:10
 #, python-format
@@ -4107,7 +4134,7 @@ msgstr "Keine Tags gefunden."
 
 #: hypha/apply/funds/templates/submissions/submenu/meta-terms.html:46
 msgid "No tags found. Sorry about that."
-msgstr "Leider keine Tags gefunden. "
+msgstr "Leider keine Tags gefunden."
 
 #: hypha/apply/funds/templates/submissions/submenu/reviewers.html:10
 msgid "All Reviewers"
@@ -4187,12 +4214,12 @@ msgstr "Inkonsistente Stati  - Bitte sprechen Sie mit einem Admin"
 
 #: hypha/apply/funds/views/all.py:436
 msgid "Failed to update: "
-msgstr "Aktualisierung fehlgeschlagen:"
+msgstr "Aktualisierung fehlgeschlagen: "
 
 #: hypha/apply/funds/views/all.py:441
 #, python-brace-format
 msgid "Successfully updated status to {status}: "
-msgstr "Status erfolgreich auf {status} aktualisiert:"
+msgstr "Status erfolgreich auf {status} aktualisiert: "
 
 #: hypha/apply/funds/views/reminders.py:86
 msgid "Reminder created"
@@ -5064,15 +5091,15 @@ msgstr "Korrekturen/Änderungen?"
 
 #: hypha/apply/projects/templates/application_projects/includes/contracting_documents.html:96
 msgid "Pending signed contract by "
-msgstr "Ausstehend unterschriebener Vertrag von"
+msgstr "Ausstehend unterschriebener Vertrag von "
 
 #: hypha/apply/projects/templates/application_projects/includes/contracting_documents.html:96
 msgid "Signed contract by "
-msgstr "Unterschrift des Vertrags durch"
+msgstr "Unterschrift des Vertrags durch "
 
 #: hypha/apply/projects/templates/application_projects/includes/contracting_documents.html:96
 msgid "Contracting team "
-msgstr "Vertrags-Team"
+msgstr "Vertrags-Team "
 
 #: hypha/apply/projects/templates/application_projects/includes/contracting_documents.html:109
 #: hypha/apply/projects/templates/application_projects/includes/contracting_documents.html:132
@@ -5091,19 +5118,19 @@ msgstr "Neu hochladen"
 
 #: hypha/apply/projects/templates/application_projects/includes/contracting_documents.html:120
 msgid "Pending countersigned contract by "
-msgstr "Ausstehend gegengezeichneter Vertrag von"
+msgstr "Ausstehend gegengezeichneter Vertrag von "
 
 #: hypha/apply/projects/templates/application_projects/includes/contracting_documents.html:120
 msgid "Countersigned contract by "
-msgstr "Gegengezeichneter Vertrag von"
+msgstr "Gegengezeichneter Vertrag von "
 
 #: hypha/apply/projects/templates/application_projects/includes/contracting_documents.html:120
 msgid "you "
-msgstr "du"
+msgstr "du "
 
 #: hypha/apply/projects/templates/application_projects/includes/contracting_documents.html:120
 msgid "Vendor "
-msgstr "Lieferant"
+msgstr "Lieferant "
 
 #: hypha/apply/projects/templates/application_projects/includes/invoices.html:12
 msgid "Add Invoice"
@@ -5196,7 +5223,7 @@ msgid ""
 " You're skipping the report for %(start_date)s - %(end_date)s. This will "
 "result in a gap in reporting for the project. You can undo this at any time. "
 msgstr ""
-"Sie überspringen den Bericht für %(start_date)s - %(end_date)s. Dies führt "
+" Sie überspringen den Bericht für %(start_date)s - %(end_date)s. Dies führt "
 "zu einer Lücke im Projektbericht. Sie können dies jederzeit rückgängig "
 "machen."
 
@@ -5337,7 +5364,7 @@ msgstr "Aktualisieren Sie den Rechnungsstatus"
 
 #: hypha/apply/projects/templates/application_projects/modals/batch_invoice_status_update.html:7
 msgid " invoices selected"
-msgstr "Rechnungen ausgewählt"
+msgstr " Rechnungen ausgewählt"
 
 #: hypha/apply/projects/templates/application_projects/modals/contracting_documents_upload.html:2
 msgid "Upload contracting documents"
@@ -5378,11 +5405,11 @@ msgstr ""
 msgid "No next report is due, One time reporting has already reported on "
 msgstr ""
 "Es ist kein nächster Bericht fällig, die Einmalberichterstattung hat bereits "
-"über berichtet"
+"über berichtet "
 
 #: hypha/apply/projects/templates/application_projects/modals/report_frequency_config.html:16
 msgid "Next report will be due on "
-msgstr "Der nächste Bericht ist fällig am"
+msgstr "Der nächste Bericht ist fällig am "
 
 #: hypha/apply/projects/templates/application_projects/modals/report_frequency_config.html:18
 msgid "and it will be one-time reporting."
@@ -5460,7 +5487,7 @@ msgstr ""
 
 #: hypha/apply/projects/templates/application_projects/modals/send_for_approval.html:30
 msgid "Select approvers "
-msgstr "Genehmigende auswählen"
+msgstr "Genehmigende auswählen "
 
 #: hypha/apply/projects/templates/application_projects/modals/send_for_approval.html:30
 msgid "Optional"
@@ -5469,8 +5496,8 @@ msgstr "Optional"
 #: hypha/apply/projects/templates/application_projects/modals/send_for_approval.html:38
 msgid "No reviewer roles configured. Please add roles in "
 msgstr ""
-"Keine Reviewer-Rollen konfiguriert. Bitte fügen Sie Rollen in <a "
-"href=\"{url}\">Admin</a> hinzu"
+"Keine Reviewer-Rollen konfiguriert. Bitte fügen Sie Rollen in <a href=\"{url}"
+"\">Admin</a> hinzu "
 
 #: hypha/apply/projects/templates/application_projects/modals/send_for_approval.html:39
 msgid "project settings"
@@ -5514,11 +5541,11 @@ msgid ""
 "No project form reviewer roles has been created yet, please create these in "
 msgstr ""
 "Keine Projektform-Reviewer-Rollen wurden bisher erstellt, bitte erstellen "
-"Sie diese in"
+"Sie diese in "
 
 #: hypha/apply/projects/templates/application_projects/modals/update_pafapprovers.html:11
 msgid " project settings"
-msgstr "Projekteinstellungen"
+msgstr " Projekteinstellungen"
 
 #: hypha/apply/projects/templates/application_projects/modals/upload_contract.html:3
 msgid "Upload Countersigned Contract"
@@ -5566,7 +5593,7 @@ msgstr "Beratungsgremium"
 
 #: hypha/apply/projects/templates/application_projects/partials/contracting_category_documents.html:22
 msgid "Pending "
-msgstr "Ausstehend"
+msgstr "Ausstehend "
 
 #: hypha/apply/projects/templates/application_projects/partials/contracting_category_documents.html:30
 #: hypha/apply/projects/templates/application_projects/partials/supporting_documents.html:29
@@ -5631,7 +5658,7 @@ msgstr "Projektinformationen"
 
 #: hypha/apply/projects/templates/application_projects/project_approval_detail.html:51
 msgid " - Pending"
-msgstr "- Ausstehend"
+msgstr " - Ausstehend"
 
 #: hypha/apply/projects/templates/application_projects/project_approval_detail.html:71
 #: hypha/apply/projects/templates/application_projects/project_approval_detail.html:79
@@ -5671,7 +5698,7 @@ msgstr "Programm-Einstellungen"
 #: hypha/apply/projects/templates/application_projects/project_detail.html:47
 #, python-format
 msgid " This project is in %(status)s state. "
-msgstr "Dieses Projekt befindet sich im %(status)s -Status."
+msgstr " Dieses Projekt befindet sich im %(status)s -Status."
 
 #: hypha/apply/projects/templates/application_projects/project_detail.html:60
 msgid "Contractor"
@@ -5683,11 +5710,11 @@ msgstr "Projektformulargenehmigungen"
 
 #: hypha/apply/projects/templates/application_projects/project_detail.html:131
 msgid "Request changes or more information by "
-msgstr "Fordern Sie Änderungen oder weitere Informationen bis"
+msgstr "Fordern Sie Änderungen oder weitere Informationen bis "
 
 #: hypha/apply/projects/templates/application_projects/project_detail.html:146
 msgid "Pending approval from "
-msgstr "Ausstehende Genehmigung von"
+msgstr "Ausstehende Genehmigung von "
 
 #: hypha/apply/projects/templates/application_projects/project_detail.html:150
 msgid "nobody assigned yet"
@@ -5783,7 +5810,7 @@ msgstr ""
 msgid "Project Report Form not configured yet. Please contact us at "
 msgstr ""
 "Projektberichtformular noch nicht konfiguriert. Bitte kontaktieren Sie uns "
-"unter"
+"unter "
 
 #: hypha/apply/projects/templates/application_projects/report_list.html:11
 msgid "Submitted Reports"
@@ -6111,7 +6138,7 @@ msgstr "3. Durchschnittlich"
 
 #: hypha/apply/review/options.py:10
 msgid "4. Good"
-msgstr "4. Gut "
+msgstr "4. Gut"
 
 #: hypha/apply/review/options.py:11
 msgid "5. Excellent"
@@ -6393,8 +6420,8 @@ msgstr ""
 #, python-brace-format
 msgid ""
 "Determination draft for submission [<span class=\"truncate inline-block max-"
-"w-32 align-bottom \">{related.submission.title}</span>]({link} \"{related."
-"submission.title}\") is waiting to be submitted"
+"w-32 align-bottom \">{related.submission.title}</span>]({link} "
+"\"{related.submission.title}\") is waiting to be submitted"
 msgstr ""
 "Entwurf der Entscheidung zur Einreichung [<span class=\"truncate inline-"
 "block max-w-32 align-bottom \">{related.submission.title}</span>]({link} "
@@ -6404,8 +6431,8 @@ msgstr ""
 #, python-brace-format
 msgid ""
 "Review draft for submission [<span class=\"truncate inline-block max-w-32 "
-"align-bottom \">{related.submission.title}</span>]({link} \"{related."
-"submission.title}\") is waiting to be submitted"
+"align-bottom \">{related.submission.title}</span>]({link} "
+"\"{related.submission.title}\") is waiting to be submitted"
 msgstr ""
 "Überprüfen Sie den Entwurf für die Einreichung [<span class=\"truncate "
 "inline-block max-w-32 align-bottom \">{related.submission.title}</span>]"
@@ -6726,7 +6753,7 @@ msgstr "Kann die Anwendungs-Logs anzeigen. Muss auch in der Gruppe Staff sein."
 msgid ""
 "Can view, edit, and comment on a specific application they are assigned to."
 msgstr ""
-"Kann direkt zugewiesene Antragsformular sehen, bearbeiten und kommentieren"
+"Kann direkt zugewiesene Antragsformular sehen, bearbeiten und kommentieren."
 
 #: hypha/apply/users/roles.py:73
 msgid ""
@@ -6789,7 +6816,7 @@ msgstr ""
 "\n"
 "<strong>Tipp:</strong> Sie wechseln in den sudo-Modus. Nachdem Sie eine sudo-"
 "geschützte Aktion durchgeführt haben, werden Sie erst nach einigen Stunden "
-"der Inaktivität wieder aufgefordert, sich erneut zu authentifizieren."
+"der Inaktivität wieder aufgefordert, sich erneut zu authentifizieren. "
 
 #: hypha/apply/users/templates/two_factor/_base.html:8
 msgid "Back to Account"
@@ -6905,11 +6932,10 @@ msgstr ""
 #: hypha/apply/users/templates/users/change_password.html:31
 #: hypha/apply/users/templates/users/password_reset/confirm.html:30
 #: hypha/apply/users/templates/users/password_reset/form.html:28
-#, fuzzy
 msgid "<li>Please correct the error below.</li>"
 msgid_plural "<li>Please correct the errors below.</li>"
 msgstr[0] "<li>Bitte korrigieren Sie den folgenden Fehler.</li>"
-msgstr[1] "<li>Bitte korrigieren Sie den folgenden Fehler.</li>"
+msgstr[1] "<li>Bitte korrigieren Sie die folgenden Fehler.</li>"
 
 #: hypha/apply/users/templates/two_factor/core/setup.html:6
 msgid ""
@@ -7185,6 +7211,10 @@ msgstr ""
 
 #: hypha/apply/users/templates/users/activation/email.txt:17
 #: hypha/apply/users/templates/users/email_change/confirm_email.txt:10
+#: hypha/apply/users/templates/users/emails/confirm_access.md:14
+#: hypha/apply/users/templates/users/emails/passwordless_login_email.md:21
+#: hypha/apply/users/templates/users/emails/passwordless_login_no_account_found.md:11
+#: hypha/apply/users/templates/users/emails/passwordless_new_account_login.md:16
 #: hypha/apply/users/templates/users/emails/set_password.txt:10
 #: hypha/apply/users/templates/users/password_reset/email.txt:10
 #, python-format
@@ -7333,7 +7363,7 @@ msgid ""
 msgstr ""
 "Es wurde ein Versuch unternommen, die E-Mail-Adresse Ihres Kontos auf der "
 "%(org_long_name)s-Website zu ändern. Wenn Sie diese Aktion nicht selbst "
-"durchgeführt haben, kontaktieren Sie bitte den Support unter %(org_email)s"
+"durchgeführt haben, kontaktieren Sie bitte den Support unter %(org_email)s "
 
 #: hypha/apply/users/templates/users/email_change/update_info_email.html:7
 #, python-format
@@ -7341,6 +7371,72 @@ msgid ""
 "Kind Regards,\n"
 "    The %(org_short_name)s Team"
 msgstr "Mit freundlichen Grüßen,     Das %(org_short_name)s-Team"
+
+#: hypha/apply/users/templates/users/emails/confirm_access.md:4
+#, python-format
+msgid ""
+"To confirm access at %(org_long_name)s use the code below (valid for "
+"%(timeout_minutes)s minutes):"
+msgstr ""
+
+#: hypha/apply/users/templates/users/emails/confirm_access.md:8
+#: hypha/apply/users/templates/users/emails/passwordless_login_email.md:15
+#: hypha/apply/users/templates/users/emails/passwordless_new_account_login.md:10
+msgid "If you did not request this email, please ignore it."
+msgstr ""
+"Wenn Sie diese E-Mail nicht angefordert haben, ignorieren Sie sie bitte."
+
+#: hypha/apply/users/templates/users/emails/confirm_access.md:11
+#: hypha/apply/users/templates/users/emails/passwordless_login_email.md:18
+#: hypha/apply/users/templates/users/emails/passwordless_login_no_account_found.md:8
+#: hypha/apply/users/templates/users/emails/passwordless_new_account_login.md:13
+msgid "If you have any questions, please contact us at %(org_email)s."
+msgstr "Wenn Sie Fragen haben, kontaktieren Sie uns bitte unter %(ors_emails)s."
+
+#: hypha/apply/users/templates/users/emails/passwordless_login_email.md:5
+#, python-format
+msgid ""
+"Login to your account on the %(org_long_name)s web site by clicking this "
+"link or copying and pasting it to your browser:"
+msgstr ""
+"Melden Sie sich bei Ihrem Konto auf der %(org_long_name)s-Website an, indem "
+"Sie auf diesen Link klicken oder ihn kopieren und in Ihren Browser einfügen:"
+
+#: hypha/apply/users/templates/users/emails/passwordless_login_email.md:9
+#: hypha/apply/users/templates/users/emails/passwordless_new_account_login.md:8
+#, python-format
+msgid ""
+"This link will valid for %(timeout_minutes)s minutes and can be used only "
+"once."
+msgstr ""
+"Dieser Link ist %(timeout_minutes)s Minuten lang gültig und kann nur einmal "
+"verwendet werden."
+
+#: hypha/apply/users/templates/users/emails/passwordless_login_email.md:12
+#, python-format
+msgid ""
+"Your account on the %(org_long_name)s web site is deactivated. Please "
+"contact site administrators."
+msgstr ""
+
+#: hypha/apply/users/templates/users/emails/passwordless_login_no_account_found.md:3
+#: hypha/apply/users/templates/users/emails/passwordless_new_account_login.md:2
+msgid "Dear,"
+msgstr "Sehr geehrte(r),"
+
+#: hypha/apply/users/templates/users/emails/passwordless_login_no_account_found.md:5
+#, python-format
+msgid ""
+"It looks like you are trying to login on %(org_long_name)s web site, but we "
+"could not find any account with the email provided."
+msgstr ""
+
+#: hypha/apply/users/templates/users/emails/passwordless_new_account_login.md:4
+#, python-format
+msgid ""
+"Welcome to %(org_long_name)s web site. Create your account by clicking this "
+"link or copying and pasting it to your browser:"
+msgstr ""
 
 #: hypha/apply/users/templates/users/emails/set_password.txt:4
 #, python-format
@@ -7353,9 +7449,9 @@ msgstr ""
 "einfügen:"
 
 #: hypha/apply/users/templates/users/emails/set_password_subject.txt:2
-#, fuzzy, python-format
+#, python-format
 msgid "Set password for %(username)s at %(org_long_name)s"
-msgstr "Setzen Sie das Passwort für %(username)s bei %(org_long_name)"
+msgstr "Setzen Sie das Passwort für %(username)s bei %(org_long_name)s"
 
 #: hypha/apply/users/templates/users/login.html:20
 #: hypha/apply/users/templates/users/login.html:24
@@ -7406,7 +7502,7 @@ msgstr "Oder alternativ können Sie eines Ihrer Ersatztelefone verwenden:"
 
 #: hypha/apply/users/templates/users/login.html:104
 msgid "As a last resort, you can use a backup codes: "
-msgstr "Als letztes Mittel können Sie Backup-Codes verwenden:"
+msgstr "Als letztes Mittel können Sie Backup-Codes verwenden: "
 
 #: hypha/apply/users/templates/users/login.html:112
 msgid "Use a Backup Code"
@@ -7583,7 +7679,7 @@ msgstr "Registrieren"
 
 #: hypha/apply/users/templates/users/register-success.html:18
 msgid "Hi "
-msgstr "Hallo"
+msgstr "Hallo "
 
 #: hypha/apply/users/templates/users/register-success.html:20
 msgid "your account"
@@ -7641,7 +7737,7 @@ msgid "Inactive"
 msgstr "Inaktiv"
 
 #: hypha/apply/users/templates/wagtailusers/users/results.html:7
-#, fuzzy, python-format
+#, python-format
 msgid "There is %(counter)s match"
 msgid_plural "There are %(counter)s matches"
 msgstr[0] "Es gibt %(counter)s Treffer"
@@ -7701,11 +7797,11 @@ msgstr "Ihre E-Mail-Adresse wurde erfolgreich zu {email} aktualisiert!"
 msgid "Confirm activation"
 msgstr "Jetzt aktivieren"
 
-#: hypha/apply/users/views.py:354
+#: hypha/apply/users/views.py:373
 msgid "Your password was successfully updated!"
 msgstr "Ihr Passwort wurde erfolgreich aktualisiert!"
 
-#: hypha/apply/users/views.py:359
+#: hypha/apply/users/views.py:378
 msgid "Please correct the errors below."
 msgstr "Bitte korrigieren Sie die folgenden Fehler."
 
@@ -7717,7 +7813,7 @@ msgstr "Jetzt einloggen"
 msgid "Confirm signup"
 msgstr "Jetzt anmelden"
 
-#: hypha/apply/users/views.py:799
+#: hypha/apply/users/views.py:823
 msgid "✓ Check your email for password set link."
 msgstr ""
 "✓ Überprüfen Sie Ihr E-Mail-Postfach auf den Link zum Festlegen des "
@@ -7733,7 +7829,7 @@ msgstr "Markdown-Textfeld"
 
 #: hypha/apply/utils/blocks.py:82
 msgid " Required"
-msgstr "Erforderlich"
+msgstr " Erforderlich"
 
 #: hypha/apply/utils/models.py:25
 msgid "Page size of downloadable Project and Submission PDFs"
@@ -7986,7 +8082,7 @@ msgstr "Abmelden"
 
 #: hypha/templates/includes/user_menu.html:103
 msgid " or Sign up"
-msgstr "oder Registrieren"
+msgstr " oder Registrieren"
 
 #: hypha/templates/password_required.html:4
 #: hypha/templates/password_required.html:9
