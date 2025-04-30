@@ -51,7 +51,7 @@
 
   // Block multiple form submits.
   form.addEventListener("submit", function () {
-    window.setTimeOut(function () {
+    window.setTimeout(function () {
       button.setAttribute("disabled", "disabled");
     });
   });
