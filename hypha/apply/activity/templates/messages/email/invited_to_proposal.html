@@ -8,7 +8,7 @@
 
 {% block more_info %}
 {% trans "Here is the link to start creating your proposal" %}: {{ request.scheme }}://{{ request.get_host }}{{ source.get_absolute_url }}
-{% comment: Disabled for WTSH %}
+{% comment "Disabled for WTSH" %}
 {% trans "If you have any questions, please submit them here" %}: {{ request.scheme }}://{{ request.get_host }}{% url 'funds:submissions:comments' pk=source.pk %}
 {% endcomment %}
 
