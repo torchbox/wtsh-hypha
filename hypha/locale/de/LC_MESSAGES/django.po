@@ -1339,8 +1339,8 @@ msgid ""
 "linking to a determination message with detailed feedback."
 msgstr ""
 "Wir haben Ihre Projektskizze überprüft und denken, dass sie für eine "
-"Finanzierung geeignet sein könnte. Wir möchten Sie einladen, ein Konzept mit "
-"weiteren Details zu Ihrem Projekt einzureichen."
+"%(ORG_SHORT_NAME)s-Finanzierung geeignet sein könnte. Wir möchten Sie "
+"einladen, ein Konzept mit weiteren Details zu Ihrem Projekt einzureichen."
 
 #: hypha/apply/activity/templates/messages/email/invited_to_proposal.html:7
 #, python-format
