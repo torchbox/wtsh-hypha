@@ -273,20 +273,12 @@ class SubmissionSealedView(DetailView):
 class SubmissionDetailPDFView(SingleObjectMixin, View):
     model = ApplicationSubmission
 
-    def get_object(self, queryset=None):
-        obj = super().get_object(queryset)
-
-        if not hasattr(obj, "project"):
-            raise Http404
-
-        return obj
-
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
         pdf_page_settings = PDFPageSettings.load(request_or_site=request)
         content = draw_submission_content(self.object.output_text_answers())
         pdf = make_pdf(
-            title=self.object.title,
+            title=self.object.title_text_display,
             sections=[
                 {
                     "content": content,
@@ -295,7 +287,8 @@ class SubmissionDetailPDFView(SingleObjectMixin, View):
                         self.object.stage,
                         self.object.page,
                         self.object.round,
-                        f"Lead: {self.object.lead}",
+                        # Removed for WTSH because it messes the layout and is not needed:
+                        # f"Lead: {self.object.lead}",
                     ],
                 },
             ],
