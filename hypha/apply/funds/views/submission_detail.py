@@ -278,7 +278,7 @@ class SubmissionDetailPDFView(SingleObjectMixin, View):
         pdf_page_settings = PDFPageSettings.load(request_or_site=request)
         content = draw_submission_content(self.object.output_text_answers())
         pdf = make_pdf(
-            title=self.object.title,
+            title=self.object.title_text_display,
             sections=[
                 {
                     "content": content,
