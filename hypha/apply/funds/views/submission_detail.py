@@ -287,7 +287,8 @@ class SubmissionDetailPDFView(SingleObjectMixin, View):
                         self.object.stage,
                         self.object.page,
                         self.object.round,
-                        f"Lead: {self.object.lead}",
+                        # Removed for WTSH because it messes the layout and is not needed:
+                        # f"Lead: {self.object.lead}",
                     ],
                 },
             ],
