@@ -297,5 +297,5 @@ class SubmissionDetailPDFView(SingleObjectMixin, View):
         return FileResponse(
             pdf,
             as_attachment=True,
-            filename=self.object.title + ".pdf",
+            filename=f"{self.object.public_id or self.object.id}_{self.object.title}.pdf",
         )
