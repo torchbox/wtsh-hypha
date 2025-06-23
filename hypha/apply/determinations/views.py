@@ -15,6 +15,7 @@ from wagtail.models import Site
 
 from hypha.apply.activity.messaging import MESSAGES, messenger
 from hypha.apply.activity.models import Activity
+from hypha.apply.determinations.options import ACCEPTED
 from hypha.apply.funds.models import ApplicationSubmission
 from hypha.apply.funds.workflows import DETERMINATION_OUTCOMES
 from hypha.apply.funds.workflows.models.stage import Concept
@@ -462,7 +463,9 @@ class DeterminationCreateOrUpdateView(BaseStreamForm, CreateOrUpdateView):
                 code=REVIEW_DRAFT, related_obj=review
             )
 
-        if self.object.submission.in_final_stage:
+        # WTSH workaround: prevent sending of Concept approval email notification
+        # since another email was already sent with perform_transition() above.
+        if self.object.submission.in_final_stage or self.object.outcome != ACCEPTED:
             messenger(
                 MESSAGES.DETERMINATION_OUTCOME,
                 request=self.request,
