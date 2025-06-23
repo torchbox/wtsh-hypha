@@ -462,13 +462,14 @@ class DeterminationCreateOrUpdateView(BaseStreamForm, CreateOrUpdateView):
                 code=REVIEW_DRAFT, related_obj=review
             )
 
-        messenger(
-            MESSAGES.DETERMINATION_OUTCOME,
-            request=self.request,
-            user=self.object.author,
-            source=self.object.submission,
-            related=self.object,
-        )
+        if self.object.submission.in_final_stage:
+            messenger(
+                MESSAGES.DETERMINATION_OUTCOME,
+                request=self.request,
+                user=self.object.author,
+                source=self.object.submission,
+                related=self.object,
+            )
 
         return HttpResponseRedirect(self.submission.get_absolute_url())
 
