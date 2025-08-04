@@ -49,6 +49,32 @@ def notify_after_edit_user(request, user):
         )
 
 
+@hooks.register("after_edit_user")
+def update_user_data_in_applications(request, user):
+    """
+    When a user's name is updated, also update the name attached to all their
+    submissions.
+    """
+    user_data_fields = ["full_name", "email"]
+    updated_applications = []
+    for submission in user.applicationsubmission_set.all():
+        updated = False
+
+        for field in user_data_fields:
+            if submission.data(field) != getattr(user, field):
+                submission.form_data[field] = getattr(user, field)
+                updated = True
+
+        if updated:
+            updated_applications.append(submission)
+
+    if updated_applications:
+        user.applicationsubmission_set.model.objects.bulk_update(
+            updated_applications,
+            fields=["form_data"],
+        )
+
+
 # Handle setting of `is_staff` after updating a user
 hooks.register("after_create_user", update_is_staff)
 hooks.register("after_edit_user", update_is_staff)
