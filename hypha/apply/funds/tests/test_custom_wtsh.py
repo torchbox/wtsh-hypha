@@ -37,12 +37,20 @@ class UpdateUserFullNameInApplicationsTestCase(TestCase):
             pk=self.application.pk
         )
 
-    def test_updating_user_also_updates_application(self):
+    def test_updating_user_name_also_updates_application_data(self):
         response = self.post_user_update(full_name="Test Updated")
         self.refresh_application_from_db()
 
         self.assertEqual(response.status_code, 302)
         self.assertEqual(self.application.data("full_name"), "Test Updated")
+        self.assertEqual(self.application.data("title"), "Test application")
+
+    def test_updating_user_email_also_updates_application_data(self):
+        response = self.post_user_update(email="updated@example.com")
+        self.refresh_application_from_db()
+
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(self.application.data("email"), "updated@example.com")
         self.assertEqual(self.application.data("title"), "Test application")
 
     def test_query_count_not_linear_with_application_count(self):
