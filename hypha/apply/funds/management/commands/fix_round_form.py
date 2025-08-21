@@ -1,6 +1,8 @@
 from django.core.management.base import BaseCommand
 
 from hypha.apply.funds.models import ApplicationForm, Round
+from hypha.apply.funds.models.forms import RoundBaseForm, RoundBaseReviewForm
+from hypha.apply.review.models import ReviewForm
 
 
 def _prompt_qs(queryset, intro_str, item_str, input_str):
@@ -32,16 +34,22 @@ def input_round() -> Round:
     )
 
 
-def input_stage(round_: Round) -> int:
-    """
-    Prompt the user for which stage they want to replace (1 or 2).
-    """
-    print("Here are the round's current forms:")
-    print(" * Concept (1):", round_.forms.get(stage=1))
-    print(" * Proposal (2):", round_.forms.get(stage=2))
-    print()
+def input_roundform(round_: Round) -> RoundBaseForm:
+    return _prompt_qs(
+        round_.forms.all(),
+        intro_str="Here are the round's stage forms:",
+        item_str=" * {i} {item.form.name}",
+        input_str="Which stage do you want to change? ",
+    )
 
-    return int(input("Which one do you want to replace (1/2)? "))
+
+def input_roundform_review(round_: Round) -> RoundBaseReviewForm:
+    return _prompt_qs(
+        round_.review_forms.all(),
+        intro_str="Here are the round's stage review forms:",
+        item_str=" * {i} {item.form.name}",
+        input_str="Which stage do you want to change? ",
+    )
 
 
 def input_replacement_form(round_: Round) -> ApplicationForm:
@@ -50,7 +58,6 @@ def input_replacement_form(round_: Round) -> ApplicationForm:
     the actual ApplicationForm.
     """
     qs = ApplicationForm.objects.exclude(pk__in=round_.forms.values("pk"))
-    d = dict(enumerate(qs))
 
     return _prompt_qs(
         qs,
@@ -60,15 +67,38 @@ def input_replacement_form(round_: Round) -> ApplicationForm:
     )
 
 
+def input_replacement_review_form(round_: Round) -> ReviewForm:
+    """
+    Prompt the user for which replacement form they want to use and return
+    the actual ReviewForm.
+    """
+    qs = ReviewForm.objects.exclude(pk__in=round_.forms.values("pk"))
+
+    return _prompt_qs(
+        qs,
+        intro_str="Here are all the review forms in the system",
+        item_str=" * ({i}) {item.name}",
+        input_str="Which review form do you want to use instead? ",
+    )
+
+
 class Command(BaseCommand):
     help = "A custom WTSH command to fix a round's form after it's been created"
 
+    def add_arguments(self, parser):
+        parser.add_argument(
+            "--review", help="Replace a **review** form", action="store_true"
+        )
+
     def handle(self, **options):
         round_ = input_round()
-        stage = input_stage(round_)
-        form = input_replacement_form(round_)
+        if options["review"]:
+            roundform = input_roundform_review(round_)
+            form = input_replacement_review_form(round_)
+        else:
+            roundform = input_roundform(round_)
+            form = input_replacement_form(round_)
 
-        roundform = round_.forms.get(stage=stage)
         roundform.form = form
 
         if input("Confirm (y/N)").upper() in {"Y", "YES"}:
