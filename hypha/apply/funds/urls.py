@@ -1,11 +1,10 @@
-from django.conf import settings
 from django.urls import include, path
 from django.views.generic import RedirectView
 
 from hypha.apply.projects import urls as projects_urls
+from hypha.apply.projects.views import ProjectDetailView
 
 from .views import (
-    GroupingApplicationsListView,
     RoundListView,
     SubmissionPrivateMediaView,
     submission_success,
@@ -16,9 +15,16 @@ from .views.all import (
     bulk_update_submissions_status,
     submissions_all,
 )
+from .views.co_applicants import (
+    CoApplicantInviteAcceptView,
+    CoApplicantInviteView,
+    EditCoApplicantView,
+    co_applicant_invite_delete_view,
+    co_applicant_re_invite_view,
+    list_coapplicant_invites,
+)
 from .views.comments import comments_view
 from .views.partials import (
-    get_applications_status_counts,
     partial_meta_terms_card,
     partial_reviews_card,
     partial_reviews_decisions,
@@ -34,6 +40,8 @@ from .views.partials import (
     sub_menu_reviewers,
     sub_menu_rounds,
     sub_menu_update_status,
+    submission_export_download,
+    submission_export_status,
 )
 from .views.reminders import ReminderCreateView, ReminderDeleteView, reminder_list
 from .views.results import SubmissionResultView
@@ -89,17 +97,22 @@ submission_urls = (
         ),
         path("success/<int:pk>/", submission_success, name="success"),
         path("all/", submissions_all, name="list"),
-        path(
-            "statuses/",
-            get_applications_status_counts,
-            name="applications_status_counts",
-        ),
         path("all/bulk_archive/", bulk_archive_submissions, name="bulk-archive"),
         path("all/bulk_delete/", bulk_delete_submissions, name="bulk-delete"),
         path(
             "all/bulk_update_status/",
             bulk_update_submissions_status,
             name="bulk-update-status",
+        ),
+        path(
+            "all/submission-export-status/",
+            submission_export_status,
+            name="submission-export-status",
+        ),
+        path(
+            "all/submission-export-download/",
+            submission_export_download,
+            name="submission-export-download",
         ),
         path("all/submenu/funds/", sub_menu_funds, name="submenu-funds"),
         path("all/submenu/leads/", sub_menu_leads, name="submenu-leads"),
@@ -135,7 +148,6 @@ submission_urls = (
             partial_reviews_decisions,
             name="partial-reviews-decisions",
         ),
-        path("summary/", GroupingApplicationsListView.as_view(), name="summary"),
         path("result/", SubmissionResultView.as_view(), name="result"),
         path(
             "reviews/",
@@ -163,10 +175,38 @@ submission_urls = (
             ),
         ),
         path(
+            "coapplicants/",
+            include(
+                [
+                    path(
+                        "invite/accept/<str:uidb64>/<str:token>/",
+                        CoApplicantInviteAcceptView.as_view(),
+                        name="accept_coapplicant_invite",
+                    ),
+                    path(
+                        "<int:invite_pk>/edit/",
+                        EditCoApplicantView.as_view(),
+                        name="edit_co_applicant",
+                    ),
+                    path(
+                        "<int:invite_pk>/reinvite/",
+                        co_applicant_re_invite_view,
+                        name="re_invite_co_applicant",
+                    ),
+                    path(
+                        "<int:invite_pk>/delete/",
+                        co_applicant_invite_delete_view,
+                        name="delete_co_applicant_invite",
+                    ),
+                ]
+            ),
+        ),
+        path(
             "<int:pk>/",
             include(
                 [
                     path("", SubmissionDetailView.as_view(), name="detail"),
+                    path("project/", ProjectDetailView.as_view(), name="project"),
                     path(
                         "partial/lead/",
                         partial_submission_lead,
@@ -199,6 +239,11 @@ submission_urls = (
                         "partial/reminder-card/",
                         reminder_list,
                         name="partial-reminder-card",
+                    ),
+                    path(
+                        "partial/invites/",
+                        list_coapplicant_invites,
+                        name="partial_coapplicant_invites",
                     ),
                     path(
                         "reminder/create/",
@@ -239,6 +284,11 @@ submission_urls = (
                         name="partial-answers",
                     ),
                     path("edit/", SubmissionEditView.as_view(), name="edit"),
+                    path(
+                        "coapplicant/invite/",
+                        CoApplicantInviteView.as_view(),
+                        name="invite_co_applicant",
+                    ),
                     path("sealed/", SubmissionSealedView.as_view(), name="sealed"),
                     path(
                         "download/", SubmissionDetailPDFView.as_view(), name="download"
@@ -280,9 +330,5 @@ rounds_urls = (
 urlpatterns = [
     path("submissions/", include(submission_urls)),
     path("rounds/", include(rounds_urls)),
+    path("projects/", include(projects_urls)),
 ]
-
-if settings.PROJECTS_ENABLED:
-    urlpatterns += [
-        path("projects/", include(projects_urls)),
-    ]

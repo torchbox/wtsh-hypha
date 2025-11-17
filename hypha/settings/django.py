@@ -24,10 +24,12 @@ INSTALLED_APPS = [
     "hypha.apply.translate",
     "hypha.apply.utils.apps.UtilsConfig",
     "hypha.apply.projects.apps.ProjectsConfig",
+    "hypha.apply.projects.reports.apps.ReportsConfig",
     "social_django",
     "django_htmx",
     "heroicons",
-    "django_web_components",
+    "django_web_components",  # Depreciated in favour of django-cotton.
+    "django_cotton.apps.SimpleAppConfig",
     "wagtail_modeladmin",
     "wagtail.contrib.settings",
     "wagtail.contrib.forms",
@@ -50,7 +52,7 @@ INSTALLED_APPS = [
     "django_filters",
     "hypha.addressfield",
     "django_nh3",
-    "django_fsm",
+    "viewflow",
     "django_slack",
     "django_otp",
     "django_otp.plugins.otp_totp",
@@ -94,6 +96,8 @@ MIDDLEWARE = [
     "hypha.apply.middleware.HandleProtectionErrorMiddleware",
     "django_htmx.middleware.HtmxMiddleware",
     "hypha.core.middleware.htmx.HtmxMessageMiddleware",
+    "hypha.core.middleware.htmx.HtmxAuthRedirectMiddleware",
+    "hypha.apply.projects.middleware.ProjectsEnabledMiddleware",
 ]
 
 # Logging
@@ -177,7 +181,7 @@ USE_TZ = True
 DATE_FORMAT = "N j, Y"
 DATETIME_FORMAT = "N j, Y, H:i"
 SHORT_DATE_FORMAT = "Y-m-d"
-SHORT_DATETIME_FORMAT = "Y-m-d H:i"
+SHORT_DATETIME_FORMAT = "Y-m-d H:i e"
 LANGUAGE_COOKIE_NAME = "hypha_language"
 
 DATETIME_INPUT_FORMATS = [

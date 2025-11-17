@@ -7,6 +7,7 @@ from wagtail import blocks
 from hypha.addressfield.fields import ADDRESS_FIELDS_ORDER, AddressField
 from hypha.apply.categories.blocks import CategoryQuestionBlock
 from hypha.apply.stream_forms.blocks import FormFieldsBlock
+from hypha.apply.users.models import User
 from hypha.apply.utils.blocks import (
     CustomFormFieldsBlock,
     MustIncludeFieldBlock,
@@ -35,10 +36,16 @@ class TitleBlock(ApplicationMustIncludeFieldBlock):
         label=_("Help text"),
         default=_("This project name can be changed if a full proposal is requested."),
     )
+    max_length = blocks.IntegerBlock(required=False, label=_("Max length"))
 
     class Meta:
         label = _("Application title")
         icon = "tag"
+
+    def get_field_kwargs(self, struct_value):
+        kwargs = super().get_field_kwargs(struct_value)
+        kwargs["max_length"] = struct_value["max_length"]
+        return kwargs
 
 
 class ValueBlock(ApplicationSingleIncludeFieldBlock):
@@ -125,6 +132,12 @@ class FullNameBlock(ApplicationMustIncludeFieldBlock):
         ),
     )
 
+    def get_field_kwargs(self, struct_value):
+        kwargs = super().get_field_kwargs(struct_value)
+        # Pull the max length from the full_name db field
+        kwargs["max_length"] = User._meta.get_field("full_name").max_length
+        return kwargs
+
     class Meta:
         label = _("Full name")
         icon = "user"
@@ -176,6 +189,7 @@ class DurationBlock(ApplicationSingleIncludeFieldBlock):
         12: "12 months",
         18: "18 months",
         24: "24 months",
+        36: "36 months",
     }
     field_class = forms.ChoiceField
     duration_type = blocks.ChoiceBlock(

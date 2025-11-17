@@ -1,0 +1,62 @@
+{% load i18n heroicons project_tags %}
+
+
+<div class="fieldset">
+    <dt class="font-semibold">{% trans "Contractor" %}</dt>
+    <dd>{{ object.user |default:"-" }}</dd>
+</div>
+
+<div class="fieldset">
+    <dt class="font-semibold">{% trans "E-mail" %}</dt>
+    <dd>
+        {% if object.user.email %}
+            <a href="mailto:{{ object.user.email }}" class="link link-hover">{{ object.user.email }}</a>
+        {% else %}
+            -
+        {% endif %}
+    </dd>
+</div>
+
+<div class="fieldset">
+    <dt class="font-semibold">
+        {% trans "Start date" %}
+        {% if request.user.is_apply_staff and show_start %}
+            <a
+                class="btn btn-xs btn-ghost btn-square"
+                href="{% url 'apply:projects:project_dates_update' object.submission.id %}"
+                hx-get="{% url 'apply:projects:project_dates_update' object.submission.id %}"
+                hx-target="#htmx-modal"
+            >
+                {% heroicon_micro "pencil-square" aria_hidden=true size=20 %}
+                <span class="sr-only">{% trans "edit dates" %}</span>
+            </a>
+        {% endif %}
+    </dt>
+
+    {% show_start_date object as show_start %}
+    <dd {% if not show_start %} class="text-fg-muted"{% endif %}>
+        {% if show_start %}
+            {{ object.proposed_start|date:"SHORT_DATE_FORMAT"|default:"-" }}
+        {% else %}
+            {% trans "Awaiting contract finalization..." %}
+        {% endif %}
+    </dd>
+</div>
+
+<div class="fieldset">
+    <dt class="font-semibold">
+        {% trans "End date" %}
+        {% if request.user.is_apply_staff %}
+            <a
+                class="btn btn-xs btn-ghost btn-square"
+                href="{% url 'apply:projects:project_dates_update' object.submission.id %}"
+                hx-get="{% url 'apply:projects:project_dates_update' object.submission.id %}"
+                hx-target="#htmx-modal"
+            >
+                {% heroicon_micro "pencil-square" aria_hidden=true size=20 %}
+                <span class="sr-only">{% trans "edit dates" %}</span>
+            </a>
+        {% endif %}
+    </dt>
+    <dd>{{ object.proposed_end|date:"SHORT_DATE_FORMAT"|default:"-" }}</dd>
+</div>

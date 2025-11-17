@@ -8,8 +8,21 @@ from django.contrib.auth import get_user_model
 from django.template.loader import render_to_string
 from django.utils.translation import gettext as _
 
+from hypha.apply.activity import tasks
 from hypha.apply.activity.models import ALL, APPLICANT_PARTNERS, PARTNER
-from hypha.apply.projects.models.payment import CHANGES_REQUESTED_BY_STAFF, DECLINED
+from hypha.apply.funds.models.co_applicants import (
+    CoApplicantProjectPermission,
+    CoApplicantRole,
+)
+from hypha.apply.projects.models.payment import (
+    APPROVED_BY_FINANCE,
+    CHANGES_REQUESTED_BY_FINANCE,
+    CHANGES_REQUESTED_BY_STAFF,
+    DECLINED,
+    PAID,
+    PAYMENT_FAILED,
+    RESUBMITTED,
+)
 from hypha.apply.projects.templatetags.project_tags import display_project_status
 from hypha.apply.users.models import User
 from hypha.apply.users.roles import (
@@ -23,7 +36,6 @@ from hypha.core.mail import (
 )
 
 from ..options import MESSAGES
-from ..tasks import send_mail
 from .base import AdapterBase
 from .utils import (
     get_compliance_email,
@@ -41,6 +53,7 @@ class EmailAdapter(AdapterBase):
     messages = {
         MESSAGES.NEW_SUBMISSION: "messages/email/submission_confirmation.html",
         MESSAGES.DRAFT_SUBMISSION: "messages/email/submission_confirmation.html",
+        MESSAGES.INVITE_COAPPLICANT: "handle_co_applicant_invite",
         MESSAGES.COMMENT: "notify_comment",
         MESSAGES.EDIT_SUBMISSION: "messages/email/submission_edit.html",
         MESSAGES.TRANSITION: "handle_transition",
@@ -61,6 +74,7 @@ class EmailAdapter(AdapterBase):
         MESSAGES.REQUEST_PROJECT_CHANGE: "messages/email/project_request_change.html",
         MESSAGES.ASSIGN_PAF_APPROVER: "messages/email/assign_paf_approvers.html",
         MESSAGES.APPROVE_PAF: "messages/email/paf_for_approval.html",
+        MESSAGES.CREATE_INVOICE: "messages/email/invoice_created.html",
         MESSAGES.UPDATE_INVOICE: "handle_invoice_updated",
         MESSAGES.UPDATE_INVOICE_STATUS: "handle_invoice_status_updated",
         MESSAGES.APPROVE_INVOICE: "messages/email/invoice_approved.html",
@@ -87,6 +101,8 @@ class EmailAdapter(AdapterBase):
                 subject = _(
                     "Reminder: Application ready to review: {source.title_text_display}"
                 ).format(source=source)
+            elif message_type == MESSAGES.INVITE_COAPPLICANT:
+                subject = _("You are invited as a co-applicant")
             elif message_type in [
                 MESSAGES.SENT_TO_COMPLIANCE,
                 MESSAGES.APPROVE_PAF,
@@ -147,30 +163,58 @@ class EmailAdapter(AdapterBase):
             "subject": self.get_subject(message_type, source),
         }
 
-    def handle_transition(self, old_phase, source, **kwargs):
+    def handle_transition(self, new_phase, source, old_phase=None, **kwargs):
         from hypha.apply.funds.workflows import PHASES
 
         submission = source
+
+        if old_phase is None:
+            old_phase = submission.phase
+
         # Retrieve status index to see if we are going forward or backward.
         old_index = list(dict(PHASES).keys()).index(old_phase.name)
         target_index = list(dict(PHASES).keys()).index(submission.status)
         is_forward = old_index < target_index
+        print("NEW PHASE")
+        print(new_phase.public_name)
+
+        kwargs["old_phase"] = old_phase.public_name
+        kwargs["new_phase"] = new_phase.public_name
 
         if is_forward:
             return self.render_message(
                 "messages/email/transition.html",
                 source=submission,
-                old_phase=old_phase,
                 **kwargs,
             )
+
+    def handle_co_applicant_invite(self, source, related, **kwargs):
+        from hypha.apply.funds.utils import generate_invite_path
+
+        invited_user = User.objects.filter(email=related.invited_user_email).first()
+        can_accept = True
+        if invited_user and (invited_user.is_org_faculty):
+            can_accept = False
+
+        accept_link = generate_invite_path(invite=related)
+        return self.render_message(
+            "messages/email/invite_co_applicant.html",
+            source=source,
+            can_accept=can_accept,
+            accept_link=accept_link,
+            related=related,
+            invited_user=invited_user,
+            **kwargs,
+        )
 
     def handle_batch_transition(self, transitions, sources, **kwargs):
         submissions = sources
         kwargs.pop("source")
         for submission in submissions:
             old_phase = transitions[submission.id]
+            new_phase = submission.phase
             return self.handle_transition(
-                old_phase=old_phase, source=submission, **kwargs
+                old_phase=old_phase, new_phase=new_phase, source=submission, **kwargs
             )
 
     def handle_project_transition(self, source, **kwargs):
@@ -194,11 +238,23 @@ class EmailAdapter(AdapterBase):
             )
 
     def handle_invoice_status_updated(self, related, **kwargs):
-        return self.render_message(
-            "messages/email/invoice_status_updated.html",
-            has_changes_requested=related.has_changes_requested,
-            **kwargs,
-        )
+        if kwargs.get("recipient") and (
+            user := User.objects.get(email=kwargs["recipient"])
+        ):
+            if user.is_applicant:
+                return self.render_message(
+                    "messages/email/invoice_status_updated_applicant.html",
+                    has_changes_requested=related.has_changes_requested,
+                    **kwargs,
+                )
+            elif user.is_org_faculty:
+                kwargs["source_user"] = kwargs["user"]
+                kwargs["user"] = user
+                return self.render_message(
+                    "messages/email/invoice_status_updated_staff.html",
+                    has_changes_requested=related.has_changes_requested,
+                    **kwargs,
+                )
 
     def handle_invoice_updated(self, **kwargs):
         return self.render_message(
@@ -273,6 +329,10 @@ class EmailAdapter(AdapterBase):
             # Only notify the applicant if the new phase can be seen within the workflow
             if not source.phase.permissions.can_view(source.user):
                 return []
+
+        if message_type == MESSAGES.INVITE_COAPPLICANT:
+            related = kwargs.get("related", None)
+            return [related.invited_user_email]
 
         if message_type == MESSAGES.PARTNERS_UPDATED_PARTNER:
             partners = kwargs["added"]
@@ -362,9 +422,23 @@ class EmailAdapter(AdapterBase):
 
         if message_type == MESSAGES.UPDATE_INVOICE_STATUS:
             related = kwargs.get("related", None)
-            if related:
-                if related.status in {CHANGES_REQUESTED_BY_STAFF, DECLINED}:
-                    return [source.user.email]
+            if related and (status := related.status):
+                if status in {
+                    CHANGES_REQUESTED_BY_STAFF,
+                    DECLINED,
+                    PAID,
+                    APPROVED_BY_FINANCE,
+                    PAYMENT_FAILED,
+                }:
+                    co_applicants = source.submission.co_applicants.filter(
+                        project_permission__contains=[
+                            CoApplicantProjectPermission.INVOICES
+                        ],
+                        role__in=[CoApplicantRole.EDIT],
+                    ).values_list("user__email", flat=True)
+                    return [source.user.email, *co_applicants]
+                elif status in {CHANGES_REQUESTED_BY_FINANCE, RESUBMITTED}:
+                    return [source.lead.email]
             return []
 
         if message_type == MESSAGES.PROJECT_TRANSITION:
@@ -380,12 +454,30 @@ class EmailAdapter(AdapterBase):
                     )
                 return get_compliance_email(target_user_gps=[CONTRACTING_GROUP_NAME])
             if source.status == INVOICING_AND_REPORTING:
-                return [source.user.email]
+                co_applicants = source.submission.co_applicants.filter(
+                    project_permission__contains=[
+                        CoApplicantProjectPermission.INVOICES
+                    ],
+                    role__in=[CoApplicantRole.EDIT],
+                ).values_list("user__email", flat=True)
+                return [source.user.email, *co_applicants]
 
         if message_type == MESSAGES.APPROVE_INVOICE:
             if user.is_apply_staff:
                 return get_compliance_email(target_user_gps=[FINANCE_GROUP_NAME])
             return []
+
+        if message_type == MESSAGES.CREATE_INVOICE:
+            if user == source.user:
+                return [source.lead.email]
+            else:
+                co_applicants = source.submission.co_applicants.filter(
+                    project_permission__contains=[
+                        CoApplicantProjectPermission.INVOICES
+                    ],
+                    role__in=[CoApplicantRole.EDIT],
+                ).values_list("user__email", flat=True)
+                return [source.user.email, *co_applicants]
 
         if isinstance(source, get_user_model()):
             return user.email
@@ -394,27 +486,52 @@ class EmailAdapter(AdapterBase):
         Project = apps.get_model("application_projects", "Project")
         if message_type == MESSAGES.COMMENT:
             # Comment handling for Submissions
+            comment = kwargs["related"]
             if isinstance(source, ApplicationSubmission):
-                recipients: List[str] = [source.user.email]
+                # add co-applicants with Comment or edit access
+                co_applicants = source.co_applicants.filter(
+                    role__in=[CoApplicantRole.COMMENT, CoApplicantRole.EDIT]
+                ).values_list("user__email", flat=True)
+                recipients: List[str] = [source.user.email, *co_applicants]
 
-                comment = kwargs["related"]
                 if partners := list(source.partners.values_list("email", flat=True)):
                     if comment.visibility == PARTNER:
                         recipients = partners
                     elif comment.visibility in [APPLICANT_PARTNERS, ALL]:
                         recipients += partners
 
-                try:
-                    recipients.remove(comment.user.email)
-                except ValueError:
-                    pass
-
-                return recipients
-
             # Comment handling for Projects
-            if isinstance(source, Project) and user == source.user:
-                return []
+            elif isinstance(source, Project):
+                # co_applciants with Comment permission
+                co_applicants = (
+                    source.submission.co_applicants.filter(
+                        role__in=[CoApplicantRole.COMMENT, CoApplicantRole.EDIT]
+                    )
+                    .exclude(project_permission=[])
+                    .values_list("user__email", flat=True)
+                )
+                recipients = [source.user.email, *co_applicants]
+            try:
+                recipients.remove(comment.user.email)
+            except ValueError:
+                pass
 
+            return recipients
+
+        if isinstance(source, ApplicationSubmission):
+            # co-applicants edit/full-access access
+            co_applicants = source.co_applicants.filter(
+                role__in=[CoApplicantRole.EDIT]
+            ).values_list("user__email", flat=True)
+            return [source.user.email, *co_applicants]
+        elif isinstance(source, Project):
+            # co-applicants edit access
+            co_applicants = (
+                source.submission.co_applicants.exclude(project_permission=[])
+                .filter(role__in=[CoApplicantRole.EDIT])
+                .values_list("user__email", flat=True)
+            )
+            return [source.user.email, *co_applicants]
         return [source.user.email]
 
     def batch_recipients(self, message_type, sources, **kwargs):
@@ -479,6 +596,6 @@ class EmailAdapter(AdapterBase):
             logger.exception(e)
 
         try:
-            send_mail(subject, message, from_email, [recipient], logs=logs)
+            tasks.send_mail(subject, message, from_email, [recipient], logs=logs)
         except Exception as e:
             return "Error: " + str(e)

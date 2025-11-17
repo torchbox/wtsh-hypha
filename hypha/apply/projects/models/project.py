@@ -1,4 +1,5 @@
 import logging
+from datetime import date
 
 from django import forms
 from django.apps import apps
@@ -20,11 +21,13 @@ from django.db.models import (
     Value,
     When,
 )
-from django.db.models.functions import Cast, Coalesce
+from django.db.models.functions import Coalesce
 from django.db.models.signals import post_delete
 from django.dispatch.dispatcher import receiver
 from django.urls import reverse
 from django.utils import timezone
+from django.utils.functional import cached_property
+from django.utils.html import strip_tags
 from django.utils.translation import gettext_lazy as _
 from modelcluster.fields import ParentalKey, ParentalManyToManyField
 from modelcluster.models import ClusterableModel
@@ -146,7 +149,7 @@ class ProjectQuerySet(models.QuerySet):
         )
 
     def with_outstanding_reports(self):
-        Report = apps.get_model("application_projects", "Report")
+        Report = apps.get_model("project_reports", "Report")
         return self.annotate(
             outstanding_reports=Subquery(
                 Report.objects.filter(
@@ -160,21 +163,6 @@ class ProjectQuerySet(models.QuerySet):
                 )
                 .values("count"),
                 output_field=models.IntegerField(),
-            )
-        )
-
-    def with_start_date(self):
-        return self.annotate(
-            start=Cast(
-                Subquery(
-                    Contract.objects.filter(
-                        project=OuterRef("pk"),
-                    )
-                    .approved()
-                    .order_by("approved_at")
-                    .values("approved_at")[:1]
-                ),
-                models.DateField(),
             )
         )
 
@@ -192,7 +180,7 @@ class ProjectQuerySet(models.QuerySet):
 
     def for_reporting_table(self):
         today = timezone.now().date()
-        Report = apps.get_model("application_projects", "Report")
+        Report = apps.get_model("project_reports", "Report")
         return self.invoicing_and_reporting().annotate(
             current_report_submitted_date=Subquery(
                 Report.objects.filter(
@@ -258,8 +246,10 @@ class Project(BaseStreamForm, AccessFormData, models.Model):
         decimal_places=2,
         validators=[MinValueValidator(limit_value=0)],
     )
-    proposed_start = models.DateTimeField(_("Proposed Start Date"), null=True)
-    proposed_end = models.DateTimeField(_("Proposed End Date"), null=True)
+    proposed_start = models.DateField(
+        _("Proposed start date"), null=True, default=date.today
+    )
+    proposed_end = models.DateField(_("Proposed end date"), null=True)
 
     status = models.TextField(choices=PROJECT_STATUS_CHOICES, default=DRAFT)
 
@@ -308,11 +298,39 @@ class Project(BaseStreamForm, AccessFormData, models.Model):
     def status_display(self):
         return self.get_status_display()
 
+    @property
+    def title_text_display(self):
+        """Return the title text for display across the site.
+
+        Use SUBMISSION_TITLE_TEXT_TEMPLATE setting to change format.
+        """
+
+        ctx = {
+            "title": self.title,
+            "public_id": self.submission.application_id_nc,
+            "fund_name": self.fund_name,
+            "round": self.submission.round
+            if self.submission.round
+            else self.submission.page,
+            "application_id": self.submission.application_id_nc,
+        }
+        return strip_tags(settings.SUBMISSION_TITLE_TEXT_TEMPLATE.format(**ctx))
+
+    @property
+    def fund_name(self):
+        return self.submission.fund_name
+
+    @cached_property
+    def application_id(self):
+        return self.submission.application_id
+
     def get_address_display(self):
         return ""  # todo: need to figure out
 
     @classmethod
-    def create_from_submission(cls, submission, lead=None, status=None):
+    def create_from_submission(
+        cls, submission, lead=None, status=None, end_date=None, start_date=None
+    ):
         """
         Create a Project from the given submission.
 
@@ -325,7 +343,7 @@ class Project(BaseStreamForm, AccessFormData, models.Model):
             )
             return None
 
-        # OneToOne relations on the targetted model cannot be accessed without
+        # OneToOne relations on the targeted model cannot be accessed without
         # an exception when the relation doesn't exist (is None).  Since we
         # want to fail fast here, we can use hasattr instead.
         if hasattr(submission, "project"):
@@ -348,18 +366,10 @@ class Project(BaseStreamForm, AccessFormData, models.Model):
             title=submission.title,
             status=status,
             lead=lead if lead else None,
+            proposed_end=end_date,
+            proposed_start=start_date,
             value=submission.form_data.get("value", 0),
         )
-
-    @property
-    def start_date(self):
-        # Assume project starts when OTF are happy with the first signed contract
-        first_approved_contract = (
-            self.contracts.approved().order_by("approved_at").first()
-        )
-        if not first_approved_contract:
-            return None
-        return first_approved_contract.approved_at.date()
 
     @property
     def end_date(self):
@@ -367,7 +377,7 @@ class Project(BaseStreamForm, AccessFormData, models.Model):
         # If still ongoing assume today is the end
         if self.proposed_end:
             return max(
-                self.proposed_end.date(),
+                self.proposed_end,
                 timezone.now().date(),
             )
         return timezone.now().date()
@@ -445,7 +455,7 @@ class Project(BaseStreamForm, AccessFormData, models.Model):
         return False
 
     def get_absolute_url(self):
-        return reverse("apply:projects:detail", args=[self.submission.id])
+        return reverse("funds:submissions:project", args=[self.submission.id])
 
     @property
     def can_make_approval(self):
@@ -474,7 +484,7 @@ class Project(BaseStreamForm, AccessFormData, models.Model):
         Wrapper to expose the pending approval state
 
         We don't want to expose a "Sent for Approval" state to the end User so
-        we infer it from the current status being "Comitted" and the Project
+        we infer it from the current status being "Committed" and the Project
         being locked.
         """
         correct_state = self.status == DRAFT and not self.is_locked
@@ -581,7 +591,7 @@ class ProjectSettings(BaseSiteSetting, ClusterableModel):
     finance_gp_email = models.TextField("Finance Group Email", null=True, blank=True)
     staff_gp_email = models.TextField("Staff Group Email", null=True, blank=True)
     paf_approval_sequential = models.BooleanField(
-        default=True, help_text="Uncheck it to approve project parallely"
+        default=True, help_text="Uncheck it to approve project parallelly"
     )
 
     panels = [
