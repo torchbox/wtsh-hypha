@@ -6,6 +6,15 @@ JS_ESM_DIR = ./hypha/static_src/javascript/esm
 PIP := $(shell (command -v uv > /dev/null 2>&1 && echo "uv pip") || (command -v pip > /dev/null 2>&1 && echo "pip"))
 UV_RUN := $(shell (command -v uv > /dev/null 2>&1 && echo "uv run ") || echo "")
 
+
+.PHONY: autoupdate
+autoupdate: ## Update uv, project dependencies and pre-commit hooks
+	uv self update
+	uv lock --upgrade
+	uv run pre-commit autoupdate
+	npm update
+	${MAKE} fmt
+
 .PHONY: help
 help: ## Show this help menu with a list of available commands and their descriptions
 	@echo "\nSpecify a command. The choices are:\n"
@@ -41,7 +50,8 @@ py-test: .cache/py-packages  ## Run Python tests with pytest, including coverage
 	${UV_RUN}pytest --reuse-db --cov --cov-report term:skip-covered
 
 	@echo "Removing test files generated during test"
-	@find media/ -iname 'test_*.pdf' -o -iname 'test_image*' -o -iname '*.dat' -delete
+	@find media/ -iname 'test_*.pdf' -delete
+	@find media/ -iname '*.dat' -delete
 	@find media/ -type d -empty -delete
 	@rm -rf media/temp_uploads/*
 
@@ -64,6 +74,7 @@ download-esm-modules:  ## Download ECMAScript modules for the project
 	download-esm @github/relative-time-element $(JS_ESM_DIR)
 	download-esm @github/filter-input-element $(JS_ESM_DIR)
 	download-esm choices.js $(JS_ESM_DIR)
+	download-esm cally $(JS_ESM_DIR)
 
 
 .cache/tandem:  ## Install tandem, a tool for running multiple commands in parallel
@@ -90,6 +101,4 @@ download-esm-modules:  ## Download ECMAScript modules for the project
 	cp node_modules/htmx.org/dist/ext/multi-swap.js $(JS_VENDOR_DIR)/htmx-ext-multi-swap.min.js
 	cp node_modules/alpinejs/dist/cdn.min.js $(JS_VENDOR_DIR)/alpine.min.js
 	cp node_modules/@alpinejs/focus/dist/cdn.min.js $(JS_VENDOR_DIR)/alpine-focus.min.js
-	cp node_modules/daterangepicker/moment.min.js $(JS_VENDOR_DIR)/moment.min.js
-	cp node_modules/daterangepicker/daterangepicker.js $(JS_VENDOR_DIR)/daterangepicker.min.js
 	@touch $@

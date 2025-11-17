@@ -1,6 +1,5 @@
 import decimal
 import os
-from textwrap import wrap
 
 from django.conf import settings
 from django.core.validators import MinValueValidator
@@ -9,7 +8,7 @@ from django.db.models import Q, Sum, Value
 from django.db.models.functions import Coalesce
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
-from django_fsm import FSMField, transition
+from viewflow.fsm import State
 
 from hypha.apply.utils.storage import PrivateStorage
 
@@ -36,7 +35,7 @@ INVOICE_STATUS_CHOICES = [
 ]
 
 # All invoice statuses that allows invoice to be transition directly to RESUBMITTED.
-INVOICE_TRANISTION_TO_RESUBMITTED = [
+INVOICE_TRANSITION_TO_RESUBMITTED = [
     SUBMITTED,
     RESUBMITTED,
     CHANGES_REQUESTED_BY_STAFF,
@@ -113,8 +112,11 @@ class Invoice(models.Model):
         null=True,
     )
     document = models.FileField(upload_to=invoice_path, storage=PrivateStorage())
-    requested_at = models.DateTimeField(auto_now_add=True)
-    message_for_pm = models.TextField(blank=True, verbose_name=_("Message"))
+    message_for_pm = models.TextField(
+        blank=True,
+        verbose_name=_("Comment"),
+        help_text="This will be displayed as a comment in the comments tab",
+    )
     comment = models.TextField(blank=True)
     invoice_number = models.CharField(
         max_length=50, null=True, verbose_name=_("Invoice number")
@@ -128,7 +130,11 @@ class Invoice(models.Model):
     )
     invoice_date = models.DateField(null=True, verbose_name=_("Invoice date"))
     paid_date = models.DateField(null=True, verbose_name=_("Paid date"))
-    status = FSMField(default=SUBMITTED, choices=INVOICE_STATUS_CHOICES)
+    status = models.CharField(
+        default=SUBMITTED, choices=INVOICE_STATUS_CHOICES, max_length=30
+    )
+    status_field = State(default=SUBMITTED, states=INVOICE_STATUS_CHOICES)
+    requested_at = models.DateTimeField(auto_now_add=True)
     objects = InvoiceQueryset.as_manager()
 
     wagtail_reference_index_ignore = True
@@ -136,49 +142,83 @@ class Invoice(models.Model):
     def __str__(self):
         return _("Invoice requested for {project}").format(project=self.project)
 
-    @transition(
-        field=status, source=INVOICE_TRANISTION_TO_RESUBMITTED, target=RESUBMITTED
+    @status_field.getter()
+    def _get_object_status(self):
+        return self.status
+
+    @status_field.setter()
+    def _get_object_status(self, value):
+        self.status = value
+        return self.status
+
+    @status_field.transition(
+        source=INVOICE_TRANSITION_TO_RESUBMITTED, target=RESUBMITTED
     )
     def transition_invoice_to_resubmitted(self):
         """
-        Tranistion invoice to resubmitted status.
+        Transition invoice to resubmitted status.
         This method generally gets used on invoice edit.
         """
         pass
 
     @property
     def has_changes_requested(self):
-        return self.status == CHANGES_REQUESTED_BY_STAFF
+        return self.status in {CHANGES_REQUESTED_BY_STAFF, CHANGES_REQUESTED_BY_FINANCE}
 
     @property
     def status_display(self):
         return self.get_status_display()
 
-    @property
-    def vendor_document_number(self):
-        """
-        Vendor document number is a required field to create invoices in IntAcct.
-
-        Formatting should be HP###### i.e. HP000001 and so on.
-        """
-        prefix = "HP-"
-        return prefix + "-".join(wrap(f"{self.id:06}", 3))
-
     def can_user_delete(self, user):
-        if user.is_applicant or user.is_apply_staff:
-            if self.status in (SUBMITTED):
+        from hypha.apply.funds.models.co_applicants import (
+            CoApplicantProjectPermission,
+            CoApplicantRole,
+        )
+
+        if self.status in (SUBMITTED):
+            if user.is_apply_staff:
                 return True
+            if user.is_applicant:
+                if user == self.project.user:
+                    return True
+                co_applicant = self.project.submission.co_applicants.filter(
+                    user=user
+                ).first()
+                if (
+                    co_applicant
+                    and CoApplicantProjectPermission.INVOICES
+                    in co_applicant.project_permission
+                    and co_applicant.role == CoApplicantRole.EDIT
+                ):
+                    return True
 
         return False
 
     def can_user_edit(self, user):
+        from hypha.apply.funds.models.co_applicants import (
+            CoApplicantProjectPermission,
+            CoApplicantRole,
+        )
+
         """
         Check when an user can edit an invoice.
         Only applicant and staff have permission to edit invoice based on its current status.
         """
         if user.is_applicant:
             if self.status in {SUBMITTED, CHANGES_REQUESTED_BY_STAFF, RESUBMITTED}:
-                return True
+                if user == self.project.user:
+                    return True
+                co_applicant = self.project.submission.co_applicants.filter(
+                    user=user
+                ).first()
+                if (
+                    co_applicant
+                    and CoApplicantProjectPermission.INVOICES
+                    in co_applicant.project_permission
+                    and co_applicant.role == CoApplicantRole.EDIT
+                ):
+                    return True
+            return False
 
         if user.is_apply_staff:
             if self.status in {SUBMITTED, RESUBMITTED, CHANGES_REQUESTED_BY_FINANCE}:
@@ -188,7 +228,7 @@ class Invoice(models.Model):
 
     def can_user_change_status(self, user):
         """
-        Check user roles that can tranistion invoice status based on the current status.
+        Check user roles that can transition invoice status based on the current status.
         """
         if not (user.is_contracting or user.is_apply_staff or user.is_finance):
             return False  # Users can't change status

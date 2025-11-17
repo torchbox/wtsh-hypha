@@ -4,23 +4,22 @@
 
 {% block title %}{% trans "Rounds" %}{% endblock %}
 
+{% block hero %}
+    <c-hero>
+        <c-hero.header
+            title="{% trans 'Rounds' %}"
+            subtitle="{% trans 'Explore current and past rounds' %}"
+        />
+    </c-hero>
+{% endblock %}
+
+
 {% block content %}
-    {% adminbar %}
-        {% slot header %}{% trans "Rounds" %}{% endslot %}
-        {% slot sub_heading %}{% trans "Explore current and past rounds" %}{% endslot %}
-    {% endadminbar %}
+    <section class="my-4">
+        {% include "funds/includes/table_filter_and_search.html" with search_term=search_term %}
 
-    <div class="wrapper wrapper--large wrapper--inner-space-medium">
-        {% include "funds/includes/table_filter_and_search.html" with filter_form=filter_form search_term=search_term can_export=can_export %}
-        {% render_table table %}
-    </div>
-{% endblock %}
-
-{% block extra_css %}
-    {{ filter.form.media.css }}
-{% endblock %}
-
-{% block extra_js %}
-    {{ filter.form.media.js }}
-    <script src="{% static 'js/submission-filters.js' %}"></script>
+        <div class="overflow-x-auto mb-4 border-b rounded-b-box border-x">
+            {% render_table table %}
+        </div>
+    </section>
 {% endblock %}

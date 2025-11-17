@@ -1,0 +1,17 @@
+{% load i18n %}
+<c-modal.header>{% trans "Invite co-applicant" %}</c-modal.header>
+
+<div class="p-4">
+    <div class="prose prose-sm">
+        <p>{% blocktrans trimmed %}
+            Enter an email address and then select a role to invite a co-applicant. The invitation will be valid for {{ expiry }} days.
+        {% endblocktrans %}</p>
+        <ol>
+            <li>{% translate "View: They can only read the application." %}</li>
+            <li>{% translate "Comment: They can view and add comments to the application." %}</li>
+            <li>{% translate "Edit: They can view, comment and edit the application." %}</li>
+        </ol>
+    </div>
+
+    {% include 'includes/dialog_form_base.html' with form=form value=value %}
+</div>

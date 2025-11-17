@@ -6,11 +6,10 @@ import os
 
 import dj_database_url
 import djp
-from environs import Env
+from environs import env
 
 from .django import *  # noqa
 
-env = Env()
 env.read_env()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -63,9 +62,9 @@ SUBMISSIONS_ARCHIVED_VIEW_ACCESS_STAFF_ADMIN = env.bool(
     "SUBMISSIONS_ARCHIVED_ACCESS_STAFF_ADMIN", True
 )
 
-# Possible values are: "public_id" and "title"
+# Possible values are: "application_id", "fund_name", "round" and "title"
 SUBMISSION_TITLE_TEXT_TEMPLATE = env(
-    "SUBMISSION_TITLE_TEMPLATE", default="{title} (#{public_id})"
+    "SUBMISSION_TITLE_TEMPLATE", default="{title} (#{application_id})"
 )
 
 # Provide permissions for archiving submissions
@@ -86,6 +85,8 @@ ORG_LONG_NAME = env.str("ORG_LONG_NAME", "Acme Corporation")
 ORG_SHORT_NAME = env.str("ORG_SHORT_NAME", "ACME")
 ORG_URL = env.str("ORG_URL", "https://www.example.org/")
 
+# Project settings.
+
 # Enable Projects in Hypha. Contracts and invoicing that comes after a submission is approved.
 PROJECTS_ENABLED = env.bool("PROJECTS_ENABLED", False)
 
@@ -95,6 +96,9 @@ PROJECTS_AUTO_CREATE = env.bool("PROJECTS_AUTO_CREATE", False)
 # Default status for projects, must be a string literal of "draft" (default), "contracting", "invoicing_and_reporting" or "closing"
 # Will be used for auto-create or be the default selection in the project creation form
 PROJECTS_DEFAULT_STATUS = env.str("PROJECTS_DEFAULT_STATUS", "draft")
+
+# When enabled, the project start date will be set and displayed after the contracting phase, if disabled it is set on project creation
+PROJECTS_START_AFTER_CONTRACTING = env.bool("PROJECTS_START_AFTER_CONTRACTING", True)
 
 # Send out e-mail, slack messages etc. from Hypha. Set to true for production.
 SEND_MESSAGES = env.bool("SEND_MESSAGES", False)
@@ -154,6 +158,11 @@ SUBMISSIONS_TABLE_EXCLUDED_FIELDS = env.list(
     "SUBMISSIONS_TABLE_EXCLUDED_FIELDS", ["organization_name"]
 )
 
+# No of co-applicants can be added to a submission (default 10)
+SUBMISSIONS_COAPPLICANT_INVITES_LIMIT = env.int(
+    "SUBMISSIONS_COAPPLICANT_INVITES_LIMIT", 10
+)
+
 # Should submission automatically transition after all reviewer roles are assigned.
 TRANSITION_AFTER_ASSIGNED = env.bool("TRANSITION_AFTER_ASSIGNED", False)
 
@@ -166,8 +175,6 @@ REVIEW_VISIBILITY_DEFAULT = env.str("REVIEW_VISIBILITY_DEFAULT", "private")
 
 # Require an applicant to view their rendered application before submitting
 SUBMISSION_PREVIEW_REQUIRED = env.bool("SUBMISSION_PREVIEW_REQUIRED", True)
-
-# Project settings.
 
 # SECRET_KEY is required
 SECRET_KEY = env.str("SECRET_KEY", None)
@@ -192,11 +199,13 @@ CONN_HEALTH_CHECKS = env.bool("CONN_HEALTH_CHECKS", True)
 # Make sure the set lang code is included in LANGUAGES setting.
 LANGUAGE_CODE = env.str("LANGUAGE_CODE", "en")
 
+LOCALE_PATHS = (PROJECT_DIR + "/locale",)
+
 # Optional language switcher
 # Set LANGUAGE setting to limit the languages available.
 LANGUAGE_SWITCHER = env.bool("LANGUAGE_SWITCHER", False)
 
-# By default only English is activ.
+# By default only English is active.
 # When LANGUAGE_SWITCHER is on we activate all the languages there are complete translations for.
 if LANGUAGE_SWITCHER:
     LANGUAGES = [
@@ -241,8 +250,13 @@ TEMPLATES = [
             os.path.join(PROJECT_DIR, "templates"),
             os.path.join(PROJECT_DIR, "apply", "templates"),
         ],
-        "APP_DIRS": True,
+        # "APP_DIRS": True,
         "OPTIONS": {
+            "loaders": [
+                "django_cotton.cotton_loader.Loader",
+                "django.template.loaders.filesystem.Loader",
+                "django.template.loaders.app_directories.Loader",
+            ],
             "context_processors": [
                 "django.template.context_processors.debug",
                 "django.template.context_processors.request",
@@ -256,6 +270,7 @@ TEMPLATES = [
                 "hypha.core.context_processors.global_vars",
             ],
             "builtins": [
+                "django_cotton.templatetags.cotton",
                 "django_web_components.templatetags.components",
             ],
         },
@@ -414,6 +429,7 @@ SOCIAL_AUTH_PIPELINE = (
 NH3_ALLOWED_TAGS = [
     "a",
     "b",
+    "q",
     "big",
     "blockquote",
     "br",
@@ -485,10 +501,41 @@ HIJACK_LOGOUT_REDIRECT_URL = "/account/"
 HIJACK_DECORATOR = "hypha.apply.users.decorators.superuser_decorator"
 HIJACK_PERMISSION_CHECK = "hijack.permissions.superusers_and_staff"
 
+# Redis settings
+
+# Env var used by Heroku to set & update the Redis URL
+REDIS_URL = env.str("REDIS_URL", None)
+
+# Used to set the cert verification mode - needs to be `CERT_REQUIRED`, `CERT_OPTIONAL` or `CERT_NONE`
+REDIS_SSL_CERT_REQS = env.str("REDIS_SSL_CERT_REQS", "CERT_REQUIRED")
 
 # Celery settings
+# Sync by default - set `CELERY_TASK_ALWAYS_EAGER` to false and the celery broker URLs to the configured broker to enabled async
+# https://docs.celeryq.dev/en/stable/getting-started/first-steps-with-celery.html
 
-CELERY_TASK_ALWAYS_EAGER = True
+CELERY_BROKER_URL = env.str("CELERY_BROKER_URL", None)
+CELERY_RESULT_BACKEND = env.str("CELERY_RESULT_BACKEND", None)
+
+# Logic is somewhat Heroku specific as Heroku's Key-Value Store addon auto sets the REDIS_URL env var.
+# If `CELERY_BROKER_URL` or `CELERY_RESULT_BACKEND` is set, it will ignore `REDIS_URL`
+if REDIS_URL and not (CELERY_BROKER_URL or CELERY_RESULT_BACKEND):
+    cert_param = ""
+    if REDIS_URL.startswith("rediss") and REDIS_SSL_CERT_REQS:
+        check_hostname = str(REDIS_SSL_CERT_REQS != "CERT_NONE").lower()
+        cert_param = (
+            f"?ssl_cert_reqs={REDIS_SSL_CERT_REQS}&ssl_check_hostname={check_hostname}"
+        )
+    CELERY_BROKER_URL = f"{REDIS_URL}/0{cert_param}"
+    CELERY_RESULT_BACKEND = f"{REDIS_URL}{cert_param}"
+    # Manipulation of the environ vars is needed due to how celery processes & prioritizes settings
+    # for more info, see https://github.com/celery/celery/issues/4284
+    os.environ["CELERY_BROKER_URL"] = CELERY_BROKER_URL
+    os.environ["CELERY_RESULT_BACKEND"] = CELERY_RESULT_BACKEND
+
+CELERY_TASK_ALWAYS_EAGER = env.bool("CELERY_TASK_ALWAYS_EAGER", True)
+
+# Max connections allowed to Redis - defaulted to 20
+CELERY_REDIS_MAX_CONNECTIONS = env.int("CELERY_REDIS_MAX_CONNECTIONS", 20)
 
 
 # S3 settings
@@ -514,9 +561,9 @@ AWS_MIGRATION_SECRET_ACCESS_KEY = env.str("AWS_MIGRATION_SECRET_ACCESS_KEY", "")
 
 # Apply nav items settings
 
-APPLY_NAV_MENU_ITEMS = env.json("APPLY_NAV_MENU_ITEMS", "{}")
-APPLY_NAV_SUBMISSIONS_ITEMS = env.json("APPLY_NAV_SUBMISSIONS_ITEMS", "{}")
-APPLY_NAV_PROJECTS_ITEMS = env.json("APPLY_NAV_PROJECTS_ITEMS", "{}")
+APPLY_NAV_MENU_ITEMS = env.json("APPLY_NAV_MENU_ITEMS", {})
+APPLY_NAV_SUBMISSIONS_ITEMS = env.json("APPLY_NAV_SUBMISSIONS_ITEMS", {})
+APPLY_NAV_PROJECTS_ITEMS = env.json("APPLY_NAV_PROJECTS_ITEMS", {})
 
 # Basic auth settings
 if env.bool("BASIC_AUTH_ENABLED", False):
@@ -567,7 +614,7 @@ if env.bool("COOKIE_SECURE", False):
 
 # Django Elevate settings
 # https://django-elevate.readthedocs.io/en/latest/config/index.html
-
+# ------------------------------------------------------------------------------
 # How long should Elevate mode be active for?
 ELEVATE_COOKIE_AGE = env.int("ELEVATE_COOKIE_AGE", 3600)  # 1 hours
 
@@ -575,19 +622,8 @@ ELEVATE_COOKIE_AGE = env.int("ELEVATE_COOKIE_AGE", 3600)  # 1 hours
 ELEVATE_COOKIE_SALT = env.str("ELEVATE_COOKIE_SALT", SECRET_KEY)
 
 
-# Rest Framework settings
-REST_FRAMEWORK = {
-    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
-    "PAGE_SIZE": 10,
-    "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework.authentication.SessionAuthentication",
-    ),
-    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
-}
-
-
 # django-file-form settings
-
+# ------------------------------------------------------------------------------
 FILE_FORM_CACHE = "django_file_form"
 FILE_FORM_UPLOAD_DIR = "temp_uploads"
 # Ensure FILE_FORM_UPLOAD_DIR exists:
@@ -597,23 +633,11 @@ if env.str("AWS_STORAGE_BUCKET_NAME", None):
     FILE_FORM_TEMP_STORAGE = PRIVATE_FILE_STORAGE
 
 
-# Sage IntAcct integration settings
-
-INTACCT_ENABLED = env.bool("INTACCT_ENABLED", False)
-INTACCT_SENDER_ID = env.str("INTACCT_SENDER_ID", "")
-INTACCT_SENDER_PASSWORD = env.str("INTACCT_SENDER_PASSWORD", "")
-INTACCT_USER_ID = env.str("INTACCT_USER_ID", "")
-INTACCT_COMPANY_ID = env.str("INTACCT_COMPANY_ID", "")
-INTACCT_USER_PASSWORD = env.str("INTACCT_USER_PASSWORD", "")
-
-
 # Misc settings
-
+# ------------------------------------------------------------------------------
 # Use Pillow to create QR codes so they are PNG and not SVG.
 # Apples Safari on iOS and macOS can then recognise them automatically.
 # TWO_FACTOR_QR_FACTORY = 'qrcode.image.pil.PilImage'
-
-LOCALE_PATHS = (PROJECT_DIR + "/locale",)
 
 DEBUG = False
 DEBUGTOOLBAR = False
@@ -628,14 +652,15 @@ COUNTRIES_OVERRIDE = {
     "KV": "Kosovo",
 }
 
-# Google Translate
-ENABLE_GOOGLE_TRANSLATE = env.bool("ENABLE_GOOGLE_TRANSLATE", True)
 
 # Sentry configuration.
 # -----------------------------------------------------------------------------
 SENTRY_DSN = env.str("SENTRY_DSN", None)
 SENTRY_PUBLIC_KEY = env.str("SENTRY_PUBLIC_KEY", None)
 SENTRY_TRACES_SAMPLE_RATE = env.float("SENTRY_TRACES_SAMPLE_RATE", default=0)
+SENTRY_PROFILE_SESSION_SAMPLE_RATE = env.float(
+    "SENTRY_PROFILE_SESSION_SAMPLE_RATE", default=0
+)
 SENTRY_ENVIRONMENT = env.str("SENTRY_ENVIRONMENT", "production")
 SENTRY_DEBUG = env.bool("SENTRY_DEBUG", False)
 SENTRY_DENY_URLS = env.list("SENTRY_DENY_URLS", default=[])
@@ -648,6 +673,8 @@ if SENTRY_DSN:
         dsn=SENTRY_DSN,
         environment=SENTRY_ENVIRONMENT,
         traces_sample_rate=SENTRY_TRACES_SAMPLE_RATE,
+        profile_session_sample_rate=SENTRY_PROFILE_SESSION_SAMPLE_RATE,
+        profile_lifecycle="trace",
         debug=SENTRY_DEBUG,
         integrations=[DjangoIntegration()],
     )

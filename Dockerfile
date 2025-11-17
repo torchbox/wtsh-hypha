@@ -33,7 +33,7 @@
 # environments. It also sets up the always-activated virtual environment and
 # installs uv.
 
-FROM python:3.12-slim-bookworm AS base
+FROM python:3.12.12-slim-bookworm AS base
 
 WORKDIR /app
 
@@ -206,7 +206,7 @@ RUN --mount=type=cache,target=/var/lib/apt/lists,sharing=locked \
         sudo
     # Install the Postgres repo
     /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh -y
-    # Intall the Postgres client (make sure the version matches the one in production)
+    # Install the Postgres client (make sure the version matches the one in production)
     apt-get --quiet --yes install \
         postgresql-client-${POSTGRES_VERSION}
     # Download and import the Nodesource GPG key

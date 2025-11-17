@@ -1,6 +1,7 @@
 from datetime import date
 from typing import Optional
 
+import nh3
 from django import forms
 from django.conf import settings
 from django.contrib.postgres.fields import ArrayField
@@ -73,11 +74,41 @@ class ApplicationBaseManager(PageQuerySet):
         return qs.order_by("end_date")
 
 
+class AsJsonMixin:
+    @cached_property
+    def as_json(self):
+        # Clean the strings in title and description.
+        title = nh3.clean(self.title, tags=set())
+        description = nh3.clean(self.description, tags=set())
+        # If image exist scale it down and convert to webp.
+        image = (
+            self.image.get_rendition("max-1200x1200|format-webp|webpquality-60").url
+            if self.image
+            else ""
+        )
+        # Make sure weight is an int.
+        weight = int(self.weight)
+        # If next deadline exist and is set to show, format it as standard iso date.
+        try:
+            next_deadline = (
+                self.next_deadline().isoformat() if self.show_deadline else ""
+            )
+        except AttributeError:
+            next_deadline = ""
+        return {
+            "title": title,
+            "description": description,
+            "image": image,
+            "weight": weight,
+            "next_deadline": next_deadline,
+        }
+
+
 @method_decorator(
     ratelimit(key="ip", rate=settings.DEFAULT_RATE_LIMIT, method="POST"), name="serve"
 )
-class ApplicationBase(EmailForm, WorkflowStreamForm):  # type: ignore
-    is_createable = False
+class ApplicationBase(EmailForm, WorkflowStreamForm, AsJsonMixin):  # type: ignore
+    is_creatable = False
 
     # Adds validation around forms & workflows. Isn't on Workflow class due to not displaying workflow field on Round
     base_form_class = WorkflowFormAdminForm
@@ -555,8 +586,8 @@ class RoundBase(WorkflowStreamForm, SubmittableStreamForm):  # type: ignore
 @method_decorator(
     ratelimit(key="ip", rate=settings.DEFAULT_RATE_LIMIT, method="POST"), name="serve"
 )
-class LabBase(EmailForm, WorkflowStreamForm, SubmittableStreamForm):  # type: ignore
-    is_createable = False
+class LabBase(EmailForm, WorkflowStreamForm, SubmittableStreamForm, AsJsonMixin):  # type: ignore
+    is_creatable = False
     submission_class = ApplicationSubmission
 
     # Adds validation around forms & workflows.

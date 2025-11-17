@@ -40,6 +40,7 @@ from hypha.apply.activity.adapters.utils import get_users_for_groups
 from hypha.apply.activity.messaging import MESSAGES, messenger
 from hypha.apply.activity.models import ACTION, ALL, COMMENT, TEAM, Activity
 from hypha.apply.activity.views import ActivityContextMixin
+from hypha.apply.funds.models.co_applicants import CoApplicantProjectPermission
 from hypha.apply.stream_forms.models import BaseStreamForm
 from hypha.apply.todo.options import (
     PAF_REQUIRED_CHANGES,
@@ -83,6 +84,7 @@ from ..forms import (
     SetPendingForm,
     SkipPAFApprovalProcessForm,
     SubmitContractDocumentsForm,
+    UpdateProjectDatesForm,
     UpdateProjectLeadForm,
     UpdateProjectTitleForm,
     UploadContractDocumentForm,
@@ -107,13 +109,13 @@ from ..models.project import (
     ProjectSettings,
 )
 from ..permissions import has_permission
+from ..reports.views import ReportingMixin
 from ..tables import ProjectsListTable
 from ..utils import (
     get_paf_status_display,
     get_placeholder_file,
     get_project_status_choices,
 )
-from .report import ReportingMixin
 
 
 class ProjectBySubmissionIdMixin:
@@ -373,7 +375,11 @@ class RemoveContractDocumentView(ProjectBySubmissionIdMixin, View):
 
     def dispatch(self, request, *args, **kwargs):
         self.project = self.get_object()
-        if not request.user.is_applicant or request.user != self.project.user:
+
+        permission = has_object_permission(
+            "update_contracting_documents", request.user, obj=self.project
+        )
+        if not permission:
             raise PermissionDenied
         return super().dispatch(request, *args, **kwargs)
 
@@ -490,6 +496,42 @@ def update_project_title(request, pk):
                         {
                             "titleUpdated": None,
                             "showMessage": _("Title has been updated"),
+                        }
+                    ),
+                },
+            )
+
+    ctx = {
+        "form": form,
+        "value": _("Update"),
+        "object": project,
+    }
+    return render(request, template_name, ctx)
+
+
+@login_required
+def update_project_dates(request, pk):
+    if not request.user.is_apply_staff:
+        raise PermissionDenied
+
+    project = get_object_or_404(Project, submission__id=pk)
+    template_name = "application_projects/modals/project_dates_update.html"
+
+    form = UpdateProjectDatesForm(instance=project)
+
+    if request.method == "POST":
+        form = UpdateProjectDatesForm(request.POST, instance=project)
+
+        if form.is_valid():
+            form.save()
+
+            return HttpResponse(
+                status=204,
+                headers={
+                    "HX-Trigger": json.dumps(
+                        {
+                            "informationUpdated": None,
+                            "showMessage": _("Dates has been updated"),
                         }
                     ),
                 },
@@ -673,7 +715,7 @@ class UploadContractView(ProjectBySubmissionIdMixin, View):
 
             form.instance.project = self.project
 
-            if self.request.user == self.project.user:
+            if self.request.user.is_applicant:
                 form.instance.signed_by_applicant = True
                 form.instance.uploaded_by_applicant_at = timezone.now()
                 messages.success(self.request, _("Countersigned contract uploaded"))
@@ -701,6 +743,10 @@ class UploadContractView(ProjectBySubmissionIdMixin, View):
                 self.project.status = INVOICING_AND_REPORTING
                 self.project.save(update_fields=["status"])
                 old_stage = CONTRACTING
+
+                if settings.PROJECTS_START_AFTER_CONTRACTING:
+                    self.project.proposed_start = datetime.date.today()
+                    self.project.save()
 
                 messenger(
                     MESSAGES.PROJECT_TRANSITION,
@@ -911,7 +957,10 @@ class UploadContractDocumentView(ProjectBySubmissionIdMixin, View):
         self.category = get_object_or_404(
             ContractDocumentCategory, id=kwargs.get("category_pk")
         )
-        if request.user != self.project.user or not request.user.is_applicant:
+        permission = has_object_permission(
+            "update_contracting_documents", request.user, self.project
+        )
+        if not permission:
             raise PermissionDenied
         return super().dispatch(request, *args, **kwargs)
 
@@ -1000,6 +1049,7 @@ class ChangePAFStatusView(View):
         form = self.form_class(self.request.POST, instance=self.object)
         if form.is_valid():
             form.save()
+            message_kwargs = {}
             project_settings = ProjectSettings.for_request(self.request)
             paf_approval = self.request.user.paf_approvals.filter(
                 project=self.object, approved=False
@@ -1028,13 +1078,28 @@ class ChangePAFStatusView(View):
                         )
 
             paf_status = form.cleaned_data.get("paf_status")
-            comment = form.cleaned_data.get("comment", "")
 
             paf_status_update_message = _(
-                "updated project form status to {paf_status}."
+                "Updated project form status to: {paf_status}"
             ).format(
                 paf_status=get_paf_status_display(paf_status).lower(),
             )
+
+            if form.cleaned_data["comment"]:
+                comment = f'<p>"{form.cleaned_data["comment"]}"</p>'
+
+                message = paf_status_update_message + comment
+
+                comment_activity = Activity.objects.create(
+                    user=self.request.user,
+                    type=COMMENT,
+                    source=self.object,
+                    timestamp=timezone.now(),
+                    message=message,
+                    visibility=TEAM,
+                )
+
+                message_kwargs["comment_url"] = comment_activity.get_absolute_url()
             Activity.objects.create(
                 user=self.request.user,
                 type=ACTION,
@@ -1088,7 +1153,7 @@ class ChangePAFStatusView(View):
                     request=self.request,
                     user=self.request.user,
                     source=self.object,
-                    comment=comment,
+                    **message_kwargs,
                 )
                 messenger(
                     MESSAGES.PROJECT_TRANSITION,
@@ -1159,20 +1224,6 @@ class ChangePAFStatusView(View):
                                 related_obj=self.object,
                             )
                 messages.success(self.request, _("Project form has been approved"))
-
-            if form.cleaned_data["comment"]:
-                comment = f'<p>"{form.cleaned_data["comment"]}."</p>'
-
-                message = paf_status_update_message + comment
-
-                Activity.objects.create(
-                    user=self.request.user,
-                    type=COMMENT,
-                    source=self.object,
-                    timestamp=timezone.now(),
-                    message=message,
-                    visibility=TEAM,
-                )
 
             if self.object.is_approved_by_all_paf_reviewers:
                 old_stage = self.object.status
@@ -1693,6 +1744,17 @@ class ProjectPrivateMediaView(
         if self.request.user == self.project.user:
             return True
 
+        # co-applicant with project document permission can view documents
+        co_applicant = self.project.submission.co_applicants.filter(
+            user=self.request.user
+        ).first()
+        if (
+            co_applicant
+            and CoApplicantProjectPermission.PROJECT_DOCUMENT
+            in co_applicant.project_permission
+        ):
+            return True
+
         return False
 
 
@@ -1744,6 +1806,17 @@ class ContractPrivateMediaView(
             return True
 
         if self.request.user == self.project.user:
+            return True
+
+        # co-applicant with contract document permission can view documents
+        co_applicant = self.project.submission.co_applicants.filter(
+            user=self.request.user
+        ).first()
+        if (
+            co_applicant
+            and CoApplicantProjectPermission.CONTRACTING_DOCUMENT
+            in co_applicant.project_permission
+        ):
             return True
 
         return False
@@ -1959,7 +2032,7 @@ class ProjectFormsEditView(BaseStreamForm, ProjectBySubmissionIdMixin, UpdateVie
     model = Project
 
     def buttons(self):
-        yield ("submit", "primary", _("Save"))
+        yield ("submit", "btn-primary", _("Save"))
 
     def dispatch(self, request, *args, **kwargs):
         self.object = self.get_object()
