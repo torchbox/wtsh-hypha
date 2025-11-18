@@ -14,6 +14,7 @@ import itertools
 from collections import defaultdict
 from typing import List
 
+from .definitions.DH_idea_concept import DHIdeaConceptDefinition
 from .definitions.double_stage import DoubleStageDefinition
 from .definitions.single_stage import SingleStageDefinition
 from .definitions.single_stage_community import SingleStageCommunityDefinition
@@ -85,12 +86,17 @@ ConceptProposal = Workflow(
     "Concept & Proposal", "double", **phase_data(DoubleStageDefinition)
 )
 
+DHIdeaConcept = Workflow(
+    "DH Idea & Concept", "dh_idea_concept", **phase_data(DHIdeaConceptDefinition)
+)
+
 WORKFLOWS = {
     Request.admin_name: Request,
     RequestSameTime.admin_name: RequestSameTime,
     RequestExternal.admin_name: RequestExternal,
     RequestCommunity.admin_name: RequestCommunity,
     ConceptProposal.admin_name: ConceptProposal,
+    DHIdeaConcept.admin_name: DHIdeaConcept,
 }
 
 PHASES = list(
