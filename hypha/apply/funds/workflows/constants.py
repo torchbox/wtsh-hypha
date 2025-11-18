@@ -14,10 +14,12 @@ INITIAL_STATE = "in_discussion"
 PHASE_BG_COLORS = {
     "Draft": "bg-gray-200",
     "Accepted": "bg-green-200",
+    "Idea Accepted": "bg-green-200",
     "Need screening": "bg-cyan-200",
     "Ready for Determination": "bg-blue-200",
     "Ready For Discussion": "bg-blue-100",
     "Invited for Proposal": "bg-green-100",
+    "Invited for Concept": "bg-green-100",
     "Internal Review": "bg-yellow-200",
     "External Review": "bg-yellow-200",
     "More information required": "bg-yellow-200",
