@@ -26,9 +26,11 @@ from django_htmx.http import (
     HttpResponseClientRefresh,
 )
 from django_tables2 import SingleTableMixin
+from rolepermissions.checkers import has_object_permission
 
 from hypha.apply.activity.messaging import MESSAGES, messenger
 from hypha.apply.activity.models import APPLICANT, COMMENT, Activity
+from hypha.apply.funds.models.co_applicants import CoApplicantProjectPermission
 from hypha.apply.projects.templatetags.invoice_tools import (
     display_invoice_status_for_user,
 )
@@ -60,11 +62,14 @@ from ..forms import (
     EditInvoiceForm,
 )
 from ..models.payment import (
+    APPROVED_BY_FINANCE,
     APPROVED_BY_STAFF,
     CHANGES_REQUESTED_BY_FINANCE,
     CHANGES_REQUESTED_BY_STAFF,
     DECLINED,
-    INVOICE_TRANISTION_TO_RESUBMITTED,
+    INVOICE_TRANSITION_TO_RESUBMITTED,
+    PAID,
+    PAYMENT_FAILED,
     Invoice,
 )
 from ..models.project import Project
@@ -89,6 +94,19 @@ class InvoiceAccessMixin(UserPassesTestMixin):
 
         if self.request.user == self.get_object().project.user:
             return True
+
+        if self.request.user.is_applicant:
+            co_applicant = (
+                self.get_object()
+                .project.submission.co_applicants.filter(user=self.request.user)
+                .first()
+            )
+            if (
+                co_applicant
+                and CoApplicantProjectPermission.INVOICES
+                in co_applicant.project_permission
+            ):
+                return True
 
         return False
 
@@ -141,15 +159,16 @@ class ChangeInvoiceStatusView(InvoiceAccessMixin, View):
         )
         if form.is_valid():
             form.save()
+            message_kwargs = {}
             if form.cleaned_data["comment"]:
                 invoice_status_change = _(
                     "<p>Invoice status updated to: {status}.</p>"
                 ).format(status=self.object.get_status_display())
-                comment = f"<p>{self.object.comment}</p>"
+                comment = f'<p>"{self.object.comment}"</p>'
 
                 message = invoice_status_change + comment
 
-                Activity.objects.create(
+                comment_activity = Activity.objects.create(
                     user=self.request.user,
                     type=COMMENT,
                     source=self.object.project,
@@ -158,6 +177,8 @@ class ChangeInvoiceStatusView(InvoiceAccessMixin, View):
                     visibility=APPLICANT,
                     related_object=self.object,
                 )
+
+                message_kwargs["comment_url"] = comment_activity.get_absolute_url()
 
             if (
                 self.request.user.is_apply_staff
@@ -178,6 +199,7 @@ class ChangeInvoiceStatusView(InvoiceAccessMixin, View):
                 user=self.request.user,
                 source=self.object.project,
                 related=self.object,
+                **message_kwargs,
             )
 
             handle_tasks_on_invoice_update(old_status=old_status, invoice=self.object)
@@ -198,6 +220,7 @@ class ChangeInvoiceStatusView(InvoiceAccessMixin, View):
 
 class DeleteInvoiceView(DeleteView):
     model = Invoice
+    template_name = "application_projects/modals/invoice_confirm_delete.html"
 
     def get_object(self):
         project = get_object_or_404(Project, submission__pk=self.kwargs["pk"])
@@ -252,12 +275,13 @@ class CreateInvoiceView(SuccessMessageMixin, CreateView):
 
     def dispatch(self, request, *args, **kwargs):
         self.project = get_object_or_404(Project, submission__id=kwargs["pk"])
-        if not request.user.is_apply_staff and not self.project.user == request.user:
+        permission = has_object_permission("add_invoice", request.user, self.project)
+        if not permission:
             return redirect(self.project)
         return super().dispatch(request, *args, **kwargs)
 
     def buttons(self):
-        yield ("submit", "primary", _("Save"))
+        yield ("submit", "btn-primary", _("Save"))
 
     def get_context_data(self, **kwargs):
         return super().get_context_data(
@@ -273,7 +297,7 @@ class CreateInvoiceView(SuccessMessageMixin, CreateView):
         if form.cleaned_data["message_for_pm"]:
             invoice_status_change = _("<p>Invoice added.</p>")
 
-            message_for_pm = f"<p>{form.cleaned_data['message_for_pm']}</p>"
+            message_for_pm = f'<p>"{form.cleaned_data["message_for_pm"]}"</p>'
 
             message = invoice_status_change + message_for_pm
 
@@ -326,9 +350,9 @@ class EditInvoiceView(InvoiceAccessMixin, UpdateView):
         return super().dispatch(request, *args, **kwargs)
 
     def buttons(self):
-        yield ("submit", "primary", _("Save"))
+        yield ("submit", "btn-primary", _("Update"))
         if self.object.can_user_delete(self.request.user):
-            yield ("delete", "warning", _("Delete"))
+            yield ("delete", "btn-error", _("Delete"))
 
     def get_initial(self):
         initial = super().get_initial()
@@ -359,9 +383,10 @@ class EditInvoiceView(InvoiceAccessMixin, UpdateView):
     def form_valid(self, form):
         old_status = self.object.status
         response = super().form_valid(form)
+        message_kwargs = {}
 
         if form.cleaned_data:
-            if self.object.status in INVOICE_TRANISTION_TO_RESUBMITTED:
+            if self.object.status in INVOICE_TRANSITION_TO_RESUBMITTED:
                 self.object.transition_invoice_to_resubmitted()
                 self.object.save()
 
@@ -369,10 +394,10 @@ class EditInvoiceView(InvoiceAccessMixin, UpdateView):
                 invoice_status_change = _(
                     "<p>Invoice status updated to: {status}.</p>"
                 ).format(status=self.object.get_status_display())
-                message_for_pm = f"<p>{form.cleaned_data['message_for_pm']}</p>"
+                message_for_pm = f'<p>"{form.cleaned_data["message_for_pm"]}"</p>'
                 message = invoice_status_change + message_for_pm
 
-                Activity.objects.create(
+                comment_activity = Activity.objects.create(
                     user=self.request.user,
                     type=COMMENT,
                     source=self.object.project,
@@ -382,12 +407,15 @@ class EditInvoiceView(InvoiceAccessMixin, UpdateView):
                     related_object=self.object,
                 )
 
+                message_kwargs["comment_url"] = comment_activity.get_absolute_url()
+
         messenger(
             MESSAGES.UPDATE_INVOICE_STATUS,
             request=self.request,
             user=self.request.user,
             source=self.object.project,
             related=self.object,
+            **message_kwargs,
         )
 
         if self.request.user.is_applicant and old_status == CHANGES_REQUESTED_BY_STAFF:
@@ -446,10 +474,12 @@ class InvoicePrivateMedia(UserPassesTestMixin, PrivateMediaView):
             return document.document
 
         # if not, then it's for invoice document
-        if (
-            self.invoice.status == APPROVED_BY_STAFF
-            and self.invoice.document.file.name.endswith(".pdf")
-        ):
+        if self.invoice.status in [
+            APPROVED_BY_STAFF,
+            APPROVED_BY_FINANCE,
+            PAID,
+            PAYMENT_FAILED,
+        ] and self.invoice.document.file.name.endswith(".pdf"):
             if activities := Activity.actions.filter(
                 related_content_type__model="invoice",
                 related_object_id=self.invoice.id,
@@ -479,6 +509,17 @@ class InvoicePrivateMedia(UserPassesTestMixin, PrivateMediaView):
 
         if self.request.user == self.invoice.project.user:
             return True
+
+        if self.request.user.is_applicant:
+            co_applicant = self.invoice.project.submission.co_applicants.filter(
+                user=self.request.user
+            ).first()
+            if (
+                co_applicant
+                and CoApplicantProjectPermission.INVOICES
+                in co_applicant.project_permission
+            ):
+                return True
 
         return False
 

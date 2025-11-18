@@ -1,15 +1,17 @@
 from django.conf import settings
 from django.core.exceptions import PermissionDenied
 from django.http import (
-    FileResponse,
     Http404,
     HttpRequest,
     HttpResponse,
     HttpResponseRedirect,
 )
 from django.shortcuts import redirect
+from django.templatetags.static import static
 from django.urls import reverse_lazy
+from django.utils import timezone
 from django.utils.decorators import method_decorator
+from django.utils.text import slugify
 from django.views import View
 from django.views.generic import (
     DetailView,
@@ -19,14 +21,14 @@ from django.views.generic.detail import SingleObjectMixin
 from hypha.apply.activity.messaging import MESSAGES, messenger
 from hypha.apply.activity.views import ActivityContextMixin
 from hypha.apply.users.decorators import (
-    staff_or_finance_required,
     staff_required,
 )
 from hypha.apply.utils.models import PDFPageSettings
-from hypha.apply.utils.pdfs import draw_submission_content, make_pdf
+from hypha.apply.utils.pdfs import render_as_pdf
 from hypha.apply.utils.views import (
     ViewDispatcher,
 )
+from hypha.core.models import SystemSettings
 
 from ..models import (
     ApplicationSubmission,
@@ -116,7 +118,11 @@ class ReviewerSubmissionDetailView(ActivityContextMixin, DetailView):
         submission = self.get_object()
         # If the requesting user submitted the application, return the Applicant view.
         # Reviewers may sometimes be applicants as well.
-        if submission.user == request.user:
+        # or if requesting user is a co-applicant to application, return the Applicant view.
+        if (
+            submission.user == request.user
+            or submission.co_applicants.filter(user=request.user).exists()
+        ):
             return ApplicantSubmissionDetailView.as_view()(request, *args, **kwargs)
         if submission.status == DRAFT_STATE:
             raise Http404
@@ -150,7 +156,11 @@ class PartnerSubmissionDetailView(ActivityContextMixin, DetailView):
         )
         # If the requesting user submitted the application, return the Applicant view.
         # Partners may sometimes be applicants as well.
-        if submission.user == request.user:
+        # or if requesting user is a co-applicant to application, return the Applicant view.
+        if (
+            submission.user == request.user
+            or submission.co_applicants.filter(user=request.user).exists()
+        ):
             return ApplicantSubmissionDetailView.as_view()(request, *args, **kwargs)
         # Only allow partners in the submission they are added as partners
         partner_has_access = submission.partners.filter(pk=request.user.pk).exists()
@@ -172,7 +182,11 @@ class CommunitySubmissionDetailView(ActivityContextMixin, DetailView):
         )
         # If the requesting user submitted the application, return the Applicant view.
         # Reviewers may sometimes be applicants as well.
-        if submission.user == request.user:
+        # or if requesting user is a co-applicant to application, return the Applicant view.
+        if (
+            submission.user == request.user
+            or submission.co_applicants.filter(user=request.user).exists()
+        ):
             return ApplicantSubmissionDetailView.as_view()(request, *args, **kwargs)
         # Only allow community reviewers in submission with a community review state.
         if not submission.community_review:
@@ -193,8 +207,11 @@ class ApplicantSubmissionDetailView(ActivityContextMixin, DetailView):
         permission, _ = has_permission(
             "submission_view", request.user, object=submission, raise_exception=True
         )
-        # This view is only for applicants.
-        if submission.user != request.user:
+        # This view is only for applicants and co-applicants.
+        if (
+            submission.user != request.user
+            and not submission.co_applicants.filter(user=request.user).exists()
+        ):
             raise PermissionDenied
         return super().dispatch(request, *args, **kwargs)
 
@@ -269,33 +286,50 @@ class SubmissionSealedView(DetailView):
             )
 
 
-@method_decorator(staff_or_finance_required, name="dispatch")
+@method_decorator(staff_required, "dispatch")
 class SubmissionDetailPDFView(SingleObjectMixin, View):
     model = ApplicationSubmission
+
+    def get_slugified_file_name(self, export_type):
+        return (
+            f"{timezone.localdate().strftime('%Y%m%d')}-"
+            f"{self.object.public_id or self.object.id}-"
+            f"{slugify(self.object.title)}"
+            f".{export_type}"
+        )
 
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
         pdf_page_settings = PDFPageSettings.load(request_or_site=request)
-        content = draw_submission_content(self.object.output_text_answers())
-        pdf = make_pdf(
-            title=self.object.title_text_display,
-            sections=[
-                {
-                    "content": content,
-                    "title": "Submission",
-                    "meta": [
-                        self.object.stage,
-                        self.object.page,
-                        self.object.round,
-                        # Removed for WTSH because it messes the layout and is not needed:
-                        # f"Lead: {self.object.lead}",
-                    ],
-                },
-            ],
-            pagesize=pdf_page_settings.download_page_size,
+        context = {}
+        context["pagesize"] = pdf_page_settings.download_page_size
+        context["show_footer"] = True
+        site_settings = SystemSettings.objects.first()
+        if site_settings:
+            if site_settings.site_logo_default:
+                context["logo"] = request.build_absolute_uri(
+                    site_settings.site_logo_default.file.url
+                )
+            else:
+                context["logo"] = request.build_absolute_uri(static("images/logo.png"))
+
+        context["link"] = self.request.build_absolute_uri(
+            self.object.get_absolute_url()
         )
-        return FileResponse(
-            pdf,
-            as_attachment=True,
-            filename=f"{self.object.public_id or self.object.id}_{self.object.title}.pdf",
+        context["id"] = self.object.application_id
+        context["data"] = self.object.get_text_questions_answers_as_dict()
+        context["title"] = self.object.title_text_display
+        context["stage"] = self.object.stage
+        context["fund"] = self.object.page
+        context["round"] = self.object.round
+        # Removed for WTSH because it messes the layout and is not needed:
+        # context["lead"] = self.object.lead
+        context["show_header"] = True
+        context["header_title"] = "Submission details"
+        template_path = "funds/submission-pdf.html"
+        return render_as_pdf(
+            request=request,
+            template_name=template_path,
+            context=context,
+            filename=self.get_slugified_file_name("pdf"),
         )

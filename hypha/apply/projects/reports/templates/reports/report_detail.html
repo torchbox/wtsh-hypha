@@ -1,0 +1,123 @@
+{% extends "base-apply.html" %}
+{% load i18n static nh3_tags heroicons %}
+
+{% block title %}{% trans "Report" %} | {{ object.project.title }}{% endblock %}
+
+{% block hero %}
+    <c-hero>
+        <c-hero.header
+            back_link="{{ object.project.get_absolute_url }}"
+            back_link_text="{% trans 'View project' %} #{{ object.project.application_id }}"
+            title="{{ object.project.title }} <span class='text-fg-muted'>#{{ object.project.application_id }}</span>"
+            subtitle="{% trans 'Report' %}"
+        />
+    </c-hero>
+{% endblock %}
+
+{% block content %}
+    <div class="my-4 layout layout-sidebar-end layout-flowrow-until-md layout-sidebar-flowrow-end">
+        <article class="layout-main">
+            <div class="flex gap-x-4 mb-4 text-xs text-fg-muted">
+                <span>
+                    {% trans "Submitted " %}
+                    <strong class="font-semibold">
+                        <relative-time datetime={{ object.submitted|date:"c" }}>
+                            {{ object.submitted|date:"SHORT_DATETIME_FORMAT" }}
+                        </relative-time>
+                    </strong>
+                    {% trans "by" %}
+                    <strong class="font-semibold">
+                        {{ object.author }}
+                    </strong>
+                </span>
+                <span>
+                    {% trans "Updated" %}
+                    <strong class="font-semibold">
+                        <relative-time datetime={{ object.current.submitted|date:"c" }}>
+                            {{ object.current.submitted|date:"SHORT_DATETIME_FORMAT" }}
+                        </relative-time>
+                    </strong>
+                    {% trans "by" %}
+                    <strong class="font-semibold">
+                        {{ object.current.author }}
+                    </strong>
+                </span>
+            </div>
+
+            <div role="alert" class="mb-4 alert alert-info">
+                {% heroicon_outline 'exclamation-circle' stroke_width=2 aria_hidden=true class="opacity-80 size-5" %}
+                <span>
+                    {% trans "This report is for the period" %} <strong class="font-semibold">{{ object.start_date }}</strong> {% trans "to" %} <strong class="font-semibold">{{ object.end_date }}</strong>
+                </span>
+            </div>
+
+            <section>
+                {% if report.skipped %}
+                    <h2>{% trans "Report Skipped" %}</h2>
+                {% else %}
+                    <h2 class="mb-4 text-xl">{% trans "Public Report" %}</h2>
+
+                    {% if object.current %}
+                        <div class="card card-border shadow-xs">
+                            <div class="card-body">
+                                {{ object.current.output_answers }}
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    {% for file in object.current.files.all %}
+                        {% if forloop.first %}
+                            <h4>{% trans "Attachments" %}</h4>
+                            <ul>
+                        {% endif %}
+
+                        <li><a href="{{ file.get_absolute_url }}">{{ file.filename }}</a></li>
+
+                        {% if forloop.last %}
+                            </ul>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </section>
+        </article>
+
+        <aside class="layout-sidebar">
+            {% if request.user.is_apply_staff or report.previous or report.next %}
+                <div class="card card-border shadow-xs">
+                    <div class="card-body">
+                        <h2 class="card-title">{% trans "Actions to take" %}</h2>
+
+                        {% if request.user.is_apply_staff %}
+                            <a
+                                class="btn btn-primary btn-block"
+                                href="{% url "apply:projects:reports:edit" pk=report.pk %}"
+                            >
+                                {% if object.draft %}
+                                    {% trans "Continue editing" %}
+                                {% else %}
+                                    {% trans "Edit" %}
+                                {% endif %}
+                            </a>
+                        {% endif %}
+                        {% if report.previous %}
+                            <a
+                                class="btn btn-secondary btn-block btn-outline"
+                                href="{% url "apply:projects:reports:detail" pk=report.previous.pk %}"
+                            >
+                                {% trans "View previous report" %}
+                            </a>
+                        {% endif %}
+                        {% if report.next %}
+                            <a
+                                class="btn btn-secondary btn-block btn-outline"
+                                href="{% url "apply:projects:reports:detail" pk=report.next.pk %}"
+                            >
+                                {% trans "View next report" %}
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+        </aside>
+    </div>
+{% endblock %}

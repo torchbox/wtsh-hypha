@@ -24,14 +24,13 @@ from django.db.models import (
 from django.db.models.expressions import OrderBy, RawSQL
 from django.db.models.fields.json import KeyTextTransform
 from django.db.models.functions import Cast
-from django.dispatch import receiver
 from django.urls import reverse
 from django.utils import timezone
+from django.utils.functional import cached_property
 from django.utils.html import strip_tags
 from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
-from django_fsm import RETURN_VALUE, FSMField, can_proceed, transition
-from django_fsm.signals import post_transition
+from viewflow.fsm import State
 from wagtail.contrib.forms.models import AbstractFormSubmission
 from wagtail.fields import StreamField
 
@@ -272,7 +271,7 @@ def make_permission_check(users):
 
 def wrap_method(func):
     def wrapped(*args, **kwargs):
-        # Provides a new function that can be wrapped with the django_fsm method
+        # Provides a new function that can be wrapped with the viewflow-fsm method
         # Without this using the same method for multiple transitions fails as
         # the fsm wrapping is overwritten
         return func(*args, **kwargs)
@@ -285,8 +284,18 @@ def transition_id(target, phase):
     return "__".join([transition_prefix, phase.stage.name.lower(), phase.name, target])
 
 
+def get_all_possible_states():
+    all_states = set()
+    for workflow in WORKFLOWS.values():
+        for phase_name, data in workflow.items():
+            all_states.add((phase_name, data.display_name))
+    return sorted(all_states, key=lambda x: x[0])
+
+
 class AddTransitions(models.base.ModelBase):
     def __new__(cls, name, bases, attrs, **kwargs):
+        status_field = attrs.get("status_field")
+
         for workflow in WORKFLOWS.values():
             for phase_name, data in workflow.items():
                 for transition_name, action in data.transitions.items():
@@ -295,43 +304,55 @@ class AddTransitions(models.base.ModelBase):
                     permission_func = make_permission_check(action["permissions"])
 
                     # Get the method defined on the parent or default to a NOOP
-                    transition_state = wrap_method(
-                        attrs.get(action.get("method"), lambda *args, **kwargs: None)
-                    )
+                    method = action.get("method")
+
+                    if method in attrs:
+                        transition_m = attrs[method]
+                    elif method and hasattr(cls, method):
+                        transition_m = getattr(cls, method)
+                    else:
+                        # Create a bound noop method that updates status
+                        def make_noop(target_state):
+                            def noop_method(instance, *args, **kwargs):
+                                return True
+
+                            return noop_method
+
+                        transition_m = make_noop(transition_name)
+
+                    transition_state = wrap_method(transition_m)
                     # Provide a neat name for graph viz display
                     transition_state.__name__ = slugify(action["display"])
 
                     conditions = [
                         attrs[condition] for condition in action.get("conditions", [])
                     ]
-                    # Wrap with transition decorator
-                    transition_func = transition(
-                        attrs["status"],
+
+                    # Create the transition
+                    transition_func = status_field.transition(
                         source=phase_name,
                         target=transition_name,
                         permission=permission_func,
                         conditions=conditions,
                         custom=action.get("custom", {}),
-                    )(transition_state)
+                    )
 
-                    # Attach to new class
-                    attrs[method_name] = transition_func
+                    # Bind the transition method
+                    attrs[method_name] = transition_func(transition_state)
                     attrs[permission_name] = permission_func
 
         def get_transition(self, transition):
             try:
                 return getattr(self, transition_id(transition, self.phase))
-            except TypeError:
-                # Defined on the class
-                return None
-            except AttributeError:
-                # For the other workflow
+            except (TypeError, AttributeError):
                 return None
 
         attrs["get_transition"] = get_transition
 
         def get_actions_for_user(self, user):
-            transitions = self.get_available_user_status_transitions(user)
+            transitions = type(self).status_field.get_available_transitions(
+                self, self.status, user
+            )
             actions = [
                 (
                     transition.target,
@@ -345,15 +366,19 @@ class AddTransitions(models.base.ModelBase):
         attrs["get_actions_for_user"] = get_actions_for_user
 
         def perform_transition(self, action, user, request=None, **kwargs):
-            transition = self.get_transition(action)
-            if not transition:
+            transition_method = self.get_transition(action)
+            if not transition_method:
                 raise PermissionDenied(f'Invalid "{action}" transition')
-            if not can_proceed(transition):
+
+            if not transition_method.can_proceed():
                 action = self.phase.transitions[action]
                 raise PermissionDenied(f'You do not have permission to "{action}"')
 
-            transition(by=user, request=request, **kwargs)
-            self.save(update_fields=["status"])
+            # Execute the transition
+            result = transition_method(by=user, request=request, **kwargs)
+            if result:
+                self.status = action
+                self.save(update_fields=["status"])
 
             self.progress_stage_when_possible(user, request, **kwargs)
 
@@ -378,7 +403,7 @@ class ApplicationSubmissionMetaclass(AddTransitions):
     def __new__(cls, name, bases, attrs, **kwargs):
         cls = super().__new__(cls, name, bases, attrs, **kwargs)
 
-        # We want to access the redered display of the required fields.
+        # We want to access the rendered display of the required fields.
         # Treat in similar way to django's get_FIELD_display
         for block_name in NAMED_BLOCKS:
             partial_method_name = f"_{block_name}_method"
@@ -471,7 +496,15 @@ class ApplicationSubmission(
     search_document = SearchVectorField(null=True)
 
     # Workflow inherited from WorkflowHelpers
-    status = FSMField(default=INITIAL_STATE, protected=True)
+    status = models.CharField(
+        max_length=100,
+        choices=get_all_possible_states(),
+        default=INITIAL_STATE,
+    )
+    status_field = State(
+        default=INITIAL_STATE,
+        states=get_all_possible_states(),
+    )
 
     screening_statuses = models.ManyToManyField(
         "funds.ScreeningStatus", related_name="submissions", blank=True
@@ -512,25 +545,32 @@ class ApplicationSubmission(
     def is_draft(self):
         return self.status == DRAFT_STATE
 
+    @status_field.getter()
+    def _get_object_status(self):
+        return self.status
+
     @property
     def title_text_display(self):
         """Return the title text for display across the site.
 
         Use SUBMISSION_TITLE_TEXT_TEMPLATE setting to change format.
         """
+
         ctx = {
             "title": self.title,
-            "public_id": self.public_id or self.id,
+            "public_id": self.application_id_nc,
+            "fund_name": self.fund_name,
+            "round": self.round if self.round else self.page,
+            "application_id": self.application_id_nc,
         }
         return strip_tags(settings.SUBMISSION_TITLE_TEXT_TEMPLATE.format(**ctx))
 
     def not_progressed(self):
         return not self.next
 
-    @transition(
-        status,
+    @status_field.transition(
         source="*",
-        target=RETURN_VALUE(INITIAL_STATE, "draft_proposal", "invited_to_proposal"),
+        target=[INITIAL_STATE, "draft_proposal", "invited_to_proposal"],
         permission=make_permission_check({UserPermissions.ADMIN}),
     )
     def restart_stage(self, **kwargs):
@@ -601,6 +641,21 @@ class ApplicationSubmission(
             return getattr(self.page.specific, attribute)
 
     @property
+    def fund_name(self):
+        return self.page
+
+    @cached_property
+    def application_id(self):
+        return self.public_id or self.id
+
+    @property
+    def application_id_nc(self):
+        """
+        Only used in e-mail and other notifications where a cached_property gives a None value.
+        """
+        return self.public_id or self.id
+
+    @property
     def is_determination_form_attached(self):
         """
         We use old django determination forms but now as we are moving
@@ -616,8 +671,8 @@ class ApplicationSubmission(
     def progress_application(self, **kwargs):
         target = None
         for phase in STAGE_CHANGE_ACTIONS:
-            transition = self.get_transition(phase)
-            if can_proceed(transition):
+            transition_method = self.get_transition(phase)
+            if transition_method and transition_method.can_proceed():
                 # We convert to dict as not concerned about transitions from the first phase
                 # See note in workflow.py
                 target = dict(PHASES)[phase].stage
@@ -642,6 +697,7 @@ class ApplicationSubmission(
 
         submission_in_db.next = self
         submission_in_db.save()
+        return True
 
     def from_draft(self) -> Self:
         """Sets current `form_data` to the `form_data` from the draft revision.
@@ -649,9 +705,10 @@ class ApplicationSubmission(
         Returns:
             Self with the `form_data` attribute updated.
         """
-        self.form_data = self.deserialised_data(
-            self, self.draft_revision.form_data, self.form_fields
-        )
+        if self.draft_revision:
+            self.form_data = self.deserialised_data(
+                self, self.draft_revision.form_data, self.form_fields
+            )
 
         return self
 
@@ -672,7 +729,7 @@ class ApplicationSubmission(
             draft: if the revision is a draft
             force: force a revision even if form data is the same
             by: the author of the revision
-            preview: if the revision is being used to save befor a preview
+            preview: if the revision is being used to save before a preview
 
         Returns:
             Returns the [`ApplicationRevision`][hypha.apply.funds.models.ApplicationRevision] if it was created, otherwise returns `None`
@@ -724,13 +781,19 @@ class ApplicationSubmission(
                 self.save(skip_custom=True)
 
                 return revision
-
-        return None
+            return True
 
     def clean_submission(self):
         self.process_form_data()
         self.ensure_user_has_account()
-        self.process_file_data(self.form_data)
+        # pass current submission data to avoid file save on every submit(if file is not updated)
+        if self.id:
+            current_submission = ApplicationSubmission.objects.get(id=self.id)
+            self.process_file_data(
+                self.form_data, current_submission.from_draft().raw_data
+            )
+        else:
+            self.process_file_data(self.form_data)
 
     def get_assigned_meta_terms(self):
         """Returns assigned meta terms excluding the 'root' term"""
@@ -772,15 +835,13 @@ class ApplicationSubmission(
 
         super().save(*args, **kwargs)
 
+        if self.id and not self.public_id:
+            self.public_id = f"{self.get_from_parent('submission_id_prefix')}{self.id}"
+
         # TODO: This functionality should be extracted and moved to a separate function, too hidden here
         if creating:
             AssignedReviewers = apps.get_model("funds", "AssignedReviewers")
             ApplicationRevision = apps.get_model("funds", "ApplicationRevision")
-
-            if not self.public_id:
-                self.public_id = (
-                    f"{self.get_from_parent('submission_id_prefix')}{self.id}"
-                )
 
             self.process_file_data(files)
             AssignedReviewers.objects.bulk_create_reviewers(
@@ -891,7 +952,7 @@ class ApplicationSubmission(
 
     def index_components(self):
         return {
-            "A": " ".join([f"id:{self.public_id or self.id}", self.title]),
+            "A": " ".join([f"id:{self.application_id}", self.title]),
             "C": " ".join([self.full_name, self.email]),
             "B": " ".join(self.get_searchable_contents()),
         }
@@ -974,48 +1035,52 @@ class ApplicationSubmission(
     def get_no_screening_status(self):
         return self.screening_statuses.filter(yes=False).first()
 
+    @status_field.on_success()
+    def log_status_update(self, descriptor, source, target, **kwargs):
+        instance = self
 
-@receiver(post_transition, sender=ApplicationSubmission)
-def log_status_update(sender, **kwargs):
-    instance = kwargs["instance"]
-    old_phase = instance.workflow[kwargs["source"]]
+        # The status associated with the application at this time will be the old phase
+        # so provide the new phase as an arg when transitioning
+        new_phase = self.workflow[target]
 
-    by = kwargs["method_kwargs"]["by"]
-    request = kwargs["method_kwargs"]["request"]
-    notify = kwargs["method_kwargs"].get("notify", True)
+        by = kwargs["by"]
+        request = kwargs["request"]
+        notify = kwargs.get("notify", True)
 
-    if request and notify:
-        if kwargs["source"] == DRAFT_STATE:
-            # remove task from applicant dashboard for this instance
-            remove_tasks_for_user(code=SUBMISSION_DRAFT, user=by, related_obj=instance)
-            # notify for a new submission
+        if request and notify:
+            if source == DRAFT_STATE:
+                # remove task from applicant dashboard for this instance
+                remove_tasks_for_user(
+                    code=SUBMISSION_DRAFT, user=by, related_obj=instance
+                )
+                # notify for a new submission
+                messenger(
+                    MESSAGES.NEW_SUBMISSION,
+                    request=request,
+                    user=by,
+                    source=instance,
+                )
+            else:
+                messenger(
+                    MESSAGES.TRANSITION,
+                    user=by,
+                    request=request,
+                    source=instance,
+                    related=new_phase,
+                )
+
+            if instance.status in review_statuses:
+                messenger(
+                    MESSAGES.READY_FOR_REVIEW,
+                    user=by,
+                    request=request,
+                    source=instance,
+                )
+
+        if instance.status in STAGE_CHANGE_ACTIONS:
             messenger(
-                MESSAGES.NEW_SUBMISSION,
+                MESSAGES.INVITED_TO_PROPOSAL,
                 request=request,
                 user=by,
                 source=instance,
             )
-        else:
-            messenger(
-                MESSAGES.TRANSITION,
-                user=by,
-                request=request,
-                source=instance,
-                related=old_phase,
-            )
-
-        if instance.status in review_statuses:
-            messenger(
-                MESSAGES.READY_FOR_REVIEW,
-                user=by,
-                request=request,
-                source=instance,
-            )
-
-    if instance.status in STAGE_CHANGE_ACTIONS:
-        messenger(
-            MESSAGES.INVITED_TO_PROPOSAL,
-            request=request,
-            user=by,
-            source=instance,
-        )

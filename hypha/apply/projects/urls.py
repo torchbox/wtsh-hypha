@@ -3,6 +3,7 @@ from django.views.generic import RedirectView
 
 from hypha.apply.projects.views.project import ProjectSOWEditView
 
+from .reports.views import ReportFrequencyUpdate
 from .views import (
     ApproveContractView,
     BatchUpdateInvoiceStatusView,
@@ -20,7 +21,6 @@ from .views import (
     InvoiceView,
     ProjectDetailApprovalView,
     ProjectDetailDownloadView,
-    ProjectDetailView,
     ProjectFormEditView,
     ProjectListView,
     ProjectPrivateMediaView,
@@ -28,13 +28,6 @@ from .views import (
     ProjectSOWView,
     RemoveContractDocumentView,
     RemoveDocumentView,
-    ReportDetailView,
-    ReportFrequencyUpdate,
-    ReportingView,
-    ReportListView,
-    ReportPrivateMedia,
-    ReportSkipView,
-    ReportUpdateView,
     SendForApprovalView,
     SkipPAFApprovalProcessView,
     SubmitContractDocumentsView,
@@ -44,15 +37,15 @@ from .views import (
     UploadContractDocumentView,
     UploadContractView,
     UploadDocumentView,
-    get_invoices_status_counts,
-    get_project_status_counts,
     partial_contracting_documents,
     partial_get_invoice_detail_actions,
     partial_get_invoice_status,
     partial_get_invoice_status_table,
+    partial_project_information,
     partial_project_lead,
     partial_project_title,
     partial_supporting_documents,
+    update_project_dates,
     update_project_title,
 )
 
@@ -61,11 +54,8 @@ app_name = "projects"
 urlpatterns = [
     path("", RedirectView.as_view(pattern_name="apply:projects:all"), name="overview"),
     path("all/", ProjectListView.as_view(), name="all"),
-    path("statuses/", get_project_status_counts, name="projects_status_counts"),
+    path("reports/", include("hypha.apply.projects.reports.urls"), name="reports"),
     path("invoices/", InvoiceListView.as_view(), name="invoices"),
-    path(
-        "invoices/statuses/", get_invoices_status_counts, name="invoices_status_counts"
-    ),
     path(
         "all/bulk_invoice_status_update/",
         BatchUpdateInvoiceStatusView.as_view(),
@@ -75,9 +65,18 @@ urlpatterns = [
         "<int:pk>/",
         include(
             [
-                path("", ProjectDetailView.as_view(), name="detail"),
+                path(
+                    "",
+                    RedirectView.as_view(pattern_name="funds:submissions:project"),
+                    name="detail",
+                ),
                 path("partial/lead/", partial_project_lead, name="project_lead"),
                 path("partial/title/", partial_project_title, name="project_title"),
+                path(
+                    "partial/information/",
+                    partial_project_information,
+                    name="project_information",
+                ),
                 path("lead/update/", UpdateLeadView.as_view(), name="lead_update"),
                 path(
                     "status/update/",
@@ -88,6 +87,11 @@ urlpatterns = [
                     "title/update/",
                     update_project_title,
                     name="project_title_update",
+                ),
+                path(
+                    "dates/update/",
+                    update_project_dates,
+                    name="project_dates_update",
                 ),
                 path(
                     "edit/project-form", ProjectFormEditView.as_view(), name="edit_pf"
@@ -257,33 +261,6 @@ urlpatterns = [
                     ),
                 ),
             ]
-        ),
-    ),
-    path(
-        "reports/",
-        include(
-            (
-                [
-                    path("", ReportListView.as_view(), name="submitted"),
-                    path("all/", ReportingView.as_view(), name="all"),
-                    path(
-                        "<int:pk>/",
-                        include(
-                            [
-                                path("", ReportDetailView.as_view(), name="detail"),
-                                path("skip/", ReportSkipView.as_view(), name="skip"),
-                                path("edit/", ReportUpdateView.as_view(), name="edit"),
-                                path(
-                                    "documents/<int:file_pk>/",
-                                    ReportPrivateMedia.as_view(),
-                                    name="document",
-                                ),
-                            ]
-                        ),
-                    ),
-                ],
-                "reports",
-            )
         ),
     ),
 ]

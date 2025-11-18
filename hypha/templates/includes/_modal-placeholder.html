@@ -3,7 +3,7 @@ How this works:
 - The modal is a placeholder for the modal content.
 - The modal get visible when the modal content is loaded via htmx,
 - use hx-target="#htmx-modal" load the content in the modal and make it visible
-- If any htmx response targetted to this model is empty, the modal get hidden and content is removed.
+- If any htmx response targeted to this model is empty, the modal get hidden and content is removed.
 {% endcomment %}
 
 <div
@@ -43,7 +43,7 @@ How this works:
                 x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
                 x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                 x-description="Modal panel, show/hide based on modal state."
-                class="relative w-full text-left bg-white rounded-lg border shadow-xl transition-all transform sm:my-8 sm:max-w-lg"
+                class="relative w-full text-left rounded-lg border shadow-xl transition-all transform sm:my-8 sm:max-w-lg bg-base-100"
                 id="htmx-modal"
                 hx-target="this"
                 @htmx:after-swap="show = true"

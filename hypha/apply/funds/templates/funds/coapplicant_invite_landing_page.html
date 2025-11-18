@@ -1,0 +1,48 @@
+{% extends 'base-apply.html' %}
+
+{% load i18n %}
+
+{% block content %}
+    <div class="mx-auto mt-4 max-w-xl sm:mt-12 card card-border shadow-xs bg-base-200">
+        <div class="card-body">
+            {% if is_valid %}
+                <h2 class="card-title">{% trans "Accept invitation" %}</h2>
+
+                <div class="prose prose-sm">
+                    <p>{% blocktranslate with title=invite.submission.title %}
+                        You have been invited to join the application "{{ title }}" as a co-applicant.
+                    {% endblocktranslate %}</p>
+
+                    {% if not request.user.is_authenticated %}
+                        <p>
+                            {% blocktrans with email=invite.invited_user_email %}If you accept this invitation, an account will be created using the email <strong>{{ email }}</strong> and you will be redirected to{% endblocktrans %}
+                            {% if two_factor_required %}{% trans "two-factor authentication and then to" %} {% endif %} {% trans "the application. If you wish to update your name/email, you can do it by visiting 'My Account' section." %}
+                        </p>
+                    {% endif %}
+                </div>
+                <div class="flex gap-2 justify-end mt-4">
+                    <a
+                        class="btn btn-secondary btn-soft"
+                        hx-post="."
+                        hx-vals='{"action": "reject"}'
+                        hx-trigger="click"
+                        hx-swap="none"
+                    >{% trans "Decline" %}</a>
+                    <a
+                        class="btn btn-primary"
+                        type="button"
+                        hx-post="."
+                        hx-vals='{"action": "accept"}'
+                        hx-trigger="click"
+                        hx-swap="none"
+                    >{% trans "Accept" %} </a>
+                </div>
+            {% else %}
+                <h2 class="card-title">{% trans "Invalid Invitation" %}</h2>
+                <p>
+                    {% trans "This invitation link is no longer valid or has expired. Please request a new invitation to proceed." %}
+                </p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

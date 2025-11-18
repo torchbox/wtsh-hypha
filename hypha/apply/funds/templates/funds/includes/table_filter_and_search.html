@@ -1,111 +1,155 @@
 {% load django_tables2 i18n heroicons %}
-{% load querystrings %}
+{% load querystrings table_tags static %}
 
-<div class="wrapper wrapper--table-actions js-table-actions">
-    <div class="actions-bar">
-        {# Left #}
-        <div class="actions-bar__inner actions-bar__inner--left">
-            {% if heading %}
-                <h2 class="mb-2 text-xl">{{ heading }}</h2>
-            {% endif %}
+{% if heading or use_search %}
+    <div
+        class="flex flex-wrap gap-4 justify-between items-center mb-2 w-full"
+    >
+        {% if heading %}
+            <h2 class="section-header">{{ heading }}</h2>
+        {% endif %}
 
-            {% if invoice_batch_actions %}
-                <div class="actions-bar__inner actions-bar__inner--batch-actions">
-                    <p class="actions-bar__total"><span class="js-total-actions">0</span> {% trans "Selected" %}</p>
-                    <button
-                        class="button button--action js-batch-button js-batch-invoice-progress"
-                        href="{% url 'apply:projects:bulk_invoice_status_update' %}"
-                        hx-target="#htmx-modal"
-                    >
-                        {% heroicon_mini "arrows-right-left" class="inline" aria_hidden=true %}
-                        {% trans "Status" %}
-                    </button>
-                </div>
-            {% endif %}
-
-        </div>
-
-        {# Right #}
-        <div class="flex gap-4 items-center">
-            {% get_query 'archived' as archived_param %}
-            {% if show_archive %}
-                {% if request.GET.archived == '1' %}
-                    <a
-                        class="flex items-center py-1.5 px-3 rounded-sm transition-colors hover:bg-gray-100 hover:shadow-xs"
-                        href="{% modify_query archived='0' %}"
-                    >{% trans "Hide Archived" %}</a>
-                {% else %}
-                    <a
-                        class="flex items-center py-1.5 px-3 rounded-sm transition-colors hover:bg-gray-100 hover:shadow-xs"
-                        href="{% modify_query archived='1' %}"
-                    >{% trans "Show Archived" %}</a>
-                {% endif %}
-            {% endif %}
-            {% with request.get_full_path as path %}
-                {% if 'submission' in path and can_export %}
-                    <a
-                        class="flex items-center py-1.5 px-2 rounded-sm border transition-colors hover:bg-gray-100 shadow-xs"
-                        aria-label="Submissions: Download as CSV"
-                        href="{{path}}{% if '?' in path %}&{%else%}?{% endif %}export=true"
-                        onclick="return confirm('{% blocktrans %}Are you sure you want to download the submissions as a csv file? This file may contain sensitive information, so please handle it carefully.{% endblocktrans %}');"
-                        role="button"
-                        data-tippy-content="Export as CSV"
-                    >
-
-                        {% heroicon_mini "arrow-down-tray" class="inline me-1" %}
-                        Export
-                    </a>
-                {% endif %}
-            {% endwith %}
-            {% if 'filters-open' not in filter_classes %}
-                <button class="button js-toggle-filters">
-                    {% heroicon_mini "adjustments-horizontal" class="inline align-text-bottom me-1 text-dark-blue" aria_hidden=true %}
-                    {% trans "Filters" %}
+        {% if invoice_batch_actions %}
+            <div
+                class="hidden items-center card-actions"
+                data-js-batch-actions-bar
+            >
+                <span class="label ps-2">
+                    <span data-js-batch-actions="total-selections">0</span> {% trans "selected" %}
+                </span>
+                <button
+                    class="btn btn-primary btn-sm"
+                    href="{% url 'apply:projects:bulk_invoice_status_update' %}"
+                    hx-target="#htmx-modal"
+                    data-js-batch-actions="invoice-update-status"
+                >
+                    {% heroicon_micro "arrows-right-left" class="fill-fg-muted" aria_hidden=true %}
+                    {% trans "Update status" %}
                 </button>
-            {% endif %}
+            </div>
+        {% endif %}
 
-            <button class="button button--filters js-toggle-filters" id="show-filters-button">
-                {% heroicon_mini "adjustments-horizontal" class="inline align-text-bottom me-1 text-dark-blue" aria_hidden=true %}
-                {% trans "Filters" %}
-            </button>
-            {% if use_search|default:False %}
-                <form action="{{ search_action }}" method="get" role="search" class="relative form">
-                    <button class="button button--search" type="submit">
-                        <span class="sr-only">{% trans "Search" %}</span>
-                        {% heroicon_mini "magnifying-glass" size=20 class="text-fg-muted" aria_hidden=true %}
-                    </button>
-                    {% if show_archive and archived_param is not None %}
-                        <input type="hidden" value="{{ archived_param }}" name="archived">
-                    {% endif %}
-                    {% trans "submissions" as submissions %}
+        {% if use_search|default:False %}
+            <form
+                action="{{ search_action }}"
+                method="get"
+                role="search"
+                class="relative grow"
+            >
+                <label class="flex gap-2 items-center w-auto input input-border">
+                    {% heroicon_mini "magnifying-glass" size=20 class="opacity-50 h-[1em]" aria_hidden=true %}
                     <input
-                        class="rounded-sm md:w-48 shadow-xs input input--search input--secondary"
-                        type="text"
-                        placeholder="{% trans 'Search' %} {{ search_placeholder|default:submissions }}"
+                        type="search"
+                        placeholder="{% trans 'Search...' %}"
                         name="query"
-                        {% if search_term %}value="{{ search_term }}"{% endif %}
+                        {% if search_term %}value="{{ request.GET.query }}"{% endif %}
                         aria-label="{% trans 'Search input' %}"
+                        class="sm:w-auto w-[15ch]"
                     >
-                </form>
-            {% endif %}
+                </label>
+            </form>
+        {% endif %}
+    </div>
+{% endif %}
+
+<div>
+    {% get_filtered_query request filter.form as filtered_query %}
+    {% if filtered_query %}
+        <div class="flex flex-wrap gap-2 items-center my-2">
+            <a href="./" class="btn btn-ghost btn-sm btn-link link-hover">
+                {% trans "Clear current filters & sorts" %}
+                {% heroicon_micro "x-mark" aria_hidden="true" class="size-4" %}
+            </a>
+
+            {% for query in filtered_query %}
+                {% for key, data in query.items %}
+                    <c-badge.action btn_url="{% update_filter_query_params key data.value operation='remove' %}">
+                        {{ data.key_label }}: {{ data.label }}
+                    </c-badge.action>
+                {% endfor %}
+            {% endfor %}
         </div>
-    </div>
+    {% endif %}
 
-</div>
+    <form method="GET" class="flex sticky top-0 z-10 flex-wrap gap-2 justify-end items-center py-2 px-3 border md:gap-5 md:text-sm md:font-medium bg-base-200 rounded-t-box">
+        <span class="hidden items-center py-1 md:inline-flex"></span>
+        {% for field_name, field in filter.form|get_filter_fields %}
+            {% if filter.form %}
+                <nav class="flex flex-wrap gap-2 items-center menu-filters">
+                    {% if not field|is_datefilter %}
+                        {% dropdown_menu title=field.label heading=field|get_dropdown_heading enable_search=True position="right" %}
+                            <ul class="flex overflow-auto flex-col max-h-80 text-gray-700 divide-y" data-filter-list>
+                                {% for value, label in filter.form|get_field_choices:field_name %}
+                                    {% get_item_value filter.form field_name as selected_value %}
+                                    <li>
+                                        <a
+                                            {% if value|stringformat:'s' in selected_value %}
+                                                href="{% update_filter_query_params field_name value operation='remove' %}"
+                                            {% elif field|is_multiple %}
+                                                href="{% update_filter_query_params field_name value operation='add' %}"
+                                            {% else %}
+                                                href="{% update_filter_query_params field_name value operation='modify' %}"
+                                            {% endif %}
+                                            role="menuitemradio"
+                                            class="flex {% if value|stringformat:'s' in selected_value %}bg-base-200 ps-2 font-medium{% else %}ps-8{% endif %} pe-3 py-2 text-base-content/80 items-center hover:bg-base-200 focus:bg-base-200"
+                                        >
+                                            {% if value|stringformat:'s' in selected_value %}
+                                                {% heroicon_mini "check" aria_hidden="true" size=16 class="stroke-2 me-2" %}
+                                            {% endif %}
+                                            <span>{{ label }}</span>
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% enddropdown_menu %}
+                    {% else %}
+                        {% dropdown_menu title=field.label heading=field|get_dropdown_heading position="right" %}
+                            <calendar-range class="mx-auto cally" onchange="updateURL(this.value, '{{field_name}}')" data-field-name='{{field_name}}'>
+                                {% heroicon_micro "chevron-left" aria_label="Previous" slot="previous" aria_hidden=true size=18 %}
+                                {% heroicon_micro "chevron-right" aria_label="Next" slot="next" aria_hidden=true size=18 %}
+                                <calendar-month></calendar-month>
+                            </calendar-range>
+                        {% enddropdown_menu %}
 
-<div class="filters {% if filter_classes %}{{filter_classes}}{% endif %}">
-    <div class="filters__header">
-        <button class="filters__button js-clear-filters">{% trans "Clear" %}</button>
-        <div>{% trans "Filter by" %}</div>
-        <button class="filters__button js-close-filters">{% trans "Close" %}</button>
-    </div>
+                        <script>
+                            /**
+                             * Update the current URL with the date params and reload the page
+                             *
+                             * @param {string} dateRange - the date range in the format of `YYYY-MM-DD/YYYY-MM-DD`
+                             * @param {string} fieldName - the field being used as a query param
+                             */
+                            function updateURL(dateRange, fieldName) {
+                                const [startDate, endDate] = dateRange.split('/');
+                                const paramStart = `${fieldName}_after`
+                                const paramEnd = `${fieldName}_before`
 
-    <form action="{{ filter_action }}" method="get" class="form form--filters js-filter-form">
-        <ul class="form__filters">
-            {{ filter.form.as_ul }}
-            <li>
-                <button class="button button--primary" type="submit" value="Filter">{% trans "Filter" %}</button>
-            </li>
-        </ul>
+                                let url = new URL(window.location);
+                                url.searchParams.set(paramStart, startDate);
+                                url.searchParams.set(paramEnd, endDate);
+
+                                window.history.pushState({}, '', url);
+                                location.reload(); // Reload to apply the filter
+                            }
+
+                            document.addEventListener("DOMContentLoaded", function () {
+                                // Get all date pickers and set their initial range values based on the URL params
+                                document.querySelectorAll(".cally").forEach((datepicker) => {
+                                    const fieldName = datepicker.getAttribute("data-field-name");
+
+                                    const params = new URL(window.location).searchParams;
+
+                                    const startDate = params.get(`${fieldName}_after`);
+                                    const endDate = params.get(`${fieldName}_before`);
+
+                                    if (startDate && endDate) {
+                                        datepicker.value = `${startDate}/${endDate}`
+                                    }
+                                })
+                            })
+                        </script>
+                    {% endif %}
+                </nav>
+            {% endif %}
+        {% endfor %}
     </form>
 </div>

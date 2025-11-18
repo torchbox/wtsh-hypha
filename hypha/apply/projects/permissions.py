@@ -3,8 +3,12 @@ from django.core.exceptions import PermissionDenied
 from rolepermissions.permissions import register_object_checker
 
 from hypha.apply.activity.adapters.utils import get_users_for_groups
+from hypha.apply.funds.models.co_applicants import (
+    CoApplicantProjectPermission,
+    CoApplicantRole,
+)
 from hypha.apply.users.models import User
-from hypha.apply.users.roles import Staff
+from hypha.apply.users.roles import Applicant, Staff
 
 from .models.project import (
     CLOSING,
@@ -51,8 +55,21 @@ def can_upload_contract(user, project, **kwargs):
     if not user.is_authenticated:
         return False, "Login Required"
 
-    if user == project.user and project.contracts.exists():
-        return True, "Project Owner can only re-upload contract with countersigned"
+    if user.is_applicant and project.contracts.exists():
+        if user == project.user:
+            return True, "Project Owner can only re-upload contract with countersigned"
+        co_applicant = project.submission.co_applicants.filter(user=user).first()
+        if (
+            co_applicant
+            and CoApplicantProjectPermission.CONTRACTING_DOCUMENT
+            in co_applicant.project_permission
+            and co_applicant.role == CoApplicantRole.EDIT
+        ):
+            return (
+                True,
+                "Co-applicant with edit permission for project's contracting document can upload contract",
+            )
+        return False, "Forbidden Error"
 
     if user.is_contracting:
         return True, "Contracting team can upload the contract"
@@ -66,12 +83,29 @@ def can_upload_contract(user, project, **kwargs):
 def can_submit_contract_documents(user, project, **kwargs):
     if project.status != CONTRACTING:
         return False, "Project is not in Contracting State"
-    if user != project.user:
-        return False, "Only Vendor can submit contracting documents"
+
+    if not user.is_applicant:
+        return False, "Only Applicants can submit contracting documents"
     if not kwargs.get("contract", None):
         return False, "Can not submit without contract"
     if not project.submitted_contract_documents:
-        return True, "Vendor can submit contracting documents"
+        if user == project.user:
+            return True, "Vendor can submit contracting documents"
+        co_applicant = project.submission.co_applicants.filter(user=user).first()
+        if (
+            co_applicant
+            and CoApplicantProjectPermission.CONTRACTING_DOCUMENT
+            in co_applicant.project_permission
+            and co_applicant.role == CoApplicantRole.EDIT
+        ):
+            return (
+                True,
+                "Co-applicant with edit permission for project's contracting document can submit contracting documents",
+            )
+        return (
+            False,
+            "Only applicant and co-applicant with appropriate permission can submit docs",
+        )
 
     return False, "Forbidden Error"
 
@@ -284,68 +318,6 @@ def can_update_project_status(user, project, **kwargs):
     return False, "Forbidden Error"
 
 
-def can_update_report(user, report, **kwargs):
-    if not user.is_authenticated:
-        return False, "Login Required"
-    if report.project.status != INVOICING_AND_REPORTING:
-        return False, "Report can be updated only in Invoicing and reporting state"
-    if report.skipped:
-        return False, "Skipped reports are not editable"
-    if not report.can_submit:
-        return False, "Future reports are not editable"
-
-    if user.is_apply_staff or (user == report.project.user and not report.current):
-        return True, "Staff and Project Owner can edit the editable reports"
-
-    return False, "Forbidden Error"
-
-
-def can_update_report_config(user, project, **kwargs):
-    if not user.is_authenticated:
-        return False, "Login Required"
-    if project.status != INVOICING_AND_REPORTING:
-        return (
-            False,
-            "Report Config can be changed only in Invoicing and reporting state",
-        )
-    if user.is_apply_staff:
-        return (
-            True,
-            "Only Staff can update report config for Invoicing and reporting projects",
-        )
-    return False, "Forbidden Error"
-
-
-def can_update_project_reports(user, project, **kwargs):
-    if not user.is_authenticated:
-        return False, "Login Required"
-    if project.status != INVOICING_AND_REPORTING:
-        return (
-            False,
-            "Report Config can be changed only in Invoicing and reporting state",
-        )
-    if user.is_apply_staff or user == project.user:
-        return (
-            True,
-            "Only Staff and project owner can update report config for Invoicing and reporting projects",
-        )
-    return False, "Forbidden Error"
-
-
-def can_view_report(user, report, **kwargs):
-    if not user.is_authenticated:
-        return False, "Login Required"
-    if report.project.status not in [COMPLETE, CLOSING, INVOICING_AND_REPORTING]:
-        return False, "Report are not available at this state"
-    if not report.current:
-        return False, "Only current reports can be viewed"
-    if report.skipped:
-        return False, "Skipped reports are not available"
-    if user.is_apply_staff or user.is_finance or user == report.project.user:
-        return True, "Staff, Finance, and Project owner can view the report"
-    return False, "Forbidden Error"
-
-
 def can_access_project(user, project):
     if not user.is_authenticated:
         return False, "Login Required"
@@ -357,6 +329,15 @@ def can_access_project(user, project):
 
     if user.is_applicant and user == project.user:
         return True, "Vendor(project user) can view project in all statuses"
+
+    if (
+        user.is_applicant
+        and project.submission.co_applicants.filter(user=user).exists()
+    ):
+        co_applicant = project.submission.co_applicants.filter(user=user).first()
+        if co_applicant.project_permission:
+            return True, "Co-applicant with project permission can access project"
+        return False, "Co-applicant without project permission can't access project"
 
     if (
         project.status in [DRAFT, INTERNAL_APPROVAL, CONTRACTING]
@@ -387,6 +368,14 @@ def can_view_contract_category_documents(user, project, **kwargs):
         return True, "Superuser can view all documents"
     if user == project.user:
         return True, "Vendor can view all documents"
+    if user.is_applicant:
+        co_applicant = project.submission.co_applicants.filter(user=user).first()
+        if (
+            co_applicant
+            and CoApplicantProjectPermission.CONTRACTING_DOCUMENT
+            in co_applicant.project_permission
+        ):
+            return True, "Co-applicant with permissions can view contracting documents"
 
     contract_category = kwargs.get("contract_category")
     if not contract_category:
@@ -415,6 +404,42 @@ def upload_project_documents(role, user, project) -> bool:
     return False
 
 
+@register_object_checker()
+def update_contracting_documents(role, user, project) -> bool:
+    if role == Applicant:
+        if user == project.user:  # owner
+            return True
+        co_applicant = project.submission.co_applicants.filter(user=user).first()
+        if (
+            co_applicant
+            and CoApplicantProjectPermission.CONTRACTING_DOCUMENT
+            in co_applicant.project_permission
+            and co_applicant.role == CoApplicantRole.EDIT
+        ):  # co-applicant with permission
+            return True
+
+    return False
+
+
+@register_object_checker()
+def add_invoice(role, user, project) -> bool:
+    if project.status == INVOICING_AND_REPORTING:
+        if role == Staff:
+            return True
+        if role == Applicant:
+            if user == project.user:
+                return True
+            co_applicant = project.submission.co_applicants.filter(user=user).first()
+            if (
+                co_applicant
+                and CoApplicantProjectPermission.INVOICES
+                in co_applicant.project_permission
+                and co_applicant.role == CoApplicantRole.EDIT
+            ):
+                return True
+    return False
+
+
 permissions_map = {
     "contract_approve": can_approve_contract,
     "contract_upload": can_upload_contract,
@@ -423,10 +448,6 @@ permissions_map = {
     "paf_approvers_assign": can_assign_paf_approvers,
     "update_paf_assigned_approvers": can_update_assigned_paf_approvers,  # Permission for UpdateAssignApproversView
     "project_status_update": can_update_project_status,
-    "project_reports_update": can_update_project_reports,
-    "report_update": can_update_report,
-    "report_config_update": can_update_report_config,
-    "report_view": can_view_report,
     "submit_contract_documents": can_submit_contract_documents,
     "project_access": can_access_project,
     "paf_edit": can_edit_paf,

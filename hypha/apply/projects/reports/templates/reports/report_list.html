@@ -1,0 +1,29 @@
+{% extends "base-apply.html" %}
+
+{% load render_table from django_tables2 %}
+{% load i18n static %}
+
+{% block title %}{% trans "Reports" %}{% endblock %}
+
+{% block hero %}
+    <c-hero>
+        <c-hero.header
+            title="{% trans 'Submitted Reports' %} ({{ table.rows|length }})"
+            subtitle="{% trans 'View and filter all Submitted Reports' %} • <a href='{% url 'apply:projects:reports:all' %}' class='link link-hover'>View all reports</a>"
+        />
+    </c-hero>
+{% endblock %}
+
+
+{% block content %}
+    <div class="my-4">
+        {% if table %}
+            {% include "funds/includes/table_filter_and_search.html" %}
+            <div class="overflow-x-auto mb-4 border-b rounded-b-box border-x">
+                {% render_table table %}
+            </div>
+        {% else %}
+            <p>{% trans "No Reports Available." %}</p>
+        {% endif %}
+    </div>
+{% endblock content %}

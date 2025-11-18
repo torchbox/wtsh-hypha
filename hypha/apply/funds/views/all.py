@@ -1,3 +1,4 @@
+import json
 import time
 
 from django.conf import settings
@@ -23,7 +24,8 @@ from hypha.apply.determinations.utils import (
     outcome_from_actions,
 )
 from hypha.apply.funds.models.screening import ScreeningStatus
-from hypha.apply.funds.utils import export_submissions_to_csv
+from hypha.apply.funds.tasks import generate_submission_csv
+from hypha.apply.funds.views.partials import submission_export_download
 from hypha.apply.funds.workflows import (
     DETERMINATION_OUTCOMES,
     PHASES,
@@ -46,7 +48,7 @@ from ..models import (
 from ..tables import (
     SubmissionFilter,
 )
-from ..utils import check_submissions_same_determination_form
+from ..utils import check_submissions_same_determination_form, get_export_polling_time
 
 User = get_user_model()
 
@@ -106,6 +108,8 @@ def submissions_all(
     )
     selected_sort = request.GET.get("sort")
     page = request.GET.get("page", 1)
+    selected_updated_date = None
+    selected_submitted_date = None
 
     can_view_archives = permissions.can_view_archived_submissions(request.user)
     can_access_drafts = permissions.can_access_drafts(request.user)
@@ -120,7 +124,7 @@ def submissions_all(
     if request.htmx and not request.htmx.boosted:
         base_template = "includes/_partial-main.html"
     else:
-        base_template = "funds/base_submissions_table.html"
+        base_template = "base-apply.html"
 
     start = time.time()
 
@@ -141,12 +145,12 @@ def submissions_all(
         qs = qs.exclude_draft()
 
     if "submitted" in search_filters:
-        qs = apply_date_filter(
+        qs, selected_submitted_date = apply_date_filter(
             qs=qs, field="submit_time", values=search_filters["submitted"]
         )
 
     if "updated" in search_filters:
-        qs = apply_date_filter(
+        qs, selected_updated_date = apply_date_filter(
             qs=qs, field="last_update", values=search_filters["updated"]
         )
 
@@ -282,10 +286,26 @@ def submissions_all(
     if request.GET.get("format") == "csv" and permissions.can_export_submissions(
         request.user
     ):
-        csv_data = export_submissions_to_csv(qs, request)
-        response = HttpResponse(csv_data.readlines(), content_type="text/csv")
-        response["Content-Disposition"] = "attachment; filename=submissions.csv"
-        return response
+        qs_ids = list(qs.values_list("id", flat=True))
+        generate_submission_csv.delay(
+            qs_ids, request.user.id, request.build_absolute_uri("/")
+        )
+
+        if not settings.CELERY_TASK_ALWAYS_EAGER:
+            response = render(
+                request,
+                "submissions/partials/export-submission-button.html",
+                {
+                    "generating": True,
+                    "poll_time": get_export_polling_time(len(qs_ids)),
+                },
+            )
+            response["HX-Trigger"] = json.dumps(
+                {"showMessage": _("Started CSV generation.")}
+            )
+            return response
+        else:
+            return submission_export_download(request)
 
     ctx = {
         "base_template": base_template,
@@ -305,6 +325,8 @@ def submissions_all(
         "selected_reviewers": selected_reviewers,
         "selected_meta_terms": selected_meta_terms,
         "selected_category_options": selected_category_options,
+        "selected_updated_date": selected_updated_date,
+        "selected_submitted_date": selected_submitted_date,
         "status_counts": status_counts,
         "sort_options": sort_options,
         "selected_sort": selected_sort,

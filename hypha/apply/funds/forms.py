@@ -16,9 +16,12 @@ from hypha.apply.users.models import User
 from .models import (
     ApplicationSubmission,
     AssignedReviewers,
+    CoApplicant,
+    CoApplicantInvite,
     Reminder,
     ReviewerRole,
 )
+from .models.co_applicants import CoApplicantProjectPermission, CoApplicantRole
 from .permissions import can_change_external_reviewers
 from .utils import model_form_initial, render_icon
 from .widgets import MetaTermWidget, MultiCheckboxesWidget
@@ -456,3 +459,62 @@ class CreateReminderForm(forms.ModelForm):
     class Meta:
         model = Reminder
         fields = ["title", "description", "time", "action"]
+
+
+class InviteCoApplicantForm(forms.ModelForm):
+    invited_user_email = forms.EmailField(required=True, label="Email")
+    role = forms.ChoiceField(
+        choices=CoApplicantRole.choices, label="Role", required=False
+    )
+    project_permission = forms.MultipleChoiceField(
+        choices=CoApplicantProjectPermission.choices,
+        required=False,
+        widget=forms.CheckboxSelectMultiple,
+        label=_("Project permissions"),
+        help_text=_(
+            "Enable same access level to these sections. Example: View role + Contracting = read-only contracting access."
+        ),
+    )
+
+    submission = forms.ModelChoiceField(
+        queryset=ApplicationSubmission.objects.filter(),
+        widget=forms.HiddenInput(),
+    )
+
+    def __init__(self, *args, submission, user=None, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.invited_by = user
+
+        if submission:
+            self.fields["submission"].initial = submission.id
+            if not hasattr(submission, "project"):
+                self.fields.pop("project_permission", None)
+
+    class Meta:
+        model = CoApplicantInvite
+        fields = ["invited_user_email", "submission"]
+
+
+class EditCoApplicantForm(forms.ModelForm):
+    role = forms.ChoiceField(
+        choices=CoApplicantRole.choices, label="Role", required=False
+    )
+    project_permission = forms.MultipleChoiceField(
+        choices=CoApplicantProjectPermission.choices,
+        required=False,
+        widget=forms.CheckboxSelectMultiple,
+        label=_("Project permissions"),
+        help_text=_(
+            "Enable same access level to these sections. Example: View role + Contracting = read-only contracting access."
+        ),
+    )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        instance = kwargs.get("instance", None)
+        if not hasattr(instance.submission, "project"):
+            self.fields.pop("project_permission", None)
+
+    class Meta:
+        model = CoApplicant
+        fields = ("role", "project_permission")

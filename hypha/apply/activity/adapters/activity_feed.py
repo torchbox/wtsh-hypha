@@ -59,9 +59,7 @@ class ActivityAdapter(AdapterBase):
         MESSAGES.SEND_FOR_APPROVAL: _("Requested approval"),
         MESSAGES.APPROVE_PAF: "handle_paf_assignment",
         MESSAGES.APPROVE_PROJECT: _("Approved"),
-        MESSAGES.REQUEST_PROJECT_CHANGE: _(
-            'requested changes for acceptance: "{comment}"'
-        ),
+        MESSAGES.REQUEST_PROJECT_CHANGE: _("requested changes for acceptance"),
         MESSAGES.SUBMIT_CONTRACT_DOCUMENTS: _("Submitted Contract Documents"),
         MESSAGES.UPLOAD_CONTRACT: _("Uploaded a {contract.state} contract"),
         MESSAGES.APPROVE_CONTRACT: _("Approved contract"),
@@ -223,7 +221,7 @@ class ActivityAdapter(AdapterBase):
             )
         )
 
-    def handle_transition(self, old_phase, source, **kwargs):
+    def handle_transition(self, new_phase, source, old_phase=None, **kwargs):
         def wrap_in_color_class(text):
             color_class = PHASE_BG_COLORS.get(text, "")
             return f'<span class="rounded-full inline-block px-2 py-0.5 font-medium text-gray-800 {color_class}">{text}</span>'
@@ -231,7 +229,8 @@ class ActivityAdapter(AdapterBase):
         submission = source
         base_message = _("Progressed from {old_display} to {new_display}")
 
-        new_phase = submission.phase
+        if old_phase is None:
+            old_phase = submission.phase
 
         staff_message = base_message.format(
             old_display=wrap_in_color_class(old_phase.display_name),
@@ -285,8 +284,9 @@ class ActivityAdapter(AdapterBase):
         kwargs.pop("source")
         for submission in submissions:
             old_phase = transitions[submission.id]
+            new_phase = submission.phase
             return self.handle_transition(
-                old_phase=old_phase, source=submission, **kwargs
+                old_phase=old_phase, new_phase=new_phase, source=submission, **kwargs
             )
 
     def partners_updated(self, added, removed, **kwargs):

@@ -1,14 +1,14 @@
 import functools
-from urllib.parse import parse_qs, urlparse
+from urllib.parse import parse_qs, urlencode, urlparse, urlunparse
 
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
-from django.db.models import Count, Q
-from django.http import HttpRequest, HttpResponse
+from django.db.models import Q
+from django.http import Http404, HttpRequest, HttpResponse
 from django.shortcuts import get_object_or_404, render
-from django.urls import reverse_lazy
 from django.utils.text import slugify
-from django.views.decorators.http import require_GET, require_http_methods
+from django.views.decorators.http import require_http_methods
 from django_htmx.http import (
     HttpResponseClientRefresh,
 )
@@ -19,10 +19,18 @@ from hypha.apply.categories.models import MetaTerm, Option
 from hypha.apply.funds.forms import BatchUpdateReviewersForm
 from hypha.apply.funds.models.reviewer_role import ReviewerRole
 from hypha.apply.funds.models.screening import ScreeningStatus
+from hypha.apply.funds.models.utils import (
+    STATUS_ERROR,
+    STATUS_GENERATING,
+    STATUS_SUCCESS,
+    SubmissionExportManager,
+)
 from hypha.apply.funds.permissions import has_permission
 from hypha.apply.funds.reviewers.services import get_all_reviewers
 from hypha.apply.funds.services import annotate_review_recommendation_and_count
 from hypha.apply.review.options import REVIEWER
+from hypha.apply.todo.options import DOWNLOAD_SUBMISSIONS_EXPORT
+from hypha.apply.todo.views import remove_tasks_of_related_obj_for_specific_code
 from hypha.apply.users.roles import REVIEWER_GROUP_NAME
 
 from .. import services
@@ -30,11 +38,10 @@ from ..models import ApplicationSubmission, Round
 from ..permissions import can_change_external_reviewers
 from ..utils import (
     check_submissions_same_determination_form,
+    get_export_polling_time,
     get_or_create_default_screening_statuses,
-    get_statuses_as_params,
-    status_and_phases_mapping,
 )
-from ..workflows.constants import DETERMINATION_OUTCOMES, PHASES_MAPPING
+from ..workflows.constants import DETERMINATION_OUTCOMES
 
 User = get_user_model()
 
@@ -407,44 +414,6 @@ def sub_menu_bulk_update_reviewers(request: HttpRequest) -> HttpResponse:
 
 
 @login_required
-@require_GET
-def get_applications_status_counts(request):
-    current_url = request.headers.get("Hx-Current-Url")
-    current_url_queries = parse_qs(urlparse(current_url).query)
-    application_status_url_query = current_url_queries.get("status")
-    status_counts = dict(
-        ApplicationSubmission.objects.current()
-        .values("status")
-        .annotate(
-            count=Count("status"),
-        )
-        .values_list("status", "count")
-    )
-
-    grouped_statuses = {
-        status: {
-            "name": data["name"],
-            "count": sum(status_counts.get(status, 0) for status in data["statuses"]),
-            "url": reverse_lazy("funds:submissions:list")
-            + get_statuses_as_params(status_and_phases_mapping[status]),
-            "is_active": True
-            if application_status_url_query
-            and status_and_phases_mapping[status] == application_status_url_query
-            else False,
-        }
-        for status, data in PHASES_MAPPING.items()
-    }
-    return render(
-        request,
-        "funds/includes/status-block.html",
-        {
-            "status_counts": grouped_statuses,
-            "type": "Applications",
-        },
-    )
-
-
-@login_required
 @require_http_methods(["GET"])
 def partial_submission_answers(request, pk):
     submission = get_object_or_404(ApplicationSubmission, pk=pk)
@@ -453,8 +422,8 @@ def partial_submission_answers(request, pk):
     )
     return render(
         request,
-        "submissions/partials/applicationsubmission.html",
-        {"submission": submission},
+        "funds/includes/rendered_answers.html",
+        {"object": submission},
     )
 
 
@@ -466,7 +435,7 @@ def partial_screening_card(request, pk):
         "can_view_submission_screening", request.user, submission, raise_exception=False
     )
     can_edit, _ = has_permission(
-        "submission_edit", request.user, submission, raise_exception=False
+        "submission_action", request.user, submission, raise_exception=False
     )
 
     if not view_permission:
@@ -512,3 +481,53 @@ def partial_screening_card(request, pk):
         "no_screening_options": no_screening_statuses,
     }
     return render(request, "funds/includes/screening_status_block.html", ctx)
+
+
+def submission_export_status(request: HttpRequest) -> HttpResponse:
+    """The partial to get the status of a bulk submission export task"""
+    ctx = {}
+    status = None
+
+    if not settings.CELERY_TASK_ALWAYS_EAGER:
+        if export_manager := SubmissionExportManager.objects.filter(
+            user=request.user
+        ).first():
+            # If there's an existing/active export, show it's status
+            status = export_manager.status
+            if status == STATUS_GENERATING:
+                ctx["poll_time"] = get_export_polling_time(export_manager.total_export)
+    else:
+        ctx["not_async"] = True
+
+    if status is None or status == STATUS_ERROR:
+        # There's not an active job or we're running in sync, extract all submissions
+        # view URL to pass the query params to the `submissions_all` view for
+        # generation, appending `&format=csv`
+        all_url = urlparse(request.headers.get("Hx-Current-Url"))
+        url_list = list(all_url)
+        url_list[4] = urlencode(
+            {**parse_qs(all_url.query), "format": "csv"}, doseq=True
+        )
+        ctx["start_export_url"] = urlunparse(url_list)
+
+    ctx["generating"] = status == STATUS_GENERATING
+    ctx["failed"] = status == STATUS_ERROR
+    ctx["success"] = status == STATUS_SUCCESS
+
+    return render(request, "submissions/partials/export-submission-button.html", ctx)
+
+
+def submission_export_download(request: HttpRequest) -> HttpResponse:
+    export_manager = get_object_or_404(SubmissionExportManager, user=request.user)
+    if export_manager.status == "success":
+        response = HttpResponse(export_manager.export_data, content_type="text/csv")
+        response["Content-Disposition"] = "attachment; filename=submissions.csv"
+
+        remove_tasks_of_related_obj_for_specific_code(
+            code=DOWNLOAD_SUBMISSIONS_EXPORT, related_obj=export_manager
+        )
+        export_manager.delete()
+
+        return response
+
+    raise Http404()

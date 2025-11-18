@@ -38,7 +38,6 @@ from hypha.apply.determinations.views import (
 )
 from hypha.apply.projects.forms import ProjectCreateForm
 from hypha.apply.projects.models.project import PROJECT_STATUS_CHOICES
-from hypha.apply.stream_forms.blocks import GroupToggleBlock
 from hypha.apply.todo.options import PROJECT_WAITING_PF, PROJECT_WAITING_SOW
 from hypha.apply.todo.views import add_task_to_user
 from hypha.apply.users.decorators import (
@@ -98,10 +97,6 @@ class BaseSubmissionEditView(UpdateView):
         self.object.create_revision(draft=True, by=request.user)
         messages.success(self.request, _("Draft saved"))
 
-        # Required for django-file-form: delete temporary files for the new files
-        # uploaded while edit.
-        form.delete_temporary_files()
-
         context = self.get_context_data()
         return render(request, "funds/application_preview.html", context)
 
@@ -112,8 +107,6 @@ class BaseSubmissionEditView(UpdateView):
             object=self.get_object(),
             raise_exception=True,
         )
-        if not self.get_object().phase.permissions.can_edit(request.user):
-            raise PermissionDenied
         return super().dispatch(request, *args, **kwargs)
 
     def buttons(
@@ -126,12 +119,12 @@ class BaseSubmissionEditView(UpdateView):
             (<button type>, <button styling>, <button label>)
         """
         if settings.SUBMISSION_PREVIEW_REQUIRED:
-            yield ("preview", "primary", _("Preview and submit"))
-            yield ("save", "white", _("Save draft"))
+            yield ("preview", "btn-primary", _("Preview and submit"))
+            yield ("save", "btn-secondary btn-outline", _("Save draft"))
         else:
-            yield ("submit", "primary", _("Submit"))
-            yield ("save", "white", _("Save draft"))
-            yield ("preview", "white", _("Preview"))
+            yield ("submit", "btn-primary", _("Submit"))
+            yield ("save", "btn-secondary btn-outline", _("Save draft"))
+            yield ("preview", "btn-secondary btn-outline", _("Preview"))
 
     def get_object_fund_current_round(self):
         assigned_fund = self.object.round.get_parent().specific
@@ -152,7 +145,9 @@ class BaseSubmissionEditView(UpdateView):
         return next(
             (
                 t
-                for t in self.object.get_available_user_status_transitions(user)
+                for t in type(self.object).status_field.get_available_transitions(
+                    self.object, self.object.status, user
+                )
                 if t.custom.get("trigger_on_submit", False)
             ),
             None,
@@ -281,9 +276,6 @@ class BaseSubmissionEditView(UpdateView):
         When trying to save as draft, this method will return a version of form
         class that doesn't validate required fields while saving.
 
-        The method also disables any group toggle fields in the form, as they
-        are not supported on edit forms.
-
         Returns:
             class: The form class for the view.
         """
@@ -291,11 +283,6 @@ class BaseSubmissionEditView(UpdateView):
         form_fields = self.object.get_form_fields(
             draft=is_draft, form_data=self.object.raw_data, user=self.request.user
         )
-        field_blocks = self.object.get_defined_fields()
-        for field_block in field_blocks:
-            if isinstance(field_block.block, GroupToggleBlock):
-                # Disable group toggle field as it is not supported on edit forms.
-                form_fields[field_block.id].disabled = True
         return type(
             "WagtailStreamForm", (self.object.submission_form_class,), form_fields
         )
@@ -314,16 +301,19 @@ class AdminSubmissionEditView(BaseSubmissionEditView):
             A generator returning a tuple strings in the format of:
             (<button type>, <button styling>, <button label>)
         """
-        yield ("submit", "primary", _("Submit"))
-        yield ("save", "white", _("Save draft"))
-        yield ("preview", "white", _("Preview"))
+        yield ("submit", "btn-primary", _("Submit"))
+        yield ("save", "btn-secondary btn-outline", _("Save draft"))
+        yield ("preview", "btn-secondary btn-outline", _("Preview"))
 
 
 @method_decorator(login_required, name="dispatch")
 class ApplicantSubmissionEditView(BaseSubmissionEditView):
     def dispatch(self, request, *args, **kwargs):
         submission = self.get_object()
-        if request.user != submission.user:
+        if (
+            request.user != submission.user
+            and not submission.co_applicants.filter(user=request.user).exists()
+        ):
             raise PermissionDenied
         return super().dispatch(request, *args, **kwargs)
 
@@ -333,7 +323,7 @@ class PartnerSubmissionEditView(ApplicantSubmissionEditView):
     def dispatch(self, request, *args, **kwargs):
         submission = self.get_object()
         # If the requesting user submitted the application, return the Applicant view.
-        # Partners may somtimes be applicants as well.
+        # Partners may sometimes be applicants as well.
         partner_has_access = submission.partners.filter(pk=request.user.pk).exists()
         if not partner_has_access and submission.user != request.user:
             raise PermissionDenied
@@ -354,7 +344,7 @@ class ProgressSubmissionView(View):
     def dispatch(self, request, *args, **kwargs):
         self.submission = get_object_or_404(ApplicationSubmission, id=kwargs.get("pk"))
         permission, reason = has_permission(
-            "submission_edit",
+            "submission_action",
             request.user,
             object=self.submission,
             raise_exception=False,
@@ -409,7 +399,7 @@ class CreateProjectView(View):
     def dispatch(self, request, *args, **kwargs):
         self.submission = get_object_or_404(ApplicationSubmission, id=kwargs.get("pk"))
         permission, reason = has_permission(
-            "submission_edit",
+            "submission_action",
             request.user,
             object=self.submission,
             raise_exception=False,
@@ -468,7 +458,7 @@ class CreateProjectView(View):
         return render(
             self.request,
             "funds/modals/create_project_form.html",
-            context={"form": form, "value": _("Confirm"), "object": self.object},
+            context={"form": form, "value": _("Confirm"), "object": self.submission},
             status=400,
         )
 
@@ -528,7 +518,7 @@ class UpdateLeadView(View):
     def dispatch(self, request, *args, **kwargs):
         self.object = get_object_or_404(ApplicationSubmission, id=kwargs.get("pk"))
         permission, reason = has_permission(
-            "submission_edit", request.user, object=self.object, raise_exception=False
+            "submission_action", request.user, object=self.object, raise_exception=False
         )
         if not permission:
             messages.warning(self.request, reason)
@@ -583,7 +573,7 @@ class UpdateReviewersView(View):
     def dispatch(self, request, *args, **kwargs):
         self.submission = get_object_or_404(ApplicationSubmission, id=kwargs.get("pk"))
         permission, reason = has_permission(
-            "submission_edit",
+            "submission_action",
             request.user,
             object=self.submission,
             raise_exception=False,
@@ -660,7 +650,7 @@ class UpdatePartnersView(View):
     def dispatch(self, request, *args, **kwargs):
         self.submission = get_object_or_404(ApplicationSubmission, id=kwargs.get("pk"))
         permission, reason = has_permission(
-            "submission_edit",
+            "submission_action",
             request.user,
             object=self.submission,
             raise_exception=False,
@@ -740,7 +730,7 @@ class UpdateMetaTermsView(View):
     def dispatch(self, request, *args, **kwargs):
         self.submission = get_object_or_404(ApplicationSubmission, id=kwargs.get("pk"))
         permission, reason = has_permission(
-            "submission_edit",
+            "submission_action",
             request.user,
             object=self.submission,
             raise_exception=False,
@@ -777,7 +767,7 @@ class UpdateMetaTermsView(View):
                     "HX-Trigger": json.dumps(
                         {
                             "metaTermsUpdated": None,
-                            "showMessage": _("Meta terms updated successfully."),
+                            "showMessage": _("Tags updated successfully."),
                         }
                     ),
                 },
