@@ -55,6 +55,42 @@
     </section>
 {% endblock %}
 
+{% block previous_reviews %}
+    {% if object.previous %}
+        <section class="card card-border bg-base-100 shadow-xs">
+            <div class="card-body">
+                <h2 class="card-title">{% trans "Previous stage reviews" %}</h2>
+
+                <div
+                    hx-trigger="revealed, reviewerUpdated from:body"
+                    hx-get="{% url 'funds:submissions:partial-reviews-card' object.previous.id %}"
+                    hx-target="this"
+                >
+                    <div class="animate-pulse min-h-30">
+                        <div class="mb-3 w-full h-9 bg-base-300"></div>
+                        <div class="mb-1 w-full h-6 bg-base-300"></div>
+                        <div class="mb-3 w-full h-1 bg-base-300"></div>
+                        <div class="mb-3 w-20 h-6 bg-base-300"></div>
+                    </div>
+                </div>
+
+                <div class="card-actions">
+                    {% include 'review/includes/review_button.html' with submission=object.previous class="grow" %}
+
+                    {% if request.user.is_apply_staff and not object.previous.reviews.exists %}
+                        <a
+                            href="{% url 'apply:submissions:reviews:list' submission_pk=object.previous.id %}"
+                            class="btn btn-outline grow"
+                        >
+                            {% trans "View all" %}
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </section>
+    {% endif %}
+{% endblock %}
+
 {% block screening_status %}
     <div hx-trigger="revealed" hx-get="{% url "funds:submissions:partial-screening-card" object.id %}"></div>
 {% endblock %}

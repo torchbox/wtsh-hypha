@@ -35,5 +35,25 @@
     </div>
 {% endblock %}
 
-{% block related %}
+{% block previous_reviews %}
+    {% if object.previous %}
+        <div class="card card-border bg-base-100 shadow-xs">
+            <div class="card-body">
+                <h2 class="card-title">{% trans "Previous stage reviews" %}</h2>
+
+                <div
+                    hx-trigger="revealed"
+                    hx-get="{% url 'funds:submissions:partial-reviews-card' object.previous.id %}"
+                    hx-target="this"
+                >
+                    <div class="animate-pulse min-h-30">
+                        <div class="mb-3 w-full h-9 bg-base-300"></div>
+                        <div class="mb-1 w-full h-6 bg-base-300"></div>
+                        <div class="mb-3 w-full h-1 bg-base-300"></div>
+                        <div class="mb-3 w-20 h-6 bg-base-300"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
 {% endblock %}
