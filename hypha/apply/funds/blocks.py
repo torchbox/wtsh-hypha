@@ -16,6 +16,9 @@ from hypha.apply.utils.blocks import (
 )
 from hypha.apply.utils.templatetags.apply_tags import format_number_as_currency
 
+from .fields import LocalizedCurrencyField
+from .widgets import LocalizedCurrencyWidget
+
 
 class ApplicationSingleIncludeFieldBlock(SingleIncludeBlock):
     pass
@@ -51,8 +54,8 @@ class TitleBlock(ApplicationMustIncludeFieldBlock):
 class ValueBlock(ApplicationSingleIncludeFieldBlock):
     name = "value"
     description = "The value of the project"
-    widget = forms.NumberInput(attrs={"min": 0})
-    field_class = forms.FloatField
+    widget = LocalizedCurrencyWidget()
+    field_class = LocalizedCurrencyField
 
     class Meta:
         label = _("Requested amount")
