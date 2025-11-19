@@ -3,7 +3,6 @@ from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
 
 from ..models import MAYBE, NO, YES
-from ..options import NA
 
 register = template.Library()
 
@@ -58,7 +57,7 @@ def average_review_score(reviewers):
             for reviewer in reviewers
             if not reviewer.has_review
             and not reviewer.review.is_draft
-            and not reviewer.review.score == NA
+            and not reviewer.review.score_is_NA
         ]
         if len(scores) > 0:
             return _("Avg. score: {average}").format(
