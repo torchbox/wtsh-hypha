@@ -72,7 +72,7 @@ DHIdeaConceptDefinition = [
             },
             "display": _("External Review"),
             "stage": DHIdea,
-            "permissions": default_permissions,
+            "permissions": reviewer_review_permissions,
         },
     },
     {
