@@ -196,8 +196,13 @@ class Review(ReviewFormFieldsMixin, BaseStreamForm, AccessFormData, models.Model
         )
 
     @property
+    def score_is_NA(self):
+        scores = [self.form_data.get(field.id)[1] for field in self.score_fields]
+        return any(score == NA for score in scores)
+
+    @property
     def get_score_display(self):
-        return "{:.1f}".format(self.score) if self.score != NA else "-"
+        return "{:.1f}".format(self.score) if not self.score_is_NA else "-"
 
     def get_absolute_url(self):
         return reverse(
