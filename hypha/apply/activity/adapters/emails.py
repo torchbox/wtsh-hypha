@@ -173,7 +173,7 @@ class EmailAdapter(AdapterBase):
 
         # Retrieve status index to see if we are going forward or backward.
         old_index = list(dict(PHASES).keys()).index(old_phase.name)
-        target_index = list(dict(PHASES).keys()).index(submission.status)
+        target_index = list(dict(PHASES).keys()).index(new_phase.name)
         is_forward = old_index < target_index
         print("NEW PHASE")
         print(new_phase.public_name)
