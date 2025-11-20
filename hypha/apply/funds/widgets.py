@@ -1,4 +1,5 @@
 from django import forms
+from django.utils import formats
 
 
 class MultiCheckboxesWidget(forms.SelectMultiple):
@@ -31,3 +32,14 @@ class MetaTermWidget(forms.SelectMultiple):
         if disabled:
             option_dict["attrs"]["disabled"] = "disabled"
         return option_dict
+
+
+class LocalizedCurrencyWidget(forms.NumberInput):
+    def __init__(self, *args, **kwargs):
+        kwargs.setdefault("attrs", {}).setdefault("min", 0)
+        super().__init__(*args, **kwargs)
+
+    def format_value(self, value):
+        if not value:
+            return value
+        return formats.number_format(value, use_l10n=True, force_grouping=True)
