@@ -40,6 +40,6 @@ class LocalizedCurrencyWidget(forms.NumberInput):
         super().__init__(*args, **kwargs)
 
     def format_value(self, value):
-        if not value:
+        if not value or isinstance(value, str):
             return value
         return formats.number_format(value, use_l10n=True, force_grouping=True)
