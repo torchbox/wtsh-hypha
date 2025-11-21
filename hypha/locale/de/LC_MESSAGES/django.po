@@ -4643,7 +4643,7 @@ msgstr "Benötigt Überprüfung"
 
 #: hypha/apply/funds/workflows/definitions/DH_idea_concept.py:40
 msgid "Idea Received"
-msgstr "Idee angenommen"
+msgstr "Idee eingereicht"
 
 #: hypha/apply/funds/workflows/definitions/DH_idea_concept.py:61
 #: hypha/apply/funds/workflows/definitions/DH_idea_concept.py:162
@@ -4728,7 +4728,7 @@ msgstr "Eingeladen für Concept"
 
 #: hypha/apply/funds/workflows/definitions/DH_idea_concept.py:141
 msgid "Concept Received"
-msgstr "Konzept aufgenommen"
+msgstr "Konzept eingereicht"
 
 #: hypha/apply/funds/workflows/definitions/DH_idea_concept.py:171
 msgid "Concept Received (revert)"
