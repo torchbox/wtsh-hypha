@@ -115,7 +115,7 @@ DHIdeaConceptDefinition = [
                     "method": "create_revision",
                     "custom": {"trigger_on_submit": True},
                 },
-                "external_review": _("Open Review"),
+                "concept_external_review": _("Open Review"),
                 "concept_rejected": _("Dismiss"),
             },
             "display": _("Invited for Concept"),
