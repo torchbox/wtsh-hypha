@@ -2,11 +2,20 @@ from collections import Counter
 
 from django.apps import apps
 from django.conf import settings
+from django.core.exceptions import ValidationError
 from django.utils.translation import gettext as _
 from wagtail.admin.forms import WagtailAdminModelForm, WagtailAdminPageForm
 
 from .models.submissions import ApplicationSubmission
 from .workflows import WORKFLOWS
+from .workflows.utils import get_expected_form_count
+
+
+def _add_formset_error(formset, message):
+    """
+    Add the given message as a non-field error of the given formset
+    """
+    formset.non_form_errors().append(ValidationError(message))
 
 
 class WorkflowFormAdminForm(WagtailAdminPageForm):
@@ -23,20 +32,34 @@ class WorkflowFormAdminForm(WagtailAdminPageForm):
         self.validate_application_forms(workflow, application_forms)
         if number_of_stages == 1:
             self.validate_stages_equal_forms(workflow, application_forms)
-        self.validate_stages_equal_forms(
-            workflow, review_forms, form_type="Review form"
-        )
-        self.validate_stages_equal_forms(
-            workflow, external_review_forms, form_type="External Review form"
-        )
-        self.validate_stages_equal_forms(
-            workflow, determination_forms, form_type="Determination form"
+        self.validate_form_count(workflow, review_forms, "internal-review")
+        self.validate_form_count(workflow, external_review_forms, "external-review")
+        self.validate_form_count(
+            workflow, determination_forms, "ready-for-determination"
         )
         if settings.PROJECTS_ENABLED:
             paf_forms = self.formsets["approval_forms"]
             self.validate_paf_form(paf_forms)
 
         return cleaned_data
+
+    def validate_form_count(self, workflow, formset, form_type):
+        if not formset.is_valid():
+            return
+
+        form_count = len([form for form in formset if not form.cleaned_data["DELETE"]])
+        expected_form_count = get_expected_form_count(workflow)[form_type]
+        if form_count != expected_form_count:
+            error_message = _(
+                "The selected workflow ({workflow_name}) "
+                "requires {expected_count} forms, "
+                "not {received_count}."
+            ).format(
+                workflow_name=workflow.name,
+                expected_count=expected_form_count,
+                received_count=form_count,
+            )
+            _add_formset_error(formset, error_message)
 
     def validate_application_forms(self, workflow, forms):
         """
@@ -73,18 +96,6 @@ class WorkflowFormAdminForm(WagtailAdminPageForm):
 
             number_of_stages = len(workflow.stages)
             plural_stage = "s" if number_of_stages > 1 else ""
-
-            # External Review Form is optional and should be single if provided
-            if form_type == "External Review form":
-                if number_of_forms > 1:
-                    self.add_error(
-                        None,
-                        f"Number of {form_type}s should not be more than one: "
-                        f"{number_of_forms} {form_type}{plural_form} provided",
-                    )
-                    return
-                else:
-                    return
 
             if number_of_forms != number_of_stages:
                 self.add_error(
