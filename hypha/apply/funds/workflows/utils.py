@@ -63,3 +63,20 @@ def get_action_mapping(workflow):
             transitions[transition_key]["display"] = transition_display
 
     return transitions
+
+
+def get_expected_form_count(workflow):
+    from .constants import PHASES_MAPPING
+
+    workflow_statuses = {phase.name for phase in workflow.values()}
+    form_types = [
+        "internal-review",
+        "external-review",
+        "ready-for-determination",
+    ]
+    return {
+        form_type: len(
+            workflow_statuses.intersection(PHASES_MAPPING[form_type]["statuses"])
+        )
+        for form_type in form_types
+    }
