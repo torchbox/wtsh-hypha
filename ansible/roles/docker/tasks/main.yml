@@ -38,3 +38,10 @@
     name: docker
     state: started
     enabled: yes
+
+- name: Set up CRON task to prune old images
+  ansible.builtin.cron:
+    name: "prune old docker images"
+    minute: "0"
+    hour: "2"
+    job: "docker system prune --filter 'until=168h' --force"
