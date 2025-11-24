@@ -44,4 +44,4 @@
     name: "prune old docker images"
     minute: "0"
     hour: "2"
-    job: "docker image prune --filter 'until=168h' --force"
+    job: "docker system prune --filter 'until=168h' --force"
