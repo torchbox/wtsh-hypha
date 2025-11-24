@@ -1006,6 +1006,10 @@ class ApplicationSubmission(
         dismissed = self.status in PHASES_MAPPING["dismissed"]["statuses"]
         return accepted or dismissed
 
+    @property
+    def has_any_reviews(self):
+        return self.reviews.filter(is_draft=False).exists()
+
     # Methods for accessing data on the submission
 
     def get_data(self):
