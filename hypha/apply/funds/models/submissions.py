@@ -1069,7 +1069,7 @@ class ApplicationSubmission(
                     related=new_phase,
                 )
 
-            if instance.status in review_statuses:
+            if target in review_statuses:
                 messenger(
                     MESSAGES.READY_FOR_REVIEW,
                     user=by,
@@ -1077,7 +1077,7 @@ class ApplicationSubmission(
                     source=instance,
                 )
 
-        if instance.status in STAGE_CHANGE_ACTIONS:
+        if target in STAGE_CHANGE_ACTIONS:
             messenger(
                 MESSAGES.INVITED_TO_PROPOSAL,
                 request=request,
