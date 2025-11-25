@@ -14,7 +14,7 @@
     {% if request.user|can_review:submission and not request.user|has_draft:submission %}
         <a href="{% url 'apply:submissions:reviews:abstain' submission_pk=submission.id %}"
            class="btn btn-secondary">
-            {% trans "Abstain" %}
+            {% trans "I abstain" %}
         </a>
     {% endif %}
 {% endif %}

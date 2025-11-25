@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-20 08:51+0100\n"
+"POT-Creation-Date: 2025-11-25 14:43+0100\n"
 "PO-Revision-Date: 2025-11-20 09:24+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -2323,6 +2323,7 @@ msgstr "Entwurf speichern"
 
 #: hypha/apply/determinations/templates/determinations/base_determination_form.html:108
 #: hypha/apply/funds/templates/funds/comments.html:108
+#: hypha/apply/review/templates/review/review_abstain.html:43
 #: hypha/apply/review/templates/review/review_form.html:107
 #: hypha/core/templates/components/dropdown-menu.html:91
 msgid "Loading…"
@@ -6528,6 +6529,16 @@ msgstr "Reviewer und Mitarbeiter"
 msgid "Add a review"
 msgstr "Eine Bewertung hinzufügen"
 
+#: hypha/apply/review/templates/review/includes/review_button.html:17
+#: hypha/apply/review/templates/review/review_abstain.html:28
+msgid "I abstain"
+msgstr "Ich enthalte mich"
+
+#: hypha/apply/review/templates/review/review_abstain.html:47
+#: hypha/apply/review/templates/review/review_form.html:111
+msgid "You have already posted a review for this submission"
+msgstr "Sie haben bereits eine Bewertung für diese Einreichung abgegeben"
+
 #: hypha/apply/review/templates/review/review_confirm_delete.html:4
 #: hypha/apply/review/templates/review/review_confirm_delete.html:8
 msgid "Deleting"
@@ -6580,10 +6591,6 @@ msgstr "Punktzahl:"
 msgid "Total Score:"
 msgstr "Gesamtpunktzahl:"
 
-#: hypha/apply/review/templates/review/review_form.html:111
-msgid "You have already posted a review for this submission"
-msgstr "Sie haben bereits eine Bewertung für diese Einreichung abgegeben"
-
 #: hypha/apply/review/templates/review/reviewopinion_confirm_delete.html:3
 msgid "Delete review opinion"
 msgstr "Löschen der Bewertungsmeinung"
@@ -6625,6 +6632,14 @@ msgstr "Review Entwurf aktualisieren"
 #: hypha/apply/review/views.py:149
 msgid "Create Review"
 msgstr "Erstellen Sie eine Bewertung"
+
+#: hypha/apply/review/views.py:226 hypha/apply/review/views.py:232
+msgid "Abstain"
+msgstr "Enthaltung"
+
+#: hypha/apply/review/views.py:247
+msgid "Abstain from review"
+msgstr "Enthalten Sie sich zur Bewertung"
 
 #: hypha/apply/stream_forms/blocks.py:114
 #: hypha/apply/stream_forms/blocks.py:217
