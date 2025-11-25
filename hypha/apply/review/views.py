@@ -2,6 +2,7 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.core.exceptions import PermissionDenied
+from django.forms.widgets import HiddenInput, MultiWidget
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.template.loader import get_template
@@ -20,7 +21,13 @@ from wagtail.blocks import RichTextBlock
 from hypha.apply.activity.messaging import MESSAGES, messenger
 from hypha.apply.funds.models import ApplicationSubmission, AssignedReviewers
 from hypha.apply.funds.workflows import INITIAL_STATE
-from hypha.apply.review.blocks import RecommendationBlock, RecommendationCommentsBlock
+from hypha.apply.review.blocks import (
+    RecommendationBlock,
+    RecommendationCommentsBlock,
+    ScoreFieldBlock,
+    ScoreFieldWithoutTextBlock,
+    VisibilityBlock,
+)
 from hypha.apply.review.forms import ReviewModelForm, ReviewOpinionForm
 from hypha.apply.stream_forms.models import BaseStreamForm
 from hypha.apply.todo.options import REVIEW_DRAFT
@@ -30,7 +37,7 @@ from hypha.apply.utils.image import generate_image_tag
 from hypha.apply.utils.views import CreateOrUpdateView
 
 from .models import Review, ReviewOpinion
-from .options import DISAGREE
+from .options import DISAGREE, MAYBE, NA
 
 
 def get_fields_for_stage(submission, user=None):
@@ -198,6 +205,47 @@ class ReviewCreateOrUpdateView(BaseStreamForm, CreateOrUpdateView):
 
     def get_success_url(self):
         return self.submission.get_absolute_url()
+
+
+@method_decorator(login_required, name="dispatch")
+class ReviewAbstainView(ReviewCreateOrUpdateView):
+    template_name = "review/review_abstain.html"
+
+    def get_form(self):
+        form = super().get_form()
+
+        # In order to reuse as much of the existing review code as possible,
+        # we keep all the review fields around but hide them (by using a HiddenInput
+        # for their widget).
+        # We also provide initial data for the mandatory "recommendation" field,
+        # and for the optional score fields if they exist.
+        for field in self.get_defined_fields():
+            form_field = form.fields[field.id]
+
+            if isinstance(field.block, RecommendationCommentsBlock):
+                form_field.initial = _("Abstain")
+            elif isinstance(field.block, RecommendationBlock):
+                form_field.initial = MAYBE
+            elif isinstance(field.block, ScoreFieldWithoutTextBlock):
+                form_field.initial = NA
+            elif isinstance(field.block, ScoreFieldBlock):
+                form_field.initial = [_("Abstain"), NA]
+
+            if isinstance(field.block, VisibilityBlock):
+                pass
+            elif isinstance(form_field.widget, MultiWidget):
+                form_field.widget.widgets = [
+                    HiddenInput() for _ in form_field.widget.widgets
+                ]
+            else:
+                form_field.widget = HiddenInput()
+
+        return form
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = _("Abstain from review")
+        return context
 
 
 def review_workflow_actions(request, submission):
