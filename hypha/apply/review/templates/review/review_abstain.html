@@ -1,0 +1,50 @@
+{% extends "review/review_form.html" %}
+{% load i18n %}
+
+{% block content %}
+    <section class="flex relative gap-4 justify-between my-4" x-data="reviewScore">
+
+        {% if not has_submitted_review %}
+            <form id="review-form-abstain" class="flex-1 max-w-3xl form" action="" method="post" novalidate>
+                {% include "forms/includes/form_errors.html" with form=form %}
+                {% csrf_token %}
+
+                {% for hidden in form.hidden_fields %}{{ hidden }}{% endfor %}
+
+                {% for field in form.visible_fields %}
+                    {% if field.field %}
+                        {% include "forms/includes/field.html" %}
+                    {% else %}
+                        <div class="max-w-none field-block prose">
+                            <div>
+                                {{ field.block }}
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+
+                <div class="items-center mt-4 card-actions">
+                    <button class="btn btn-primary" type="submit" name="submit">
+                        {% trans "I abstain" %}
+                    </button>
+                </div>
+
+            </form>
+            <aside
+                x-cloak
+                x-show="showSubmission"
+                class="overflow-y-auto max-h-screen grow bg-base-200 card card-border lg:max-w-1/2"
+            >
+                <div
+                    class="card-body"
+                    hx-get="{% url 'funds:submissions:partial-answers' submission.id %}"
+                    hx-trigger="intersect once"
+                >
+                    <p>{% trans "Loading…" %}</p>
+                </div>
+            </aside>
+        {% else %}
+            <p>{% trans "You have already posted a review for this submission" %}</p>
+        {% endif %}
+    </section>
+{% endblock %}
