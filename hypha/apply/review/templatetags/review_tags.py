@@ -51,6 +51,16 @@ def has_draft(user, submission):
 
 
 @register.filter
+def can_update_review(user, review):
+    return review.can_update(user=user)
+
+
+@register.filter
+def can_delete_review(user, review):
+    return review.can_delete(user=user)
+
+
+@register.filter
 def average_review_score(reviewers):
     if reviewers:
         scores = [
