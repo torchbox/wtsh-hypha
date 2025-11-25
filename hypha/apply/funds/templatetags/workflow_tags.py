@@ -30,6 +30,11 @@ def has_review_perm(user, submission):
 
 
 @register.filter
+def can_apply(user):
+    return user.is_anonymous or user.is_applicant
+
+
+@register.filter
 def show_applicant_identity(submission: ApplicationSubmission, user: User) -> bool:
     """Determine whether or not to display the applicant's identity.
 
