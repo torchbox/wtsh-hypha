@@ -53,6 +53,9 @@ hidden_from_applicant_permissions = make_permissions(
 reviewer_review_permissions = make_permissions(
     edit=[staff_can], review=[staff_can, reviewer_can]
 )
+reviewer_only_review_permissions = make_permissions(
+    edit=[staff_can], review=[reviewer_can]
+)
 community_review_permissions = make_permissions(
     edit=[staff_can], review=[staff_can, reviewer_can, community_can]
 )
