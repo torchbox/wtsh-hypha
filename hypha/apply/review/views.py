@@ -222,7 +222,9 @@ class ReviewAbstainView(ReviewCreateOrUpdateView):
         for field in self.get_defined_fields():
             form_field = form.fields[field.id]
 
-            if isinstance(field.block, RecommendationCommentsBlock):
+            if isinstance(field.block, VisibilityBlock):
+                pass
+            elif isinstance(field.block, RecommendationCommentsBlock):
                 form_field.initial = _("Abstain")
             elif isinstance(field.block, RecommendationBlock):
                 form_field.initial = MAYBE
@@ -231,6 +233,8 @@ class ReviewAbstainView(ReviewCreateOrUpdateView):
                 form_field.initial = ""
             elif isinstance(field.block, ScoreFieldBlock):
                 form_field.initial = [_("Abstain"), NA]
+            else:
+                form_field.required = False
 
             if isinstance(field.block, VisibilityBlock):
                 pass
