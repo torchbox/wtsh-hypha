@@ -302,7 +302,7 @@ class CheckTokenOnPostMixin:
     # This mixin is a workaround for a bug where bots (antispam, email clients, chat apps, ...)
     # will preview a one-time signup/login link before a user can click on it
     # thereby making the single-use token invalid and preventing the user
-    # from loggin in or signing up.
+    # from logging in or signing up.
     # The views using this mixin have been modified to do their logic in POST
     # instead of GET, and to show a "confirm" button on GET instead.
     token_submit_text = _("Confirm")
@@ -650,6 +650,7 @@ class PasswordlessLoginView(CheckTokenOnPostMixin, LoginView):
     This view inherits from LoginView to reuse the 2FA views, if a mfa device is added
     to the user.
     """
+
     token_submit_text = _("Confirm login")
 
     def post(self, request, uidb64, token, *args, **kwargs):
@@ -689,13 +690,13 @@ class PasswordlessLoginView(CheckTokenOnPostMixin, LoginView):
         return token_generator.check_token(user, token)
 
 
-
 class PasswordlessSignupView(CheckTokenOnPostMixin, TemplateView):
     """This view is used to capture the passwordless login token and log the user in.
 
     If the token is valid, the user is logged in and redirected to the dashboard.
     If the token is invalid, the user is shown invalid token page.
     """
+
     token_submit_text = _("Confirm signup")
 
     redirect_field_name = "next"
