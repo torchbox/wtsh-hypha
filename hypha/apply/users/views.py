@@ -213,9 +213,9 @@ def account_email_change(request):
             {
                 "name": request.user.get_full_name(),
                 "username": request.user.get_username(),
-                "org_email": settings.ORG_EMAIL,
-                "org_short_name": settings.ORG_SHORT_NAME,
-                "org_long_name": settings.ORG_LONG_NAME,
+                "ORG_EMAIL": settings.ORG_EMAIL,
+                "ORG_SHORT_NAME": settings.ORG_SHORT_NAME,
+                "ORG_LONG_NAME": settings.ORG_LONG_NAME,
             },
         ),
         from_email=settings.DEFAULT_FROM_EMAIL,
@@ -302,7 +302,7 @@ class CheckTokenOnPostMixin:
     # This mixin is a workaround for a bug where bots (antispam, email clients, chat apps, ...)
     # will preview a one-time signup/login link before a user can click on it
     # thereby making the single-use token invalid and preventing the user
-    # from loggin in or signing up.
+    # from logging in or signing up.
     # The views using this mixin have been modified to do their logic in POST
     # instead of GET, and to show a "confirm" button on GET instead.
     token_submit_text = _("Confirm")
@@ -412,8 +412,8 @@ class PasswordResetView(DjPasswordResetView):
         return {
             "redirect_url": get_redirect_url(self.request, self.redirect_field_name),
             "site": Site.find_for_request(self.request),
-            "org_short_name": settings.ORG_SHORT_NAME,
-            "org_long_name": settings.ORG_LONG_NAME,
+            "ORG_SHORT_NAME": settings.ORG_SHORT_NAME,
+            "ORG_LONG_NAME": settings.ORG_LONG_NAME,
         }
 
     def form_valid(self, form):
@@ -650,6 +650,7 @@ class PasswordlessLoginView(CheckTokenOnPostMixin, LoginView):
     This view inherits from LoginView to reuse the 2FA views, if a mfa device is added
     to the user.
     """
+
     token_submit_text = _("Confirm login")
 
     def post(self, request, uidb64, token, *args, **kwargs):
@@ -689,13 +690,13 @@ class PasswordlessLoginView(CheckTokenOnPostMixin, LoginView):
         return token_generator.check_token(user, token)
 
 
-
 class PasswordlessSignupView(CheckTokenOnPostMixin, TemplateView):
     """This view is used to capture the passwordless login token and log the user in.
 
     If the token is valid, the user is logged in and redirected to the dashboard.
     If the token is invalid, the user is shown invalid token page.
     """
+
     token_submit_text = _("Confirm signup")
 
     redirect_field_name = "next"
@@ -752,16 +753,16 @@ def send_confirm_access_email_view(request):
         user=request.user, token=generate_numeric_token
     )
     email_context = {
-        "org_long_name": settings.ORG_LONG_NAME,
-        "org_email": settings.ORG_EMAIL,
-        "org_short_name": settings.ORG_SHORT_NAME,
+        "ORG_LONG_NAME": settings.ORG_LONG_NAME,
+        "ORG_EMAIL": settings.ORG_EMAIL,
+        "ORG_SHORT_NAME": settings.ORG_SHORT_NAME,
         "token": token_obj.token,
         "username": request.user.email,
         "site": Site.find_for_request(request),
         "user": request.user,
         "timeout_minutes": settings.PASSWORDLESS_LOGIN_TIMEOUT // 60,
     }
-    subject = "Confirmation code for {org_long_name}: {token}".format(**email_context)
+    subject = "Confirmation code for {ORG_LONG_NAME}: {token}".format(**email_context)
     email = MarkdownMail("users/emails/confirm_access.md")
     email.send(
         to=request.user.email,
