@@ -1614,11 +1614,9 @@ msgstr "Der Vertrag für Projekt \"%(title)s\" wartet auf deine Prüfung."
 #: hypha/apply/activity/templates/messages/email/transition.html:6
 #, python-format
 msgid ""
-"Your application is now in \"%(new_phase)s\" status (progressed from "
-"\"%(old_phase)s\")."
+"Your application is now in \"%(new_phase)s\" status."
 msgstr ""
-"Ihr Antrag befindet sich jetzt im Status \"%(new_phase)s\" (von "
-"\"%(old_phase)s\" fortgeschoben)."
+"Deine Einreichung befindet sich jetzt im Status \"%(new_phase)s\"."
 
 #: hypha/apply/activity/templates/messages/email/transition.html:8
 msgid "Please submit any questions related to your application here"
