@@ -2,15 +2,15 @@
 
 {% blocktrans %}Dear,{% endblocktrans %}
 
-{% blocktrans %}It looks like you are trying to login on {{ ORG_LONG_NAME }} web site, but we could not find any account with the email provided.{% endblocktrans %}
+{% blocktrans %}It looks like you are trying to login on {{ org_long_name }} web site, but we could not find any account with the email provided.{% endblocktrans %}
 
-{% if ORG_EMAIL %}
-{% blocktrans %}If you have any questions, please contact us at {{ ORG_EMAIL }}.{% endblocktrans %}
+{% if org_email %}
+{% blocktrans %}If you have any questions, please contact us at {{ org_email }}.{% endblocktrans %}
 {% endif %}
 
 {% blocktrans %}Kind Regards,
-The {{ ORG_SHORT_NAME }} Team{% endblocktrans %}
+The {{ org_short_name }} Team{% endblocktrans %}
 
 --
-{{ ORG_LONG_NAME }}
+{{ org_long_name }}
 {% if site %}{{ site.root_url }}{% else %}{{ base_url }}{% endif %}

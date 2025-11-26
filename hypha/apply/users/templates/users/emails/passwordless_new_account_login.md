@@ -1,7 +1,7 @@
 {% load i18n wagtailadmin_tags %}{% base_url_setting as base_url %}
 {% blocktrans %}Dear,{% endblocktrans %}
 
-{% blocktrans %}Welcome to {{ ORG_LONG_NAME }} web site. Create your account by clicking this link or copying and pasting it to your browser:{% endblocktrans %}
+{% blocktrans %}Welcome to {{ org_long_name }} web site. Create your account by clicking this link or copying and pasting it to your browser:{% endblocktrans %}
 
 {% if site %}{{ site.root_url }}{% else %}{{ base_url }}{% endif %}{{ signup_path }}
 
@@ -9,13 +9,13 @@
 
 {% blocktrans %}If you did not request this email, please ignore it.{% endblocktrans %}
 
-{% if ORG_EMAIL %}
-{% blocktrans %}If you have any questions, please contact us at {{ ORG_EMAIL }}.{% endblocktrans %}
+{% if org_email %}
+{% blocktrans %}If you have any questions, please contact us at {{ org_email }}.{% endblocktrans %}
 {% endif %}
 
 {% blocktrans %}Kind Regards,
-The {{ ORG_SHORT_NAME }} Team{% endblocktrans %}
+The {{ org_short_name }} Team{% endblocktrans %}
 
 --
-{{ ORG_LONG_NAME }}
+{{ org_long_name }}
 {% if site %}{{ site.root_url }}{% else %}{{ base_url }}{% endif %}
