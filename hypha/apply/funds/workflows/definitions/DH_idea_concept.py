@@ -6,7 +6,7 @@ from ..permissions import (
     applicant_edit_permissions,
     default_permissions,
     no_permissions,
-    reviewer_review_permissions,
+    reviewer_only_review_permissions,
     staff_edit_permissions,
 )
 
@@ -66,7 +66,7 @@ DHIdeaConceptDefinition = [
             },
             "display": _("External Review"),
             "stage": DHIdea,
-            "permissions": reviewer_review_permissions,
+            "permissions": reviewer_only_review_permissions,
         },
     },
     {
@@ -163,7 +163,7 @@ DHIdeaConceptDefinition = [
             },
             "display": _("External Review"),
             "stage": DHConcept,
-            "permissions": reviewer_review_permissions,
+            "permissions": reviewer_only_review_permissions,
         },
     },
     {
