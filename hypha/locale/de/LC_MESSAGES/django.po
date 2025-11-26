@@ -1216,8 +1216,8 @@ msgid ""
 "Kind Regards,\n"
 "The %(org_short_name)s Team"
 msgstr ""
-"Schöne Grüße,\n"
-"Das %(org_short_name)s Team"
+"Viele Grüße,\n"
+"Euer Team vom %(org_short_name)s"
 
 #: hypha/apply/activity/templates/messages/email/batch_ready_to_review.html:4
 #: hypha/apply/activity/templates/messages/email/ready_to_review.html:4
@@ -1553,8 +1553,7 @@ msgid ""
 "We appreciate your \"%(title)s\" application submission to the "
 "%(ORG_LONG_NAME)s."
 msgstr ""
-"Wir freuen uns über Ihre Bewerbung für die Position „%(title)s“ bei "
-"%(ORG_LONG_NAME)s."
+"Wir freuen uns über deine Einreichung „%(title)s“ bei %(ORG_LONG_NAME)s."
 
 #: hypha/apply/activity/templates/messages/email/submission_confirmation.html:8
 msgid ""
