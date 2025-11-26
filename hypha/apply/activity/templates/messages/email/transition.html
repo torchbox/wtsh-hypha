@@ -3,7 +3,9 @@
 {% load i18n %}
 
 {% block content %}{# fmt:off #}
-{% blocktrans %}Your application is now in "{{ new_phase }}" status (progressed from "{{ old_phase }}").{% endblocktrans %}
+{% blocktrans %}Your application is now in "{{ new_phase }}" status.{% endblocktrans %}
 
+{% comment "Disabled for WTSH" %}
 {% trans "Please submit any questions related to your application here" %}: {{ request.scheme }}://{{ request.get_host }}{% url 'funds:submissions:comments' pk=source.pk %}
+{% endcomment %}
 {% endblock %}{# fmt:on #}
