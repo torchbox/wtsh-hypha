@@ -232,32 +232,18 @@ class Review(ReviewFormFieldsMixin, BaseStreamForm, AccessFormData, models.Model
         return self.created_at.date() < self.updated_at.date()
 
     def can_update(self, user):
-        if user.is_anonymous:
-            return False
         if user.is_apply_staff:
             return True
+        elif not user.is_reviewer:
+            return False
         submission_has_open_reviews = (
             self.submission.phase.name in PHASES_MAPPING["external-review"]["statuses"]
         )
         user_is_author = user == self.author.reviewer
-        user_has_update_permissions = user.has_perm("review.change_review")
-        return all(
-            [submission_has_open_reviews, user_is_author, user_has_update_permissions]
-        )
+        return submission_has_open_reviews and user_is_author
 
     def can_delete(self, user):
-        if user.is_anonymous:
-            return False
-        if user.is_apply_staff:
-            return True
-        submission_has_open_reviews = (
-            self.submission.phase.name in PHASES_MAPPING["external-review"]["statuses"]
-        )
-        user_is_author = user == self.author.reviewer
-        user_has_delete_permissions = user.has_perm("review.delete_review")
-        return all(
-            [submission_has_open_reviews, user_is_author, user_has_delete_permissions]
-        )
+        return self.can_update(user)
 
 
 class ReviewOpinion(models.Model):
