@@ -296,7 +296,7 @@ class AddTransitions(models.base.ModelBase):
     def __new__(cls, name, bases, attrs, **kwargs):
         status_field = attrs.get("status_field")
 
-        for workflow in WORKFLOWS.values():
+        for workflow_id, workflow in WORKFLOWS.items():
             for phase_name, data in workflow.items():
                 for transition_name, action in data.transitions.items():
                     method_name = transition_id(transition_name, data)
@@ -328,13 +328,18 @@ class AddTransitions(models.base.ModelBase):
                         attrs[condition] for condition in action.get("conditions", [])
                     ]
 
+                    custom = {
+                        "workflow_id": workflow_id,
+                        **action.get("custom", {}),
+                    }
+
                     # Create the transition
                     transition_func = status_field.transition(
                         source=phase_name,
                         target=transition_name,
                         permission=permission_func,
                         conditions=conditions,
-                        custom=action.get("custom", {}),
+                        custom=custom,
                     )
 
                     # Bind the transition method
@@ -349,6 +354,17 @@ class AddTransitions(models.base.ModelBase):
 
         attrs["get_transition"] = get_transition
 
+        def is_transition_valid_for_workflow(self, transition):
+            submission_workflow_id = self.workflow.admin_name
+            transition_workflow_id = transition.custom.get("workflow_id")
+
+            return (
+                transition_workflow_id is None
+                or transition_workflow_id == submission_workflow_id
+            )
+
+        attrs["is_transition_valid_for_workflow"] = is_transition_valid_for_workflow
+
         def get_actions_for_user(self, user):
             transitions = type(self).status_field.get_available_transitions(
                 self, self.status, user
@@ -360,6 +376,7 @@ class AddTransitions(models.base.ModelBase):
                 )
                 for transition in transitions
                 if self.get_transition(transition.target)
+                and self.is_transition_valid_for_workflow(transition)
             ]
             yield from actions
 
