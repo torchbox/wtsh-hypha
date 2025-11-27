@@ -1,6 +1,0 @@
-.strapline {
-  @apply mb-8 text-fg-muted text-pretty prose;
-  a {
-    @apply text-primary;
-  }
-}
