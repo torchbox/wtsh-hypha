@@ -6,7 +6,7 @@ from django.utils.translation import gettext as _
 
 from hypha.apply.activity.models import ALL, APPLICANT, TEAM
 from hypha.apply.activity.options import MESSAGES
-from hypha.apply.funds.workflows.constants import PHASE_BG_COLORS
+from hypha.apply.funds.workflows.constants import get_phase_bg_color
 from hypha.apply.projects.utils import (
     get_invoice_public_status,
     get_invoice_status_display_value,
@@ -223,7 +223,7 @@ class ActivityAdapter(AdapterBase):
 
     def handle_transition(self, new_phase, source, old_phase=None, **kwargs):
         def wrap_in_color_class(text):
-            color_class = PHASE_BG_COLORS.get(text, "")
+            color_class = get_phase_bg_color(text, default="")
             return f'<span class="rounded-full inline-block px-2 py-0.5 font-medium text-gray-800 {color_class}">{text}</span>'
 
         submission = source

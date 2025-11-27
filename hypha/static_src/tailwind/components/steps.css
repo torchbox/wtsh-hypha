@@ -10,3 +10,12 @@
     @apply size-7;
   }
 }
+
+.steps .step-primary + .step-primary::before,
+.steps .step-primary::after,
+.steps .step-primary > .step-icon {
+  --step-bg: var(--color-dh-magenta);
+}
+.steps .step-primary span {
+  background-color: var(--color-dh-magenta);
+}
