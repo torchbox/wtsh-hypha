@@ -11,21 +11,24 @@ from .utils import (
 DRAFT_STATE = "draft"
 INITIAL_STATE = "in_discussion"
 
-PHASE_BG_COLORS = {
-    "Draft": "bg-gray-200",
-    "Accepted": "bg-green-200",
-    "Idea Accepted": "bg-green-200",
-    "Need screening": "bg-cyan-200",
-    "Ready for Determination": "bg-blue-200",
-    "Ready For Discussion": "bg-blue-100",
-    "Invited for Proposal": "bg-green-100",
-    "Invited for Concept": "bg-green-100",
-    "Internal Review": "bg-yellow-200",
-    "External Review": "bg-yellow-200",
-    "More information required": "bg-yellow-200",
-    "Accepted but additional info required": "bg-green-100",
-    "Dismissed": "bg-rose-200",
-}
+
+def get_phase_bg_color(phase, default="bg-gray-200"):
+    colors = {
+        _("Draft"): "bg-gray-200",
+        _("Accepted"): "bg-green-200",
+        _("Idea Accepted"): "bg-green-200",
+        _("Need screening"): "bg-cyan-200",
+        _("Ready for Determination"): "bg-blue-200",
+        _("Ready For Discussion"): "bg-blue-100",
+        _("Invited for Proposal"): "bg-green-100",
+        _("Invited for Concept"): "bg-green-100",
+        _("Internal Review"): "bg-yellow-200",
+        _("External Review"): "bg-yellow-200",
+        _("More information required"): "bg-yellow-200",
+        _("Accepted but additional info required"): "bg-green-100",
+        _("Dismissed"): "bg-rose-200",
+    }
+    return colors.get(phase, default)
 
 
 class UserPermissions(Enum):
