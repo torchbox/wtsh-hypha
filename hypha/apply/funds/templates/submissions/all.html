@@ -146,24 +146,24 @@
             </label>
 
             {% if can_view_archive %}
-                <label class="label">
+                <label class="label {% if show_archived %}text-accent{% else %}text-neutral{% endif %}">
                     <input
                         type="checkbox"
                         name="archived"
                         {% if show_archived %}checked{% endif %}
-                        class="toggle toggle-sm toggle-primary"
+                        class="toggle toggle-sm {% if show_archived %}toggle-accent{% else %}toggle-neutral{% endif %}"
                     >
                     {% trans "Archived" %}
                 </label>
             {% endif %}
 
             {% if can_access_drafts %}
-                <label class="label">
+                <label class="label {% if show_drafts %}text-accent{% else %}text-neutral{% endif %}">
                     <input
                         type="checkbox"
                         name="drafts"
                         {% if show_drafts %}checked{% endif %}
-                        class="toggle toggle-sm toggle-primary"
+                        class="toggle toggle-sm {% if show_drafts %}toggle-accent{% else %}toggle-neutral{% endif %}"
                     >
                     {% trans "Drafts" %}
                 </label>
