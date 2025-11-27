@@ -5,7 +5,7 @@
         {% for status, display_text in statuses %}
             {% if forloop.counter0 == current_status_index %}
                 <li data-content="●" class="step step-primary">
-                    <span class="block py-1 px-2 text-xs font-semibold rounded-box bg-primary text-primary-content row-start-auto!">{{ display_text }}</span>
+                    <span class="block py-1 px-2 text-xs font-semibold rounded-box text-primary-content row-start-auto!">{{ display_text }}</span>
                 </li>
             {% elif forloop.counter0 < current_status_index %}
                 <li data-content="✓" class="step step-primary">{{ display_text }}</li>
