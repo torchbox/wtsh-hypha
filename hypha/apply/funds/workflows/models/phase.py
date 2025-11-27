@@ -1,6 +1,6 @@
 from django.utils.text import slugify
 
-from ..constants import PHASE_BG_COLORS, UserPermissions
+from ..constants import UserPermissions, get_phase_bg_color
 from ..permissions import Permissions
 
 
@@ -33,7 +33,7 @@ class Phase:
 
         self.public_name = public or self.display_name
         self.future_name_staff = future or self.display_name
-        self.bg_color = PHASE_BG_COLORS.get(self.display_name, "bg-gray-200")
+        self.bg_color = get_phase_bg_color(self.display_name)
         self.future_name_public = future or self.public_name
         self.stage = stage
         self.permissions = Permissions(permissions)
