@@ -16,7 +16,7 @@
       {% endif %}
     </h2>
     {% if page.next_deadline and page.show_deadline %}
-      <p class="badge badge-info badge-soft badge-md">
+      <p class="badge badge-accent badge-soft badge-md">
         {% heroicon_micro 'calendar-days' class='size-4' aria_hidden=true %}
         <span class="font-medium">{% trans 'Next deadline' %}: {{ page.next_deadline|date:'M j, Y' }}</span>
       </p>
