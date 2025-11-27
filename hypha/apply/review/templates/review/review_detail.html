@@ -1,5 +1,5 @@
 {% extends "base-apply.html" %}
-{% load i18n nh3_tags submission_tags heroicons %}
+{% load i18n nh3_tags review_tags submission_tags heroicons %}
 {% block title %}{% trans "Review for" %} {{ review.submission.title }}{% endblock %}
 
 {% block hero %}
@@ -73,7 +73,7 @@
 
         <aside class="flex flex-col gap-4 layout-sidebar">
             <div class="flex gap-3 justify-end items-start">
-                {% if not perms.funds.change_review or request.user == review.author.reviewer %}
+                {% if user|can_update_review:review %}
                     <a
                         class="btn btn-primary btn-sm"
                         href="{% url 'apply:submissions:reviews:edit' submission_pk=object.submission.id pk=object.id %}"
@@ -83,7 +83,7 @@
                     </a>
                 {% endif %}
 
-                {% if not perms.funds.delete_review or request.user == review.author.reviewer %}
+                {% if user|can_delete_review:review %}
                     <a
                         class="btn btn-error btn-outline btn-sm"
                         href="{% url 'apply:submissions:reviews:delete' submission_pk=object.submission.id pk=object.id %}"

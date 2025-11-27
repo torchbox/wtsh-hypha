@@ -7,6 +7,7 @@ from wagtail.admin.panels import FieldPanel
 from wagtail.fields import StreamField
 
 from hypha.apply.funds.models.mixins import AccessFormData
+from hypha.apply.funds.workflows.constants import PHASES_MAPPING
 from hypha.apply.stream_forms.models import BaseStreamForm
 from hypha.apply.users.roles import (
     PARTNER_GROUP_NAME,
@@ -234,6 +235,20 @@ class Review(ReviewFormFieldsMixin, BaseStreamForm, AccessFormData, models.Model
     def is_updated(self):
         # Only compare dates, not time.
         return self.created_at.date() < self.updated_at.date()
+
+    def can_update(self, user):
+        if user.is_apply_staff:
+            return True
+        elif not user.is_reviewer:
+            return False
+        submission_has_open_reviews = (
+            self.submission.phase.name in PHASES_MAPPING["external-review"]["statuses"]
+        )
+        user_is_author = user == self.author.reviewer
+        return submission_has_open_reviews and user_is_author
+
+    def can_delete(self, user):
+        return self.can_update(user)
 
 
 class ReviewOpinion(models.Model):
