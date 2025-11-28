@@ -6,5 +6,7 @@
 
 {{ determination.message|nh3|striptags }}
 
+{% comment "Disabled for WTSH" %}
 {% trans "Read the full determination here" %}: {{ request.scheme }}://{{ request.get_host }}{{ determination.get_absolute_url }}
+{% endcomment %}
 {% endblock %}{# fmt:on #}
