@@ -231,6 +231,7 @@ class ReviewAbstainView(ReviewCreateOrUpdateView):
             elif isinstance(field.block, ScoreFieldWithoutTextBlock):
                 # for ScoreFieldWithoutTextBlock the blank value is NA:
                 form_field.initial = ""
+                form_field.required = False
             elif isinstance(field.block, ScoreFieldBlock):
                 form_field.initial = [_("Abstain"), NA]
             else:
