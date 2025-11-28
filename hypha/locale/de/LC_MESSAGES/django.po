@@ -1300,11 +1300,9 @@ msgid ""
 "with more details about your project. You will receive a second email "
 "linking to a determination message with detailed feedback."
 msgstr ""
-"Wir haben Ihre Konzeptnotiz geprüft und denken, dass sie gut für "
-"%(ORG_SHORT_NAME)s Finanzierung geeignet sein könnte. Wir möchten Sie "
-"einladen, einen Vorschlag mit weiteren Details zu Ihrem Projekt "
-"einzureichen. Sie erhalten eine zweite E-Mail mit einem Link zu einer "
-"Entscheidung und detailliertem Feedback."
+"Wir haben deine Idee geprüft und denken, dass sie gut für "
+"%(ORG_SHORT_NAME)s Finanzierung geeignet sein könnte. Wir möchten dich "
+"einladen, ein Konzept mit weiteren Details zu deinem Projekt einzureichen."
 
 #: hypha/apply/activity/templates/messages/email/invited_to_proposal.html:8
 #, python-format
