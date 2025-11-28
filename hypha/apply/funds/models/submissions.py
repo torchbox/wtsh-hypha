@@ -1075,6 +1075,8 @@ class ApplicationSubmission(
                 remove_tasks_for_user(
                     code=SUBMISSION_DRAFT, user=by, related_obj=instance
                 )
+                # Workaround for issue https://github.com/HyphaApp/hypha/issues/4678:
+                instance.status = target
                 # notify for a new submission
                 messenger(
                     MESSAGES.NEW_SUBMISSION,
