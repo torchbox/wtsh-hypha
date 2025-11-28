@@ -304,7 +304,7 @@ msgstr ""
 #: hypha/apply/activity/adapters/emails.py:153
 #, python-brace-format
 msgid "Your application to {ORG_LONG_NAME}: {source.title_text_display}"
-msgstr "Deine Bewerbung bei {ORG_LONG_NAME}: {source.title_text_display}"
+msgstr "Deine Einreichung bei {ORG_LONG_NAME}: {source.title_text_display}"
 
 #: hypha/apply/activity/adapters/emails.py:156
 #, python-brace-format
@@ -1265,7 +1265,7 @@ msgstr ""
 
 #: hypha/apply/activity/templates/messages/email/determination.html:5
 msgid "Your application has been reviewed and the outcome is"
-msgstr "Deine Einreichung wurde gereviewt. Das Ergebnis ist"
+msgstr "Deine Einreichung wurde bewertet. Das Ergebnis ist"
 
 #: hypha/apply/activity/templates/messages/email/determination.html:9
 msgid "Read the full determination here"
@@ -1300,7 +1300,7 @@ msgid ""
 "with more details about your project. You will receive a second email "
 "linking to a determination message with detailed feedback."
 msgstr ""
-"Wir haben deine Idee geprüft und denken, dass sie gut für "
+"Wir haben deine Idee geprüft und denken, dass sie gut für eine "
 "%(ORG_SHORT_NAME)s Finanzierung geeignet sein könnte. Wir möchten dich "
 "einladen, ein Konzept mit weiteren Details zu deinem Projekt einzureichen."
 
@@ -1318,7 +1318,7 @@ msgstr ""
 
 #: hypha/apply/activity/templates/messages/email/invited_to_proposal.html:13
 msgid "Here is the link to start creating your proposal"
-msgstr "Hier ist der Link, um mit der Erstellung Ihres Vorschlags zu beginnen"
+msgstr "Hier ist der Link, um mit der Erstellung deines Konzeptes zu beginnen"
 
 #: hypha/apply/activity/templates/messages/email/invited_to_proposal.html:18
 msgid ""
@@ -3983,11 +3983,11 @@ msgstr "Alle Bewertungen"
 
 #: hypha/apply/funds/templates/funds/submissions_result.html:83
 msgid "Your reviews"
-msgstr "Ihre Bewertungen"
+msgstr "Deine Bewertungen"
 
 #: hypha/apply/funds/templates/funds/submissions_result.html:85
 msgid "You"
-msgstr "Sie"
+msgstr "Du"
 
 #: hypha/apply/funds/templates/funds/submissions_result.html:91
 msgid "Your average score"
