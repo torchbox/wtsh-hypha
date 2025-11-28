@@ -1074,6 +1074,7 @@ class ApplicationSubmission(
                 remove_tasks_for_user(
                     code=SUBMISSION_DRAFT, user=by, related_obj=instance
                 )
+                instance.status = target
                 # notify for a new submission
                 messenger(
                     MESSAGES.NEW_SUBMISSION,
