@@ -30,6 +30,7 @@ from wagtail.blocks import (
 )
 
 from .fields import MultiFileField, SingleFileField
+from .validators import word_limit_validator
 
 
 class FormFieldBlock(StructBlock):
@@ -165,6 +166,12 @@ class TextFieldBlock(OptionalFormFieldBlock):
 
     def get_searchable_content(self, value, data):
         return nh3.clean(data or "", tags=set())
+
+    def get_field_kwargs(self, struct_value):
+        kwargs = super().get_field_kwargs(struct_value)
+        if (limit := struct_value["word_limit"]) > 0:
+            kwargs.setdefault("validators", []).append(word_limit_validator(limit))
+        return kwargs
 
 
 class NumberFieldBlock(OptionalFormFieldBlock):
