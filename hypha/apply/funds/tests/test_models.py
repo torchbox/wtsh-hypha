@@ -3,6 +3,7 @@ import os
 from datetime import date, timedelta
 from unittest.mock import ANY, patch
 
+import time_machine
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import AnonymousUser
@@ -540,6 +541,21 @@ class TestApplicationSubmission(TestCase):
 
         submission = InvitedToProposalFactory()
         self.assertTrue(submission.in_final_stage)
+
+    @time_machine.travel("2026-01-01T12:00:00+00:00", tick=False)
+    def test_last_updated(self):
+        submission = ApplicationSubmissionFactory()
+        self.assertEqual(
+            submission.last_updated.isoformat(), "2026-01-01T12:00:00+00:00"
+        )
+
+        with time_machine.travel("2026-01-01T13:00:00+00:00", tick=False):
+            submission.form_data["title"] = "updated title"
+            submission.create_revision(draft=True)
+
+        self.assertEqual(
+            submission.last_updated.isoformat(), "2026-01-01T13:00:00+00:00"
+        )
 
 
 class TestSubmissionRenderMethods(TestCase):
