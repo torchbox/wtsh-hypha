@@ -78,7 +78,7 @@ def form_data(
     external_review_form_data = formset_base(
         "external_review_forms",
         num_external_review_forms,
-        True,
+        False,
         same=same_forms,
         factory=ReviewFormFactory,
     )
@@ -156,13 +156,13 @@ class TestWorkflowFormAdminForm(TestCase):
 
     def test_can_save_two_forms(self):
         form = self.submit_data(
-            form_data(2, 2, 2, 0, 1, stages=2, form_stage_info=[1, 2])
+            form_data(2, 2, 2, 1, 1, stages=2, form_stage_info=[1, 2])
         )
         self.assertTrue(form.is_valid())
 
     def test_can_save_multiple_forms_stage_two(self):
         form = self.submit_data(
-            form_data(3, 2, 2, 0, 1, stages=2, form_stage_info=[1, 2, 2])
+            form_data(3, 2, 2, 1, 1, stages=2, form_stage_info=[1, 2, 2])
         )
         self.assertTrue(form.is_valid())
 
@@ -179,7 +179,7 @@ class TestWorkflowFormAdminForm(TestCase):
                 1,
                 1,
                 1,
-                num_external_review_forms=1,
+                num_external_review_forms=0,
                 num_project_approval_form=1,
                 stages=1,
             )
