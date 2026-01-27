@@ -1,3 +1,4 @@
+import datetime
 import operator
 from functools import partialmethod, reduce
 from typing import Optional, Self
@@ -1106,3 +1107,12 @@ class ApplicationSubmission(
                 user=by,
                 source=instance,
             )
+
+    @property
+    def last_updated(self) -> datetime.datetime:
+        timestamps = [self.submit_time]
+        if self.draft_revision:
+            timestamps.append(self.draft_revision.timestamp)
+        if self.live_revision:
+            timestamps.append(self.live_revision.timestamp)
+        return max(timestamps)

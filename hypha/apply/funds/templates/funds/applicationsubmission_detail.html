@@ -92,8 +92,8 @@
 
                             <div class="self-center line-clamp-2">
                                 {% trans "Updated" %}
-                                <relative-time datetime={{ object.live_revision.timestamp|date:"c" }} class="font-semibold">
-                                    {{ object.live_revision.timestamp|date:"SHORT_DATETIME_FORMAT" }}
+                                <relative-time datetime={{ object.last_updated|date:"c" }} class="font-semibold">
+                                    {{ object.last_updated|date:"SHORT_DATETIME_FORMAT" }}
                                 </relative-time>
                                 {% trans "by" %}
                                 <strong class="max-w-md font-semibold">
