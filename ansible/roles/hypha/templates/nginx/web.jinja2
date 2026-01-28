@@ -3,7 +3,7 @@ server {
     server_name {{ hypha_external_domain }};
 
     location / {
-        # The upstream proxy doesn't pass X-Forwarded-Proto so we fake it outselves.
+        # The upstream proxy doesn't pass X-Forwarded-Proto so we fake it ourselves.
         # Needed so that django's request.is_secure() work correctly.
         proxy_set_header X-Forwarded-Proto https;
         include proxy_params;

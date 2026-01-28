@@ -8,9 +8,8 @@ def status_bar(
     workflow, current_phase, user, author=False, css_class="", same_stage=False
 ):
     phases = workflow.phases_for(user)
-    is_applicant = user == author if author else user.is_applicant
 
-    if same_stage and not is_applicant:
+    if same_stage:
         phases = [phase for phase in phases if phase.stage == current_phase.stage]
 
     if not current_phase.permissions.can_view(user):

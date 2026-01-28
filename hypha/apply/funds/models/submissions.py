@@ -290,7 +290,7 @@ def get_all_possible_states():
     for workflow in WORKFLOWS.values():
         for phase_name, data in workflow.items():
             all_states.add((phase_name, data.display_name))
-    return sorted(all_states, key=lambda x: x[0])
+    return sorted(all_states)
 
 
 class AddTransitions(models.base.ModelBase):
@@ -1075,6 +1075,7 @@ class ApplicationSubmission(
                 remove_tasks_for_user(
                     code=SUBMISSION_DRAFT, user=by, related_obj=instance
                 )
+                # Workaround for issue https://github.com/HyphaApp/hypha/issues/4678:
                 instance.status = target
                 # notify for a new submission
                 messenger(
