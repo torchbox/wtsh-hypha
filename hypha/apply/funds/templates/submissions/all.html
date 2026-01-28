@@ -181,6 +181,18 @@
             >
                 {% heroicon_mini "arrow-down-tray" %}
             </a>
+
+            {# WTSH customization: add PDF export (WG-57) #}
+            <a
+                class="btn btn-square"
+                hx-get="{% url 'apply:submissions:submission-export-pdf-status' %}"
+                hx-swap="outerHTML"
+                hx-target="this"
+                hx-push-url="false"
+                hx-trigger="load"
+            >
+                {% heroicon_mini "document-arrow-down" %}
+            </a>
         {% endif %}
 
         <div x-cloak>
