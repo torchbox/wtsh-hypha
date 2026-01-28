@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.shortcuts import resolve_url
 
 from hypha.home.models import ApplyHomePage
 
@@ -23,4 +24,5 @@ def global_vars(request):
         "SUBMISSIONS_TABLE_EXCLUDED_FIELDS": settings.SUBMISSIONS_TABLE_EXCLUDED_FIELDS,
         "HIJACK_ENABLE": settings.HIJACK_ENABLE,
         "LANGUAGE_SWITCHER": settings.LANGUAGE_SWITCHER,
+        "LOGIN_URL": resolve_url(settings.LOGIN_URL),
     }
