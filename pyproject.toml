@@ -157,4 +157,11 @@ extend-exclude = [
     "*.min.js",
     "*.po",
     "*.min.json",
+    "public/fixtures/*.json"
+]
+
+[tool.typos.default]
+extend-ignore-re = [
+    "ist keine Eigenentwicklung",
+    "ein Fork",
 ]

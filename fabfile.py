@@ -57,7 +57,9 @@ def build(c: Context):
 
     # Pull up-to-date images and build the development environment
     local("docker compose pull")
-    local(f"docker compose build --build-arg UID={os.getuid()} --build-arg GID={os.getgid()}")
+    local(
+        f"docker compose build --build-arg UID={os.getuid()} --build-arg GID={os.getgid()}"
+    )
 
 
 @task

@@ -57,14 +57,14 @@ class TestApplicantDashboard(BaseViewTestCase):
     def test_submissions_partials_gets_invite_if_invited_to_proposal(self):
         InvitedToProposalFactory(user=self.user, draft=True)
         response = self.get_page(view_name=self.partial_submissions_view_name)
-        self.assertContains(response, "Start your ")
+        self.assertContains(response, "Start")
 
     def test_submissions_partials_no_invite_if_can_edit(self):
         ApplicationSubmissionFactory(
             user=self.user, status="concept_more_info", workflow_stages=2
         )
         response = self.get_page(view_name=self.partial_submissions_view_name)
-        self.assertNotContains(response, "Start your ")
+        self.assertNotContains(response, "Start")
         self.assertContains(response, "Edit", 1)
 
     def test_no_edit_if_in_review(self):
