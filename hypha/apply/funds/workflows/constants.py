@@ -21,7 +21,7 @@ def get_phase_bg_color(phase, default="bg-gray-200"):
         _("Ready for Determination"): "bg-blue-200",
         _("Ready For Discussion"): "bg-blue-100",
         _("Invited for Proposal"): "bg-green-100",
-        _("Invited for Concept"): "bg-green-100",
+        _("Concept Draft"): "bg-green-100",
         _("Internal Review"): "bg-yellow-200",
         _("External Review"): "bg-yellow-200",
         _("More information required"): "bg-yellow-200",
