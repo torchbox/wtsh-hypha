@@ -33,7 +33,7 @@ class Migration(migrations.Migration):
                     ("concept_determination", "Ready for Final Determination"),
                     ("concept_determination", "Ready for Preliminary Determination"),
                     ("concept_discussion", "Concept Received"),
-                    ("concept_draft", "Invited for Concept"),
+                    ("concept_draft", "Concept Draft"),
                     ("concept_external_review", "External Review"),
                     ("concept_internal_review", "Internal Review"),
                     ("concept_more_info", "More information required"),

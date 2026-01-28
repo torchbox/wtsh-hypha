@@ -118,7 +118,7 @@ DHIdeaConceptDefinition = [
                 "concept_external_review": _("Open Review"),
                 "concept_rejected": _("Dismiss"),
             },
-            "display": _("Invited for Concept"),
+            "display": _("Concept Draft"),
             "stage": DHConcept,
             "permissions": applicant_edit_permissions,
         },
