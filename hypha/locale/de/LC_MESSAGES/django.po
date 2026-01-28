@@ -4719,8 +4719,8 @@ msgid "Ready For Final Determination"
 msgstr "Bereit für endgültige Entscheidung"
 
 #: hypha/apply/funds/workflows/definitions/DH_idea_concept.py:128
-msgid "Invited for Concept"
-msgstr "Eingeladen für Concept"
+msgid "Concept Draft"
+msgstr "Konzept Entwurf"
 
 #: hypha/apply/funds/workflows/definitions/DH_idea_concept.py:141
 msgid "Concept Received"
