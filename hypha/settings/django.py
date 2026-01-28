@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     "hypha.apply.utils.apps.UtilsConfig",
     "hypha.apply.projects.apps.ProjectsConfig",
     "hypha.apply.projects.reports.apps.ReportsConfig",
+    "hypha.apply.wtsh",
     "social_django",
     "django_htmx",
     "heroicons",

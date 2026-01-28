@@ -3,6 +3,10 @@ from django.views.generic import RedirectView
 
 from hypha.apply.projects import urls as projects_urls
 from hypha.apply.projects.views import ProjectDetailView
+from hypha.apply.wtsh.views.pdf_partials import (
+    submission_export_pdf_download,
+    submission_export_pdf_status,
+)
 
 from .views import (
     RoundListView,
@@ -113,6 +117,16 @@ submission_urls = (
             "all/submission-export-download/",
             submission_export_download,
             name="submission-export-download",
+        ),
+        path(
+            "all/submission-export-pdf-status/",
+            submission_export_pdf_status,
+            name="submission-export-pdf-status",
+        ),
+        path(
+            "all/submission-export-pdf-download/",
+            submission_export_pdf_download,
+            name="submission-export-pdf-download",
         ),
         path("all/submenu/funds/", sub_menu_funds, name="submenu-funds"),
         path("all/submenu/leads/", sub_menu_leads, name="submenu-leads"),
