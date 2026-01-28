@@ -300,18 +300,23 @@ class SubmissionDetailPDFView(SingleObjectMixin, View):
 
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
-        pdf_page_settings = PDFPageSettings.load(request_or_site=request)
+        return self.render_pdf()
+
+    def render_pdf(self):
+        pdf_page_settings = PDFPageSettings.load(request_or_site=self.request)
         context = {}
         context["pagesize"] = pdf_page_settings.download_page_size
         context["show_footer"] = True
         site_settings = SystemSettings.objects.first()
         if site_settings:
             if site_settings.site_logo_default:
-                context["logo"] = request.build_absolute_uri(
+                context["logo"] = self.request.build_absolute_uri(
                     site_settings.site_logo_default.file.url
                 )
             else:
-                context["logo"] = request.build_absolute_uri(static("images/logo.png"))
+                context["logo"] = self.request.build_absolute_uri(
+                    static("images/logo.png")
+                )
 
         context["link"] = self.request.build_absolute_uri(
             self.object.get_absolute_url()
@@ -328,7 +333,7 @@ class SubmissionDetailPDFView(SingleObjectMixin, View):
         context["header_title"] = "Submission details"
         template_path = "funds/submission-pdf.html"
         return render_as_pdf(
-            request=request,
+            request=self.request,
             template_name=template_path,
             context=context,
             filename=self.get_slugified_file_name("pdf"),
