@@ -80,7 +80,12 @@
         {% block hero %}{% endblock hero %}
 
         {% block content_wrapper %}
-            <main class="py-1 container-constrained grow" id="main">
+            <main
+                id="main"
+                x-data="{ fullscreen: false }"
+                :class="fullscreen?'max-w-none':''"
+                class="py-1 container-constrained grow"
+            >
                 {% block content %}{% endblock %}
             </main>
         {% endblock %}

@@ -182,6 +182,16 @@
                 {% heroicon_mini "arrow-down-tray" %}
             </a>
         {% endif %}
+
+        <div x-cloak>
+            <button x-show="fullscreen" type="button" @click="fullscreen = false" class="btn btn-square">
+                {% heroicon_micro "arrows-pointing-in" aria_label="Set to normal width" %}
+            </button>
+            <button x-show="! fullscreen" type="button" @click="fullscreen = true" class="btn btn-square">
+                {% heroicon_micro "arrows-pointing-out" aria_label="Set to full width" %}
+            </button>
+        </div>
+
     </div>
 
     {% if is_filtered %}
