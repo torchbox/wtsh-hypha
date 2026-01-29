@@ -14,6 +14,7 @@ services:
       PYTHONUNBUFFERED: 1
       PROJECTS_ENABLED: 1
       ORG_SHORT_NAME: "WT.SH"
+      PRIMARY_HOST: "hypha.test:8000"
     env_file:
       - path: .env
         required: false

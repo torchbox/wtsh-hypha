@@ -38,6 +38,8 @@ from hypha.apply.users.decorators import (
     is_apply_staff,
     is_apply_staff_or_reviewer_required,
 )
+from hypha.apply.wtsh.tasks import generate_submission_pdf
+from hypha.apply.wtsh.views.pdf_partials import submission_export_pdf_download
 
 from .. import permissions, services
 from ..models import (
@@ -306,6 +308,30 @@ def submissions_all(
             return response
         else:
             return submission_export_download(request)
+
+    if request.GET.get("format") == "pdf" and permissions.can_export_submissions(
+        request.user
+    ):
+        qs_ids = list(qs.values_list("id", flat=True))
+        generate_submission_pdf.delay(
+            qs_ids, request.user.id, request.build_absolute_uri("/")
+        )
+
+        if not settings.CELERY_TASK_ALWAYS_EAGER:
+            response = render(
+                request,
+                "submissions/partials/export-submission-pdf-button.html",
+                {
+                    "generating": True,
+                    "poll_time": get_export_polling_time(len(qs_ids)),
+                },
+            )
+            response["HX-Trigger"] = json.dumps(
+                {"showMessage": _("Started PDF generation.")}
+            )
+            return response
+        else:
+            return submission_export_pdf_download(request)
 
     ctx = {
         "base_template": base_template,

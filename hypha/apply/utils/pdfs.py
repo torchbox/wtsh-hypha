@@ -1,3 +1,5 @@
+import typing
+import zipfile
 from io import BytesIO
 
 from django.core.files import File
@@ -83,3 +85,13 @@ def merge_pdf(origin_pdf: BytesIO, input_pdf: BytesIO) -> File:
     merger.write(output_pdf)
     output_pdf.seek(0)
     return File(output_pdf, name=origin_pdf.name)
+
+
+def pdfs_to_zip(outfile: typing.IO, pdfs: list[str, bytes]) -> bytes:
+    """
+    Combine the given PDFs - as a list of 2-tuple (filename, binary data) - into
+    a zip file written into the given file object.
+    """
+    with zipfile.ZipFile(outfile, "w") as zipf:
+        for pdf_filename, pdf_content in pdfs:
+            zipf.writestr(pdf_filename, data=pdf_content)
