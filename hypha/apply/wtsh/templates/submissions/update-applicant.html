@@ -1,0 +1,48 @@
+{% extends "base-apply.html" %}
+
+{% load i18n %}
+
+
+{% block title %}{% trans "Update submission applicant" %}{% endblock %}
+
+{% block hero %}
+    <c-hero>
+        <c-hero.header
+            title="{% trans 'Update submission applicant' %}"
+        >
+        </c-hero.header>
+    </c-hero>
+{% endblock %}
+
+{% block content %}
+
+    <div class="mt-4 mb-16 max-w-3xl">
+
+        <p>
+            {% blocktranslate with application_id=object.application_id trimmed %}
+                You're about to update the applicant for application #{{ application_id}}.
+                Once changed, the original applicant will no longer have access to this
+                application.
+            {% endblocktranslate %}
+        </p>
+
+        <form action="" method="post" class="form">
+
+            <fieldset class="fieldset form__group form__group--select">
+                <label for="{{ form.user.id_for_label }}" class="fieldset-legend h-widget-select">
+                    <span>{{ form.user.label }}</span>
+                </label>
+
+                {{ form.user }}
+            </fieldset>
+
+
+            <div class="mt-4">
+                <button type="submit" class="w-full sm:w-auto btn btn-primary">{% trans 'Update applicant' %}</button>
+                {% csrf_token %}
+                <a class="btn btn-secondary" href="{% url 'apply:submissions:detail' pk=object.pk %}">Cancel</a>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
