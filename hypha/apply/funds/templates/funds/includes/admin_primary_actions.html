@@ -154,6 +154,17 @@
                     {% trans "Archive" %}
                 </button>
             {% endif %}
+
+            {% if can_update_applicant %}
+                <a
+                    class="w-full btn btn-outline"
+                    href="{% url 'funds:submissions:update-applicant' pk=object.pk %}"
+                >
+                    {% heroicon_outline "user" aria_hidden="true" size=16 stroke_width=2 class="size-4" %}
+                    {% trans "Update applicant" %}
+                </a>
+            {% endif %}
+
         </div>
     </details>
 {% endif %}
