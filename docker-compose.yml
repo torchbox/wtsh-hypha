@@ -14,6 +14,7 @@ services:
       PYTHONUNBUFFERED: 1
       PROJECTS_ENABLED: 1
       ORG_SHORT_NAME: "WT.SH"
+      SUBMISSIONS_TABLE_EXCLUDED_FIELDS: "lead"
     env_file:
       - path: .env
         required: false
