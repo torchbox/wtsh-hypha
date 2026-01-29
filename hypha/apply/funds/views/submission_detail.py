@@ -106,6 +106,7 @@ class AdminSubmissionDetailView(ActivityContextMixin, DetailView):
             other_submissions=other_submissions,
             archive_access_groups=get_archive_view_groups(),
             can_archive=can_alter_archived_submissions(self.request.user),
+            can_update_applicant=self.request.user.is_staff,
             **kwargs,
         )
 

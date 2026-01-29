@@ -7,6 +7,7 @@ from hypha.apply.wtsh.views.pdf_partials import (
     submission_export_pdf_download,
     submission_export_pdf_status,
 )
+from hypha.apply.wtsh.views.update_applicant import SubmissionUpdateApplicantView
 
 from .views import (
     RoundListView,
@@ -312,6 +313,11 @@ submission_urls = (
                         "documents/<uuid:field_id>/<str:file_name>",
                         SubmissionPrivateMediaView.as_view(),
                         name="serve_private_media",
+                    ),
+                    path(
+                        "update-applicant/",
+                        SubmissionUpdateApplicantView.as_view(),
+                        name="update-applicant",
                     ),
                 ]
             ),
