@@ -15,6 +15,7 @@ services:
       PROJECTS_ENABLED: 1
       ORG_SHORT_NAME: "WT.SH"
       PRIMARY_HOST: "hypha.test:8000"
+      SUBMISSIONS_TABLE_EXCLUDED_FIELDS: "lead"
     env_file:
       - path: .env
         required: false
