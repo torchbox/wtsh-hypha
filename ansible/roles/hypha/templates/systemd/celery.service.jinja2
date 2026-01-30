@@ -18,7 +18,7 @@ ExecStart=/usr/bin/docker run \
     --volume {{ hypha_root_dir }}/media:/app/media \
     --mount type=bind,src={{ hypha_root_dir }}/hypha.env,dst=/app/.env,ro \
     --mount type=bind,src={{ hypha_root_dir }}/local_settings.py,dst=/app/hypha/settings/local.py,ro \
-    {{ hypha_docker_image }}{% if hypha_docker_tag %}:{{ hypha_docker_tag }}{% endif +%}
+    {{ hypha_docker_image }}{% if hypha_docker_tag %}:{{ hypha_docker_tag }}{% endif +%} \
     python -m celery --app=hypha.celery worker --loglevel=INFO --autoscale=6,2
 ExecStop=/usr/bin/docker container stop \
     --timeout 10 \
