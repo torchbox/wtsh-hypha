@@ -35,6 +35,8 @@
   loop:
     - web
     - db
+    - redis
+    - celery
 
 - name: Enable systemd service {{ hypha_project_name }}-{{ item }}
   ansible.builtin.systemd:
@@ -43,11 +45,16 @@
   loop:
     - web
     - db
+    - redis
+    - celery
 
-- name: Start service {{ hypha_project_name }}-db
+- name: Start service {{ hypha_project_name }}-{{ item }}
   ansible.builtin.systemd:
-    name: "{{ hypha_project_name }}-db"
+    name: "{{ hypha_project_name }}-{{ item }}"
     state: started
+  loop:
+    - db
+    - redis
 
 - name: Make sure .env file exists
   ansible.builtin.template:
