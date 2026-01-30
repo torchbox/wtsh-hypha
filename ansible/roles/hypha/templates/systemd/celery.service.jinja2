@@ -3,10 +3,10 @@ Description=Hypha celery docker container ({{ app_name }})
 After=docker.service
 Wants=network-online.target docker.socket
 Requires=docker.socket
-
-[Service]
 # Automatically restart this unit when web is restarted:
 PartOf={{ hypha_project_name }}-web
+
+[Service]
 Restart=on-failure
 ExecStart=/usr/bin/docker run \
     --name {{ hypha_project_name }}-celery \
