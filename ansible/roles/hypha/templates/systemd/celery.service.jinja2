@@ -1,0 +1,28 @@
+[Unit]
+Description=Hypha celery docker container ({{ app_name }})
+After=docker.service
+Wants=network-online.target docker.socket
+Requires=docker.socket
+# Automatically restart this unit when web is restarted:
+PartOf={{ hypha_project_name }}-web
+
+[Service]
+Restart=on-failure
+ExecStart=/usr/bin/docker run \
+    --name {{ hypha_project_name }}-celery \
+    --pull never \
+    --rm \
+    --env PYTHONDONTWRITEBYTECODE=1 \
+    --env PYTHONUNBUFFERED=1 \
+    --network {{ hypha_docker_network }} \
+    --volume {{ hypha_root_dir }}/media:/app/media \
+    --mount type=bind,src={{ hypha_root_dir }}/hypha.env,dst=/app/.env,ro \
+    --mount type=bind,src={{ hypha_root_dir }}/local_settings.py,dst=/app/hypha/settings/local.py,ro \
+    {{ hypha_docker_image }}{% if hypha_docker_tag %}:{{ hypha_docker_tag }}{% endif +%} \
+    python -m celery --app=hypha.celery worker --loglevel=INFO --autoscale=6,2
+ExecStop=/usr/bin/docker container stop \
+    --timeout 10 \
+    {{ hypha_project_name }}-celery
+
+[Install]
+WantedBy=multi-user.target
