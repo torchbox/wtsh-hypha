@@ -195,7 +195,12 @@
             </a>
         {% endif %}
 
-        <div x-cloak>
+        <div
+            x-cloak
+            x-data="{ fullscreen: false }"
+            {# Toggle the full-width by turning on/off the max-width on the #main element: #}
+            x-init="$watch('fullscreen', value => document.getElementById('main').classList.toggle('max-w-none', value))"
+        >
             <button x-show="fullscreen" type="button" @click="fullscreen = false" class="btn btn-square">
                 {% heroicon_micro "arrows-pointing-in" aria_label="Set to normal width" %}
             </button>
