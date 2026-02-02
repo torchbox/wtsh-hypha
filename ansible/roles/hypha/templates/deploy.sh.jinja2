@@ -3,6 +3,7 @@ set -euo pipefail
 
 CONTAINER_WEB={{hypha_project_name}}-web
 SERVICE_WEB={{hypha_project_name}}-web
+SERVICE_CELERY={{hypha_project_name}}-celery
 IMAGE={{hypha_docker_image}}{% if hypha_docker_tag %}:{{ hypha_docker_tag }}{% endif +%}
 LOGFILE="{{ hypha_root_dir }}/deploy_$(date --iso).log"
 
@@ -28,7 +29,11 @@ systemctl daemon-reload
 
 echolog "Restarting service $SERVICE_WEB..."
 systemctl restart $SERVICE_WEB
-echolog "Service restarted. Sleeping for a bit..."
+
+echolog "Restarting celery $SERVICE_CELERY..."
+systemctl restart $SERVICE_CELERY
+
+echolog "Services restarted. Sleeping for a bit..."
 sleep 5
 echolog "Done."
 

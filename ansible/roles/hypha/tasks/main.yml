@@ -26,7 +26,7 @@
     state: link
   notify: Restart nginx
 
-- name: Create systemd unit file {{ hypha_project_name }}-{{ item }}
+- name: Create systemd unit files {{ hypha_project_name }}
   ansible.builtin.template:
     src: systemd/{{ item }}.service.jinja2
     dest: /etc/systemd/system/{{ hypha_project_name }}-{{ item }}.service
@@ -35,19 +35,26 @@
   loop:
     - web
     - db
+    - redis
+    - celery
 
-- name: Enable systemd service {{ hypha_project_name }}-{{ item }}
+- name: Enable systemd services {{ hypha_project_name }}
   ansible.builtin.systemd:
     name: "{{ hypha_project_name }}-{{ item }}"
     enabled: true
   loop:
     - web
     - db
+    - redis
+    - celery
 
-- name: Start service {{ hypha_project_name }}-db
+- name: Start services {{ hypha_project_name }}
   ansible.builtin.systemd:
-    name: "{{ hypha_project_name }}-db"
+    name: "{{ hypha_project_name }}-{{ item }}"
     state: started
+  loop:
+    - db
+    - redis
 
 - name: Make sure .env file exists
   ansible.builtin.template:

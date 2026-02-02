@@ -25,5 +25,8 @@ hypha_docker_tag: "wtsh-main"
 # The postgres version used
 hypha_postgres_version: 16
 
+# The redis version used (for celery)
+hypha_redis_version: "8.4"
+
 # The name of the system user that can deploy the site (used in github action)
 hypha_deploy_user: deploy-{{ app_name }}

@@ -1,0 +1,20 @@
+[Unit]
+Description=Hypha redis docker container ({{ app_name }})
+After=docker.service
+Wants=network-online.target docker.socket
+Requires=docker.socket
+
+[Service]
+Restart=on-failure
+ExecStart=/usr/bin/docker run \
+    --name {{ hypha_project_name }}-redis \
+    --pull missing \
+    --rm \
+    --network {{ hypha_docker_network }} \
+    redis:{{ hypha_redis_version }}
+ExecStop=/usr/bin/docker container stop \
+    --timeout 10 \
+    {{ hypha_project_name }}-redis
+
+[Install]
+WantedBy=multi-user.target
