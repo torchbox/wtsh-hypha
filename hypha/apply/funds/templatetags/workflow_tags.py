@@ -31,7 +31,7 @@ def has_review_perm(user, submission):
 
 @register.filter
 def can_apply(user):
-    return user.is_anonymous or user.is_applicant
+    return user.is_anonymous or user.is_applicant or user.roles == []
 
 
 @register.filter
