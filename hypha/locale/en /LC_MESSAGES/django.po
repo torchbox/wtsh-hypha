@@ -1,0 +1,6723 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgid "--"
+msgstr ""
+
+msgid "---"
+msgstr ""
+
+msgid "↔"
+msgstr ""
+
+msgid "0. Need more info"
+msgstr ""
+
+msgid "1. Poor"
+msgstr ""
+
+msgid "1st Stage"
+msgstr ""
+
+msgid "1. View: They can only view the application."
+msgstr ""
+
+msgid "2. Comment: They can view and write comment."
+msgstr ""
+
+msgid "2FA is an extra layer of security used to make sure that people trying to gain access to an online account are who they say they are. We recommend using Authy or another authenticator app."
+msgstr ""
+
+msgid "2FA is disabled"
+msgstr ""
+
+msgid "2FA requires a verification code to pair your smartphone with your account."
+msgstr ""
+
+msgid "2nd Stage"
+msgstr ""
+
+msgid "2. Not so good"
+msgstr ""
+
+msgid "3. Edit: They can view, comment and edit the application."
+msgstr ""
+
+msgid "3. Is o.k."
+msgstr ""
+
+msgid "403 page"
+msgstr ""
+
+msgid "404 page"
+msgstr ""
+
+msgid "4. Good"
+msgstr ""
+
+msgid "5. Excellent"
+msgstr ""
+
+msgid "A4"
+msgstr ""
+
+msgid "Abstain"
+msgstr ""
+
+msgid "Abstain from review"
+msgstr ""
+
+msgid "Accept"
+msgstr ""
+
+msgid "Accept all"
+msgstr ""
+
+msgid "Accept all tracking cookies."
+msgstr ""
+
+msgid "Accept but additional info required"
+msgstr ""
+
+msgid "Accepted"
+msgstr ""
+
+msgid "Accepted amounts"
+msgstr ""
+
+msgid "Accepted but additional info required"
+msgstr ""
+
+msgid "Accepted submissions"
+msgstr ""
+
+msgid "Accept invitation"
+msgstr ""
+
+msgid "Access allowed"
+msgstr ""
+
+msgid "Access level"
+msgstr ""
+
+msgid "Account"
+msgstr ""
+
+msgid "Account created, check your email to activate!"
+msgstr ""
+
+msgid "Account details for %(username)s at %(ORG_LONG_NAME)s"
+msgstr ""
+
+msgid "Account Security"
+msgstr ""
+
+msgid "Acknowledge use of essential cookies."
+msgstr ""
+
+msgid "A comment was left that can be read here"
+msgstr ""
+
+msgid "A comment was left that can be viewed here"
+msgstr ""
+
+msgid "Action"
+msgstr ""
+
+msgid "Actions to take"
+msgstr ""
+
+msgid "Activate cookie pop-up banner"
+msgstr ""
+
+msgid "Activate your account on the %(ORG_LONG_NAME)s web site by clicking this link or copying and pasting it to your browser:"
+msgstr ""
+
+msgid "ACTIVE"
+msgstr ""
+
+msgid "Active"
+msgstr ""
+
+msgid "Active invoices"
+msgstr ""
+
+msgid "activities"
+msgstr ""
+
+msgid "Activities Summary -"
+msgstr ""
+
+msgid "activity"
+msgstr ""
+
+msgid "activity attachment"
+msgstr ""
+
+msgid "activity attachments"
+msgstr ""
+
+msgid "Activity feed"
+msgstr ""
+
+msgid "Activity feed across all applications and projects"
+msgstr ""
+
+msgid "Activity feed across all the applications"
+msgstr ""
+
+msgid "{adapter}: {message}"
+msgstr ""
+
+msgid "{adapter} [to: {recipient}]: {message}"
+msgstr ""
+
+msgid "Add"
+msgstr ""
+
+msgid "Add a form to be used by external reviewers."
+msgstr ""
+
+msgid "Add another project"
+msgstr ""
+
+msgid "Add a review"
+msgstr ""
+
+msgid "Add batch determination"
+msgstr ""
+
+msgid "Add {child_verbose_name} {verbose_name}"
+msgstr ""
+
+msgid "Add {child_verbose_name} {verbose_name} under this one"
+msgstr ""
+
+msgid "Add Comment"
+msgstr ""
+
+msgid "Add communication"
+msgstr ""
+
+msgid "Add determination"
+msgstr ""
+
+msgid "Added:"
+msgstr ""
+
+msgid "added comment"
+msgstr ""
+
+msgid "added new review"
+msgstr ""
+
+msgid "Added screening decision to \"{new_status}\""
+msgstr ""
+
+msgid "Add Invoice"
+msgstr ""
+
+msgid "Add invoices"
+msgstr ""
+
+msgid "Add %(item)s to current filters"
+msgstr ""
+
+msgid "Additional text for the application confirmation message."
+msgstr ""
+
+msgid "Add new item"
+msgstr ""
+
+msgid "Add passkey"
+msgstr ""
+
+msgid "Add Phone Number"
+msgstr ""
+
+msgid "Add report date"
+msgstr ""
+
+msgid "Address"
+msgstr ""
+
+msgid "Add tags"
+msgstr ""
+
+msgid "Add %(term)s to current filters"
+msgstr ""
+
+msgid "Add to your flagged submissions"
+msgstr ""
+
+msgid "Add %(user)s to current filters"
+msgstr ""
+
+msgid "A determination already exists for the following submissions and they have been excluded: {submissions}"
+msgstr ""
+
+msgid "A determination for <{link}|{submission_title}> was saved without sending an email. Outcome: {determination_outcome}"
+msgstr ""
+
+msgid "A determination for <{link}|{submission_title}> was sent by email. Outcome: {determination_outcome}"
+msgstr ""
+
+msgid "A determination of \"{current}\" exists but you tried to progress as \"{target}\""
+msgstr ""
+
+msgid "Admin"
+msgstr ""
+
+msgid "Administration"
+msgstr ""
+
+msgid "Administrator"
+msgstr ""
+
+msgid "Advisory council"
+msgstr ""
+
+msgid "A final determination has already been submitted."
+msgstr ""
+
+msgid "After"
+msgstr ""
+
+msgid "After setting your password, you will be able to log in at"
+msgstr ""
+
+msgid "after until the project end date"
+msgstr ""
+
+msgid "Agree"
+msgstr ""
+
+msgid "Agree,Disagree"
+msgstr ""
+
+msgid "Alert! An attempt to update your email."
+msgstr ""
+
+msgid "all"
+msgstr ""
+
+msgid "All"
+msgstr ""
+
+msgid "All approval group users can approve project form (for parallel approvals)"
+msgstr ""
+
+msgid "All approvers will be notified via email."
+msgstr ""
+
+msgid "All Categories"
+msgstr ""
+
+msgid "All Funds &amp; Labs"
+msgstr ""
+
+msgid "All Invoices"
+msgstr ""
+
+msgid "All Leads"
+msgstr ""
+
+msgid "All Outcomes"
+msgstr ""
+
+msgid "All Outcomes Except Dismissed"
+msgstr ""
+
+msgid "allow document access for groups"
+msgstr ""
+
+msgid "All Projects"
+msgstr ""
+
+msgid "All Reviewers"
+msgstr ""
+
+msgid "All reviewers"
+msgstr ""
+
+msgid "All reviews"
+msgstr ""
+
+msgid "All Rounds"
+msgstr ""
+
+msgid "All States"
+msgstr ""
+
+msgid "All statuses"
+msgstr ""
+
+msgid "All Submissions"
+msgstr ""
+
+msgid "All tags"
+msgstr ""
+
+msgid "Alternative analysis - \"red teaming\" questions and comments"
+msgstr ""
+
+msgid "Always enabled"
+msgstr ""
+
+msgid "Amounts"
+msgstr ""
+
+msgid "Analytics Cookies"
+msgstr ""
+
+msgid "Analytics cookies information to be displayed under \"Learn More\""
+msgstr ""
+
+msgid "An applicant with access to other applications utilizing the community/peer review workflow."
+msgstr ""
+
+msgid "and it will be one-time reporting."
+msgstr ""
+
+msgid "and then every"
+msgstr ""
+
+msgid "and the report period will be"
+msgstr ""
+
+msgid "An email containing a code has been sent. Please check your email for the code."
+msgstr ""
+
+msgid "An e-mail with more information has been sent to the address you entered."
+msgstr ""
+
+msgid "A new {comment.visibility} comment has been posted on <{link}|{source.title}> by {user}"
+msgstr ""
+
+msgid "A new contract has been added to your Project"
+msgstr ""
+
+msgid "A new invoice has been submitted for project \"%(title)s\"."
+msgstr ""
+
+msgid "A new submission has been submitted for {source.page.title}: <{link}|{source.title_text_display}> by {user}"
+msgstr ""
+
+msgid "An invoice on project \"%(title)s\" is waiting for your approval."
+msgstr ""
+
+msgid "An invoice on the project \"%(title)s\" had it's status updated by %(source_user)s."
+msgstr ""
+
+msgid "Anonymize"
+msgstr ""
+
+msgid "anonymize"
+msgstr ""
+
+msgid "Anonymize application"
+msgstr ""
+
+msgid "Anonymize applications"
+msgstr ""
+
+msgid "anonymized submission"
+msgstr ""
+
+msgid "An %(ORG_SHORT_NAME)s staff member has changed the reporting frequency of your project \"%(title)s\"."
+msgstr ""
+
+msgid "An %(ORG_SHORT_NAME)s staff member has marked a report as"
+msgstr ""
+
+msgid "An %(ORG_SHORT_NAME)s staff member has marked a report as no longer required for \"%(title)s\" for period %(start_date)s to %(end_date)s."
+msgstr ""
+
+msgid "An %(ORG_SHORT_NAME)s staff member has marked a report as required for \"%(title)s\" for period %(start_date)s to %(end_date)s."
+msgstr ""
+
+msgid "An %(ORG_SHORT_NAME)s staff member has submitted a report for your project \"%(title)s\" for period %(start_date)s to %(end_date)s."
+msgstr ""
+
+msgid "An %(ORG_SHORT_NAME)s staff member has updated an invoice on your project \"%(title)s\"."
+msgstr ""
+
+msgid "An %(ORG_SHORT_NAME)s staff member has updated the status for an invoice on your project \"%(title)s\"."
+msgstr ""
+
+msgid "An overview of active and past submissions"
+msgstr ""
+
+msgid "An overview of active and past submissions and projects"
+msgstr ""
+
+msgid "A passkey was added to your %(org)s account"
+msgstr ""
+
+msgid "A passkey was removed from your %(org)s account"
+msgstr ""
+
+msgid "Applicant"
+msgstr ""
+
+msgid "Applicant:"
+msgstr ""
+
+msgid "Applicant cannot view submission screening"
+msgstr ""
+
+msgid "Applicants"
+msgstr ""
+
+msgid "Applicants can invite co-applicants to their application"
+msgstr ""
+
+msgid "Applicants & Partners"
+msgstr ""
+
+msgid "Applicant was changed successfully."
+msgstr ""
+
+msgid "Application"
+msgstr ""
+
+msgid "Application #"
+msgstr ""
+
+msgid "application base"
+msgstr ""
+
+msgid "application base determination form"
+msgstr ""
+
+msgid "application base determination forms"
+msgstr ""
+
+msgid "application base external review form"
+msgstr ""
+
+msgid "application base external review forms"
+msgstr ""
+
+msgid "application base form"
+msgstr ""
+
+msgid "application base forms"
+msgstr ""
+
+msgid "application base project form"
+msgstr ""
+
+msgid "application base project forms"
+msgstr ""
+
+msgid "application base project report form"
+msgstr ""
+
+msgid "application base project report forms"
+msgstr ""
+
+msgid "application base project SOW form"
+msgstr ""
+
+msgid "application base project SOW forms"
+msgstr ""
+
+msgid "application base review form"
+msgstr ""
+
+msgid "application base review forms"
+msgstr ""
+
+msgid "application bases"
+msgstr ""
+
+msgid "application form"
+msgstr ""
+
+msgid "Application forms"
+msgstr ""
+
+msgid "Application guide"
+msgstr ""
+
+msgid "Application Outcome"
+msgstr ""
+
+msgid "Application ready to review: {source.title_text_display}"
+msgstr ""
+
+msgid "Application Received"
+msgstr ""
+
+msgid "application revision"
+msgstr ""
+
+msgid "application revisions"
+msgstr ""
+
+msgid "Application revisions"
+msgstr ""
+
+msgid "Application Sealed"
+msgstr ""
+
+msgid "application settings"
+msgstr ""
+
+msgid "applications forms"
+msgstr ""
+
+msgid "application submission"
+msgstr ""
+
+msgid "application submissions"
+msgstr ""
+
+msgid "Application title"
+msgstr ""
+
+msgid "Applied"
+msgstr ""
+
+msgid "Applied amounts"
+msgstr ""
+
+msgid "Apply"
+msgstr ""
+
+msgid "Apply home page"
+msgstr ""
+
+msgid "Apply now for our open rounds"
+msgstr ""
+
+msgid "{} approval"
+msgstr ""
+
+msgid "Approval of {project} by {user}"
+msgstr ""
+
+msgid "Approvals"
+msgstr ""
+
+msgid "Approve"
+msgstr ""
+
+msgid "Approve contract"
+msgstr ""
+
+msgid "Approved"
+msgstr ""
+
+msgid "approved"
+msgstr ""
+
+msgid "Approved by %(approval_user)s"
+msgstr ""
+
+msgid "Approved by finance"
+msgstr ""
+
+msgid "Approved by staff"
+msgstr ""
+
+msgid "approved contract"
+msgstr ""
+
+msgid "Approved contract"
+msgstr ""
+
+msgid "approved project"
+msgstr ""
+
+msgid "approved project form"
+msgstr ""
+
+msgid "approve invoice"
+msgstr ""
+
+msgid "Approve Project Sequentially"
+msgstr ""
+
+msgid "Approver"
+msgstr ""
+
+msgid "Approvers can review in parallel at any time."
+msgstr ""
+
+msgid "Approvers will review sequentially in order."
+msgstr ""
+
+msgid "Approve the project here"
+msgstr ""
+
+msgid "A Project can only be sent for Approval when Drafted."
+msgstr ""
+
+msgid "A project, \"%(title)s\" has been created for your submission to the %(ORG_LONG_NAME)s."
+msgstr ""
+
+msgid "A project was automatically created."
+msgstr ""
+
+msgid "A proposal has been submitted for review: <{link}|{source.title_text_display}>"
+msgstr ""
+
+msgid "Archive"
+msgstr ""
+
+msgid "archived"
+msgstr ""
+
+msgid "Archived"
+msgstr ""
+
+msgid "archived submission"
+msgstr ""
+
+msgid "Archived Submission"
+msgstr ""
+
+msgid "Archived terms can be viewed but not set on content."
+msgstr ""
+
+msgid "archived this submission"
+msgstr ""
+
+msgid "Archive Submission"
+msgstr ""
+
+msgid "Archive submissions"
+msgstr ""
+
+msgid "A report for this date already exists."
+msgstr ""
+
+msgid "A report is due for the period"
+msgstr ""
+
+msgid "A report is due for your project \"%(title)s\" on %(end_date)s."
+msgstr ""
+
+msgid "Are you sure you want create a project from this submission? This cannot be undone."
+msgstr ""
+
+msgid "Are you sure you want to accept and approve the contract for commencing the project?"
+msgstr ""
+
+msgid "Are you sure you want to anonymize %(count)s submission(s)? Personal data will be removed and applications will only be accessible via statistics in the Results view. All draft submissions will be deleted. This action cannot be undone."
+msgstr ""
+
+msgid "Are you sure you want to anonymize this application? Personal data will be removed and the application will only be accessible via statistics in the Results view. This action cannot be undone."
+msgstr ""
+
+msgid "Are you sure you want to archive %(count)s submission(s)? Archived submissions will be hidden from the main list and cannot be edited. Submissions can be unarchived at any time."
+msgstr ""
+
+msgid "Are you sure you want to archive submission? Archived submissions will be hidden from the main list of submissions and can not be edited. Submissions can be unarchived at any time."
+msgstr ""
+
+msgid "Are you sure you want to assign \"%(user_title)s\" as lead of the selected submissions?"
+msgstr ""
+
+msgid "Are you sure you want to change the status of the selected submissions to \"%(value)s\"?"
+msgstr ""
+
+msgid "Are you sure you want to delete"
+msgstr ""
+
+msgid "Are you sure you want to delete co-applicant?"
+msgstr ""
+
+msgid "Are you sure you want to delete the selected submissions? This action cannot be undone."
+msgstr ""
+
+msgid "Are you sure you want to delete these users?"
+msgstr ""
+
+msgid "Are you sure you want to delete this application? All of your data for this application will be permanently removed from our servers forever. This action cannot be undone."
+msgstr ""
+
+msgid "Are you sure you want to delete this comment? This action cannot be undone."
+msgstr ""
+
+msgid "Are you sure you want to delete this invoice? This action cannot be undone."
+msgstr ""
+
+msgid "Are you sure you want to delete this reminder scheduled"
+msgstr ""
+
+msgid "Are you sure you want to delete this report? This action cannot be undone."
+msgstr ""
+
+msgid "Are you sure you want to delete this review opinion by %(user)s? This action cannot be undone."
+msgstr ""
+
+msgid "Are you sure you want to delete this user?"
+msgstr ""
+
+msgid "Are you sure you want to disable the Two Factor Authentication for this user?"
+msgstr ""
+
+msgid "Are you sure you want to download the submissions as a csv file? This file may contain sensitive information, so please handle it carefully."
+msgstr ""
+
+msgid "Are you sure you want to export the invoices as a CSV file? This file may contain sensitive information, so please handle it carefully."
+msgstr ""
+
+msgid "Are you sure you want to export the submissions as a CSV file? This file may contain sensitive information, so please handle it carefully."
+msgstr ""
+
+msgid "Are you sure you want to export the submissions as PDF files? These files may contain sensitive information, so please handle them carefully."
+msgstr ""
+
+msgid "Are you sure you want to permanently delete %(count)s submission(s)? All data will be permanently removed. This action cannot be undone."
+msgstr ""
+
+msgid "Are you sure you want to remove the \"%(current_status)s\" screening decision?"
+msgstr ""
+
+msgid "Are you sure you want to remove this document?"
+msgstr ""
+
+msgid "Are you sure you want to remove this task from your task list? This can not be undone."
+msgstr ""
+
+msgid "Are you sure you want to submit contracting documents?"
+msgstr ""
+
+msgid "Are you sure you want to submit your report?"
+msgstr ""
+
+msgid "Are you sure you want to unarchive this submission? This submission will be visible in the main list of submissions and can be edited."
+msgstr ""
+
+msgid "Are you sure you want to update the approvers?"
+msgstr ""
+
+msgid "as"
+msgstr ""
+
+msgid "As a last resort, you can use a backup codes:"
+msgstr ""
+
+msgid "As an admin you are allowed to access the application. However, this action will be recorded."
+msgstr ""
+
+msgid "as {role}"
+msgstr ""
+
+msgid "Assign"
+msgstr ""
+
+msgid "Assign approver"
+msgstr ""
+
+msgid "Assign Approver"
+msgstr ""
+
+msgid "assigned Project form to {}"
+msgstr ""
+
+msgid "assigned reviewer"
+msgstr ""
+
+msgid "assigned reviewers"
+msgstr ""
+
+msgid "Assigned to %(assigned_to)s"
+msgstr ""
+
+msgid "Assigned to %(lead)s"
+msgstr ""
+
+msgid "Assigned to you"
+msgstr ""
+
+msgid "Assignee"
+msgstr ""
+
+msgid "Assign Lead"
+msgstr ""
+
+msgid "assign project form approver"
+msgstr ""
+
+msgid "Assign Reviewer(s)"
+msgstr ""
+
+msgid "Assign reviewers"
+msgstr ""
+
+msgid "Assign to"
+msgstr ""
+
+msgid "Assign %(user_title)s as lead."
+msgstr ""
+
+msgid "A staff member left a comment that can be read here"
+msgstr ""
+
+msgid "A submission can have several projects. Give this one a name so it can be told apart from the others."
+msgstr ""
+
+msgid "A submitted report's due date cannot be edited."
+msgstr ""
+
+msgid "at"
+msgstr ""
+
+msgid "Attachments"
+msgstr ""
+
+msgid "A user with that email already exists."
+msgstr ""
+
+msgid "Authentication failed"
+msgstr ""
+
+msgid "Auth Settings"
+msgstr ""
+
+msgid "Available providers"
+msgstr ""
+
+msgid "Average value"
+msgstr ""
+
+msgid "Avg. score: {average}"
+msgstr ""
+
+msgid "Awaiting approval. Assigned to {approver}"
+msgstr ""
+
+msgid "Awaiting approval from other approvers teams"
+msgstr ""
+
+msgid "Awaiting contract approval from {ORG_SHORT_NAME}"
+msgstr ""
+
+msgid "Awaiting contract approval from Staff"
+msgstr ""
+
+msgid "Awaiting contract documents submission by you"
+msgstr ""
+
+msgid "Awaiting contract documents submission from Vendor"
+msgstr ""
+
+msgid "Awaiting contract documents to be submitted by you."
+msgstr ""
+
+msgid "Awaiting contract finalization..."
+msgstr ""
+
+msgid "Awaiting countersigned contract from Vendor"
+msgstr ""
+
+msgid "Awaiting determination"
+msgstr ""
+
+msgid "Awaiting project documents to be created and approved by {ORG_SHORT_NAME} internally. Please check back when the project has moved to contracting stage."
+msgstr ""
+
+msgid "Awaiting project form to be approved"
+msgstr ""
+
+msgid "Awaiting project form to be created."
+msgstr ""
+
+msgid "Awaiting project from assigned approvers"
+msgstr ""
+
+msgid "Awaiting {reviewer_role} to assign an approver"
+msgstr ""
+
+msgid "Awaiting Screening"
+msgstr ""
+
+msgid "Awaiting signed contract from Contracting team"
+msgstr ""
+
+msgid "Awaiting signed contract from {ORG_SHORT_NAME}"
+msgstr ""
+
+msgid "Awaiting signed contract from Staff/Contracting team"
+msgstr ""
+
+msgid "Awaiting your review"
+msgstr ""
+
+msgid "Back to account"
+msgstr ""
+
+msgid "Back to top"
+msgstr ""
+
+msgid "Backup Code"
+msgstr ""
+
+msgid "Backup codes"
+msgstr ""
+
+msgid "Backup Codes"
+msgstr ""
+
+msgid "Bad Request"
+msgstr ""
+
+msgid "batch anonymized submissions"
+msgstr ""
+
+msgid "batch archive submissions"
+msgstr ""
+
+msgid "batch deleted submissions"
+msgstr ""
+
+msgid "Batch reviewers updated:"
+msgstr ""
+
+msgid "Batch reviewers updated: {reviewers_text} on"
+msgstr ""
+
+msgid "batch transitioned"
+msgstr ""
+
+msgid "batch updated lead"
+msgstr ""
+
+msgid "batch updated Lead to {new_lead}"
+msgstr ""
+
+msgid "batch updated reviewers"
+msgstr ""
+
+msgid "batch update invoice status"
+msgstr ""
+
+msgid "Before"
+msgstr ""
+
+msgid "Behind schedule"
+msgstr ""
+
+msgid "Best Match"
+msgstr ""
+
+msgid "Built with"
+msgstr ""
+
+msgid "But You can't accept this invite because you already hold a responsible position in"
+msgstr ""
+
+msgid "by"
+msgstr ""
+
+msgid "Can access their own application and communicate via the communication tab."
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "Cannot delete root term."
+msgstr ""
+
+msgid "Can not submit without contract"
+msgstr ""
+
+msgid "Can review/approve project form, and access compliance documents. Must also be in group: Staff, Contracting, or Finance."
+msgstr ""
+
+msgid "Can review/approve the project form, access documents associated with contracting, and access invoices approved by Staff."
+msgstr ""
+
+msgid "Can review/approve the project form and access documents associated with contracting."
+msgstr ""
+
+msgid "Can't submit both an agreement and disagreement"
+msgstr ""
+
+msgid "Can't switch language, only one language is active."
+msgstr ""
+
+msgid "Can't unassign, just change, because review already submitted"
+msgstr ""
+
+msgid "Can view application message log. Must also be in group Staff."
+msgstr ""
+
+msgid "Can view, edit, and comment on a specific application they are assigned to."
+msgstr ""
+
+msgid "Categories"
+msgstr ""
+
+msgid "Category"
+msgstr ""
+
+msgid "Category:"
+msgstr ""
+
+msgid "Category Questions"
+msgstr ""
+
+msgid "Change Approver"
+msgstr ""
+
+msgid "Change approver"
+msgstr ""
+
+msgid "Change Author"
+msgstr ""
+
+msgid "changed report frequency"
+msgstr ""
+
+msgid "Change Password"
+msgstr ""
+
+msgid "Change reporting frequency"
+msgstr ""
+
+msgid "Changes"
+msgstr ""
+
+msgid "Changes requested. Awaiting documents to be resubmitted."
+msgstr ""
+
+msgid "Changes requested by finance"
+msgstr ""
+
+msgid "Changes requested by staff"
+msgstr ""
+
+msgid "Change status to %(value)s"
+msgstr ""
+
+msgid "characters"
+msgstr ""
+
+msgid "Checkbox"
+msgstr ""
+
+msgid "Checkbox field"
+msgstr ""
+
+msgid "Check latest notifications"
+msgstr ""
+
+msgid "✓ Check your email for password set link."
+msgstr ""
+
+msgid "Check your inbox for a password reset email!"
+msgstr ""
+
+msgid "Check your inbox to proceed!"
+msgstr ""
+
+msgid "Check your \"Spam\" folder, if you don't find the email in your inbox."
+msgstr ""
+
+msgid "{child} cannot be empty for {parent}"
+msgstr ""
+
+msgid "Choice"
+msgstr ""
+
+msgid "Choose a Fund"
+msgstr ""
+
+msgid "Clear"
+msgstr ""
+
+msgid "Clear current filters & sorts"
+msgstr ""
+
+msgid "clearing"
+msgstr ""
+
+msgid "Click here to use a backup code"
+msgstr ""
+
+msgid "Click on link if you want to accept it."
+msgstr ""
+
+msgid "Click to apply for %(title)s"
+msgstr ""
+
+msgid "Click to edit name"
+msgstr ""
+
+msgid "Click to open your task list"
+msgstr ""
+
+msgid "Clone"
+msgstr ""
+
+msgid "Clone this %s"
+msgstr ""
+
+msgid "Close"
+msgstr ""
+
+msgid "Closed"
+msgstr ""
+
+msgid "Close Modal"
+msgstr ""
+
+msgid "Close Review"
+msgstr ""
+
+msgid "(Close to the limit)"
+msgstr ""
+
+msgid "Closing"
+msgstr ""
+
+msgid "co-applicant"
+msgstr ""
+
+msgid "Co-applicant can't be added to archived submission"
+msgstr ""
+
+msgid "Co-applicant can't be updated to archived submission"
+msgstr ""
+
+msgid "Co-applicant deleted"
+msgstr ""
+
+msgid "Co-applicant does not have edit role"
+msgstr ""
+
+msgid "co-applicant invite"
+msgstr ""
+
+msgid "Co-applicant invited"
+msgstr ""
+
+msgid "co-applicant invites"
+msgstr ""
+
+msgid "Co-applicant re-invited"
+msgstr ""
+
+msgid "co-applicants"
+msgstr ""
+
+msgid "Co-applicants"
+msgstr ""
+
+msgid "Co-applicants can't be invited to completed projects"
+msgstr ""
+
+msgid "Co-applicants can't be updated to completed projects"
+msgstr ""
+
+msgid "Co-applicant updated"
+msgstr ""
+
+msgid "Co-applicant with edit permission for project's contracting document can submit contracting documents"
+msgstr ""
+
+msgid "Co-applicant with edit permission for project's contracting document can upload contract"
+msgstr ""
+
+msgid "Co-applicant with edit role can edit submission"
+msgstr ""
+
+msgid "Co-applicant without project permission can't access project"
+msgstr ""
+
+msgid "Co-applicant with permissions can view contracting documents"
+msgstr ""
+
+msgid "Co-applicant with project permission can access project"
+msgstr ""
+
+msgid "Collaboration questions and comments"
+msgstr ""
+
+msgid "Comma separated list of emails where a summary of all the activities related to this fund will be sent."
+msgstr ""
+
+msgid "Comma separated list of emails where a summary of all the activities related to this lab will be sent."
+msgstr ""
+
+msgid "Comment"
+msgstr ""
+
+msgid "comment"
+msgstr ""
+
+msgid "commented"
+msgstr ""
+
+msgid "Comments"
+msgstr ""
+
+msgid "Comments: %(title)s"
+msgstr ""
+
+msgid "Comment Task"
+msgstr ""
+
+msgid "Comment: They can view and add comments to the application."
+msgstr ""
+
+msgid "Community Review"
+msgstr ""
+
+msgid "Community reviewer"
+msgstr ""
+
+msgid "Community review submissions"
+msgstr ""
+
+msgid "Compare"
+msgstr ""
+
+msgid "Compare with latest"
+msgstr ""
+
+msgid "Complete"
+msgstr ""
+
+msgid "Complete draft determination"
+msgstr ""
+
+msgid "Complete draft review"
+msgstr ""
+
+msgid "Complete your login"
+msgstr ""
+
+msgid "Complete your registration"
+msgstr ""
+
+msgid "Concept Accepted"
+msgstr ""
+
+msgid "Concept Draft"
+msgstr ""
+
+msgid "Concept form"
+msgstr ""
+
+msgid "Concept note"
+msgstr ""
+
+msgid "Concept Note Received"
+msgstr ""
+
+msgid "Concept & Proposal"
+msgstr ""
+
+msgid "Concept Received"
+msgstr ""
+
+msgid "Concept Received (revert)"
+msgstr ""
+
+msgid "Concerns"
+msgstr ""
+
+msgid "configure"
+msgstr ""
+
+msgid "Confirm"
+msgstr ""
+
+msgid "Confirm access"
+msgstr ""
+
+msgid "Confirm Access Token"
+msgstr ""
+
+msgid "Confirm Access Tokens"
+msgstr ""
+
+msgid "Confirm account creation"
+msgstr ""
+
+msgid "Confirm activation"
+msgstr ""
+
+msgid "Confirm &amp; verify your new email!"
+msgstr ""
+
+msgid "Confirmation code for {ORG_LONG_NAME}: {token}"
+msgstr ""
+
+msgid "Confirmation email"
+msgstr ""
+
+msgid "Confirmation email for {unverified_email} at {ORG_LONG_NAME}"
+msgstr ""
+
+msgid "Confirm login"
+msgstr ""
+
+msgid "Confirm signup"
+msgstr ""
+
+msgid "Congratulations!"
+msgstr ""
+
+msgid "Congratulations, you've successfully enabled two-factor authentication."
+msgstr ""
+
+msgid "consent help"
+msgstr ""
+
+msgid "consent text"
+msgstr ""
+
+msgid "Contact email"
+msgstr ""
+
+msgid "Contact name"
+msgstr ""
+
+msgid "Content"
+msgstr ""
+
+msgid "Continue"
+msgstr ""
+
+msgid "Continue editing"
+msgstr ""
+
+msgid "Continue Editing"
+msgstr ""
+
+msgid "Continue to next status"
+msgstr ""
+
+msgid "Contract"
+msgstr ""
+
+msgid "contract"
+msgstr ""
+
+msgid "Contract #"
+msgstr ""
+
+msgid "Contract Category is required"
+msgstr ""
+
+msgid "Contract Document"
+msgstr ""
+
+msgid "Contract Document Categories"
+msgstr ""
+
+msgid "Contract Documents required approval for the project: {source.title}"
+msgstr ""
+
+msgid "Contract documents submitted"
+msgstr ""
+
+msgid "Contract file: {title}"
+msgstr ""
+
+msgid "Contract for {project} ({state})"
+msgstr ""
+
+msgid "Contracting"
+msgstr ""
+
+msgid "Contracting Document"
+msgstr ""
+
+msgid "Contracting document has been removed"
+msgstr ""
+
+msgid "Contracting document has been uploaded"
+msgstr ""
+
+msgid "Contracting documents"
+msgstr ""
+
+msgid "contracting group email"
+msgstr ""
+
+msgid "Contracting team"
+msgstr ""
+
+msgid "Contracting team can upload the contract"
+msgstr ""
+
+msgid "contract number"
+msgstr ""
+
+msgid "Contract number has been updated"
+msgstr ""
+
+msgid "Contractor"
+msgstr ""
+
+msgid "Contractor documents have been approved.  You can receive invoices from vendor now."
+msgstr ""
+
+msgid "contract packet file"
+msgstr ""
+
+msgid "contract packet files"
+msgstr ""
+
+msgid "contracts"
+msgstr ""
+
+msgid "Contract uploaded for the project: {source.title}"
+msgstr ""
+
+msgid "Contrat Document Category"
+msgstr ""
+
+msgid "Cookie banner"
+msgstr ""
+
+msgid "Cookie banner settings"
+msgstr ""
+
+msgid "Cookie banner title"
+msgstr ""
+
+msgid "Cookie consent message"
+msgstr ""
+
+msgid "Copied!"
+msgstr ""
+
+msgid "Copied from the fund."
+msgstr ""
+
+msgid "Copied on {copy_time}"
+msgstr ""
+
+msgid "Copies all the questions and user input to the clipboard in plain text."
+msgstr ""
+
+msgid "Copy"
+msgstr ""
+
+msgid "Copy contract number"
+msgstr ""
+
+msgid "copy contract number"
+msgstr ""
+
+msgid "Copy {form_name}"
+msgstr ""
+
+msgid "Copy questions to clipboard"
+msgstr ""
+
+msgid "Copyright"
+msgstr ""
+
+msgid "Copy to Clipboard"
+msgstr ""
+
+msgid "Corrections/amendments?"
+msgstr ""
+
+msgid "Cost realism questions and comments"
+msgstr ""
+
+msgid "Could not save passkey"
+msgstr ""
+
+msgid "Countersign"
+msgstr ""
+
+msgid "Counter Signed"
+msgstr ""
+
+msgid "counter signed?"
+msgstr ""
+
+msgid "Countersigned contract by"
+msgstr ""
+
+msgid "Countersigned contract uploaded"
+msgstr ""
+
+msgid "%(counter)s invoice selected"
+msgstr ""
+
+msgid "{count} outstanding"
+msgstr ""
+
+msgid "%(count)s anonymized submission(s) are excluded because the active filter does not apply to anonymized data."
+msgstr ""
+
+msgid "{count} submissions archived."
+msgstr ""
+
+msgid "{count} submissions deleted."
+msgstr ""
+
+msgid "Create"
+msgstr ""
+
+msgid "Create a Determination"
+msgstr ""
+
+msgid "Create Determination"
+msgstr ""
+
+msgid "created invoice for project"
+msgstr ""
+
+msgid "created new account"
+msgstr ""
+
+msgid "created project"
+msgstr ""
+
+msgid "Created project with initial status of \"{status}\""
+msgstr ""
+
+msgid "Create my account"
+msgstr ""
+
+msgid "Create new reminder"
+msgstr ""
+
+msgid "Create project"
+msgstr ""
+
+msgid "Create reminder"
+msgstr ""
+
+msgid "Create Reminder"
+msgstr ""
+
+msgid "Create report"
+msgstr ""
+
+msgid "Create Review"
+msgstr ""
+
+msgid "creation time"
+msgstr ""
+
+msgid "Current"
+msgstr ""
+
+msgid "Current Author"
+msgstr ""
+
+msgid "current language: %(language)s"
+msgstr ""
+
+msgid "Current Lead"
+msgstr ""
+
+msgid "Current status"
+msgstr ""
+
+msgid "Current Status: %(current_status_name)s"
+msgstr ""
+
+msgid "current theme"
+msgstr ""
+
+msgid "Custom"
+msgstr ""
+
+msgid "custom image"
+msgstr ""
+
+msgid "custom images"
+msgstr ""
+
+msgid "Dashboard"
+msgstr ""
+
+msgid "Date field"
+msgstr ""
+
+msgid "Date requested"
+msgstr ""
+
+msgid "Dates"
+msgstr ""
+
+msgid "Dates has been updated"
+msgstr ""
+
+msgid "Date submitted"
+msgstr ""
+
+msgid "Date+time field"
+msgstr ""
+
+msgid "{} day"
+msgstr ""
+
+msgid "Days"
+msgstr ""
+
+msgid "Dear"
+msgstr ""
+
+msgid "Dear %(name)s,"
+msgstr ""
+
+msgid "Dear Reviewer,"
+msgstr ""
+
+msgid "Dear %(user)s,"
+msgstr ""
+
+msgid "Decline"
+msgstr ""
+
+msgid "Declined"
+msgstr ""
+
+msgid "Decline tracking cookies."
+msgstr ""
+
+msgid "Default site logo"
+msgstr ""
+
+msgid "Default value"
+msgstr ""
+
+msgid "default yes/no"
+msgstr ""
+
+msgid "Delete"
+msgstr ""
+
+msgid "delete"
+msgstr ""
+
+msgid "Delete application"
+msgstr ""
+
+msgid "Delete applications"
+msgstr ""
+
+msgid "Delete comment"
+msgstr ""
+
+msgid "deleted"
+msgstr ""
+
+msgid "deleted an invoice"
+msgstr ""
+
+msgid "deleted a report"
+msgstr ""
+
+msgid "deleted invoice"
+msgstr ""
+
+msgid "deleted report"
+msgstr ""
+
+msgid "deleted review"
+msgstr ""
+
+msgid "deleted review opinion"
+msgstr ""
+
+msgid "deleted submission"
+msgstr ""
+
+msgid "deleted the opinion for review: {review_opinion.review}"
+msgstr ""
+
+msgid "Delete invoice"
+msgstr ""
+
+msgid "Delete passkey"
+msgstr ""
+
+msgid "Delete reminder"
+msgstr ""
+
+msgid "Delete Reminder?"
+msgstr ""
+
+msgid "Delete report"
+msgstr ""
+
+msgid "Delete report requirement"
+msgstr ""
+
+msgid "Delete review opinion"
+msgstr ""
+
+msgid "Delete Submission"
+msgstr ""
+
+msgid "Delete this passkey?"
+msgstr ""
+
+msgid "Deleting"
+msgstr ""
+
+msgid "description"
+msgstr ""
+
+msgid "Determination"
+msgstr ""
+
+msgid "determination"
+msgstr ""
+
+msgid "Determination draft"
+msgstr ""
+
+msgid "Determination for"
+msgstr ""
+
+msgid "determination form"
+msgstr ""
+
+msgid "Determination Form"
+msgstr ""
+
+msgid "determination forms"
+msgstr ""
+
+msgid "Determination Forms"
+msgstr ""
+
+msgid "Determination message"
+msgstr ""
+
+msgid "determination message"
+msgstr ""
+
+msgid "determination messages"
+msgstr ""
+
+msgid "determinations"
+msgstr ""
+
+msgid "Determinations"
+msgstr ""
+
+msgid "Determinations of {outcome} was sent for: {submissions_links}"
+msgstr ""
+
+msgid "Determined"
+msgstr ""
+
+msgid "Determining"
+msgstr ""
+
+msgid "Determining %(submission_count)s submission as \"%(action_name)s\""
+msgstr ""
+
+msgid "Disable"
+msgstr ""
+
+msgid "Disable 2FA"
+msgstr ""
+
+msgid "Disabled"
+msgstr ""
+
+msgid "disabled reporting"
+msgstr ""
+
+msgid "Disable Two-factor Authentication"
+msgstr ""
+
+msgid "Disabling 2FA"
+msgstr ""
+
+msgid "Disabling Two-factor authentication weakens your account security. We recommend reenabling it when you can."
+msgstr ""
+
+msgid "Disagree"
+msgstr ""
+
+msgid "Disconnect"
+msgstr ""
+
+msgid "Dismiss"
+msgstr ""
+
+msgid "Dismissed"
+msgstr ""
+
+msgid "Displayed along side login form"
+msgstr ""
+
+msgid "Display Name"
+msgstr ""
+
+msgid "document"
+msgstr ""
+
+msgid "Document"
+msgstr ""
+
+msgid "Document Category"
+msgstr ""
+
+msgid "Document has been removed"
+msgstr ""
+
+msgid "Document has been uploaded"
+msgstr ""
+
+msgid "Download"
+msgstr ""
+
+msgid "Download as DOCX"
+msgstr ""
+
+msgid "Download as PDF"
+msgstr ""
+
+msgid "Download exported invoices"
+msgstr ""
+
+msgid "Download exported submissions"
+msgstr ""
+
+msgid "Download generated CSV"
+msgstr ""
+
+msgid "Download generated ZIP"
+msgstr ""
+
+msgid "Download invoice"
+msgstr ""
+
+msgid "Do you recommend requesting a proposal based on this concept note?"
+msgstr ""
+
+msgid "draft"
+msgstr ""
+
+msgid "Draft"
+msgstr ""
+
+msgid "DRAFT"
+msgstr ""
+
+msgid "Drafted"
+msgstr ""
+
+msgid "Drafted <relative-time datetime=%(submitted_iso)s class=\"font-semibold\">%(submitted_display)s</relative-time> by <strong class=\"max-w-md font-semibold\">%(author)s</strong>"
+msgstr ""
+
+msgid "Drafts"
+msgstr ""
+
+msgid "Draft saved"
+msgstr ""
+
+msgid "Dropdown field"
+msgstr ""
+
+msgid "Due Date"
+msgstr ""
+
+msgid "Duplicate field"
+msgstr ""
+
+msgid "Duration"
+msgstr ""
+
+msgid "Duration type is used to display duration choices in Days, Weeks or Months in application forms. Be careful, changing the duration type in the active round can result in data inconsistency."
+msgstr ""
+
+msgid "Each of the code can be used only once. When they are used up, you can generate a new set of backup codes."
+msgstr ""
+
+msgid "Edit"
+msgstr ""
+
+msgid "edit"
+msgstr ""
+
+msgid "Edit a Determination"
+msgstr ""
+
+msgid "Edit co-applicant"
+msgstr ""
+
+msgid "Edit comment"
+msgstr ""
+
+msgid "edit contract number"
+msgstr ""
+
+msgid "edit dates"
+msgstr ""
+
+msgid "edited"
+msgstr ""
+
+msgid "edited account"
+msgstr ""
+
+msgid "edited applicant"
+msgstr ""
+
+msgid "edited review"
+msgstr ""
+
+msgid "edited submission"
+msgstr ""
+
+msgid "edited the submission"
+msgstr ""
+
+msgid "Editing"
+msgstr ""
+
+msgid "Edit Invoice"
+msgstr ""
+
+msgid "Edit Report"
+msgstr ""
+
+msgid "Edit report due date"
+msgstr ""
+
+msgid "Edit Review"
+msgstr ""
+
+msgid "Edits to %(title)s"
+msgstr ""
+
+msgid "Edit: They can view, comment and edit the application."
+msgstr ""
+
+msgid "Edit this report date"
+msgstr ""
+
+msgid "edit title"
+msgstr ""
+
+msgid "Edit user account"
+msgstr ""
+
+msgid "e.g. MacBook Touch ID"
+msgstr ""
+
+msgid "E-mail"
+msgstr ""
+
+msgid "Email"
+msgstr ""
+
+msgid "Email address"
+msgstr ""
+
+msgid "email address"
+msgstr ""
+
+msgid "Email change requires you to put password."
+msgstr ""
+
+msgid "Email Change - Verify Email"
+msgstr ""
+
+msgid "Email is already in use."
+msgstr ""
+
+msgid "Email Update"
+msgstr ""
+
+msgid "Enable"
+msgstr ""
+
+msgid "Enable 2FA"
+msgstr ""
+
+msgid "Enable same access level to these sections. Example: View role + Contracting = read-only contracting access."
+msgstr ""
+
+msgid "End"
+msgstr ""
+
+msgid "end date"
+msgstr ""
+
+msgid "End date"
+msgstr ""
+
+msgid "End date must come after the start date"
+msgstr ""
+
+msgid "End of Group fields Block"
+msgstr ""
+
+msgid "Enter an email address and then select a role to invite a co-applicant. The invitation will be valid for %(expiry)s days."
+msgstr ""
+
+msgid "Enter Code"
+msgstr ""
+
+msgid "Enter the 6-digit verification code generated by the app below."
+msgstr ""
+
+msgid "Error code: Bad Request (400)"
+msgstr ""
+
+msgid "Error code: Not Found (404)"
+msgstr ""
+
+msgid "Essential Cookies"
+msgstr ""
+
+msgid "Essential cookies information to be displayed under \"Learn More\""
+msgstr ""
+
+msgid "Essential only"
+msgstr ""
+
+msgid "Evaluation questions and comments"
+msgstr ""
+
+msgid "event"
+msgstr ""
+
+msgid "events"
+msgstr ""
+
+msgid "Every {occurrence} months on the {day}"
+msgstr ""
+
+msgid "Every {occurrence} weeks on {weekday}"
+msgstr ""
+
+msgid "Every {occurrence} years on {month} {day}"
+msgstr ""
+
+msgid "Exceeds required number of forms for stage, please remove."
+msgstr ""
+
+msgid "expand"
+msgstr ""
+
+msgid "Expired"
+msgstr ""
+
+msgid "Explore current and past rounds"
+msgstr ""
+
+msgid "export"
+msgstr ""
+
+msgid "Export"
+msgstr ""
+
+msgid "Export as CSV"
+msgstr ""
+
+msgid "Export as PDFs"
+msgstr ""
+
+msgid "Exported by %(export_user)s on %(export_date)s"
+msgstr ""
+
+msgid "External Review"
+msgstr ""
+
+msgid "External Reviewers"
+msgstr ""
+
+msgid "External Review Form"
+msgstr ""
+
+msgid "External Review Forms"
+msgstr ""
+
+msgid "extra text on application landing page"
+msgstr ""
+
+msgid "Failed"
+msgstr ""
+
+msgid "Failed to begin authentication"
+msgstr ""
+
+msgid "Failed to generate invoices export file"
+msgstr ""
+
+msgid "Failed to generate submissions export file"
+msgstr ""
+
+msgid "Failed to update:"
+msgstr ""
+
+msgid "{} Field"
+msgstr ""
+
+msgid "Fields"
+msgstr ""
+
+msgid "file"
+msgstr ""
+
+msgid "File not found - %(filename)s"
+msgstr ""
+
+msgid "File not found on submission"
+msgstr ""
+
+msgid "Files that are related to the invoice. They could be xls, microsoft office documents, open office documents, pdfs, txt files."
+msgstr ""
+
+msgid "Fill in"
+msgstr ""
+
+msgid "Fill in the Project Form"
+msgstr ""
+
+msgid "Filter"
+msgstr ""
+
+msgid "Filter by Category"
+msgstr ""
+
+msgid "Filter by current status"
+msgstr ""
+
+msgid "Filter by Fund & Labs"
+msgstr ""
+
+msgid "Filter by {label}"
+msgstr ""
+
+msgid "Filter by Lead"
+msgstr ""
+
+msgid "Filter by Reviewer"
+msgstr ""
+
+msgid "Filter by Round"
+msgstr ""
+
+msgid "Filter by screening decision"
+msgstr ""
+
+msgid "Filter by submitted date(s)"
+msgstr ""
+
+msgid "Filter by tags"
+msgstr ""
+
+msgid "Filter by updated date(s)"
+msgstr ""
+
+msgid "Filter %(title)s"
+msgstr ""
+
+msgid "Final Determination"
+msgstr ""
+
+msgid "Finance"
+msgstr ""
+
+msgid "finance group email"
+msgstr ""
+
+msgid "Finance pending"
+msgstr ""
+
+msgid "Find new applications to review"
+msgstr ""
+
+msgid "Finish"
+msgstr ""
+
+msgid "First"
+msgstr ""
+
+msgid "flag"
+msgstr ""
+
+msgid "Flag"
+msgstr ""
+
+msgid "Flag for staff review"
+msgstr ""
+
+msgid "Flagged"
+msgstr ""
+
+msgid "Flags"
+msgstr ""
+
+msgid "flags"
+msgstr ""
+
+msgid "Footer content"
+msgstr ""
+
+msgid "For"
+msgstr ""
+
+msgid "For Approval"
+msgstr ""
+
+msgid "Forbidden Error"
+msgstr ""
+
+msgid "For Conversion"
+msgstr ""
+
+msgid "Forgot your password?"
+msgstr ""
+
+msgid "form"
+msgstr ""
+
+msgid "Format"
+msgstr ""
+
+msgid "Form fields"
+msgstr ""
+
+msgid "For more information about our support options, review process, and selection criteria, please visit our website at %(ORG_URL)s."
+msgstr ""
+
+msgid "For %(title)s"
+msgstr ""
+
+msgid "For %(title)s by %(author)s at %(created)s"
+msgstr ""
+
+msgid "For %(title)s by Reviewer at %(created)s"
+msgstr ""
+
+msgid "Found an inactive account"
+msgstr ""
+
+msgid "Found an inactive account for the same email. Please use different email or <a href=\"mailto:{ORG_EMAIL}\">contact to the support team</a>."
+msgstr ""
+
+msgid "Found multiple account"
+msgstr ""
+
+msgid "Found multiple account for the same email. Please login with the correct credentials or <a href=\"mailto:{ORG_EMAIL}\">contact to the support team</a>."
+msgstr ""
+
+msgid "Front page navigation content"
+msgstr ""
+
+msgid "Full name"
+msgstr ""
+
+msgid "full name"
+msgstr ""
+
+msgid "Fund"
+msgstr ""
+
+msgid "Fund:"
+msgstr ""
+
+msgid "Fund or RFP"
+msgstr ""
+
+msgid "Funds"
+msgstr ""
+
+msgid "fund settings"
+msgstr ""
+
+msgid "Funds & RFP"
+msgstr ""
+
+msgid "Generate Codes"
+msgstr ""
+
+msgid "Generated"
+msgstr ""
+
+msgid "Generate downloadable CSV"
+msgstr ""
+
+msgid "Generate downloadable PDFs"
+msgstr ""
+
+msgid "Generating downloadable CSV..."
+msgstr ""
+
+msgid "Generating downloadable PDFs..."
+msgstr ""
+
+msgid "Generation failed, click to retry generating downloadable CSV"
+msgstr ""
+
+msgid "Generation failed, click to retry generating downloadable PDFs"
+msgstr ""
+
+msgid "Goals and principles"
+msgstr ""
+
+msgid "Go back"
+msgstr ""
+
+msgid "Go Back"
+msgstr ""
+
+msgid "Go to Dashboard"
+msgstr ""
+
+msgid "Goto Dashboard"
+msgstr ""
+
+msgid "Go to homepage"
+msgstr ""
+
+msgid "Go to my dashboard"
+msgstr ""
+
+msgid "Goto wagtail admin"
+msgstr ""
+
+msgid "Goto your account"
+msgstr ""
+
+msgid "Go to your dashboard"
+msgstr ""
+
+msgid "Goto your flagged submissions"
+msgstr ""
+
+msgid "Group fields"
+msgstr ""
+
+msgid "Group fields end"
+msgstr ""
+
+msgid "guide link"
+msgstr ""
+
+msgid "Has a dashboard and can submit reviews. Advisory Council Members are typically assigned this role."
+msgstr ""
+
+msgid "has been successfully created! We have sent you an account activatation email."
+msgstr ""
+
+msgid "Having problems?"
+msgstr ""
+
+msgid "Help text"
+msgstr ""
+
+msgid "{help_text} Accepted file types are {file_types}"
+msgstr ""
+
+msgid "Here is the link to start creating your proposal"
+msgstr ""
+
+msgid "Hi"
+msgstr ""
+
+msgid "Hide application"
+msgstr ""
+
+msgid "Hide password"
+msgstr ""
+
+msgid "Hide rejected"
+msgstr ""
+
+msgid "Hijack feature is not enabled."
+msgstr ""
+
+msgid "Homepage"
+msgstr ""
+
+msgid "However, it might happen that you don't have access to your primary token device. To enable account recovery, add a phone number."
+msgstr ""
+
+msgid "Hypha logo"
+msgstr ""
+
+msgid "I abstain"
+msgstr ""
+
+msgid "Idea Accepted"
+msgstr ""
+
+msgid "Idea Received"
+msgstr ""
+
+msgid "ID of this project at integrated payment service."
+msgstr ""
+
+msgid "If you accept this invitation, an account will be created using the email <strong>%(email)s</strong> and you will be redirected to the application. If you wish to update your name/email, you can do it by visiting 'My Account' section."
+msgstr ""
+
+msgid "If you accept this invitation, an account will be created using the email <strong>%(email)s</strong> and you will be redirected to two-factor authentication and then to the application. If you wish to update your name/email, you can do it by visiting 'My Account' section."
+msgstr ""
+
+msgid "If you do not complete the activation process within %(timeout_minutes)s minutes you can use the password reset form at"
+msgstr ""
+
+msgid "If you do not receive an e-mail within 15 minutes please check your spam folder and contact %(email)s for further assistance."
+msgstr ""
+
+msgid "If you have any issues accessing the submission or other general inquiries, please email us at %(ORG_EMAIL)s"
+msgstr ""
+
+msgid "If you have any issues accessing the submission system or other general inquiries, please email us at %(ORG_EMAIL)s"
+msgstr ""
+
+msgid "If you have any questions, please submit them here"
+msgstr ""
+
+msgid "If you have issues accessing the submission system or general inquiries, please email us at %(ORG_EMAIL)s."
+msgstr ""
+
+msgid "If you loose your smartphone, or your Authenticator app is not available, you can use a backup code along with your username and password to login until you recover your smartphone. Each backup code can be used only once. </br> </br> These codes should be kept in a secure, private place (print them or store them in your password manager) for when you need them. When they are used up, you can generate a new set of backup codes."
+msgstr ""
+
+msgid "I have stored the backup codes securely."
+msgstr ""
+
+msgid "Image field"
+msgstr ""
+
+msgid "Improperly configured request, please try again."
+msgstr ""
+
+msgid "Inactive"
+msgstr ""
+
+msgid "INACTIVE"
+msgstr ""
+
+msgid "Include consent option for analytics cookies"
+msgstr ""
+
+msgid "Inconsistent states provided - please talk to an admin"
+msgstr ""
+
+msgid "Incorrect input."
+msgstr ""
+
+msgid "Incorrect password"
+msgstr ""
+
+msgid "Incorrect password. Please try again."
+msgstr ""
+
+msgid "Incorrect project status to approve project form"
+msgstr ""
+
+msgid "Initial project status"
+msgstr ""
+
+msgid "In order to access this page, you need to set up these security features. Without setting them up, you will only be able to access your account's profile section or log out from the system."
+msgstr ""
+
+msgid "In progress"
+msgstr ""
+
+msgid "In Progress"
+msgstr ""
+
+msgid "Internal approval"
+msgstr ""
+
+msgid "Internal Review"
+msgstr ""
+
+msgid "Internal Review Form"
+msgstr ""
+
+msgid "Internal Review Forms"
+msgstr ""
+
+msgid "in the future using"
+msgstr ""
+
+msgid "Invalid code, please try again!"
+msgstr ""
+
+msgid "Invalid Confirmation"
+msgstr ""
+
+msgid "Invalid Confirmation URL"
+msgstr ""
+
+msgid "Invalid country selected"
+msgstr ""
+
+msgid "Invalid credential"
+msgstr ""
+
+msgid "Invalid input selected"
+msgstr ""
+
+msgid "Invalid Invitation"
+msgstr ""
+
+msgid "Invalid JSON"
+msgstr ""
+
+msgid "Invite"
+msgstr ""
+
+msgid "Invite co-applicant"
+msgstr ""
+
+msgid "invite co-applicant"
+msgstr ""
+
+msgid "Invited for Proposal"
+msgstr ""
+
+msgid "invited to proposal"
+msgstr ""
+
+msgid "Invited to submit a proposal"
+msgstr ""
+
+msgid "invited user email"
+msgstr ""
+
+msgid "Invite to Concept"
+msgstr ""
+
+msgid "Invite to Proposal"
+msgstr ""
+
+msgid "invoice"
+msgstr ""
+
+msgid "Invoice"
+msgstr ""
+
+msgid "Invoice #"
+msgstr ""
+
+msgid "Invoice added"
+msgstr ""
+
+msgid "invoice amount"
+msgstr ""
+
+msgid "invoice date"
+msgstr ""
+
+msgid "Invoice date"
+msgstr ""
+
+msgid "invoice export manager"
+msgstr ""
+
+msgid "invoice export managers"
+msgstr ""
+
+msgid "Invoice file"
+msgstr ""
+
+msgid "Invoice File"
+msgstr ""
+
+msgid "Invoice no."
+msgstr ""
+
+msgid "invoice number"
+msgstr ""
+
+msgid "Invoice number"
+msgstr ""
+
+msgid "Invoice requested for {project}"
+msgstr ""
+
+msgid "Invoice required changes"
+msgstr ""
+
+msgid "Invoices"
+msgstr ""
+
+msgid "invoices"
+msgstr ""
+
+msgid "Invoices: Download generated CSV"
+msgstr ""
+
+msgid "Invoices: Export as CSV"
+msgstr ""
+
+msgid "Invoices: Generate downloadable CSV"
+msgstr ""
+
+msgid "Invoices: Generating downloadable CSV"
+msgstr ""
+
+msgid "Invoice Status"
+msgstr ""
+
+msgid "invoice tag"
+msgstr ""
+
+msgid "Invoice Tags"
+msgstr ""
+
+msgid "invoice tags"
+msgstr ""
+
+msgid "Invoice tags updated."
+msgstr ""
+
+msgid "Invoice updated."
+msgstr ""
+
+msgid "Invoice waiting approval"
+msgstr ""
+
+msgid "Invoice waiting paid"
+msgstr ""
+
+msgid "Invoicing and reporting"
+msgstr ""
+
+msgid "items"
+msgstr ""
+
+msgid "Items that must be addressed"
+msgstr ""
+
+msgid "It's status is now \"%(status)s\"."
+msgstr ""
+
+msgid "I've installed a 2FA App"
+msgstr ""
+
+msgid "Keep the name short, ideally one word."
+msgstr ""
+
+msgid "Kind Regards,\nThe %(ORG_SHORT_NAME)s Team"
+msgstr ""
+
+msgid "Lab"
+msgstr ""
+
+msgid "lab base"
+msgstr ""
+
+msgid "lab base determination form"
+msgstr ""
+
+msgid "lab base determination forms"
+msgstr ""
+
+msgid "lab base external review form"
+msgstr ""
+
+msgid "lab base external review forms"
+msgstr ""
+
+msgid "lab base form"
+msgstr ""
+
+msgid "lab base forms"
+msgstr ""
+
+msgid "lab base project form"
+msgstr ""
+
+msgid "lab base project forms"
+msgstr ""
+
+msgid "lab base project report form"
+msgstr ""
+
+msgid "lab base project report forms"
+msgstr ""
+
+msgid "lab base project SOW form"
+msgstr ""
+
+msgid "lab base project SOW forms"
+msgstr ""
+
+msgid "lab base review form"
+msgstr ""
+
+msgid "lab base review forms"
+msgstr ""
+
+msgid "lab bases"
+msgstr ""
+
+msgid "Label"
+msgstr ""
+
+msgid "Labs"
+msgstr ""
+
+msgid "Language switcher"
+msgstr ""
+
+msgid "Last"
+msgstr ""
+
+msgid "Last 3 months"
+msgstr ""
+
+msgid "last day"
+msgstr ""
+
+msgid "Last login"
+msgstr ""
+
+msgid "Last Notified"
+msgstr ""
+
+msgid "Last updated"
+msgstr ""
+
+msgid "Last updated: %(updated)s"
+msgstr ""
+
+msgid "latest"
+msgstr ""
+
+msgid "Lead"
+msgstr ""
+
+msgid "Lead:"
+msgstr ""
+
+msgid "Lead can update approvers in approval state"
+msgstr ""
+
+msgid "Lead has been updated."
+msgstr ""
+
+msgid "Leads"
+msgstr ""
+
+msgid "Lead set to {lead} on"
+msgstr ""
+
+msgid "Learn More"
+msgstr ""
+
+msgid "Learn more about specific cookies used."
+msgstr ""
+
+msgid "Least Commented"
+msgstr ""
+
+msgid "Least Recently Updated"
+msgstr ""
+
+msgid "Leave blank to use the default Category help text"
+msgstr ""
+
+msgid "Leave blank to use the default Category label"
+msgstr ""
+
+msgid "Legal"
+msgstr ""
+
+msgid "Legal Name"
+msgstr ""
+
+msgid "Letter"
+msgstr ""
+
+msgid "Limit reached for this submission"
+msgstr ""
+
+msgid "Limit this field to %%s words."
+msgstr ""
+
+msgid "Link"
+msgstr ""
+
+msgid "Link for the site logo, e.g. \"{example_url}\". If not set, defaults to page with slug set to \"home\"."
+msgstr ""
+
+msgid "<{link}|{source.title_text_display}> by {source.user} has been invited to submit a proposal"
+msgstr ""
+
+msgid "<{link}|{title}> is ready for review. The following are assigned as reviewers: {reviewers}"
+msgstr ""
+
+msgid "Link to the apply guide."
+msgstr ""
+
+msgid "Link to your submission"
+msgstr ""
+
+msgid "<li>Please correct the error below.</li>"
+msgstr ""
+
+msgid "List of all edits made to this application"
+msgstr ""
+
+msgid "list on front page"
+msgstr ""
+
+msgid "List view"
+msgstr ""
+
+msgid "Live projects under your management"
+msgstr ""
+
+msgid "Loading…"
+msgstr ""
+
+msgid "locked"
+msgstr ""
+
+msgid "Log in"
+msgstr ""
+
+msgid "login extra text"
+msgstr ""
+
+msgid "Login form customizations"
+msgstr ""
+
+msgid "Log in or signup to %(ORG_SHORT_NAME)s"
+msgstr ""
+
+msgid "Login Required"
+msgstr ""
+
+msgid "Log in to %(ORG_SHORT_NAME)s"
+msgstr ""
+
+msgid "Log in to {user} at {ORG_LONG_NAME}"
+msgstr ""
+
+msgid "Log in without password"
+msgstr ""
+
+msgid "Log in with passkey"
+msgstr ""
+
+msgid "Log in with password"
+msgstr ""
+
+msgid "Log in with your %(ORG_SHORT_NAME)s email"
+msgstr ""
+
+msgid "Log out"
+msgstr ""
+
+msgid "Looks like the following documents are missing"
+msgstr ""
+
+msgid "Make available to applicants"
+msgstr ""
+
+msgid "Make available to filter on dashboard"
+msgstr ""
+
+msgid "Make sure all submissions support external reviewers and you are lead for all the selected submissions."
+msgstr ""
+
+msgid "Make sure you have uploaded correct contract and all required contracting documents."
+msgstr ""
+
+msgid "Manage cookies"
+msgstr ""
+
+msgid "Manage your account details and security."
+msgstr ""
+
+msgid "Mark as %(default_status)s"
+msgstr ""
+
+msgid "Markdown text field"
+msgstr ""
+
+msgid "Marked a Report as required"
+msgstr ""
+
+msgid "marked batch ready for review"
+msgstr ""
+
+msgid "marked ready for review"
+msgstr ""
+
+msgid "Maximum of {max} passkeys allowed"
+msgstr ""
+
+msgid "Max length"
+msgstr ""
+
+msgid "Max number of inputs"
+msgstr ""
+
+msgid "Maybe"
+msgstr ""
+
+msgid "Menu"
+msgstr ""
+
+msgid "Menu Item"
+msgstr ""
+
+msgid "message"
+msgstr ""
+
+msgid "Message"
+msgstr ""
+
+msgid "messages"
+msgstr ""
+
+msgid "Methods and strategy questions and comments"
+msgstr ""
+
+msgid "Missing file"
+msgstr ""
+
+msgid "Mobile site logo (if not set default will be used)"
+msgstr ""
+
+msgid "{} month"
+msgstr ""
+
+msgid "month"
+msgstr ""
+
+msgid "Months"
+msgstr ""
+
+msgid "More actions"
+msgstr ""
+
+msgid "More details of the project integrated at payment service."
+msgstr ""
+
+msgid "More Information Requested"
+msgstr ""
+
+msgid "More information requested"
+msgstr ""
+
+msgid "More information required"
+msgstr ""
+
+msgid "Most Commented"
+msgstr ""
+
+msgid "Move project to next stage"
+msgstr ""
+
+msgid "Multiple applications are now ready for your review"
+msgstr ""
+
+msgid "Multiple checkboxes field"
+msgstr ""
+
+msgid "Multiple File field"
+msgstr ""
+
+msgid "Multi select"
+msgstr ""
+
+msgid "Must be included in the form only once."
+msgstr ""
+
+msgid "My account"
+msgstr ""
+
+msgid "My active invoices"
+msgstr ""
+
+msgid "My dashboard"
+msgstr ""
+
+msgid "My Dashboard"
+msgstr ""
+
+msgid "My flagged"
+msgstr ""
+
+msgid "My projects"
+msgstr ""
+
+msgid "My submissions"
+msgstr ""
+
+msgid "My tasks"
+msgstr ""
+
+msgid "n/a - choose not to answer"
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "name"
+msgstr ""
+
+msgid "N/A - Root Term"
+msgstr ""
+
+msgid "\n                    %(counter)s invoice selected\n"
+msgstr ""
+
+msgid "Need screening"
+msgstr ""
+
+msgid "Need screening (revert)"
+msgstr ""
+
+msgid "Needs more info"
+msgstr ""
+
+msgid "Never used"
+msgstr ""
+
+msgid "New applicant"
+msgstr ""
+
+msgid "New applications have been added to your review list."
+msgstr ""
+
+msgid "Newest"
+msgstr ""
+
+msgid "Next"
+msgstr ""
+
+msgid "next"
+msgstr ""
+
+msgid "Next approval group users can approve project form (for sequential approvals)"
+msgstr ""
+
+msgid "Next deadline"
+msgstr ""
+
+msgid "Next report will be due in"
+msgstr ""
+
+msgid "Next report will be due in {due} and the report period will be {period_start} to {period_end}, then every {freq_number} {freq_period} after that until the project end date: {project_end}."
+msgstr ""
+
+msgid "Next report will be due on"
+msgstr ""
+
+msgid "Nice! You're all caught up. 🎉"
+msgstr ""
+
+msgid "No"
+msgstr ""
+
+msgid "No access to view submission"
+msgstr ""
+
+msgid "No action is needed for now, you will be notified when a contract is ready for you to sign."
+msgstr ""
+
+msgid "No active invoices"
+msgstr ""
+
+msgid "No active invoices yet."
+msgstr ""
+
+msgid "No active projects"
+msgstr ""
+
+msgid "No active submissions"
+msgstr ""
+
+msgid "No active WebAuthn challenge"
+msgstr ""
+
+msgid "No activities found, try updating your filters."
+msgstr ""
+
+msgid "nobody assigned yet"
+msgstr ""
+
+msgid "No categories found."
+msgstr ""
+
+msgid "No categories found. Sorry about that."
+msgstr ""
+
+msgid "No co-applicants yet."
+msgstr ""
+
+msgid "No comments available"
+msgstr ""
+
+msgid "No contract documents submission yet"
+msgstr ""
+
+msgid "-- No determination selected --"
+msgstr ""
+
+msgid "No funds found."
+msgstr ""
+
+msgid "No funds found. Sorry about that."
+msgstr ""
+
+msgid "No Invoices available"
+msgstr ""
+
+msgid "No invoices for Approval"
+msgstr ""
+
+msgid "No invoices for conversion"
+msgstr ""
+
+msgid "No lead found. Sorry about that."
+msgstr ""
+
+msgid "No leads found."
+msgstr ""
+
+msgid "No leads found. Sorry about that."
+msgstr ""
+
+msgid "no longer required"
+msgstr ""
+
+msgid "No next report is due, One time reporting has already reported on"
+msgstr ""
+
+msgid "No open applications message"
+msgstr ""
+
+msgid "No passkeys registered."
+msgstr ""
+
+msgid "No project form approvals exists"
+msgstr ""
+
+msgid "No project form reviewer roles have been created yet, please create these in <a href=\"%(project_settings_link)s\" target=\"_blank\">project settings</a>."
+msgstr ""
+
+msgid "No project is waiting for contract"
+msgstr ""
+
+msgid "No project is waiting for contract approval"
+msgstr ""
+
+msgid "No Projects Available."
+msgstr ""
+
+msgid "No Projects Currently Reporting."
+msgstr ""
+
+msgid "No projects for this submission"
+msgstr ""
+
+msgid "-- No proposal form selected --"
+msgstr ""
+
+msgid "No public reviews yet"
+msgstr ""
+
+msgid "No reminders yet."
+msgstr ""
+
+msgid "No Reports Available."
+msgstr ""
+
+msgid "No reports submitted yet."
+msgstr ""
+
+msgid "No results matched your search"
+msgstr ""
+
+msgid "No reviewer roles configured. Please add roles in <a href=\"%(project_settings_link)s\" target=\"_blank\">project settings</a>."
+msgstr ""
+
+msgid "No reviewers found."
+msgstr ""
+
+msgid "No reviewers found. Sorry about that."
+msgstr ""
+
+msgid "No reviews"
+msgstr ""
+
+msgid "No reviews available"
+msgstr ""
+
+msgid "No rounds available"
+msgstr ""
+
+msgid "No screening"
+msgstr ""
+
+msgid "No selection"
+msgstr ""
+
+msgid "No staff available"
+msgstr ""
+
+msgid "No staff reviewers yet"
+msgstr ""
+
+msgid "No Status"
+msgstr ""
+
+msgid "No statuses found. Sorry about that."
+msgstr ""
+
+msgid "No status found for currently selected submissions."
+msgstr ""
+
+msgid "No submissions"
+msgstr ""
+
+msgid "No submissions available"
+msgstr ""
+
+msgid "No tags found."
+msgstr ""
+
+msgid "No tags found. Sorry about that."
+msgstr ""
+
+msgid "Not allowed"
+msgstr ""
+
+msgid "Note:"
+msgstr ""
+
+msgid "Note: All group members will be notified unless specific approvers are selected below."
+msgstr ""
+
+msgid "Note: An opinion is a replacement for a review. You will no longer be able to submit a review for this application."
+msgstr ""
+
+msgid "NOTE: Selecting \"Signed and approved\" indicates the uploaded contract is already signed by both parties and the current project will move to the invoicing & reporting stage."
+msgstr ""
+
+msgid "Not Found (404)"
+msgstr ""
+
+msgid "Notifications"
+msgstr ""
+
+msgid "notified report"
+msgstr ""
+
+msgid "Not started"
+msgstr ""
+
+msgid "Not Started"
+msgstr ""
+
+msgid "No user can assign approvers with paf_approvals"
+msgstr ""
+
+msgid "No user can assign approvers with project form approvals"
+msgstr ""
+
+msgid "No user can update approvers without project form approval, except lead (lead can add project form approvals)"
+msgstr ""
+
+msgid "Number field"
+msgstr ""
+
+msgid "Number of days"
+msgstr ""
+
+msgid "Number of submissions"
+msgstr ""
+
+msgid "Objectives questions and comments"
+msgstr ""
+
+msgid "Ok"
+msgstr ""
+
+msgid "Oldest"
+msgstr ""
+
+msgid "Once a month on the {day}"
+msgstr ""
+
+msgid "Once a week on {weekday}"
+msgstr ""
+
+msgid "Once a year on {month} {day}"
+msgstr ""
+
+msgid "Once done, acknowledge you have stored the codes securely and then click \"Finish\"."
+msgstr ""
+
+msgid "One time link issue"
+msgstr ""
+
+msgid "One time on {date}"
+msgstr ""
+
+msgid "One time, that already has reported on {date}"
+msgstr ""
+
+msgid "Only 1 form can be selected for 1st Stage."
+msgstr ""
+
+msgid "Only Accepted"
+msgstr ""
+
+msgid "Only applicant and co-applicant with appropriate permission can submit docs"
+msgstr ""
+
+msgid "Only Applicants can submit contracting documents"
+msgstr ""
+
+msgid "Only approval group users can approve project form (for parallel approvals)"
+msgstr ""
+
+msgid "Only editable when submitted or you have been requested to make changes"
+msgstr ""
+
+msgid "Only External review"
+msgstr ""
+
+msgid "Only External review and higher"
+msgstr ""
+
+msgid "Only includes active, non-superusers"
+msgstr ""
+
+msgid "Only Next approval group can approve project form (for sequential approvals)"
+msgstr ""
+
+msgid "Only one Yes and No screening decision can be set as default."
+msgstr ""
+
+msgid "Only reviewed Submissions"
+msgstr ""
+
+msgid "Only selected group's users can access the document"
+msgstr ""
+
+msgid "Only selected group's users will be listed for this ProjectFormReviewerRole"
+msgstr ""
+
+msgid "Only Staff can approve the contract"
+msgstr ""
+
+msgid "Only Staff can skip the PAF approval process"
+msgstr ""
+
+msgid "On trusted devices only, keeps you logged in for a longer period."
+msgstr ""
+
+msgid "Open"
+msgstr ""
+
+msgid "Open Community Review"
+msgstr ""
+
+msgid "opened sealed submission"
+msgstr ""
+
+msgid "Opened the submission while still sealed"
+msgstr ""
+
+msgid "Open External Review"
+msgstr ""
+
+msgid "Open External Review (revert)"
+msgstr ""
+
+msgid "Open Internal Review (revert)"
+msgstr ""
+
+msgid "Open Review"
+msgstr ""
+
+msgid "Open Review (revert)"
+msgstr ""
+
+msgid "Open submissions"
+msgstr ""
+
+msgid "Open the Authenticator app on your phone and scan the QR code displayed below."
+msgstr ""
+
+msgid "Open until"
+msgstr ""
+
+msgid "{opinion.opinion_display}s with {opinion.review.author}s review of {source}"
+msgstr ""
+
+msgid "Opinions"
+msgstr ""
+
+msgid "option"
+msgstr ""
+
+msgid "Optional"
+msgstr ""
+
+msgid "Options"
+msgstr ""
+
+msgid "options"
+msgstr ""
+
+msgid "OR"
+msgstr ""
+
+msgid "or"
+msgstr ""
+
+msgid "Or, alternatively, use one of your backup phones:"
+msgstr ""
+
+msgid "Organization"
+msgstr ""
+
+msgid "Organization name"
+msgstr ""
+
+msgid "{ORG_SHORT_NAME} Review"
+msgstr ""
+
+msgid "or Sign up"
+msgstr ""
+
+msgid "Other comments"
+msgstr ""
+
+msgid "Other Submissions"
+msgstr ""
+
+msgid "Outcome"
+msgstr ""
+
+msgid "out of"
+msgstr ""
+
+msgid "Overall determination"
+msgstr ""
+
+msgid "Overall recommendation"
+msgstr ""
+
+msgid "Overall recommendation: Maybe"
+msgstr ""
+
+msgid "Overall recommendation: No"
+msgstr ""
+
+msgid "Overall recommendation: Yes"
+msgstr ""
+
+msgid "Overall Score"
+msgstr ""
+
+msgid "Overlaps with the following rounds:<br> {}"
+msgstr ""
+
+msgid "(Over the limit)"
+msgstr ""
+
+msgid "packet files"
+msgstr ""
+
+msgid "PAF approval"
+msgstr ""
+
+msgid "PAF approvals"
+msgstr ""
+
+msgid "PAF has been submitted for approval"
+msgstr ""
+
+msgid "PAF reviewer roles are configured, cannot skip approval process"
+msgstr ""
+
+msgid "PAF reviewers role"
+msgstr ""
+
+msgid "PAF reviewers roles"
+msgstr ""
+
+msgid "PAFs for review"
+msgstr ""
+
+msgid "Page:"
+msgstr ""
+
+msgid "Page '{0}' and {1} subpages copied."
+msgstr ""
+
+msgid "Page '{0}' can't be deleted because is in use in '{1}'."
+msgstr ""
+
+msgid "Page '{0}' copied."
+msgstr ""
+
+msgid "Page size of downloadable Project and Submission PDFs"
+msgstr ""
+
+msgid "Pagination"
+msgstr ""
+
+msgid "Paid"
+msgstr ""
+
+msgid "paid date"
+msgstr ""
+
+msgid "Paid date"
+msgstr ""
+
+msgid "paid value"
+msgstr ""
+
+msgid "Paragraph"
+msgstr ""
+
+msgid "Parent"
+msgstr ""
+
+msgid "Partner"
+msgstr ""
+
+msgid "Partners"
+msgstr ""
+
+msgid "partners"
+msgstr ""
+
+msgid "Partners updated."
+msgstr ""
+
+msgid "Partners updated successfully."
+msgstr ""
+
+msgid "Passkey name"
+msgstr ""
+
+msgid "Passkeys"
+msgstr ""
+
+msgid "Password"
+msgstr ""
+
+msgid "Password change successful"
+msgstr ""
+
+msgid "Password is currently hidden"
+msgstr ""
+
+msgid "Password is currently visible"
+msgstr ""
+
+msgid "Password Page timed out. Try changing the email again."
+msgstr ""
+
+msgid "Password required"
+msgstr ""
+
+msgid "Password Reset"
+msgstr ""
+
+msgid "Past 7 days"
+msgstr ""
+
+msgid "Past due"
+msgstr ""
+
+msgid "Payment failed"
+msgstr ""
+
+msgid "pdf settings"
+msgstr ""
+
+msgid "{} pending"
+msgstr ""
+
+msgid "Pending"
+msgstr ""
+
+msgid "Pending approval"
+msgstr ""
+
+msgid "Pending approval from %(approval_user)s"
+msgstr ""
+
+msgid "Pending approval from %(role_label)s (nobody assigned yet)"
+msgstr ""
+
+msgid "Pending countersigned contract by"
+msgstr ""
+
+msgid "Pending signed contract by Contracting team"
+msgstr ""
+
+msgid "Pending signed contract by %(org)s"
+msgstr ""
+
+msgid "Pending signup"
+msgstr ""
+
+msgid "Pending signups"
+msgstr ""
+
+msgid "Period End"
+msgstr ""
+
+msgid "Permission Denied"
+msgstr ""
+
+msgid "<p>Invoice added.</p>"
+msgstr ""
+
+msgid "<p>Invoice status updated to: {status}.</p>"
+msgstr ""
+
+msgid "Please also make sure to upload other required contracting documents"
+msgstr ""
+
+msgid "Please confirm you have stored the codes securely below."
+msgstr ""
+
+msgid "Please contact %(lead)s - %(email)s if you have any questions."
+msgstr ""
+
+msgid "Please contact %(ORG_EMAIL)s if you have technical difficulty enabling 2FA."
+msgstr ""
+
+msgid "Please correct the errors below."
+msgstr ""
+
+msgid "Please create only two choices for toggle. First choice will revel the group and the second hide it. Additional choices will be ignored."
+msgstr ""
+
+msgid "Please download the signed contract uploaded by {ORG_SHORT_NAME}"
+msgstr ""
+
+msgid "(please edit)"
+msgstr ""
+
+msgid "Please ensure the Project Form is completed and you are ready to proceed to the next stage. This action cannot be reverted."
+msgstr ""
+
+msgid "Please enter one of the backup codes to log in to your account."
+msgstr ""
+
+msgid "Please enter the 6-digit verification code generated by your Authenticator App."
+msgstr ""
+
+msgid "Please enter the password to proceed."
+msgstr ""
+
+msgid "Please enter the phone number you wish to be called on. This number will be validated in the next step."
+msgstr ""
+
+msgid "Please enter the phone number you wish to receive the text messages on. This number will be validated in the next step."
+msgstr ""
+
+msgid "Please enter your new password twice so we can verify you typed it in correctly."
+msgstr ""
+
+msgid "Please enter your user account's email address and we will send you a password reset link."
+msgstr ""
+
+msgid "Please fix the errors in your form. Review and update the highlighted fields below to continue."
+msgstr ""
+
+msgid "Please follow the link below to reset your password:"
+msgstr ""
+
+msgid "Please note that it is not submitted for review because it's still in draft. You can access the draft at: %(scheme)s://%(host)s%(path)s"
+msgstr ""
+
+msgid "Please note that your application is not submitted for review."
+msgstr ""
+
+msgid "Please provide data for: {fields}"
+msgstr ""
+
+msgid "Please provide form for Stage {stage}."
+msgstr ""
+
+msgid "Please provide Project Form."
+msgstr ""
+
+msgid "Please review our Proposal Guide at %(ORG_GUIDE_URL)s to learn more about the information we’d like to see. In the proposal please also address the feedback we provided in the concept note determination."
+msgstr ""
+
+msgid "Please review the contract and sign it before reuploading it to your project page for the %(ORG_SHORT_NAME)s team to approve."
+msgstr ""
+
+msgid "Please select start date."
+msgstr ""
+
+msgid "Please select which authentication method you would like to use."
+msgstr ""
+
+msgid "Please submit any questions related to your application here"
+msgstr ""
+
+msgid "Positive aspects"
+msgstr ""
+
+msgid "Prefix for the submission id. e.g. \"HYPHA23-\" will result in a submission id of \"HYPHA23-1\"."
+msgstr ""
+
+msgid "Preliminary Determination"
+msgstr ""
+
+msgid "Preview"
+msgstr ""
+
+msgid "Preview and submit"
+msgstr ""
+
+msgid "Previewing"
+msgstr ""
+
+msgid "Preview this %s"
+msgstr ""
+
+msgid "Previous"
+msgstr ""
+
+msgid "Previous stage reviews"
+msgstr ""
+
+msgid "Primary"
+msgstr ""
+
+msgid "Print"
+msgstr ""
+
+msgid "Private"
+msgstr ""
+
+msgid "Profile"
+msgstr ""
+
+msgid "Profile updated."
+msgstr ""
+
+msgid "Progress"
+msgstr ""
+
+msgid "Progressed from {old_display} to {new_display}"
+msgstr ""
+
+msgid "project"
+msgstr ""
+
+msgid "Project"
+msgstr ""
+
+msgid "Project Document"
+msgstr ""
+
+msgid "Project Document Categories"
+msgstr ""
+
+msgid "Project documents"
+msgstr ""
+
+msgid "Project documents are ready to be assigned for approval."
+msgstr ""
+
+msgid "Project documents are ready to be assigned for approval: {source.title}"
+msgstr ""
+
+msgid "Project documents status"
+msgstr ""
+
+msgid "Project Duration"
+msgstr ""
+
+msgid "Project end date"
+msgstr ""
+
+msgid "Project file: {title}"
+msgstr ""
+
+msgid "Project form"
+msgstr ""
+
+msgid "Project Form"
+msgstr ""
+
+msgid "project form"
+msgstr ""
+
+msgid "Project form approvals"
+msgstr ""
+
+msgid "Project form approvers can access the project in Draft, Approval state and after approval state"
+msgstr ""
+
+msgid "Project form approvers can be assigned only in Internal approval state"
+msgstr ""
+
+msgid "Project form approvers can be updated only in Internal approval state"
+msgstr ""
+
+msgid "Project form approvers have been updated"
+msgstr ""
+
+msgid "Project form has been approved"
+msgstr ""
+
+msgid "Project form is editable for active projects if no reviewer roles"
+msgstr ""
+
+msgid "Project form is editable in Draft by this user"
+msgstr ""
+
+msgid "Project Form not configured. Please add an project form in the"
+msgstr ""
+
+msgid "Project form required changes"
+msgstr ""
+
+msgid "Project form reviewer-roles users can assign approvers"
+msgstr ""
+
+msgid "Project form reviewer-roles users can update approvers"
+msgstr ""
+
+msgid "Project form reviewer-roles users can update next approval approvers if any approvers assigned"
+msgstr ""
+
+msgid "Project Form Reviewers Roles"
+msgstr ""
+
+msgid "Project Forms"
+msgstr ""
+
+msgid "project forms"
+msgstr ""
+
+msgid "Project forms for review"
+msgstr ""
+
+msgid "Project form status"
+msgstr ""
+
+msgid "Project form status has been updated"
+msgstr ""
+
+msgid "Project form waiting approval"
+msgstr ""
+
+msgid "Project form waiting assignee"
+msgstr ""
+
+msgid "Project has been rejected, please update and resubmit"
+msgstr ""
+
+msgid "Project history"
+msgstr ""
+
+msgid "Project ID"
+msgstr ""
+
+msgid "Project Information"
+msgstr ""
+
+msgid "Project is not in Contracting State"
+msgstr ""
+
+msgid "Project is not in Draft state"
+msgstr ""
+
+msgid "Project is ready for invoicing: {source.title}"
+msgstr ""
+
+msgid "Project is waiting for approval: {source.title}"
+msgstr ""
+
+msgid "Project is waiting for the contract: {source.title}"
+msgstr ""
+
+msgid "Project lead"
+msgstr ""
+
+msgid "Project lead is a required field"
+msgstr ""
+
+msgid "Project Name"
+msgstr ""
+
+msgid "Project name"
+msgstr ""
+
+msgid "Project overview questions and comments"
+msgstr ""
+
+msgid "Project Owner can only re-upload contract with countersigned"
+msgstr ""
+
+msgid "Project permissions"
+msgstr ""
+
+msgid "Project permissions are enabled and can be updated for each co-applicant."
+msgstr ""
+
+msgid "project reminder frequencies"
+msgstr ""
+
+msgid "project reminder frequency"
+msgstr ""
+
+msgid "project report form"
+msgstr ""
+
+msgid "Project Report Form"
+msgstr ""
+
+msgid "Project report form not configured. Please add a project report form in the <a href=\"%(fund_settings_url)s\" target=\"_blank\" class=\"link\">fund settings</a>."
+msgstr ""
+
+msgid "Project report form not configured yet. Please contact us at <a href=\"mailto:%(ORG_EMAIL)s\" class=\"link\">%(ORG_EMAIL)s</a>."
+msgstr ""
+
+msgid "project report forms"
+msgstr ""
+
+msgid "Project Reviewers Roles"
+msgstr ""
+
+msgid "projects"
+msgstr ""
+
+msgid "Projects"
+msgstr ""
+
+msgid "project settings"
+msgstr ""
+
+msgid "Projects in contracting"
+msgstr ""
+
+msgid "project SOW"
+msgstr ""
+
+msgid "project SOW form"
+msgstr ""
+
+msgid "Project SOW Form"
+msgstr ""
+
+msgid "project SOW forms"
+msgstr ""
+
+msgid "Project started"
+msgstr ""
+
+msgid "Project status has been updated"
+msgstr ""
+
+msgid "Project status has changed to {project_status}: {source.title}"
+msgstr ""
+
+msgid "Project submit project form(s)"
+msgstr ""
+
+msgid "Project submit scope of work"
+msgstr ""
+
+msgid "Project title"
+msgstr ""
+
+msgid "Project Title"
+msgstr ""
+
+msgid "Project waiting contract"
+msgstr ""
+
+msgid "Project waiting contract document"
+msgstr ""
+
+msgid "Project waiting contract review"
+msgstr ""
+
+msgid "Project waiting invoice"
+msgstr ""
+
+msgid "Project waiting project form"
+msgstr ""
+
+msgid "Project waiting scope of work"
+msgstr ""
+
+msgid "Promote"
+msgstr ""
+
+msgid "Proposal"
+msgstr ""
+
+msgid "Proposal attachments"
+msgstr ""
+
+msgid "Proposal Form"
+msgstr ""
+
+msgid "Proposal form"
+msgstr ""
+
+msgid "Proposal Information"
+msgstr ""
+
+msgid "Proposal Received"
+msgstr ""
+
+msgid "Proposal Received (revert)"
+msgstr ""
+
+msgid "proposed end date"
+msgstr ""
+
+msgid "Proposed End Date must be after Proposed Start Date"
+msgstr ""
+
+msgid "proposed start date"
+msgstr ""
+
+msgid "Providers"
+msgstr ""
+
+msgid "<p>Strictly necessary for the operation of a website because they enable you to navigate around the site and use features.  These cookies cannot be switched off in our systems and do not store any personally identifiable information.</p>"
+msgstr ""
+
+msgid "<p>This website deploys cookies for basic functionality and to keep it secure. These cookies are strictly necessary. Optional analysis cookies which provide us with statistical information about the use of the website may also be deployed, but only with your consent. Please review our <a href=\"/data-privacy-policy/\">Privacy &amp; Data Policy</a> for more information.</p>"
+msgstr ""
+
+msgid "Public Report"
+msgstr ""
+
+msgid "<p>With these cookies we count visits and traffic sources to help improve the performance of our services through metrics.  These cookies show us which pages on our services are the most and the least popular, and how users navigate our services.  The information collected is aggregated and contains no personally identifiable information.  If you block these cookies, then we will not know when you have used our services.</p>"
+msgstr ""
+
+msgid "Qualifications questions and comments"
+msgstr ""
+
+msgid "Radio buttons"
+msgstr ""
+
+msgid "Rationale and appropriateness questions and comments"
+msgstr ""
+
+msgid "Read the full comment here"
+msgstr ""
+
+msgid "Read the full determination here"
+msgstr ""
+
+msgid "Ready For Determination"
+msgstr ""
+
+msgid "Ready for Determination"
+msgstr ""
+
+msgid "Ready For Discussion"
+msgstr ""
+
+msgid "Ready for Discussion"
+msgstr ""
+
+msgid "Ready For Discussion (revert)"
+msgstr ""
+
+msgid "Ready for Final Determination"
+msgstr ""
+
+msgid "Ready For Final Determination"
+msgstr ""
+
+msgid "Ready for Preliminary Determination"
+msgstr ""
+
+msgid "Ready For Preliminary Determination"
+msgstr ""
+
+msgid "Reasonable, realistic and sustainable"
+msgstr ""
+
+msgid "Received"
+msgstr ""
+
+msgid "Recently Updated"
+msgstr ""
+
+msgid "Recommendation"
+msgstr ""
+
+msgid "recommendation"
+msgstr ""
+
+msgid "Recommendation comments"
+msgstr ""
+
+msgid "recommended minimum"
+msgstr ""
+
+msgid "Regenerate Codes"
+msgstr ""
+
+msgid "Register"
+msgstr ""
+
+msgid "Registration failed"
+msgstr ""
+
+msgid "Re-invite"
+msgstr ""
+
+msgid "Rejected"
+msgstr ""
+
+msgid "Related submissions"
+msgstr ""
+
+msgid "Relation to report due date"
+msgstr ""
+
+msgid "Release"
+msgstr ""
+
+msgid "Release User"
+msgstr ""
+
+msgid "Remember me"
+msgstr ""
+
+msgid "Remember to end group using Group fields end block."
+msgstr ""
+
+msgid "reminder"
+msgstr ""
+
+msgid "Reminder: Application ready to review: {source.title_text_display}"
+msgstr ""
+
+msgid "Reminder created"
+msgstr ""
+
+msgid "Reminder deleted"
+msgstr ""
+
+msgid "Reminder Description"
+msgstr ""
+
+msgid "reminders"
+msgstr ""
+
+msgid "Reminders"
+msgstr ""
+
+msgid "Reminder Title"
+msgstr ""
+
+msgid "reminder to review"
+msgstr ""
+
+msgid "Remind reviewers to Review"
+msgstr ""
+
+msgid "Remove"
+msgstr ""
+
+msgid "Removed:"
+msgstr ""
+
+msgid "Remove Decision"
+msgstr ""
+
+msgid "Removed \"{old_status}\" screening decision."
+msgstr ""
+
+msgid "removed the task {task.code} for {source} from the task list"
+msgstr ""
+
+msgid "removed the task {task.code} for {source} from whole team's{user_groups} task list."
+msgstr ""
+
+msgid "Remove from your flagged submissions"
+msgstr ""
+
+msgid "Remove from your task list"
+msgstr ""
+
+msgid "Remove %(item)s from current filters"
+msgstr ""
+
+msgid "Remove staff flag"
+msgstr ""
+
+msgid "remove task"
+msgstr ""
+
+msgid "Remove %(term)s from current filters"
+msgstr ""
+
+msgid "Remove %(user)s from current filters"
+msgstr ""
+
+msgid "rendition"
+msgstr ""
+
+msgid "renditions"
+msgstr ""
+
+msgid "Report"
+msgstr ""
+
+msgid "report"
+msgstr ""
+
+msgid "report config"
+msgstr ""
+
+msgid "report configs"
+msgstr ""
+
+msgid "Report due"
+msgstr ""
+
+msgid "Report due date"
+msgstr ""
+
+msgid "Report every:"
+msgstr ""
+
+msgid "Report Forms"
+msgstr ""
+
+msgid "Reporting"
+msgstr ""
+
+msgid "Reporting disabled"
+msgstr ""
+
+msgid "Reporting Period"
+msgstr ""
+
+msgid "Report on:"
+msgstr ""
+
+msgid "report private file"
+msgstr ""
+
+msgid "report private files"
+msgstr ""
+
+msgid "Report reminder frequency"
+msgstr ""
+
+msgid "Reports"
+msgstr ""
+
+msgid "reports"
+msgstr ""
+
+msgid "Report Skipped"
+msgstr ""
+
+msgid "report version"
+msgstr ""
+
+msgid "report versions"
+msgstr ""
+
+msgid "Request"
+msgstr ""
+
+msgid "Request changes or more information"
+msgstr ""
+
+msgid "Request changes or more information by %(approval_user)s."
+msgstr ""
+
+msgid "Requested amount"
+msgstr ""
+
+msgid "Requested approval"
+msgstr ""
+
+msgid "requested changes for acceptance"
+msgstr ""
+
+msgid "Requested Funding"
+msgstr ""
+
+msgid "requested project change"
+msgstr ""
+
+msgid "Request for change"
+msgstr ""
+
+msgid "Request for change or more information"
+msgstr ""
+
+msgid "Request For Partners"
+msgstr ""
+
+msgid "Request More Information"
+msgstr ""
+
+msgid "Requests for invoices requiring your attention"
+msgstr ""
+
+msgid "Request to change email of your account on the %(ORG_LONG_NAME)s web site has been accepted. Confirm your email by clicking this link or copying and pasting it to your browser:"
+msgstr ""
+
+msgid "Request with community review"
+msgstr ""
+
+msgid "Request with external review"
+msgstr ""
+
+msgid "Request with same time review"
+msgstr ""
+
+msgid "Required"
+msgstr ""
+
+msgid "required"
+msgstr ""
+
+msgid "Re-send code?"
+msgstr ""
+
+msgid "Reset"
+msgstr ""
+
+msgid "Reset password"
+msgstr ""
+
+msgid "Resubmit for approval"
+msgstr ""
+
+msgid "Resubmit project documents for approval"
+msgstr ""
+
+msgid "Resubmitted"
+msgstr ""
+
+msgid "Results"
+msgstr ""
+
+msgid "Return to main cookie menu."
+msgstr ""
+
+msgid "Reupload"
+msgstr ""
+
+msgid "Review"
+msgstr ""
+
+msgid "review"
+msgstr ""
+
+msgid "Review Draft"
+msgstr ""
+
+msgid "Reviewed by you"
+msgstr ""
+
+msgid "reviewed opinion"
+msgstr ""
+
+msgid "Reviewer"
+msgstr ""
+
+msgid "Reviewer:"
+msgstr ""
+
+msgid "Reviewer leaderboard"
+msgstr ""
+
+msgid "reviewer role"
+msgstr ""
+
+msgid "reviewer roles"
+msgstr ""
+
+msgid "Reviewer Roles"
+msgstr ""
+
+msgid "Reviewer Roles are needed to move projects to 'Internal Approval' stage. Delete all roles to skip internal approval process and to move all internal approval projects back to the 'Draft' stage with all approvals removed."
+msgstr ""
+
+msgid "Reviewers"
+msgstr ""
+
+msgid "Reviewers and Staff"
+msgstr ""
+
+msgid "Reviewer Settings"
+msgstr ""
+
+msgid "Reviewers role and their actions/comments"
+msgstr ""
+
+msgid "Reviewers updated."
+msgstr ""
+
+msgid "Review for"
+msgstr ""
+
+msgid "review form"
+msgstr ""
+
+msgid "review forms"
+msgstr ""
+
+msgid "Review invoice and take action"
+msgstr ""
+
+msgid "review opinion"
+msgstr ""
+
+msgid "review opinions"
+msgstr ""
+
+msgid "Reviews"
+msgstr ""
+
+msgid "reviews"
+msgstr ""
+
+msgid "Reviews & assignees"
+msgstr ""
+
+msgid "Reviews by %(object)s"
+msgstr ""
+
+msgid "Review the contract for all relevant details and approve."
+msgstr ""
+
+msgid "Review was not against the latest version of the application"
+msgstr ""
+
+msgid "Revision"
+msgstr ""
+
+msgid "Revision detail"
+msgstr ""
+
+msgid "Revisions"
+msgstr ""
+
+msgid "Revisions for %(title)s"
+msgstr ""
+
+msgid "RFP"
+msgstr ""
+
+msgid "RFPs"
+msgstr ""
+
+msgid "Rich text field"
+msgstr ""
+
+msgid "role"
+msgstr ""
+
+msgid "Role"
+msgstr ""
+
+msgid "{role_name} Reviewer"
+msgstr ""
+
+msgid "Roles"
+msgstr ""
+
+msgid "(Root - First term can be named root)"
+msgstr ""
+
+msgid "Round"
+msgstr ""
+
+msgid "Round:"
+msgstr ""
+
+msgid "round and lab"
+msgstr ""
+
+msgid "round base"
+msgstr ""
+
+msgid "round base determination form"
+msgstr ""
+
+msgid "round base determination forms"
+msgstr ""
+
+msgid "round base external review form"
+msgstr ""
+
+msgid "round base external review forms"
+msgstr ""
+
+msgid "round base form"
+msgstr ""
+
+msgid "round base forms"
+msgstr ""
+
+msgid "round base review form"
+msgstr ""
+
+msgid "round base review forms"
+msgstr ""
+
+msgid "round bases"
+msgstr ""
+
+msgid "Rounds"
+msgstr ""
+
+msgid "rounds and labs"
+msgstr ""
+
+msgid "Rounds and Sealed Rounds"
+msgstr ""
+
+msgid "Rounds & Labs"
+msgstr ""
+
+msgid "Rounds must be associated with a Fund or RFP. What are you creating a new Round for?"
+msgstr ""
+
+msgid "Same user who invited can delete the co-applicant"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Save draft"
+msgstr ""
+
+msgid "Save name"
+msgstr ""
+
+msgid "Saving a draft means this report will be visible to you and staff from your project page."
+msgstr ""
+
+msgid "Scope of work"
+msgstr ""
+
+msgid "Scope of Work"
+msgstr ""
+
+msgid "Score"
+msgstr ""
+
+msgid "Score:"
+msgstr ""
+
+msgid "screened"
+msgstr ""
+
+msgid "Screening"
+msgstr ""
+
+msgid "Screening:"
+msgstr ""
+
+msgid "Screening decision"
+msgstr ""
+
+msgid "screening decisions"
+msgstr ""
+
+msgid "sealed"
+msgstr ""
+
+msgid "Sealed"
+msgstr ""
+
+msgid "Sealed round"
+msgstr ""
+
+msgid "Sealed Rounds"
+msgstr ""
+
+msgid "Sealed rounds"
+msgstr ""
+
+msgid "Search..."
+msgstr ""
+
+msgid "Search…"
+msgstr ""
+
+msgid "Search and filter all submissions"
+msgstr ""
+
+msgid "Search input"
+msgstr ""
+
+msgid "Search submissions"
+msgstr ""
+
+msgid "Section header"
+msgstr ""
+
+msgid "See original"
+msgstr ""
+
+msgid "See other funds"
+msgstr ""
+
+msgid "See our guide for more information"
+msgstr ""
+
+msgid "Select..."
+msgstr ""
+
+msgid "Select all"
+msgstr ""
+
+msgid "Select all submissions"
+msgstr ""
+
+msgid "Select all users in listing"
+msgstr ""
+
+msgid "Select approvers (Optional)"
+msgstr ""
+
+msgid "Select a relevant user role. Staff can view every comment."
+msgstr ""
+
+msgid "(selected)"
+msgstr ""
+
+msgid "selected"
+msgstr ""
+
+msgid "Selected approver will be notified. If no one is selected, every listed member here will be notified."
+msgstr ""
+
+msgid "Select project lead"
+msgstr ""
+
+msgid "Select submission"
+msgstr ""
+
+msgid "Select the proposal form only for determination approval"
+msgstr ""
+
+msgid "Select the proposal form to use for proposal stage."
+msgstr ""
+
+msgid "Select User:"
+msgstr ""
+
+msgid "Send"
+msgstr ""
+
+msgid "Send a confirmation code to your email"
+msgstr ""
+
+msgid "send message to applicant"
+msgstr ""
+
+msgid "Send Notice"
+msgstr ""
+
+msgid "Send reset email"
+msgstr ""
+
+msgid "sent a determination. Outcome: {determination.clean_outcome}"
+msgstr ""
+
+msgid "sent batch determination outcome"
+msgstr ""
+
+msgid "sent determination outcome"
+msgstr ""
+
+msgid "sent for approval"
+msgstr ""
+
+msgid "sent project to compliance"
+msgstr ""
+
+msgid "Server error"
+msgstr ""
+
+msgid "Set language"
+msgstr ""
+
+msgid "Set Password"
+msgstr ""
+
+msgid "Set password for %(username)s at %(ORG_LONG_NAME)s"
+msgstr ""
+
+msgid "Set up a cron job to run `notify_report_due.py`. The script will use these reminder settings."
+msgstr ""
+
+msgid "Set up Two-Factor Authentication (2FA)"
+msgstr ""
+
+msgid "Set your account password on the %(ORG_LONG_NAME)s web site by clicking this link or copying and pasting it to your browser:"
+msgstr ""
+
+msgid "Should the deadline date be visible for users."
+msgstr ""
+
+msgid "Should the fund be listed on the front page."
+msgstr ""
+
+msgid "Should the lab be listed on the front page."
+msgstr ""
+
+msgid "Show"
+msgstr ""
+
+msgid "Show all"
+msgstr ""
+
+msgid "Show All"
+msgstr ""
+
+msgid "Show application"
+msgstr ""
+
+msgid "Show Codes"
+msgstr ""
+
+msgid "show consent checkbox?"
+msgstr ""
+
+msgid "show deadline"
+msgstr ""
+
+msgid "show less"
+msgstr ""
+
+msgid "Show less"
+msgstr ""
+
+msgid "Show less..."
+msgstr ""
+
+msgid "Show more"
+msgstr ""
+
+msgid "Show more..."
+msgstr ""
+
+msgid "Show password"
+msgstr ""
+
+msgid "Show rejected"
+msgstr ""
+
+msgid "Signed and approved"
+msgstr ""
+
+msgid "signed and approved"
+msgstr ""
+
+msgid "Signed contract by Contracting team"
+msgstr ""
+
+msgid "Signed contract by %(org)s"
+msgstr ""
+
+msgid "Signed contract uploaded"
+msgstr ""
+
+msgid "Signed in as <strong>%(email)s</strong>"
+msgstr ""
+
+msgid "Signed in as <strong>%(name)s(%(email)s)</strong>"
+msgstr ""
+
+msgid "Sign up"
+msgstr ""
+
+msgid "Single File field"
+msgstr ""
+
+msgid "Site logo"
+msgstr ""
+
+msgid "Skip"
+msgstr ""
+
+msgid "Skipped a Report"
+msgstr ""
+
+msgid "skipped report"
+msgstr ""
+
+msgid "Skip this report date"
+msgstr ""
+
+msgid "slack name"
+msgstr ""
+
+msgid "Slack names must not include spaces"
+msgstr ""
+
+msgid "Something changed before your approval please re-review"
+msgstr ""
+
+msgid "Sorry, no users match \"<em>%(query_string)s</em>\""
+msgstr ""
+
+msgid "Sorry something went wrong"
+msgstr ""
+
+msgid "Sorry, this %(name)s is not currently accepting applications."
+msgstr ""
+
+msgid "Sort"
+msgstr ""
+
+msgid "Sort:"
+msgstr ""
+
+msgid "Sort by"
+msgstr ""
+
+msgid "SOW"
+msgstr ""
+
+msgid "SOW Forms"
+msgstr ""
+
+msgid "<span class=\"text-xs\">{related.fund_name} #{related.application_id}</span><br>A draft application <span class=\"truncate inline-block max-w-32 align-bottom \">\"{related.title}\"</span> is waiting to be submitted"
+msgstr ""
+
+msgid "<span class=\"text-xs\">{related.fund_name} #{related.application_id}</span><br>Contract for project is waiting for review"
+msgstr ""
+
+msgid "<span class=\"text-xs\">{related.fund_name} #{related.application_id}</span><br>Project form is waiting for assignee"
+msgstr ""
+
+msgid "<span class=\"text-xs\">{related.fund_name} #{related.application_id}</span><br> Project form is waiting for your approval"
+msgstr ""
+
+msgid "<span class=\"text-xs\">{related.fund_name} #{related.application_id}</span><br>Project form requires changes or more information"
+msgstr ""
+
+msgid "<span class=\"text-xs\">{related.fund_name} #{related.application_id}</span><br>Project is waiting for contract"
+msgstr ""
+
+msgid "<span class=\"text-xs\">{related.fund_name} #{related.application_id}</span><br>Project is waiting for contracting documents"
+msgstr ""
+
+msgid "<span class=\"text-xs\">{related.fund_name} #{related.application_id}</span><br>Project is waiting for project form"
+msgstr ""
+
+msgid "<span class=\"text-xs\">{related.fund_name} #{related.application_id}</span><br>Project is waiting for project form(s) submission"
+msgstr ""
+
+msgid "<span class=\"text-xs\">{related.fund_name} #{related.application_id}</span><br>Project is waiting for scope of work"
+msgstr ""
+
+msgid "<span class=\"text-xs\">{related.fund_name} #{related.application_id}</span><br>Project <span class=\"truncate inline-block max-w-32 align-bottom\">\"{related.title}\"</span> is waiting for invoice"
+msgstr ""
+
+msgid "<span class='text-xs'>{related.project.fund_name} #{related.project.application_id}</span><br>Invoice no. {related.invoice_number} is waiting for your approval"
+msgstr ""
+
+msgid "<span class='text-xs'>{related.project.fund_name} #{related.project.application_id}</span><br>Invoice no. {related.invoice_number} is waiting to be paid"
+msgstr ""
+
+msgid "<span class='text-xs'>{related.project.fund_name} #{related.project.application_id}</span><br>Invoice no. {related.invoice_number} required changes or more information"
+msgstr ""
+
+msgid "<span class=\"text-xs\">{related.project.fund_name} #{related.project.application_id}</span><br>Report for project <span class=\"truncate inline-block max-w-32 align-bottom \">\"{related.project.title}\"</span> is due"
+msgstr ""
+
+msgid "<span class=\"text-xs\">{related.source.fund_name} #{related.source.application_id}</span><br>{related.user} assigned you a comment: <q class=\"text-fg-muted italic align-bottom\">{msg}</q>"
+msgstr ""
+
+msgid "<span class=\"text-xs\">{related.submission.fund_name} #{related.submission.application_id}</span><br>Determination draft for submission <span class=\"truncate inline-block max-w-32 align-bottom\">\"{related.submission.title}\"</span> is waiting to be submitted"
+msgstr ""
+
+msgid "<span class=\"text-xs\">{related.submission.fund_name} #{related.submission.application_id}</span><br>Review draft for submission <span class=\"truncate inline-block max-w-32 align-bottom\">\"{related.submission.title}\"</span> is waiting to be submitted"
+msgstr ""
+
+msgid "Staff"
+msgstr ""
+
+msgid "Staff Admin"
+msgstr ""
+
+msgid "Staff Admin is set to alter archive"
+msgstr ""
+
+msgid "Staff and Staff Admin can skip the project form approval process"
+msgstr ""
+
+msgid "Staff and Staff Admin can update status"
+msgstr ""
+
+msgid "Staff Assignments"
+msgstr ""
+
+msgid "Staff assignments"
+msgstr ""
+
+msgid "Staff can access each submissions' co-applicants"
+msgstr ""
+
+msgid "Staff can delete any co-applicant of any submission"
+msgstr ""
+
+msgid "Staff can invite co-applicant on behalf of applicant"
+msgstr ""
+
+msgid "Staff can skip PAF approval when no reviewer roles are configured"
+msgstr ""
+
+msgid "Staff can upload contract as set in settings"
+msgstr ""
+
+msgid "Staff, Finance and Contracting can view project in all statuses"
+msgstr ""
+
+msgid "Staff Flag"
+msgstr ""
+
+msgid "Staff flagged"
+msgstr ""
+
+msgid "Staff Flagged"
+msgstr ""
+
+msgid "Staff flagged submissions"
+msgstr ""
+
+msgid "staff group email"
+msgstr ""
+
+msgid "Staff is set to alter archive"
+msgstr ""
+
+msgid "Staff only"
+msgstr ""
+
+msgid "Staff pending"
+msgstr ""
+
+msgid "Staff reviewers"
+msgstr ""
+
+msgid "Start"
+msgstr ""
+
+msgid "start date"
+msgstr ""
+
+msgid "Start date"
+msgstr ""
+
+msgid "Started CSV generation."
+msgstr ""
+
+msgid "Started PDF generation."
+msgstr ""
+
+msgid "Start your"
+msgstr ""
+
+msgid "Start your %(stage)s application."
+msgstr ""
+
+msgid "State"
+msgstr ""
+
+msgid "state"
+msgstr ""
+
+msgid "Statement of work"
+msgstr ""
+
+msgid "Status"
+msgstr ""
+
+msgid "status"
+msgstr ""
+
+msgid "Status:"
+msgstr ""
+
+msgid "{status} by {user_role}"
+msgstr ""
+
+msgid "Statuses"
+msgstr ""
+
+msgid "Step 1:"
+msgstr ""
+
+msgid "Step 2:"
+msgstr ""
+
+msgid "Strapline"
+msgstr ""
+
+msgid "<strong> %(activity_status)s (%(email)s)</strong> on %(time)s %(TIME_ZONE)s"
+msgstr ""
+
+msgid "submission"
+msgstr ""
+
+msgid "Submission"
+msgstr ""
+
+msgid "Submission anonymized."
+msgstr ""
+
+msgid "Submission count"
+msgstr ""
+
+msgid "Submission details"
+msgstr ""
+
+msgid "Submission Draft"
+msgstr ""
+
+msgid "submission export manager"
+msgstr ""
+
+msgid "submission export managers"
+msgstr ""
+
+msgid "Submission history"
+msgstr ""
+
+msgid "Submission ID Prefix"
+msgstr ""
+
+msgid "Submission lead"
+msgstr ""
+
+msgid "Submission Lead updated."
+msgstr ""
+
+msgid "Submission owner can delete the co-applicant"
+msgstr ""
+
+msgid "Submissions"
+msgstr ""
+
+msgid "Submissions: Download generated CSV"
+msgstr ""
+
+msgid "Submissions: Download generated ZIP"
+msgstr ""
+
+msgid "Submissions expect different forms - please contact admin"
+msgstr ""
+
+msgid "Submissions: Export as CSV"
+msgstr ""
+
+msgid "Submissions: Export as PDFs"
+msgstr ""
+
+msgid "Submissions flagged by you"
+msgstr ""
+
+msgid "Submissions for which reviewer is assigned to"
+msgstr ""
+
+msgid "Submissions for which reviewers should have access to"
+msgstr ""
+
+msgid "Submissions: Generate downloadable CSV"
+msgstr ""
+
+msgid "Submissions: Generate downloadable PDFs"
+msgstr ""
+
+msgid "Submissions: Generating downloadable CSV"
+msgstr ""
+
+msgid "Submissions: Generating downloadable PDFs"
+msgstr ""
+
+msgid "Submissions outcomes for which reviewers should have access to"
+msgstr ""
+
+msgid "Submissions results"
+msgstr ""
+
+msgid "Submissions states for which reviewers should have access to"
+msgstr ""
+
+msgid "Submissions waiting for your review"
+msgstr ""
+
+msgid "Submission translated from {fl} to {tl}."
+msgstr ""
+
+msgid "Submission translation failed. Contact your Administrator."
+msgstr ""
+
+msgid "Submission user can access their submission's co-applicants"
+msgstr ""
+
+msgid "Submit"
+msgstr ""
+
+msgid "Submit a new application"
+msgstr ""
+
+msgid "Submit anyway"
+msgstr ""
+
+msgid "Submit a report"
+msgstr ""
+
+msgid "Submit contract documents"
+msgstr ""
+
+msgid "Submit contracting documents"
+msgstr ""
+
+msgid "submit contracting documents"
+msgstr ""
+
+msgid "Submit documents"
+msgstr ""
+
+msgid "Submit documents for review"
+msgstr ""
+
+msgid "Submit for approval"
+msgstr ""
+
+msgid "Submit for review"
+msgstr ""
+
+msgid "Submit project documents for approval"
+msgstr ""
+
+msgid "Submitted"
+msgstr ""
+
+msgid "submitted"
+msgstr ""
+
+msgid "Submitted a report"
+msgstr ""
+
+msgid "Submitted a review"
+msgstr ""
+
+msgid "submitted contract documents"
+msgstr ""
+
+msgid "Submitted Contract Documents"
+msgstr ""
+
+msgid "Submitted Count"
+msgstr ""
+
+msgid "Submitted date"
+msgstr ""
+
+msgid "submitted new draft submission"
+msgstr ""
+
+msgid "submitted new submission"
+msgstr ""
+
+msgid "submitted proposal"
+msgstr ""
+
+msgid "Submitted <relative-time datetime=%(submitted_iso)s class=\"font-semibold\">%(submitted_display)s</relative-time> by <strong class=\"max-w-md font-semibold\">%(author)s</strong>"
+msgstr ""
+
+msgid "submitted <relative-time datetime=\"%(submitted_iso)s\">%(submitted_display)s</relative-time>"
+msgstr ""
+
+msgid "submitted report"
+msgstr ""
+
+msgid "Submitted Reports"
+msgstr ""
+
+msgid "Submitted {source.title_text_display} for {source.page.title}"
+msgstr ""
+
+msgid "Submitted <strong class=\"font-semibold\"><relative-time datetime=%(submitted_iso)s>%(submitted_display)s</relative-time></strong> by <strong class=\"font-semibold\">%(author)s</strong>"
+msgstr ""
+
+msgid "submit time"
+msgstr ""
+
+msgid "{sub_number} submission anonymized"
+msgstr ""
+
+msgid "Success"
+msgstr ""
+
+msgid "Successful login to %(org)s"
+msgstr ""
+
+msgid "Successfully archived submissions: {title}"
+msgstr ""
+
+msgid "Successfully deleted submissions: {title}"
+msgstr ""
+
+msgid "Successfully determined as {outcome}:"
+msgstr ""
+
+msgid "Successfully updated status to {invoice_status} for invoices: {invoice_numbers}"
+msgstr ""
+
+msgid "Successfully updated status to {status}:"
+msgstr ""
+
+msgid "summary"
+msgstr ""
+
+msgid "Summary of all activities"
+msgstr ""
+
+msgid "Superuser can view all documents"
+msgstr ""
+
+msgid "supporting document"
+msgstr ""
+
+msgid "Supporting Documents"
+msgstr ""
+
+msgid "Supporting documents"
+msgstr ""
+
+msgid "supporting documents"
+msgstr ""
+
+msgid "Sustainability questions and comments"
+msgstr ""
+
+msgid "Switch Language"
+msgstr ""
+
+msgid "Switch to User..."
+msgstr ""
+
+msgid "Switch User"
+msgstr ""
+
+msgid "System settings"
+msgstr ""
+
+msgid "Table view"
+msgstr ""
+
+msgid "Tag"
+msgstr ""
+
+msgid "Tag:"
+msgstr ""
+
+msgid "tags"
+msgstr ""
+
+msgid "Tags"
+msgstr ""
+
+msgid "Tags are hierarchical in nature."
+msgstr ""
+
+msgid "Tags updated successfully."
+msgstr ""
+
+msgid "Take action"
+msgstr ""
+
+msgid "task"
+msgstr ""
+
+msgid "Task List"
+msgstr ""
+
+msgid "tasks"
+msgstr ""
+
+msgid "team"
+msgstr ""
+
+msgid "Technical feasibility questions and comments"
+msgstr ""
+
+msgid "Technical merit"
+msgstr ""
+
+msgid "template"
+msgstr ""
+
+msgid "Text"
+msgstr ""
+
+msgid "Text field (multi line)"
+msgstr ""
+
+msgid "Text field (single line)"
+msgstr ""
+
+msgid "Text field (single line) (multiple inputs)"
+msgstr ""
+
+msgid "Thank you for your submission to the %(ORG_LONG_NAME)s."
+msgstr ""
+
+msgid "The"
+msgstr ""
+
+msgid "The applicant email address"
+msgstr ""
+
+msgid "the application. If you wish to update your name/email, you can do it by visiting 'My Account' section."
+msgstr ""
+
+msgid "The confirmation link you used is either invalid or has expired."
+msgstr ""
+
+msgid "The contract for project \"%(title)s\" is awaiting your review."
+msgstr ""
+
+msgid "The contract for your project \"%(title)s\" has approved. Now, your project is ready for invoicing."
+msgstr ""
+
+msgid "The contract number of project <{link}|{source.title}> has been updated to {source.contract_number} by {user}"
+msgstr ""
+
+msgid "The contract you were trying to approve has already been approved"
+msgstr ""
+
+msgid "the current query and try again"
+msgstr ""
+
+msgid "The end date must be after the start date."
+msgstr ""
+
+msgid "The following fields must be included only once: {}"
+msgstr ""
+
+msgid "The %(group_name)s group has no users configured. Why not <a href=\"%(wagtailusers_add_url)s\">add some</a>?"
+msgstr ""
+
+msgid "The invoice must be a PDF."
+msgstr ""
+
+msgid "The lead of <{link}|{source.title_text_display}> has been updated from {old_lead} to {source.lead} by {user}"
+msgstr ""
+
+msgid "The lead of project <{link}|{source.title}> has been updated from {old_lead} to {source.lead} by {user}"
+msgstr ""
+
+msgid "The message to be displayed when there are no open applications."
+msgstr ""
+
+msgid "The name of the organization"
+msgstr ""
+
+msgid "The new schedule is"
+msgstr ""
+
+msgid "The next report is due"
+msgstr ""
+
+msgid "The object you are trying to delete is used somewhere. Please remove any usages and try again!"
+msgstr ""
+
+msgid "The one time link has expired"
+msgstr ""
+
+msgid "The order this role should appear in the Update Reviewers form."
+msgstr ""
+
+msgid "The page you are trying to access requires users to verify their identity using two-factor authentication for security reasons."
+msgstr ""
+
+msgid "The parent is archived therefore can not add child under it."
+msgstr ""
+
+msgid "The password reset link was invalid, possibly because it has already been used. Please request a new password reset."
+msgstr ""
+
+msgid "The postal address of the user"
+msgstr ""
+
+msgid "The project forms for \"%(title)s\" was rejected by project form reviewers, please update it accordingly and resubmit it to the reviewers."
+msgstr ""
+
+msgid "The project title has been updated from <{link}|{old_title}> to <{link}|{source.title}> by {user}"
+msgstr ""
+
+msgid "The project \"%(title)s\" is awaiting final approval."
+msgstr ""
+
+msgid "The project \"%(title)s\" is awaiting your review."
+msgstr ""
+
+msgid "The project \"%(title)s\" is waiting for contract."
+msgstr ""
+
+msgid "There are no"
+msgstr ""
+
+msgid "There are no actions."
+msgstr ""
+
+msgid "There are no %(round_type)s rounds"
+msgstr ""
+
+msgid "There are no users configured. Why not <a href=\"%(wagtailusers_add_url)s\">add some</a>?"
+msgstr ""
+
+msgid "There has been an attempt to change email of your account on the %(ORG_LONG_NAME)s web site. If this action wasn't made by you, please contact support at %(ORG_EMAIL)s"
+msgstr ""
+
+msgid "There has been a new comment on \"%(title)s\" by %(display_user)s."
+msgstr ""
+
+msgid "There is a draft determination you do not have permission to edit."
+msgstr ""
+
+msgid "There is %(counter)s match"
+msgstr ""
+
+msgid "The request could not be understood by the server due to malformed syntax or invalid parameters. Please check your request and try again."
+msgstr ""
+
+msgid "There was an issue generating your invoice export file, please try again."
+msgstr ""
+
+msgid "There was an issue generating your submission export file, please try again."
+msgstr ""
+
+msgid "There were some errors with your form. Please amend the fields highlighted below."
+msgstr ""
+
+msgid "The round ends on"
+msgstr ""
+
+msgid "The selected workflow ({workflow_name}) requires {expected_count} forms, not {received_count}."
+msgstr ""
+
+msgid "The slack #channel for notifications."
+msgstr ""
+
+msgid "The slack #channel for notifications. If left empty, notifications will go to the default channel."
+msgstr ""
+
+msgid "The specified language is either invalid or not installed"
+msgstr ""
+
+msgid "The statement of work form has not been set up yet."
+msgstr ""
+
+msgid "The strapline to be displayed on the homepage."
+msgstr ""
+
+msgid "The system will allow you to save a draft of your proposal as you work on it. When you feel it is ready for our review, please click the “Submit” button and we’ll know to take a look at it. We’ll reply to you with feedback on your Proposal as quickly as possible."
+msgstr ""
+
+msgid "The title of the project"
+msgstr ""
+
+msgid "The %(title)s project is awaiting your review."
+msgstr ""
+
+msgid "The title to be displayed on the homepage."
+msgstr ""
+
+msgid "The two password fields didn't match."
+msgstr ""
+
+msgid "The uppermost active approver will be notified via email."
+msgstr ""
+
+msgid "This account does not have 2FA enabled."
+msgstr ""
+
+msgid "This application has been archived. This is visible to accounts with"
+msgstr ""
+
+msgid "This application is awaiting your review."
+msgstr ""
+
+msgid "This application is sealed."
+msgstr ""
+
+msgid "This application is sealed until the round is closed"
+msgstr ""
+
+msgid "This application is translated from %(from_lang_name)s to %(to_lang_name)s."
+msgstr ""
+
+msgid "This authenticator already has a passkey registered. Try a different authenticator or device."
+msgstr ""
+
+msgid "This cannot be undone."
+msgstr ""
+
+msgid "This contract has already been signed and there is no action for you to take."
+msgstr ""
+
+msgid "This determination message will be emailed to applicants and cannot be undone. Do you wish to continue?"
+msgstr ""
+
+msgid "This field is required."
+msgstr ""
+
+msgid "This invitation link is no longer valid or has expired. Please request a new invitation to proceed."
+msgstr ""
+
+msgid "This is the name we should \"@mention\" when sending notifications"
+msgstr ""
+
+msgid "This is visible to %(visibility_text)s"
+msgstr ""
+
+msgid "This link can be used only once and will lead you to a page where you can set your password. It will remain active for %(timeout_minutes)s minutes, so please set your password as soon as possible."
+msgstr ""
+
+msgid "This link will lead you to a page where you can set your password. It will remain active for %(timeout_minutes)s minutes, so please set your password as soon as possible."
+msgstr ""
+
+msgid "This link will only remain active for %(timeout_minutes)s minutes and will lead you to profile page after verification."
+msgstr ""
+
+msgid "This month"
+msgstr ""
+
+msgid "* This must be a number"
+msgstr ""
+
+msgid "This password has previously appeared in a data breach and should not be used. Please choose a different password."
+msgstr ""
+
+msgid "This project is in %(status)s state."
+msgstr ""
+
+msgid "This project name can be changed if a full proposal is requested."
+msgstr ""
+
+msgid "This report is for the period"
+msgstr ""
+
+msgid "This report is for the period <strong class=\"font-semibold\">%(object.start_date)s</strong> to <strong class=\"font-semibold\">%(object.end_date)s</strong>"
+msgstr ""
+
+msgid "This report is for the period <strong class=\"font-semibold\">%(start_date)s</strong> to <strong class=\"font-semibold\">%(end_date)s</strong>"
+msgstr ""
+
+msgid "This report was previously not required. Please ensure you now complete the report."
+msgstr ""
+
+msgid "This submission already has a project."
+msgstr ""
+
+msgid "This user is a %(role)s"
+msgstr ""
+
+msgid "This usually happens because your one time link has expired, or your account is already activated."
+msgstr ""
+
+msgid "This Website uses cookies. Below you can select the categories of cookies to allow when you use our website and services."
+msgstr ""
+
+msgid "This will be added to the footer, html tags is allowed."
+msgstr ""
+
+msgid "This will be displayed as a comment in the comments tab"
+msgstr ""
+
+msgid "This will overwrite the default front page navigation bar, html tags is allowed."
+msgstr ""
+
+msgid "This will result in %(submission_count)s associated submissions being deleted!"
+msgstr ""
+
+msgid "This will result in %(submission_count)s associated submissions being deleted or anonymized!"
+msgstr ""
+
+msgid "This will result in the user's %(submission_count)s associated submissions being deleted!"
+msgstr ""
+
+msgid "This will result in the user's %(submission_count)s associated submissions being deleted or anonymized!"
+msgstr ""
+
+msgid "This will submit the project documents for review by the configured approvers."
+msgstr ""
+
+msgid "Those codes were generated for you during 2FA setup to print or keep safe in a password manager."
+msgstr ""
+
+msgid "Tick mark for Yes otherwise No."
+msgstr ""
+
+msgid "Time field"
+msgstr ""
+
+msgid "Tip:"
+msgstr ""
+
+msgid "Title"
+msgstr ""
+
+msgid "title"
+msgstr ""
+
+msgid "Title:"
+msgstr ""
+
+msgid "{title} {child_verbose_name} {verbose_name} for {parent}"
+msgstr ""
+
+msgid "Title has been updated"
+msgstr ""
+
+msgid "Title is Empty"
+msgstr ""
+
+msgid "to"
+msgstr ""
+
+msgid "Today"
+msgstr ""
+
+msgid "To do"
+msgstr ""
+
+msgid "Toggle color theme"
+msgstr ""
+
+msgid "Toggle Contract documents visibility"
+msgstr ""
+
+msgid "Toggle Light / Dark / Auto color theme"
+msgstr ""
+
+msgid "Toggle Project documents visibility"
+msgstr ""
+
+msgid "Toggle theme"
+msgstr ""
+
+msgid "To identify and verify your YubiKey, please insert a token in the field below. Your YubiKey will be linked to your account."
+msgstr ""
+
+msgid "To proceed, type \"disable\" below and then click on \"confirm\":"
+msgstr ""
+
+msgid "To start using the new email, please click on the confirmation link that has been sent to you on your new email."
+msgstr ""
+
+msgid "Total number of reviews"
+msgstr ""
+
+msgid "Totals"
+msgstr ""
+
+msgid "Total Score:"
+msgstr ""
+
+msgid "* Total %(submission_count)s but %(count_diff)s submission(s) lack requested amount fields or data and are not included."
+msgstr ""
+
+msgid "Total value"
+msgstr ""
+
+msgid "Track and explore submission results"
+msgstr ""
+
+msgid "Track and explore the reviews"
+msgstr ""
+
+msgid "Track and explore the staff assignments"
+msgstr ""
+
+msgid "transitioned"
+msgstr ""
+
+msgid "transitioned project"
+msgstr ""
+
+msgid "Translate"
+msgstr ""
+
+msgid "Translate application"
+msgstr ""
+
+msgid "Translation cleared."
+msgstr ""
+
+msgid "Translations are an experimental feature and may be inaccurate"
+msgstr ""
+
+msgid "Try"
+msgstr ""
+
+msgid "Try again"
+msgstr ""
+
+msgid "Try again to change email from accounts page. If that fails please contact %(ORG_SHORT_NAME)s at <a href=\"mailto:%(ORG_EMAIL)s\">%(ORG_EMAIL)s</a>."
+msgstr ""
+
+msgid "Try <a href=\"./\" hx-get=\"./\" hx-target=\"#main\" hx-push-url=\"true\" hx-swap=\"outerHTML transition:true\">clearing</a> the current query and try again."
+msgstr ""
+
+msgid "Try <a href=\"%(password_reset)s\">resetting your password</a> first. If you're still having trouble, contact us at %(ORG_SHORT_NAME)s: <a href=\"mailto:%(ORG_EMAIL)s\">%(ORG_EMAIL)s</a>."
+msgstr ""
+
+msgid "Two-Factor Authentication (2FA)"
+msgstr ""
+
+msgid "two-factor authentication and then to"
+msgstr ""
+
+msgid "Two-factor authentication has not been set up for your account yet. Please set it up to enhance the security of your account."
+msgstr ""
+
+msgid "Two factor authentication required"
+msgstr ""
+
+msgid "Two factor verification"
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+msgid "Type:"
+msgstr ""
+
+msgid "Type <pre class=\"badge badge-soft badge-neutral\">anonymize</pre> below to confirm"
+msgstr ""
+
+msgid "Type <pre class=\"badge badge-soft badge-neutral\">delete</pre> below to confirm"
+msgstr ""
+
+msgid "Unable to determine submission \"{title}\" as already determined"
+msgstr ""
+
+msgid "Unable to scan the QR code? Try this link:"
+msgstr ""
+
+msgid "Unarchive"
+msgstr ""
+
+msgid "unarchived submission"
+msgstr ""
+
+msgid "un-archived this submission"
+msgstr ""
+
+msgid "Unarchive Submission"
+msgstr ""
+
+msgid "Unassigned"
+msgstr ""
+
+msgid "Uncheck it to approve project parallelly"
+msgstr ""
+
+msgid "Unknown credential"
+msgstr ""
+
+msgid "Unpublished"
+msgstr ""
+
+msgid "Unsigned"
+msgstr ""
+
+msgid "Unskip"
+msgstr ""
+
+msgid "Update"
+msgstr ""
+
+msgid "Update applicant"
+msgstr ""
+
+msgid "Update approvers"
+msgstr ""
+
+msgid "Update Author"
+msgstr ""
+
+msgid "Update contract number"
+msgstr ""
+
+msgid "Updated"
+msgstr ""
+
+msgid "updated"
+msgstr ""
+
+msgid "updated author"
+msgstr ""
+
+msgid "updated author from {old_author} to {source.user}"
+msgstr ""
+
+msgid "updated contract number to {source.contract_number}"
+msgstr ""
+
+msgid "Update Determination draft"
+msgstr ""
+
+msgid "updated invoice"
+msgstr ""
+
+msgid "updated invoice status"
+msgstr ""
+
+msgid "Updated Invoice status to: {invoice_status}."
+msgstr ""
+
+msgid "updated lead"
+msgstr ""
+
+msgid "updated Lead from {old_lead} to {source.lead}"
+msgstr ""
+
+msgid "updated project contract number"
+msgstr ""
+
+msgid "Updated project form status to: {paf_status}"
+msgstr ""
+
+msgid "updated project lead"
+msgstr ""
+
+msgid "updated project title"
+msgstr ""
+
+msgid "Update draft"
+msgstr ""
+
+msgid "Updated <relative-time datetime=%(updated_iso)s class=\"font-semibold\">%(updated_display)s</relative-time> by <strong class=\"max-w-md font-semibold\">%(author)s</strong>"
+msgstr ""
+
+msgid "Updated reporting frequency. New schedule is: {new_schedule} starting on {schedule_start}"
+msgstr ""
+
+msgid "updated reviewers"
+msgstr ""
+
+msgid "Updated screening decision from \"{old_status}\" to \"{new_status}\""
+msgstr ""
+
+msgid "Updated <strong class=\"font-semibold\"><relative-time datetime=%(updated_iso)s>%(updated_display)s</relative-time></strong> by <strong class=\"font-semibold\">%(author)s</strong>"
+msgstr ""
+
+msgid "updated the project title from {old_title} to {source.title}"
+msgstr ""
+
+msgid "Update Invoices Status"
+msgstr ""
+
+msgid "Update Invoice status"
+msgstr ""
+
+msgid "Update Lead"
+msgstr ""
+
+msgid "Update lead from {lead} to"
+msgstr ""
+
+msgid "update Lead from {old_lead} to {source.lead}"
+msgstr ""
+
+msgid "Update password"
+msgstr ""
+
+msgid "Update project dates"
+msgstr ""
+
+msgid "Update project status"
+msgstr ""
+
+msgid "Update Project Status"
+msgstr ""
+
+msgid "Update Review draft"
+msgstr ""
+
+msgid "Update reviewers"
+msgstr ""
+
+msgid "Update Status"
+msgstr ""
+
+msgid "Update status"
+msgstr ""
+
+msgid "Update submission applicant"
+msgstr ""
+
+msgid "Update tags"
+msgstr ""
+
+msgid "Update the role for co-applicant."
+msgstr ""
+
+msgid "update time"
+msgstr ""
+
+msgid "Update title"
+msgstr ""
+
+msgid "Upload"
+msgstr ""
+
+msgid "Upload a signed contract that will sent to applicant for countersigning."
+msgstr ""
+
+msgid "Upload Contracting Documents"
+msgstr ""
+
+msgid "Upload contracting documents"
+msgstr ""
+
+msgid "Upload countersigned contract"
+msgstr ""
+
+msgid "uploaded"
+msgstr ""
+
+msgid "Uploaded a {contract.state} contract"
+msgstr ""
+
+msgid "uploaded contract to project"
+msgstr ""
+
+msgid "uploaded document to project"
+msgstr ""
+
+msgid "Upload it back"
+msgstr ""
+
+msgid "Upload signed contract"
+msgstr ""
+
+msgid "Upload Supporting Documents"
+msgstr ""
+
+msgid "Up to date"
+msgstr ""
+
+msgid "URL"
+msgstr ""
+
+msgid "Usability questions and comments"
+msgstr ""
+
+msgid "usage"
+msgstr ""
+
+msgid "Use a Backup Code"
+msgstr ""
+
+msgid "Use ctrl/cmd + C to copy the backup codes."
+msgstr ""
+
+msgid "Used %(when)s ago"
+msgstr ""
+
+msgid "user"
+msgstr ""
+
+msgid "User"
+msgstr ""
+
+msgid "User already assigned"
+msgstr ""
+
+msgid "{user} as {name}"
+msgstr ""
+
+msgid "{user} as {name},"
+msgstr ""
+
+msgid "{user} as {name}."
+msgstr ""
+
+msgid "User attempted to translate submission but is not org faculty"
+msgstr ""
+
+msgid "User can edit in current phase"
+msgstr ""
+
+msgid "User consent on login & register forms"
+msgstr ""
+
+msgid "User don't have project form approver roles"
+msgstr ""
+
+msgid "user groups"
+msgstr ""
+
+msgid "{user} has anonymized {source.title_text_display}"
+msgstr ""
+
+msgid "{user} has anonymized submissions: {title}"
+msgstr ""
+
+msgid "{user} has approved contract for <{link}|{source.title}>"
+msgstr ""
+
+msgid "{user} has approved project <{link}|{source.title}>"
+msgstr ""
+
+msgid "{user} has archived submissions: {title}"
+msgstr ""
+
+msgid "{user} has archived the submission: {source.title_text_display}"
+msgstr ""
+
+msgid "{user} has batch added {reviewers_text} as reviewers on: {submissions_text}"
+msgstr ""
+
+msgid "{user} has batch changed lead to {new_lead} on: {submissions_text}"
+msgstr ""
+
+msgid "{user} has changed the status of <{link_related}|invoice> on <{link}|{source.title}> to {invoice.status_display}"
+msgstr ""
+
+msgid "{user} has created a new account for <{link}|{source}>"
+msgstr ""
+
+msgid "{user} has created a Project: <{link}|{source.title}>"
+msgstr ""
+
+msgid "{user} has created invoice for <{link}|{source.title}>"
+msgstr ""
+
+msgid "{user} has deleted a report for <{link}|{source.title}>"
+msgstr ""
+
+msgid "{user} has deleted invoice from <{link}|{source.title}>"
+msgstr ""
+
+msgid "{user} has deleted {review.author} review for <{link}|{source.title_text_display}>"
+msgstr ""
+
+msgid "{user} has deleted {review_opinion.author} review opinion for <{link}|{source.title_text_display}>"
+msgstr ""
+
+msgid "{user} has deleted {source.title_text_display}"
+msgstr ""
+
+msgid "{user} has deleted submissions: {title}"
+msgstr ""
+
+msgid "{user} has edited account for <{link}|{source}> that now has following roles: {roles}"
+msgstr ""
+
+msgid "{user} has edited <{link}|{source.title_text_display}>"
+msgstr ""
+
+msgid "{user} has edited {review.author} review for <{link}|{source.title_text_display}>"
+msgstr ""
+
+msgid "{user} has opened the sealed submission: <{link}|{source.title_text_display}>"
+msgstr ""
+
+msgid "{user} has requested approval on project <{link}|{source.title}>"
+msgstr ""
+
+msgid "{user} has requested changes for project acceptance on <{link}|{source.title}>"
+msgstr ""
+
+msgid "{user} has submitted a report for <{link}|{source.title}>"
+msgstr ""
+
+msgid "{user} has submitted a review for <{link}|{source.title_text_display}>. Outcome: {review.outcome},  Score: {review.get_score_display}"
+msgstr ""
+
+msgid "{user} has submitted the contracting document for project <{link}|{source.title}>"
+msgstr ""
+
+msgid "{user} has transitioned the following submissions: {submissions_links}"
+msgstr ""
+
+msgid "{user} has unarchived the submission: {source.title_text_display}"
+msgstr ""
+
+msgid "{user} has updated author from {old_author} to {source.user} for submission <{link}|{source}>"
+msgstr ""
+
+msgid "{user} has updated invoice for <{link}|{source.title}>"
+msgstr ""
+
+msgid "{user} has updated the partners on <{link}|{source.title_text_display}>"
+msgstr ""
+
+msgid "{user} has updated the reviewers on <{link}|{title}>"
+msgstr ""
+
+msgid "{user} has updated the status of <{link}|{source.title_text_display}>: {old_phase.display_name} → {source.phase.display_name}"
+msgstr ""
+
+msgid "{user} has uploaded a contract for <{link}|{source.title}>"
+msgstr ""
+
+msgid "Username"
+msgstr ""
+
+msgid "{user} {opinion.opinion_display}s with {opinion.review.author}s review of <{link}|{source.title_text_display}>"
+msgstr ""
+
+msgid "users"
+msgstr ""
+
+msgid "Users cannot be assigned to multiple roles."
+msgstr ""
+
+msgid "Use the above configured variables to filter out submissions"
+msgstr ""
+
+msgid "Use your password"
+msgstr ""
+
+msgid "value"
+msgstr ""
+
+msgid "Vendor"
+msgstr ""
+
+msgid "Vendor can submit contracting documents"
+msgstr ""
+
+msgid "Vendor can view all documents"
+msgstr ""
+
+msgid "Vendor Name"
+msgstr ""
+
+msgid "Vendor pending"
+msgstr ""
+
+msgid "Vendor(project user) can view project in all statuses"
+msgstr ""
+
+msgid "verb"
+msgstr ""
+
+msgid "Verification Code"
+msgstr ""
+
+msgid "Verification code"
+msgstr ""
+
+msgid "Verification failed"
+msgstr ""
+
+msgid "Verify Email"
+msgstr ""
+
+msgid "view"
+msgstr ""
+
+msgid "View"
+msgstr ""
+
+msgid "View all"
+msgstr ""
+
+msgid "View all applications in this round"
+msgstr ""
+
+msgid "View all reports"
+msgstr ""
+
+msgid "View all revisions"
+msgstr ""
+
+msgid "View and edit all submissions, submit reviews, send determinations, and set up applications."
+msgstr ""
+
+msgid "View and filter all Submitted Reports"
+msgstr ""
+
+msgid "View application"
+msgstr ""
+
+msgid "View Changes"
+msgstr ""
+
+msgid "View comment"
+msgstr ""
+
+msgid "View communications"
+msgstr ""
+
+msgid "View details for"
+msgstr ""
+
+msgid "View determination"
+msgstr ""
+
+msgid "View file - %(filename)s"
+msgstr ""
+
+msgid "View invoice requests requiring your attention"
+msgstr ""
+
+msgid "View linked"
+msgstr ""
+
+msgid "View live projects under your management"
+msgstr ""
+
+msgid "View message log"
+msgstr ""
+
+msgid "View next report"
+msgstr ""
+
+msgid "View previous report"
+msgstr ""
+
+msgid "View project"
+msgstr ""
+
+msgid "View, search and filter all project invoices"
+msgstr ""
+
+msgid "View, Search and filter all projects"
+msgstr ""
+
+msgid "View, Search and filter reporting statuses"
+msgstr ""
+
+msgid "View submissions flagged by you"
+msgstr ""
+
+msgid "View submissions waiting for your review"
+msgstr ""
+
+msgid "View submitted reports"
+msgstr ""
+
+msgid "View template"
+msgstr ""
+
+msgid "View the invoice here"
+msgstr ""
+
+msgid "View the invoice here:"
+msgstr ""
+
+msgid "View the project here"
+msgstr ""
+
+msgid "View: They can only read the application."
+msgstr ""
+
+msgid "View/Update Approvers"
+msgstr ""
+
+msgid "View users in this group"
+msgstr ""
+
+msgid "View your invoice here"
+msgstr ""
+
+msgid "View your previous reviews"
+msgstr ""
+
+msgid "View your project here"
+msgstr ""
+
+msgid "View your project here: %(scheme)s://%(host)s%(path)s"
+msgstr ""
+
+msgid "View your submission"
+msgstr ""
+
+msgid "View your submission here: %(scheme)s://%(host)s%(path)s"
+msgstr ""
+
+msgid "Visibility"
+msgstr ""
+
+msgid "visibility"
+msgstr ""
+
+msgid "Visible only to staff."
+msgstr ""
+
+msgid "Visible to"
+msgstr ""
+
+msgid "Visible to other reviewers and staff."
+msgstr ""
+
+msgid "Waiting for"
+msgstr ""
+
+msgid "Waiting for approval"
+msgstr ""
+
+msgid "Waiting for assignee"
+msgstr ""
+
+msgid "Waiting for contract"
+msgstr ""
+
+msgid "Waiting for contract approval"
+msgstr ""
+
+msgid "We appreciate your \"%(title)s\" application submission to the %(ORG_LONG_NAME)s."
+msgstr ""
+
+msgid "We are calling your phone right now, please enter the digits you hear."
+msgstr ""
+
+msgid "{} week"
+msgstr ""
+
+msgid "week"
+msgstr ""
+
+msgid "Weeks"
+msgstr ""
+
+msgid "We have sent a confirmation link to your new email."
+msgstr ""
+
+msgid "We have sent an email to you with a login link, open the link in the email to login to your account."
+msgstr ""
+
+msgid "We have sent an email to you with a password recovery link, open the link in the email to change your password."
+msgstr ""
+
+msgid "We have sent you an email containing a link for logging in or signing up. Please check your email and use the link provided to either login or create your account."
+msgstr ""
+
+msgid "Welcome"
+msgstr ""
+
+msgid "Welcome to {ORG_LONG_NAME}"
+msgstr ""
+
+msgid "We sent you a text message, please enter the tokens we sent."
+msgstr ""
+
+msgid "We strongly recommend you to save the backup codes. To get the backup codes you can continue to Show Codes."
+msgstr ""
+
+msgid "We've encountered an issue with the selected authentication method. Please go back and verify that you entered your information correctly, try again, or use a different authentication method instead. If the issue persists, contact the site administrator."
+msgstr ""
+
+msgid "We’ve reviewed your Concept note and think it could be a good fit for %(ORG_SHORT_NAME)s funding. We would like to invite you to submit a Proposal with more details about your project. You will receive a second email linking to a determination message with detailed feedback."
+msgstr ""
+
+msgid "We've sent you an email with a login link. Kindly check your email and follow the link to access your account."
+msgstr ""
+
+msgid "We will review and reply to your submission as quickly as possible."
+msgstr ""
+
+msgid "We will use this email address to communicate with you about your proposal."
+msgstr ""
+
+msgid "We will use this name when we communicate with you about your proposal."
+msgstr ""
+
+msgid "What email address should we use to contact you?"
+msgstr ""
+
+msgid "What is the title of your application?"
+msgstr ""
+
+msgid "What is your name?"
+msgstr ""
+
+msgid "When no end date is provided the round will remain open indefinitely."
+msgstr ""
+
+msgid "With passkeys you can use your fingerprint, face, or screen lock to login securely without a password."
+msgstr ""
+
+msgid "with the email"
+msgstr ""
+
+msgid "Word limit"
+msgstr ""
+
+msgid "workflow"
+msgstr ""
+
+msgid "Workflow"
+msgstr ""
+
+msgid "year"
+msgstr ""
+
+msgid "Years"
+msgstr ""
+
+msgid "Yes"
+msgstr ""
+
+msgid "Yes, delete"
+msgstr ""
+
+msgid "Yes/No"
+msgstr ""
+
+msgid "yes/no"
+msgstr ""
+
+msgid "Yesterday"
+msgstr ""
+
+msgid "you"
+msgstr ""
+
+msgid "You"
+msgstr ""
+
+msgid "You are currently working on behalf of <strong class=\"font-bold\">%(user)s</strong>"
+msgstr ""
+
+msgid "You are entering sudo mode. After you've performed a sudo-protected action, you'll only be asked to re-authenticate again after a few hours of inactivity."
+msgstr ""
+
+msgid "You are invited as a co-applicant"
+msgstr ""
+
+msgid "You are logged in but your user account does not have a full name. We'll update your user account with the name you provide here."
+msgstr ""
+
+msgid "You are logged in so this information is fetched from your user account."
+msgstr ""
+
+msgid "You are missing the following required fields: {}"
+msgstr ""
+
+msgid "You are not allowed to edit the project at this time"
+msgstr ""
+
+msgid "You are receiving this e-mail because you are an co-applicant on this submission."
+msgstr ""
+
+msgid "You are registered using OAuth, please contact an admin if you need to change your email address."
+msgstr ""
+
+msgid "You are the partner of these submissions"
+msgstr ""
+
+msgid "You can access the draft at"
+msgstr ""
+
+msgid "You can access your applications from your dashboard. From there, you can complete and submit them."
+msgstr ""
+
+msgid "You can begin submitting invoices and reports for your project."
+msgstr ""
+
+msgid "You can complete your application by following the log-in details emailed to you."
+msgstr ""
+
+msgid "You can not delete a deleted comment"
+msgstr ""
+
+msgid "You can not edit a deleted comment"
+msgstr ""
+
+msgid "You can not update until co-applicant accepts the invite. You may re-invite them."
+msgstr ""
+
+msgid "You can only approve a signed contract"
+msgstr ""
+
+msgid "You can only delete your own comments"
+msgstr ""
+
+msgid "You can only edit your own comments"
+msgstr ""
+
+msgid "You can remove the tasks that are assigned to you."
+msgstr ""
+
+msgid "You can review the report here"
+msgstr ""
+
+msgid "You do not have permission to access this report."
+msgstr ""
+
+msgid "You do not have permission to add reports."
+msgstr ""
+
+msgid "You do not have permission to create that determination."
+msgstr ""
+
+msgid "You do not have permission to delete reports."
+msgstr ""
+
+msgid "You do not have permission to edit report due dates."
+msgstr ""
+
+msgid "You do not have permission to update reporting configurations."
+msgstr ""
+
+msgid "You do not have permission to update this report."
+msgstr ""
+
+msgid "You don't have any backup codes yet."
+msgstr ""
+
+msgid "You don't have any PAFs for review right now"
+msgstr ""
+
+msgid "You don't have any pending task."
+msgstr ""
+
+msgid "You have already created a determination for this submission"
+msgstr ""
+
+msgid "You have already posted a review for this submission"
+msgstr ""
+
+msgid "You have been assigned as an Applicant to submission \"%(title)s\"."
+msgstr ""
+
+msgid "You have been invited as a co-applicant to an application on %(ORG_SHORT_NAME)s by %(user)s."
+msgstr ""
+
+msgid "You have been invited to join the application \"%(title)s\" as a co-applicant."
+msgstr ""
+
+msgid "You have no %(type)s rounds or labs assigned to you."
+msgstr ""
+
+msgid "You'll need to configure reporting before you can use it. Please set the report date and frequency, then save the form."
+msgstr ""
+
+msgid "You must have Javascript enabled to use this form."
+msgstr ""
+
+msgid "your account"
+msgstr ""
+
+msgid "Your activation link is valid. Click the button below to create your account."
+msgstr ""
+
+msgid "Your active submissions"
+msgstr ""
+
+msgid "Your application has been reviewed and the outcome is"
+msgstr ""
+
+msgid "Your application is now in \"%(new_phase)s\" status."
+msgstr ""
+
+msgid "Your application is saved as a draft."
+msgstr ""
+
+msgid "Your application to {ORG_LONG_NAME}: {source.title_text_display}"
+msgstr ""
+
+msgid "Your assigned submissions (lead)"
+msgstr ""
+
+msgid "Your average score"
+msgstr ""
+
+msgid "Your avg. score"
+msgstr ""
+
+msgid "Your chosen password"
+msgstr ""
+
+msgid "Your cookie settings"
+msgstr ""
+
+msgid "You're about to update the applicant for application #%(application_id)s. Once changed, the original applicant will no longer have access to this application."
+msgstr ""
+
+msgid "Your email has been successfully updated to {email}!"
+msgstr ""
+
+msgid "You're receiving this email because you requested a password reset for your user account at %(ORG_LONG_NAME)s."
+msgstr ""
+
+msgid "You're skipping the report for %(start_date)s - %(end_date)s. This will result in a gap in reporting for the project. You can undo this at any time."
+msgstr ""
+
+msgid "Your flagged submissions"
+msgstr ""
+
+msgid "Your generated invoice export file is ready for download"
+msgstr ""
+
+msgid "Your generated submission export file is ready for download"
+msgstr ""
+
+msgid "Your login link is valid. Click the button below to complete your login."
+msgstr ""
+
+msgid "Your opinions"
+msgstr ""
+
+msgid "Your {ORG_LONG_NAME} Project: {source.title}"
+msgstr ""
+
+msgid "Your password must not have been detected in a major security breach."
+msgstr ""
+
+msgid "Your password was successfully updated!"
+msgstr ""
+
+msgid "Your previous reviews"
+msgstr ""
+
+msgid "Your projects"
+msgstr ""
+
+msgid "Your reviews"
+msgstr ""
+
+msgid "Your %(stage)s application has been accepted."
+msgstr ""
+
+msgid "Your submission has been edited by a member of staff."
+msgstr ""
+
+msgid "Your Tasks"
+msgstr ""
+
+msgid "You should now print these codes or copy them to your clipboard and store them in your password manager."
+msgstr ""
+
+msgid "texterify_timestamp"
+msgstr "2026-09-14T14:35:45Z"
