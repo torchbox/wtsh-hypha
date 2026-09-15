@@ -714,10 +714,10 @@ msgid "Are you sure you want to anonymize this application? Personal data will b
 msgstr "Bist du sicher, dass du diese Anwendung löschen willst? Alle Ihre Daten für diese Anwendung werden dauerhaft von unseren Servern entfernt. Diese Maßnahme kann nicht rückgängig gemacht werden."
 
 msgid "Are you sure you want to archive %(count)s submission(s)? Archived submissions will be hidden from the main list and cannot be edited. Submissions can be unarchived at any time."
-msgstr "\nSind Sie sicher, dass Sie die Einreichung archivieren möchten? Archivierte Einreichungen werden in der Hauptliste der Einreichungen ausgeblendet und können nicht bearbeitet werden.\n                    "
+msgstr "Sind Sie sicher, dass Sie die Einreichung archivieren möchten? Archivierte Einreichungen werden in der Hauptliste der Einreichungen ausgeblendet und können nicht bearbeitet werden."
 
 msgid "Are you sure you want to archive submission? Archived submissions will be hidden from the main list of submissions and can not be edited. Submissions can be unarchived at any time."
-msgstr "\nSind Sie sicher, dass Sie die Einreichung archivieren möchten? Archivierte Einreichungen werden in der Hauptliste der Einreichungen ausgeblendet und können nicht bearbeitet werden.\n                    "
+msgstr "Sind Sie sicher, dass Sie die Einreichung archivieren möchten? Archivierte Einreichungen werden in der Hauptliste der Einreichungen ausgeblendet und können nicht bearbeitet werden."
 
 msgid "Are you sure you want to assign \"%(user_title)s\" as lead of the selected submissions?"
 msgstr "Sind Sie sicher, dass Sie \"%(user_title)s\" als Lead der ausgewählten Einreichungen zuweisen möchten?"
@@ -792,7 +792,7 @@ msgid "Are you sure you want to submit your report?"
 msgstr "Sind Sie sicher, dass Sie Vertragsdokumente einreichen möchten?"
 
 msgid "Are you sure you want to unarchive this submission? This submission will be visible in the main list of submissions and can be edited."
-msgstr "\nSind Sie sicher, dass Sie diese Einreichung entsperren möchten? Diese Einreichung wird in der Hauptliste der Einreichungen sichtbar sein und kann bearbeitet werden.\n                    "
+msgstr "Sind Sie sicher, dass Sie diese Einreichung entsperren möchten? Diese Einreichung wird in der Hauptliste der Einreichungen sichtbar sein und kann bearbeitet werden."
 
 msgid "Are you sure you want to update the approvers?"
 msgstr "Sind Sie sicher, dass Sie die Genehmigenden aktualisieren möchten?"
@@ -2469,7 +2469,7 @@ msgid "If you do not complete the activation process within %(timeout_minutes)s 
 msgstr "Wenn Sie den Aktivierungsprozess nicht innerhalb von %(timeout_days)s Tagen abschließen, können Sie das Formular zum Zurücksetzen des Passworts unter"
 
 msgid "If you do not receive an e-mail within 15 minutes please check your spam folder and contact %(email)s for further assistance."
-msgstr "\nWenn Sie innerhalb von 15 Minuten keine E-Mail erhalten, überprüfen Sie bitte Ihr Spam-Verzeichnis und kontaktieren Sie %(email)s für weitere Unterstützung.\n                "
+msgstr "Wenn Sie innerhalb von 15 Minuten keine E-Mail erhalten, überprüfen Sie bitte Ihr Spam-Verzeichnis und kontaktieren Sie %(email)s für weitere Unterstützung."
 
 msgid "If you have any issues accessing the submission or other general inquiries, please email us at %(ORG_EMAIL)s"
 msgstr "Wenn du Probleme beim Zugriff auf das System hast oder allgemeine Fragen, schreib uns eine E-Mail an %(ORG_EMAIL)s"
@@ -6510,7 +6510,7 @@ msgid "You are currently working on behalf of <strong class=\"font-bold\">%(user
 msgstr "Sie arbeiten derzeit im Auftrag von <strong class=\"font-bold\">%(user)s</strong>"
 
 msgid "You are entering sudo mode. After you've performed a sudo-protected action, you'll only be asked to re-authenticate again after a few hours of inactivity."
-msgstr "\n<strong>Tipp:</strong> Sie wechseln in den sudo-Modus. Nachdem Sie eine sudo-geschützte Aktion durchgeführt haben, werden Sie erst nach einigen Stunden der Inaktivität wieder aufgefordert, sich erneut zu authentifizieren. "
+msgstr "<strong>Tipp:</strong> Sie wechseln in den sudo-Modus. Nachdem Sie eine sudo-geschützte Aktion durchgeführt haben, werden Sie erst nach einigen Stunden der Inaktivität wieder aufgefordert, sich erneut zu authentifizieren."
 
 msgid "You are invited as a co-applicant"
 msgstr "Du bist als Mitantragsteller eingeladen"
@@ -6615,7 +6615,7 @@ msgid "You have been invited as a co-applicant to an application on %(ORG_SHORT_
 msgstr "Sie wurden von %(user)s als Mitantragsteller zu einem Antrag auf %(ORG_SHORT_NAME)s eingeladen."
 
 msgid "You have been invited to join the application \"%(title)s\" as a co-applicant."
-msgstr "\nSie wurden eingeladen, als Mitbewerber an der Bewerbung \"%(title)s\" teilzunehmen.\n                    "
+msgstr "Sie wurden eingeladen, als Mitbewerber an der Bewerbung \"%(title)s\" teilzunehmen."
 
 msgid "You have no %(type)s rounds or labs assigned to you."
 msgstr "Sie haben keine %(type)s-Runden oder -Labore zugewiesen."
@@ -6720,4 +6720,4 @@ msgid "You should now print these codes or copy them to your clipboard and store
 msgstr "Sie sollten diese Codes jetzt ausdrucken oder in die Zwischenablage kopieren und in Ihrem Passwort-Manager speichern."
 
 msgid "texterify_timestamp"
-msgstr "2026-09-14T14:41:45Z"
+msgstr "2026-09-15T10:27:32Z"
